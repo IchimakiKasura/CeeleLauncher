@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Ichimaki Kasura</Authors>
+    <AssemblyName>HoyoLauncher</AssemblyName>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration) == Release">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    <PublishProtocol>FileSystem</PublishProtocol>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>True</PublishSingleFile>
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\gear.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="System" />
+    <Using Include="System.IO" />
+    <Using Include="System.Windows" />
+    <Using Include="System.Windows.Input" />
+    <Using Include="System.Windows.Media" />
+    <Using Include="System.Windows.Media.Imaging" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="HoyoLauncherProject.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\gear.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Core\Settings\HoyoLauncher.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HoyoLauncher.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Core\Settings\HoyoLauncher.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>HoyoLauncher.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

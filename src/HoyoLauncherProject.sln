@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoyoLauncherProject", "HoyoLauncherProject.csproj", "{43B18531-6E74-4490-BFD3-F443BBF4911D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43B18531-6E74-4490-BFD3-F443BBF4911D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B18531-6E74-4490-BFD3-F443BBF4911D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B18531-6E74-4490-BFD3-F443BBF4911D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B18531-6E74-4490-BFD3-F443BBF4911D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34E7AD04-93F8-4AFC-A029-D6A953C6B1C3}
+	EndGlobalSection
+EndGlobal
