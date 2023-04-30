@@ -1,17 +1,20 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HoyoLauncherProject" GeneratedClassName="HoyoLauncher">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HoyoLauncherProject.Core.Settings" GeneratedClassName="HoyoLauncher">
   <Profiles />
   <Settings>
     <Setting Name="HONKAI_IMPACT_THIRD_DIR" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GENSHIN_IMPACT_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">H:\\Genshin Impact</Value>
     </Setting>
     <Setting Name="HONKAI_STAR_RAIL_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">H:\\Star Rail</Value>
     </Setting>
     <Setting Name="ZENLESS_ZONE_ZERO_DIR" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CURRENT_SELECTED" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

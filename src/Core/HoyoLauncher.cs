@@ -1,23 +1,13 @@
 ﻿namespace HoyoLauncherProject.Core;
 
-class HoyoLauncher 
+sealed class HoyoLauncher 
 {
-    private static MainWindow _m;
-
-    // Temporary
-    /// <summary>
-    /// If TRUE, Genshin is selected <br/>
-    /// If FALSE, Star Rail is selected.
-    /// </summary>
-    public static bool IsGenshin = true;
-
-    public static void Initialize(MainWindow m)
+    public static void Initialize()
     {
-        _m = m;
-
-        if (IsGenshin)
-            m.ChangeBG(TEMPORARY.GENSHIN_IMPACT_DIR);
-        else m.ChangeBG(TEMPORARY.HONKAI_STAR_RAIL_DIR);
+        // TEMPORARY
+        // Settings.HoyoLauncher.Default.GENSHIN_IMPACT_DIR = "H:\\Genshin Impact";
+        // Settings.HoyoLauncher.Default.HONKAI_STAR_RAIL_DIR = "H:\\Star Rail";
+        // Settings.HoyoLauncher.Default.HONKAI_IMPACT_THIRD_DIR = "H:\\Honkai Impact 3rd";
+        // Settings.HoyoLauncher.Default.ZENLESS_ZONE_ZERO_DIR = "H:\\Zenless Zone Zero";
     }
 }
-

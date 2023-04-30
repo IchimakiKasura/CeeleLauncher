@@ -59,7 +59,6 @@
             </Style.Triggers>
         </Style>
 
-
         <Style x:Key="MinimizeButton" TargetType="Button" BasedOn="{StaticResource TopButtonStyles}">
             <Setter Property="Content" Value="—"/>
             <Setter Property="FontSize" Value="15"/>
@@ -109,10 +108,11 @@
             <Setter Property="FontSize" Value="23"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="#704a1d"/>
+            <Setter Property="Background" Value="#ffca2a"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#ffca2a" Height="65" Width="202" CornerRadius="5,0,0,5"
+                        <Border Background="{TemplateBinding Background}" Height="65" Width="202" CornerRadius="5,0,0,5"
                                 BorderThickness="0.5" BorderBrush="#b28d1d">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             <Border.Triggers>
@@ -135,6 +135,11 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" Value="#a68217"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="LaunchSettings" TargetType="Button">
@@ -171,17 +176,60 @@
             </Setter>
         </Style>
 
+        <Style x:Key="GameSelectionButton" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="White" Height="35" Width="210" CornerRadius="2">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-1,0,0"/>
+                            <Border.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#f6f5f4" Duration="0"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="White" Duration="0"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Border.Triggers>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
-    <Grid Name="MAIN_BACKGROUND">
+    <Grid Name="MAIN_BACKGROUND" Background="Gray">
+
+        <Image Name="MainBG" Source="pack://application:,,,/Images/defaultBG.jpg" Stretch="Fill" Opacity="0.7"/>
+        <Image Name="HoyoTitleIMG" Margin="10,599,762,10" Source="pack://application:,,,/Images/HoyoVerse.png" Stretch="Fill"/>
+
         <Grid Name="TopBorder" Background="#141414" Height="40" Margin="0,0,0,680">
-            <TextBlock Foreground="White" Padding="12,8,0,0" FontSize="15">Hoyo Launcher</TextBlock>
+            <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Hoyo Launcher</TextBlock>
             <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1240,0,0,0"/>
             <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1200,0,40,0"/>
             <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1160,0,80,0"/>
         </Grid>
 
-        <Button Style="{StaticResource LaunchButton}" Margin="915,605,163,50"/>
-        <Button Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50"/>
+        <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
+        <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50"
+                ToolTip="Change Game"/>
+
+        <Border Name="GameSelection" Margin="925,414,128,120" Background="White" CornerRadius="5" Height="175">
+            <Grid>
+                <Button Name="GAME_GI" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Margin="0,10,0,130"/>
+                <Button Name="GAME_HSR" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Margin="0,50,0,90"/>
+                <Button Name="GAME_HI3" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact" Height="35" Margin="0,90,0,50"/>
+                <Button Name="GAME_ZZZ"  Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Margin="0,130,0,10"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

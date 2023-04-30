@@ -2,23 +2,23 @@
 
 public partial class MainWindow : Window
 {
+    public static MainWindow current;
 
     public MainWindow()
     {
         InitializeComponent();
+        current = this;
 
-        HoyoLauncher.IsGenshin = true;
+        EventHandlers.Initialize();
+        HoyoLauncher.Initialize();
 
-        EventHandlers.Initialize(this);
-        HoyoLauncher.Initialize(this);
+        GameSelection.Visibility = Visibility.Hidden;
     }
 
-    public void ChangeBG(string BG)
+    public void ChangeGame(string BG)
     {
         MAIN_BACKGROUND.Background =
-            new ImageBrush()
-            {
-                ImageSource = new BitmapImage(new Uri(Directory.GetFiles(BG + "\\bg")[0], UriKind.RelativeOrAbsolute))
-            };
+            new ImageBrush(new BitmapImage(new Uri(BG, UriKind.RelativeOrAbsolute)));
+            
     }
 }

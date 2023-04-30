@@ -24,10 +24,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\gear.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Using Include="System" />
     <Using Include="System.IO" />
     <Using Include="System.Windows" />
@@ -39,12 +35,14 @@
 
   <ItemGroup>
     <Using Include="HoyoLauncherProject.Core" />
+
+    <Using Include="HoyoLauncherProject.MainWindow" Static="true" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Images\gear.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <Resource Include="Images\defaultBG.jpg" />
+    <Resource Include="Images\HoyoVerse.png" />
+    <Resource Include="Images\gear.png" />
   </ItemGroup>
 
   <ItemGroup>

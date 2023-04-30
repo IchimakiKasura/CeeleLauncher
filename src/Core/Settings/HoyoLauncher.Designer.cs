@@ -37,7 +37,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\\\Genshin Impact")]
         public string GENSHIN_IMPACT_DIR {
             get {
                 return ((string)(this["GENSHIN_IMPACT_DIR"]));
@@ -49,7 +49,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\\\Star Rail")]
         public string HONKAI_STAR_RAIL_DIR {
             get {
                 return ((string)(this["HONKAI_STAR_RAIL_DIR"]));
@@ -68,6 +68,18 @@ namespace HoyoLauncherProject.Core.Settings {
             }
             set {
                 this["ZENLESS_ZONE_ZERO_DIR"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CURRENT_SELECTED {
+            get {
+                return ((string)(this["CURRENT_SELECTED"]));
+            }
+            set {
+                this["CURRENT_SELECTED"] = value;
             }
         }
     }
