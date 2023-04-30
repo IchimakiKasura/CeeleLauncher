@@ -1,11 +1,8 @@
-﻿namespace HoyoLauncherProject.Core.Settings.SettingWindow;
+﻿namespace HoyoLauncherProject.Core.SettingWindow;
 
-/// <summary>
-/// Interaction logic for Settings.xaml
-/// </summary>
-public partial class Settings : Window
+public partial class Setting : Window
 {
-    public Settings()
+    public Setting()
     {
         InitializeComponent();
 
@@ -13,6 +10,7 @@ public partial class Settings : Window
 
         ExitButton.Click += (s, e) => Close();
         CancelButton.Click += (s, e) => Close();
+        ConfirmButton.Click += (s, e) => Settings.HoyoLauncher.Default.Save();
     }
 
     protected override void OnClosed(EventArgs e)
