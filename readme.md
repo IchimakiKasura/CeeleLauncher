@@ -3,7 +3,7 @@ A Game launcher for Hoyoverse games like Genshin, StarRail, HonkaiImpact3RD and 
 
 ![image](readme/main.JPG)
 
-Uploading demo.mp4…
+https://user-images.githubusercontent.com/80595346/235378108-657c7b19-abbd-4b2f-b5de-67e6a2ebe3d2.mp4
 
 ---
 
