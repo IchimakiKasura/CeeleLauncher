@@ -29,11 +29,15 @@ sealed class EventHandlers
 
             Current.LaunchButton.Content = GAME_LAUNCHED_TEXT;
             Current.LaunchButton.IsEnabled = false;
+            Current.LaunchSelection.IsEnabled = false;
 
             await Proc.WaitForExitAsync();
             Current.LaunchButton.Content = GAME_DEFAULT_TEXT;
             Current.LaunchButton.IsEnabled = true;
+            Current.LaunchSelection.IsEnabled = true;
         };
+
+        Current.SettingsButton.Click += (s, e) => new Settings.SettingWindow.Settings().ShowDialog();
     }
 
     static void Exit(object sender, RoutedEventArgs e) => Current.Close();

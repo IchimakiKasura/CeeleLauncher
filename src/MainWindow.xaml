@@ -4,13 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Hoyo Launcher" Height="720" Width="1280"
+        Title="Hoyo Launcher (Unofficial)" Height="720" Width="1280"
         WindowStyle="None"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
 
     <!--It's a simple launcher so no need for overkill Custom Controls-->
     <Window.Resources>
+
+        <Style TargetType="Button">
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        </Style>
+
         <Style x:Key="TopButtonStyles" TargetType="Button">
             <Setter Property="Width" Value="40"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -30,33 +35,35 @@
         </Style>
 
         <Style x:Key="SettingsButton" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="Transparent">
+                        <Border Name="GearBG" Background="Transparent">
                             <Grid Margin="10,10,10,10">
+                                <Image Source="pack://application:,,,/Images/gear.png"/>
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="GearBG" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#353535" Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="GearBG" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="Transparent" Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#353535" Duration="0"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="Transparent" Duration="0"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>
         </Style>
 
         <Style x:Key="MinimizeButton" TargetType="Button" BasedOn="{StaticResource TopButtonStyles}">
@@ -108,7 +115,7 @@
             <Setter Property="FontSize" Value="23"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="#704a1d"/>
-            <Setter Property="Background" Value="#ffca2a"/>
+            <Setter Property="Background" Value="#fecf0d"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -130,7 +137,7 @@
                         <EventTrigger RoutedEvent="MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#ffca2a" Duration="0"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#fecf0d" Duration="0"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -149,7 +156,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#ffca2a" Height="65" Width="35" CornerRadius="0,5,5,0"
+                        <Border Background="#fecf0d" Height="65" Width="35" CornerRadius="0,5,5,0"
                                 BorderThickness="0.5" BorderBrush="#b28d1d" Margin="-1,0,0,0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             <Border.Triggers>
@@ -163,7 +170,7 @@
                                 <EventTrigger RoutedEvent="MouseLeave">
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#ffca2a" Duration="0"/>
+                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#fecf0d" Duration="0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
@@ -208,14 +215,7 @@
     <Grid Name="MAIN_BACKGROUND" Background="Gray">
 
         <Image Name="MainBG" Source="pack://application:,,,/Images/defaultBG.jpg" Stretch="Fill" Opacity="0.7"/>
-        <Image Name="HoyoTitleIMG" Margin="10,599,762,10" Source="pack://application:,,,/Images/HoyoVerse.png" Stretch="Fill"/>
-
-        <Grid Name="TopBorder" Background="#141414" Height="40" Margin="0,0,0,680">
-            <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Hoyo Launcher</TextBlock>
-            <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1240,0,0,0"/>
-            <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1200,0,40,0"/>
-            <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1160,0,80,0"/>
-        </Grid>
+        <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="pack://application:,,,/Images/HoyoVerse.png" Stretch="Fill"/>
 
         <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
         <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50"
@@ -229,5 +229,14 @@
                 <Button Name="GAME_ZZZ"  Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Margin="0,130,0,10"/>
             </Grid>
         </Border>
+        
+        <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false"/>
+
+        <Grid Name="TopBorder" Background="#141414" Height="40" Margin="0,0,0,680">
+            <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Hoyo Launcher</TextBlock>
+            <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1240,0,0,0"/>
+            <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1200,0,40,0"/>
+            <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1160,0,80,0"/>
+        </Grid>
     </Grid>
 </Window>

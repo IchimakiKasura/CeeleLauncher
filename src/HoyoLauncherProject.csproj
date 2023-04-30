@@ -9,9 +9,12 @@
 
   <PropertyGroup>
     <Authors>Ichimaki Kasura</Authors>
-    <AssemblyName>HoyoLauncher</AssemblyName>
+    <AssemblyName>Hoyo Launcher (Unofficial)</AssemblyName>
+    <PackageId>Hoyo Launcher (Unofficial)</PackageId>
+    <Product>Hoyo Launcher (Unofficial)</Product>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
+    <ApplicationIcon>Images\HoyoVerseIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(Configuration) == Release">
@@ -43,6 +46,7 @@
     <Resource Include="Images\defaultBG.jpg" />
     <Resource Include="Images\HoyoVerse.png" />
     <Resource Include="Images\gear.png" />
+    <Resource Include="Images\HoyoVerseIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
