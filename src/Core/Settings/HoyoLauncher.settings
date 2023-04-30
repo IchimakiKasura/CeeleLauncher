@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="HONKAI_IMPACT_THIRD_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">H:\\Honkai Impact 3rd glb</Value>
     </Setting>
     <Setting Name="GENSHIN_IMPACT_DIR" Type="System.String" Scope="User">
       <Value Profile="(Default)">H:\\Genshin Impact</Value>

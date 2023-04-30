@@ -25,7 +25,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\\\Honkai Impact 3rd glb")]
         public string HONKAI_IMPACT_THIRD_DIR {
             get {
                 return ((string)(this["HONKAI_IMPACT_THIRD_DIR"]));

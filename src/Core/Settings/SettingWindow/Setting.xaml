@@ -5,7 +5,8 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Title="Settings" Height="520" Width="820">
+        Title="Settings" Height="520" Width="820"
+        ShowInTaskbar="false">
 
     <Window.Resources>
         <Style x:Key="MainButton" TargetType="{x:Type Button}">
