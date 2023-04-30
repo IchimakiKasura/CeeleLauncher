@@ -4,6 +4,8 @@ sealed class HoyoLauncher
 {
     public static void Initialize()
     {
+        EventHandlers.Initialize();
+
         // TEMPORARY
         // Settings.HoyoLauncher.Default.GENSHIN_IMPACT_DIR = "H:\\Genshin Impact";
         // Settings.HoyoLauncher.Default.HONKAI_STAR_RAIL_DIR = "H:\\Star Rail";

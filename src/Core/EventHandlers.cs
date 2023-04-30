@@ -2,59 +2,66 @@
 
 sealed class EventHandlers
 {
+    private const string 
+    GAME_LAUNCHED_TEXT = "Game is Running",
+    GAME_DEFAULT_TEXT = "Launch";
+
+    private static string ExecutableName;
+
     public static void Initialize()
     {
-        current.ExitButton.Click += Exit;
-        current.MinButton.Click += Minimize;
-        current.TopBorder.MouseDown += TopBarDrag;
-        current.LaunchSelection.Click += ThreeBarButton;
+        Current.MinButton.Click += Minimize;
+        Current.ExitButton.Click += Exit;
+        Current.TopBorder.MouseDown += TopBarDrag;
+        Current.LaunchSelection.Click += ThreeBarButton;
 
-        current.GAME_GI.Click += (s, e) => GameChange(HoyoGames.GenshinImpact);
-        current.GAME_HSR.Click += (s, e) => GameChange(HoyoGames.HonkaiStarRail);
-        current.GAME_HI3.Click += (s, e) => GameChange(HoyoGames.HonkaiImpact3RD);
-        current.GAME_ZZZ.Click += (s, e) => GameChange(HoyoGames.ZenlessZoneZero);
+        Current.GAME_GI.Click += (s,e) => GameChange(HoyoGames.GenshinImpact);
+        Current.GAME_HSR.Click += (s,e) => GameChange(HoyoGames.HonkaiStarRail);
+        Current.GAME_HI3.Click += (s,e) => GameChange(HoyoGames.HonkaiImpact3RD);
+        Current.GAME_ZZZ.Click += (s,e) => GameChange(HoyoGames.ZenlessZoneZero);
 
-        current.LaunchButton.Click += (s,e) =>
+        Current.LaunchButton.Click += async (s,e) =>
         {
-            current.WindowState = WindowState.Minimized;
+            e.Handled = true;
+
+            Current.WindowState = WindowState.Minimized;
+            var Proc = System.Diagnostics.Process.Start(ExecutableName);
+
+            Current.LaunchButton.Content = GAME_LAUNCHED_TEXT;
+            Current.LaunchButton.IsEnabled = false;
+
+            await Proc.WaitForExitAsync();
+            Current.LaunchButton.Content = GAME_DEFAULT_TEXT;
+            Current.LaunchButton.IsEnabled = true;
         };
     }
 
-    static void Exit(object sender, RoutedEventArgs e) => current.Close();
-    static void Minimize(object sender, RoutedEventArgs e) => current.WindowState = WindowState.Minimized;
+    static void Exit(object sender, RoutedEventArgs e) => Current.Close();
+    static void Minimize(object sender, RoutedEventArgs e) => Current.WindowState = WindowState.Minimized;
+    static void ThreeBarButton(object sender, RoutedEventArgs e) =>
+        Current.GameSelection.Visibility = Current.GameSelection.IsVisible ?
+            Visibility.Hidden : Visibility.Visible;
+
     static void TopBarDrag(object sender, MouseButtonEventArgs e)
     {
-        if (e.ChangedButton is MouseButton.Left) current.DragMove();
-    }
-    static void ThreeBarButton(object sender, RoutedEventArgs e)
-    {
-        current.GameSelection.Visibility = current.GameSelection.IsVisible ?
-            Visibility.Hidden : Visibility.Visible;
+        if (e.ChangedButton is MouseButton.Left) Current.DragMove();
     }
 
-    static void GameChange(HoyoGames HG)
+    static void GameChange(string GameSelected)
     {
-        current.GameSelection.Visibility = Visibility.Hidden;
-
-        string GameSelected = "" switch
-        {
-            _ when HG is HoyoGames.GenshinImpact =>
-                Settings.HoyoLauncher.Default.GENSHIN_IMPACT_DIR,
-            _ when HG is HoyoGames.HonkaiStarRail =>
-                Settings.HoyoLauncher.Default.HONKAI_STAR_RAIL_DIR,
-            _ when HG is HoyoGames.HonkaiImpact3RD =>
-                Settings.HoyoLauncher.Default.HONKAI_IMPACT_THIRD_DIR,
-            _ when HG is HoyoGames.ZenlessZoneZero =>
-                Settings.HoyoLauncher.Default.ZENLESS_ZONE_ZERO_DIR,
-            _ => null 
-        };
+        Current.GameSelection.Visibility = Visibility.Hidden;
 
         if(Directory.Exists(GameSelected))
         {
-            current.MAIN_BACKGROUND.Children.Remove(current.MainBG);
-            current.MAIN_BACKGROUND.Children.Remove(current.HoyoTitleIMG);
-            current.LaunchButton.IsEnabled = true;
-            current.ChangeGame(Directory.GetFiles(GameSelected + "\\bg")[0]);
+            Current.MAIN_BACKGROUND.Children.Remove(Current.MainBG);
+            Current.MAIN_BACKGROUND.Children.Remove(Current.HoyoTitleIMG);
+            Current.LaunchButton.IsEnabled = true;
+
+            Current.ChangeGame(Directory.GetFiles(GameSelected + "\\bg")[0]);
+
+            foreach (string GameExecutable in Directory.GetFiles(GameSelected + "\\Games"))
+                if(GameExecutable.Contains("exe") && !GameExecutable.Contains("Unity"))
+                    ExecutableName = GameExecutable.ToString();
         }
         else
             MessageBox.Show("No Directory found!","Error", MessageBoxButton.OK, MessageBoxImage.Error);
