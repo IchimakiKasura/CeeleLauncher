@@ -3,7 +3,9 @@ A Game launcher for Hoyoverse games like Genshin, StarRail, HonkaiImpact3RD and 
 
 ![image](readme/main.JPG)
 
-https://github.com/IchimakiKasura/HoyoLauncher/blob/master/readme/sample.mp4
+<video src="readme/sample.mp4" controls="controls">
+</video>
+
 ---
 
 Requirements: NET 7
