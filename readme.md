@@ -1,4 +1,4 @@
-# PROJECT: Hoyo Launcher (Unofficial) | (W.I.P)
+# PROJECT: Hoyo Launcher (Unofficial)
 A Game launcher for Hoyoverse games like Genshin, StarRail, HonkaiImpact3RD and others.
 
 ![image](readme/main.JPG)
