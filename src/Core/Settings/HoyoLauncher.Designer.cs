@@ -25,7 +25,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("H:\\\\Honkai Impact 3rd glb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\Honkai Impact 3rd glb")]
         public string HONKAI_IMPACT_THIRD_DIR {
             get {
                 return ((string)(this["HONKAI_IMPACT_THIRD_DIR"]));
@@ -37,7 +37,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("H:\\\\Genshin Impact")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\Genshin Impact")]
         public string GENSHIN_IMPACT_DIR {
             get {
                 return ((string)(this["GENSHIN_IMPACT_DIR"]));
@@ -49,7 +49,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("H:\\\\Star Rail")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\Star Rail")]
         public string HONKAI_STAR_RAIL_DIR {
             get {
                 return ((string)(this["HONKAI_STAR_RAIL_DIR"]));

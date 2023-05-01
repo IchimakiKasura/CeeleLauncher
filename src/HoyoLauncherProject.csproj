@@ -10,7 +10,6 @@
   <PropertyGroup>
     <Authors>Ichimaki Kasura</Authors>
     <AssemblyName>Hoyo Launcher (Unofficial)</AssemblyName>
-    <PackageId>Hoyo Launcher (Unofficial)</PackageId>
     <Product>Hoyo Launcher (Unofficial)</Product>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
@@ -32,13 +31,13 @@
     <Using Include="System.Windows" />
     <Using Include="System.Windows.Input" />
     <Using Include="System.Windows.Media" />
+    <Using Include="System.ComponentModel" />
+	<Using Include="System.Threading.Tasks" />
     <Using Include="System.Windows.Media.Imaging" />
-
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="HoyoLauncherProject.Core" />
-
     <Using Include="HoyoLauncherProject.MainWindow" Static="true" />
   </ItemGroup>
 

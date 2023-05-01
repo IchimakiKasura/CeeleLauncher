@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         WindowStyle="None"
         ResizeMode="NoResize"
         Title="Settings" Height="520" Width="820"
@@ -67,12 +67,12 @@
         <Style x:Key="ExitButton" TargetType="Button">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
-            <Setter Property="FontSize" Value="45"/>
+            <Setter Property="FontSize" Value="40"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="Transparent">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-8,0,0"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-5,0,0"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -94,12 +94,68 @@
                 </EventTrigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                    To="#f4cb99"
+                                                    Duration="0:0:.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                    To="Gray"
+                                                    Duration="0:0:.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
-        <TextBlock Text="Settings" FontSize="45" FontWeight="SemiBold" Margin="40,25,557,416"/>
+        <Grid Name="SettingDrag" Margin="0,0,0,416">
+            <TextBlock Text="Settings" FontSize="45" FontWeight="SemiBold" Padding="35,20,0,0"/>
+            <Button Name="ExitButton" Content="✕" Style="{StaticResource ExitButton}" Margin="735,27,35,27"/>
+        </Grid>
 
-        <Button Name="ExitButton" Content="✕" Style="{StaticResource ExitButton}" Margin="735,25,35,445"/>
+        <Grid Background="#f6f5f3" Margin="35,109,35,95">
+            <TextBlock Text="Genshin Impact Location: " FontSize="20" Margin="10,11,10,275"/>
+            <TextBox Name="GI_DIR_TXT" Margin="10,46,10,240"/>
+            <TextBlock Text="Honkai Star Rail Location: " FontSize="20" Margin="10,81,10,205"/>
+            <TextBox Name="HSR_DIR_TXT" Margin="10,116,10,170"/>
+            <TextBlock Text="Honkai Impact 3rd Location: " FontSize="20" Margin="10,151,10,135"/>
+            <TextBox Name="HI3_DIR_TXT" Margin="10,186,10,100"/>
+            <TextBlock Text="Zenless Zone Zero Location: " FontSize="20" Margin="10,221,10,65"/>
+            <TextBox Name="ZZZ_DIR_TXT" Margin="10,256,10,30"/>
+        </Grid>
+
         <Button Name="ConfirmButton" Content="Confirm" Style="{StaticResource Confirm}" Margin="595,430,35,30" Background="#393b40"/>
         <Button Name="CancelButton" Content="Cancel" Style="{StaticResource Cancel}" Margin="400,430,230,30" Background="White"/>
     </Grid>

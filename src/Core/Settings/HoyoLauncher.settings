@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="HONKAI_IMPACT_THIRD_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)">H:\\Honkai Impact 3rd glb</Value>
+      <Value Profile="(Default)">H:\Honkai Impact 3rd glb</Value>
     </Setting>
     <Setting Name="GENSHIN_IMPACT_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)">H:\\Genshin Impact</Value>
+      <Value Profile="(Default)">H:\Genshin Impact</Value>
     </Setting>
     <Setting Name="HONKAI_STAR_RAIL_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)">H:\\Star Rail</Value>
+      <Value Profile="(Default)">H:\Star Rail</Value>
     </Setting>
     <Setting Name="ZENLESS_ZONE_ZERO_DIR" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

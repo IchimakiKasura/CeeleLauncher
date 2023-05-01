@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace HoyoLauncherProject;
+﻿namespace HoyoLauncherProject;
 
 public partial class MainWindow : Window
 {
@@ -9,9 +7,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-
         Current = this;
-        GameSelection.Visibility = Visibility.Hidden;
 
         HoyoLauncher.Initialize();
     }
@@ -27,6 +23,5 @@ public partial class MainWindow : Window
     }
 
     public void ChangeGame(string BG) =>
-        MAIN_BACKGROUND.Background =
-            new ImageBrush(new BitmapImage(new Uri(BG, UriKind.RelativeOrAbsolute)));
+        MAIN_BACKGROUND.Background = new ImageBrush(new BitmapImage(new Uri(BG, UriKind.RelativeOrAbsolute)));
 }
