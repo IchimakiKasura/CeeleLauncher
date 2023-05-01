@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HoyoLauncherProject.Core.Settings {
+namespace AppLocal {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,7 +25,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("H:\\Honkai Impact 3rd glb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string HONKAI_IMPACT_THIRD_DIR {
             get {
                 return ((string)(this["HONKAI_IMPACT_THIRD_DIR"]));
@@ -37,7 +37,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("H:\\Genshin Impact")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string GENSHIN_IMPACT_DIR {
             get {
                 return ((string)(this["GENSHIN_IMPACT_DIR"]));
@@ -49,7 +49,7 @@ namespace HoyoLauncherProject.Core.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("H:\\Star Rail")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string HONKAI_STAR_RAIL_DIR {
             get {
                 return ((string)(this["HONKAI_STAR_RAIL_DIR"]));
@@ -68,18 +68,6 @@ namespace HoyoLauncherProject.Core.Settings {
             }
             set {
                 this["ZENLESS_ZONE_ZERO_DIR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string CURRENT_SELECTED {
-            get {
-                return ((string)(this["CURRENT_SELECTED"]));
-            }
-            set {
-                this["CURRENT_SELECTED"] = value;
             }
         }
     }

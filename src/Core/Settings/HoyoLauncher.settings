@@ -3,18 +3,15 @@
   <Profiles />
   <Settings>
     <Setting Name="HONKAI_IMPACT_THIRD_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)">H:\Honkai Impact 3rd glb</Value>
-    </Setting>
-    <Setting Name="GENSHIN_IMPACT_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)">H:\Genshin Impact</Value>
-    </Setting>
-    <Setting Name="HONKAI_STAR_RAIL_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)">H:\Star Rail</Value>
-    </Setting>
-    <Setting Name="ZENLESS_ZONE_ZERO_DIR" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="CURRENT_SELECTED" Type="System.String" Scope="User">
+    <Setting Name="GENSHIN_IMPACT_DIR" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HONKAI_STAR_RAIL_DIR" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ZENLESS_ZONE_ZERO_DIR" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

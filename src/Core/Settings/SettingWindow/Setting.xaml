@@ -158,5 +158,6 @@
 
         <Button Name="ConfirmButton" Content="Confirm" Style="{StaticResource Confirm}" Margin="595,430,35,30" Background="#393b40"/>
         <Button Name="CancelButton" Content="Cancel" Style="{StaticResource Cancel}" Margin="400,430,230,30" Background="White"/>
+        <Image Margin="35,430,511,30" Source="/Images/HoyoVerse.png" Stretch="Fill"/>
     </Grid>
 </Window>

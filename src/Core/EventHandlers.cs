@@ -19,10 +19,20 @@ sealed class EventHandlers
         Current.GAME_HI3.Click += (s,e) => HoyoLauncher.GameChange(HoyoGames.HonkaiImpact3RD);
         Current.GAME_ZZZ.Click += (s,e) => HoyoLauncher.GameChange(HoyoGames.ZenlessZoneZero);
 
+        Current.GI_DEFAULT.Click += (s,e) => HoyoLauncher.OpenOriginalLauncher(HoyoGames.GenshinImpact);
+        Current.HSR_DEFAULT.Click += (s,e) => HoyoLauncher.OpenOriginalLauncher(HoyoGames.HonkaiStarRail);
+        Current.HI3_DEFAULT.Click += (s,e) => HoyoLauncher.OpenOriginalLauncher(HoyoGames.HonkaiImpact3RD);
+        // Current.ZZZ_DEFAULT.Click += (s,e) => HoyoLauncher.OpenOriginalLauncher(HoyoGames.ZenlessZoneZero);
+
+        Current.GameHomePage.Click += (s,e) => Process.Start(new ProcessStartInfo() {
+            FileName = HoyoLauncher.CurrentGameSelected.URL,
+            UseShellExecute = true
+        });
+
         Current.SettingsButton.Click += (s, e) => new SettingWindow.Setting { Owner = Current }.ShowDialog();
     }
 
-        static void Exit(object sender, RoutedEventArgs e) => Current.Close();
+    static void Exit(object sender, RoutedEventArgs e) => Current.Close();
     static void Minimize(object sender, RoutedEventArgs e) => Current.WindowState = WindowState.Minimized;
     static void ThreeBarButton(object sender, RoutedEventArgs e) =>
         Current.GameSelection.Visibility = Current.GameSelection.IsVisible ? Visibility.Hidden : Visibility.Visible;
@@ -43,7 +53,7 @@ sealed class EventHandlers
         Current.LaunchSelection.IsEnabled = false;
 
         // idk
-        using var Proc = await Task.Run(()=>System.Diagnostics.Process.Start(HoyoLauncher.ExecutableName));
+        using var Proc = await Task.Run(()=>Process.Start(HoyoLauncher.ExecutableName));
         
         Current.LaunchButton.Content = GAME_LAUNCHED_TEXT;
 
@@ -53,6 +63,9 @@ sealed class EventHandlers
         Current.LaunchButton.Content = GAME_DEFAULT_TEXT;
         Current.LaunchButton.IsEnabled = true;
         Current.LaunchSelection.IsEnabled = true;
+
+        if(Current.WindowState is WindowState.Minimized)
+            Current.WindowState = WindowState.Normal;
         
     }
 }

@@ -123,25 +123,25 @@
                                 BorderThickness="0.5" BorderBrush="#b28d1d">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="MainBorder" Property="Background" Value="#a68217"/>
-                        </Trigger>
-                        <EventTrigger RoutedEvent="MouseEnter">
-                            <BeginStoryboard>
-                                <Storyboard>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="MainBorder" Property="Background" Value="#a68217"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
                                         <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#cca222" Duration="0:0:.1"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseLeave">
-                            <BeginStoryboard>
-                                <Storyboard>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
                                         <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#fecf0d" Duration="0:0:.1"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </ControlTemplate.Triggers>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -215,16 +215,78 @@
             </Setter>
         </Style>
 
+        <!-- Yeah, yeah could've used Custom controls but y'know its just a simple project unlike my "Launcher DL" -->
+        <Style x:Key="SideButtons" TargetType="Button">
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                            <Border Name="IMG_BORDER" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5" Background="{TemplateBinding Background}">
+                                <Border Name="DISABLED_BORDER">
+                                    <ContentPresenter/>
+                                </Border>
+                            </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="DISABLED_BORDER" Property="Background" Value="#90000000"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" To="#f4cb99" Duration="0:0:.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" To="Transparent" Duration="0:0:.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="b1" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Images/Buttons/GI.jpg"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="b2" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Images/Buttons/HSR.jpg"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="b3" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Images/Buttons/HI3.jpg"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="b4" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Images/Buttons/home.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid Name="MAIN_BACKGROUND" Background="Gray">
 
-        <Image Name="MainBG" Source="pack://application:,,,/Images/defaultBG.jpg" Stretch="Fill" Opacity="0.8"/>
-        <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="pack://application:,,,/Images/HoyoVerse.png" Stretch="Fill"/>
+        <Image Name="MainBG" Source="Images/defaultBG.jpg" Stretch="Fill" Opacity="0.8"/>
+        <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="Images/HoyoVerse.png" Stretch="Fill"/>
 
         <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
-        <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50"
-                ToolTip="Change Game"/>
+        <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50" ToolTip="Change Game"/>
 
         <Border Name="GameSelection" Margin="925,414,128,120" Background="White" CornerRadius="5" Height="175" Visibility="Hidden">
             <Grid>
@@ -234,7 +296,14 @@
                 <Button Name="GAME_ZZZ"  Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Margin="0,130,0,10"/>
             </Grid>
         </Border>
-        
+
+        <Grid Name="SideButtons" Background="#40000000" Margin="1205,0,0,0">
+            <Button Name="GI_DEFAULT" Height="50" Width="50" Margin="12,87,13,583" Style="{StaticResource b1}" ToolTip="Open Genshin Impact launcher"/>
+            <Button Name="HSR_DEFAULT" Height="50" Width="50" Margin="12,162,13,508" Style="{StaticResource b2}" ToolTip="Open Honkai: Star Rail launcher"/>
+            <Button Name="HI3_DEFAULT" Height="50" Width="50" Margin="12,237,13,433" Style="{StaticResource b3}" ToolTip="Open Honkai Impact 3rd launcher"/>
+            <Button Name="GameHomePage" Margin="21,662,22,26" Style="{StaticResource b4}"/>
+        </Grid>
+
         <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false"/>
 
         <Grid Name="TopBorder" Background="#141414" Height="40" Margin="0,0,0,680">

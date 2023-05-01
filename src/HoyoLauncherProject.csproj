@@ -29,10 +29,11 @@
     <Using Include="System" />
     <Using Include="System.IO" />
     <Using Include="System.Windows" />
+    <Using Include="System.Diagnostics" />
     <Using Include="System.Windows.Input" />
     <Using Include="System.Windows.Media" />
     <Using Include="System.ComponentModel" />
-	<Using Include="System.Threading.Tasks" />
+    <Using Include="System.Threading.Tasks" />
     <Using Include="System.Windows.Media.Imaging" />
   </ItemGroup>
 
@@ -45,7 +46,10 @@
     <Resource Include="Images\defaultBG.jpg" />
     <Resource Include="Images\HoyoVerse.png" />
     <Resource Include="Images\gear.png" />
-    <Resource Include="Images\HoyoVerseIcon.png" />
+    <Resource Include="Images\Buttons\GI.jpg" />
+    <Resource Include="Images\Buttons\HI3.jpg" />
+    <Resource Include="Images\Buttons\home.png" />
+    <Resource Include="Images\Buttons\HSR.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +64,7 @@
     <None Update="Core\Settings\HoyoLauncher.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>HoyoLauncher.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>AppLocal</CustomToolNamespace>
     </None>
   </ItemGroup>
 
