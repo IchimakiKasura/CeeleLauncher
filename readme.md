@@ -1,10 +1,10 @@
 # PROJECT: Hoyo Launcher (Unofficial)
 A Game launcher for Hoyoverse games like Genshin, StarRail, HonkaiImpact3RD and others.
 
-![Main](readme/Main.JPG)
+![Main](readme/main.jpg)
 ![Sample1](readme/sample%201.jpg)
-![Sample2](readme/sample%202.JPG)
-![Settings](readme/settings.JPG)
+![Sample2](readme/sample%202.jpg)
+![Settings](readme/settings.jpg)
 
 https://user-images.githubusercontent.com/80595346/235443958-66be58fe-d0ce-4961-95d2-74b6996c769d.mp4
 
