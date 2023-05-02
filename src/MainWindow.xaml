@@ -277,6 +277,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="b5" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Images/Buttons/rewards.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Window.Resources>
 
@@ -301,14 +308,15 @@
             <Button Name="GI_DEFAULT" Height="50" Width="50" Margin="12,87,13,583" Style="{StaticResource b1}" ToolTip="Open Genshin Impact launcher"/>
             <Button Name="HSR_DEFAULT" Height="50" Width="50" Margin="12,162,13,508" Style="{StaticResource b2}" ToolTip="Open Honkai: Star Rail launcher"/>
             <Button Name="HI3_DEFAULT" Height="50" Width="50" Margin="12,237,13,433" Style="{StaticResource b3}" ToolTip="Open Honkai Impact 3rd launcher"/>
-            <Button Name="GameHomePage" Margin="21,662,22,26" Style="{StaticResource b4}"/>
+            <Button Name="CheckInPage" Margin="21,625,22,63" Style="{StaticResource b5}" IsEnabled="False" ToolTip="Check In Rewards"/>
+            <Button Name="GameHomePage" Margin="21,662,22,26" Style="{StaticResource b4}" ToolTip="Game Homepage"/>
         </Grid>
 
         <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false"/>
 
         <Grid Name="TopBorder" Background="#141414" Height="40" Margin="0,0,0,680">
             <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Hoyo Launcher</TextBlock>
-            <TextBlock Foreground="White" Opacity="0.2" Padding="0,11,0,0" FontSize="15" Margin="124,0,0,0">1.0.0</TextBlock>
+            <TextBlock Foreground="White" Opacity="0.2" Padding="0,11,0,0" FontSize="15" Margin="124,0,0,0">1.5.0</TextBlock>
             <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1240,0,0,0"/>
             <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1200,0,40,0"/>
             <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1160,0,80,0"/>

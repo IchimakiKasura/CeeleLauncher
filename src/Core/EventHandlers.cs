@@ -23,11 +23,16 @@ sealed class EventHandlers
         Current.HSR_DEFAULT.Click += (s,e) => HoyoLauncher.OpenOriginalLauncher(HoyoGames.HonkaiStarRail);
         Current.HI3_DEFAULT.Click += (s,e) => HoyoLauncher.OpenOriginalLauncher(HoyoGames.HonkaiImpact3RD);
         // Current.ZZZ_DEFAULT.Click += (s,e) => HoyoLauncher.OpenOriginalLauncher(HoyoGames.ZenlessZoneZero);
+        
 
         Current.GameHomePage.Click += (s,e) => Process.Start(new ProcessStartInfo() {
             FileName = HoyoLauncher.CurrentGameSelected.URL,
             UseShellExecute = true
-        });
+        }).Dispose();
+        Current.CheckInPage.Click += (s,e) => Process.Start(new ProcessStartInfo() {
+            FileName = HoyoLauncher.CurrentGameSelected.CHECKIN_URL,
+            UseShellExecute = true
+        }).Dispose();
 
         Current.SettingsButton.Click += (s, e) => new SettingWindow.Setting { Owner = Current }.ShowDialog();
     }

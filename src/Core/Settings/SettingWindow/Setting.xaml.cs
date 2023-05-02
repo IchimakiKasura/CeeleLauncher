@@ -23,6 +23,8 @@ public partial class Setting : Window
             HoyoLauncher.CheckGameDIRS(AppLocal.HoyoLauncher.Default.HONKAI_IMPACT_THIRD_DIR, Current.HI3_DEFAULT);
 
             AppLocal.HoyoLauncher.Default.Save();
+            HoyoGames.Refresh();
+            
             Close();
         };
 

@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>Ichimaki Kasura</Authors>
+    <Authors>IchimakiKasura</Authors>
     <AssemblyName>Hoyo Launcher (Unofficial)</AssemblyName>
     <Product>Hoyo Launcher (Unofficial)</Product>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.5.0</AssemblyVersion>
+    <FileVersion>1.5.0</FileVersion>
     <ApplicationIcon>Images\HoyoVerseIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
@@ -26,6 +26,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="IniParser">
+      <HintPath>../iniReader/IniParser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+  <ItemGroup>
     <Using Include="System" />
     <Using Include="System.IO" />
     <Using Include="System.Windows" />
@@ -35,6 +42,7 @@
     <Using Include="System.ComponentModel" />
     <Using Include="System.Threading.Tasks" />
     <Using Include="System.Windows.Media.Imaging" />
+    <Using Include="System.Text.RegularExpressions" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +57,7 @@
     <Resource Include="Images\Buttons\GI.jpg" />
     <Resource Include="Images\Buttons\HI3.jpg" />
     <Resource Include="Images\Buttons\home.png" />
+    <Resource Include="Images\Buttons\rewards.png" />
     <Resource Include="Images\Buttons\HSR.jpg" />
   </ItemGroup>
 
