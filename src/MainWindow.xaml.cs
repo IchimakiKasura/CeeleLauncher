@@ -1,5 +1,10 @@
 ﻿namespace HoyoLauncherProject;
 
+/*
+    tbh i kinda want to over engineer the coding but its just a simple launcher
+    so excuse my "rushed coding" or so
+*/
+
 public partial class MainWindow : Window
 {
     public static MainWindow Current { get; set; }

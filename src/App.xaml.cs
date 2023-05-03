@@ -3,11 +3,11 @@ using System.Threading;
 
 namespace HoyoLauncherProject
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	public partial class App : Application
-	{
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
+    {
         static Mutex _mutex;
 
         protected override void OnStartup(StartupEventArgs e)
