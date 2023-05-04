@@ -1,22 +1,25 @@
-# PROJECT: Hoyo Launcher (Unofficial)
-A Game launcher for Hoyoverse games like Genshin, StarRail, HonkaiImpact3RD and others.
+# Simple Hoyoverse Launcher
+A very simple Hoyoverse launcher for Hoyoverse games on PC. the app is built based on my own preference.
 
-![Main](readme/main.JPG)
-![Sample1](readme/sample%201.jpg)
-![Sample2](readme/sample%202.jpg)
-![Settings](readme/settings.jpg)
+## Features
+- very Lightweight program (only uses less than 5mb | but needs an NET 7 runtime env)
+- Ready to run no installation needed
+- Open source
+- Removed bloat links (such as socials)
+- Shortcut button for Check-In depends on what game you currently picked.
+- Feels/Looks like the original launcher.
 
-https://user-images.githubusercontent.com/80595346/235443958-66be58fe-d0ce-4961-95d2-74b6996c769d.mp4
+If you want a more complex launcher you can try [Collapse Launcher](https://github.com/neon-nyan/Collapse)
+
+# Overview
+![Main](readme/rdme.png)
 
 ---
 
-Requirements: NET 7
+Requirements: NET 7<br>
 
-<br>
-
-## Flaws:
-You can't update the game using this Launcher because it only launches the game executable.<br>
-You'll need to update the game through its original launcher.
+## Notes:
+Games cannot be updated using this launcher.
 
 ## DISCLAIMER:
-I don't own any images that are used in this project, All rights belong to the owner Mihoyo/Hoyoverse.
+This app is not affiliated with miHoYo / Hoyoverse by any means.

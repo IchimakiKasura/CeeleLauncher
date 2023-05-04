@@ -70,5 +70,17 @@ namespace AppLocal {
                 this["ZENLESS_ZONE_ZERO_DIR"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public short LAST_GAME {
+            get {
+                return ((short)(this["LAST_GAME"]));
+            }
+            set {
+                this["LAST_GAME"] = value;
+            }
+        }
     }
 }

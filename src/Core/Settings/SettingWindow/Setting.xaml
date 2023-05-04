@@ -99,19 +99,21 @@
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Background" Value="#dedede"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBoxBase}">
                         <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="1">
+                            BorderThickness="1"
+                            CornerRadius="5">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal" />
                                     <VisualState x:Name="MouseOver" />
                                 </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                            </VisualStateManager.VisualStateGroups>
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <EventTrigger RoutedEvent="MouseEnter">
@@ -158,6 +160,30 @@
 
         <Button Name="ConfirmButton" Content="Confirm" Style="{StaticResource Confirm}" Margin="595,430,35,30" Background="#393b40"/>
         <Button Name="CancelButton" Content="Cancel" Style="{StaticResource Cancel}" Margin="400,430,230,30" Background="White"/>
-        <Image Margin="35,430,511,30" Source="/Images/HoyoVerse.png" Stretch="Fill"/>
+
+        <Grid MouseDown="GithubLink" Margin="93,436,520,24" Background="Transparent">
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="tb" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                    To="#f4cb99"
+                                                    Duration="0:0:.1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="tb" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                    To="Black"
+                                                    Duration="0:0:.1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+            <Image Margin="10,10,157,10" Source="pack://application:,,,/Images/github.png" Stretch="Fill"/>
+            <TextBlock Name="tb" Margin="55,18,7,22" FontSize="15">Check the repository?</TextBlock>
+        </Grid>
     </Grid>
 </Window>

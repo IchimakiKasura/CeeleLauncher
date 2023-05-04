@@ -2,9 +2,9 @@ namespace HoyoLauncherProject.Core;
 
 sealed class GameConfig
 {
-    public string GameFolder { get; set; }
-    public string GameExecutable { get; set; }
-    public string GameBackground { get; set; }
+    public string GameFolder { get; private set; }
+    public string GameExecutable { get; private set; }
+    public string GameBackground { get; private set; }
 
     public static GameConfig Read(string GameDirectory)
     {
@@ -21,4 +21,5 @@ sealed class GameConfig
 
     public static bool IsConfigExist(string path) =>
         File.Exists(Path.Combine(path, "config.ini"));
+
 }

@@ -1,11 +1,8 @@
-﻿namespace HoyoLauncherProject.Core;
+﻿using static define;
+namespace HoyoLauncherProject.Core;
 
 sealed class EventHandlers
 {
-    private const string 
-    GAME_LAUNCHED_TEXT = "Game is Running",
-    GAME_DEFAULT_TEXT = "Launch";
-
     public static void Initialize()
     {
         Current.MinButton.Click += Minimize;
@@ -59,8 +56,7 @@ sealed class EventHandlers
         Current.LaunchButton.IsEnabled = false;
         Current.LaunchSelection.IsEnabled = false;
 
-        // idk
-        using var Proc = await Task.Run(()=>Process.Start(HoyoLauncher.ExecutableName));
+        using var Proc = Process.Start(HoyoLauncher.ExecutableName);
         
         Current.LaunchButton.Content = GAME_LAUNCHED_TEXT;
 
@@ -78,7 +74,7 @@ sealed class EventHandlers
 
     public static void ButtonSelectionClicked(object s, RoutedEventArgs e)
     {
-        int GameSelected = int.Parse(((System.Windows.Controls.Button)s).Uid);
+        short GameSelected = short.Parse(((System.Windows.Controls.Button)s).Uid);
         HoyoGames HG = null;
 
         switch(GameSelected)
@@ -89,6 +85,7 @@ sealed class EventHandlers
             case 3: HG = HoyoGames.ZenlessZoneZero; break;
         }
 
+        AppLocal.HoyoLauncher.Default.LAST_GAME = GameSelected += 1;
         HoyoLauncher.GameChange(HG);
     }
 
