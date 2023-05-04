@@ -41,7 +41,7 @@
                     <ControlTemplate TargetType="Button">
                         <Border Name="GearBG" Background="Transparent">
                             <Grid Margin="10,10,10,10">
-                                <Image Source="pack://application:,,,/Images/gear.png"/>
+                                <Image Source="pack://application:,,,/Images/Buttons/gear.png" Margin="-7,-7,-7,-7"/>
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </Border>
@@ -287,7 +287,7 @@
 
     </Window.Resources>
 
-    <Grid Name="MAIN_BACKGROUND" Background="Gray">
+    <Grid Name="MAIN_BACKGROUND" Background="Gray" RenderOptions.BitmapScalingMode="Fant">
 
         <Image Name="MainBG" Source="Images/defaultBG.jpg" Stretch="Fill" Opacity="0.8"/>
         <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="Images/HoyoVerse.png" Stretch="Fill"/>
@@ -297,17 +297,17 @@
 
         <Border Name="GameSelection" Margin="925,414,128,120" Background="White" CornerRadius="5" Height="175" Visibility="Hidden">
             <Grid>
-                <Button Name="GAME_GI" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Margin="0,10,0,130"/>
-                <Button Name="GAME_HSR" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Margin="0,50,0,90"/>
-                <Button Name="GAME_HI3" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact" Height="35" Margin="0,90,0,50"/>
-                <Button Name="GAME_ZZZ"  Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Margin="0,130,0,10"/>
+                <Button Name="GAME_GI" Uid="0" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Margin="0,10,0,130"/>
+                <Button Name="GAME_HSR" Uid="1" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Margin="0,50,0,90"/>
+                <Button Name="GAME_HI3" Uid="2" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact" Height="35" Margin="0,90,0,50"/>
+                <Button Name="GAME_ZZZ" Uid="3" Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Margin="0,130,0,10"/>
             </Grid>
         </Border>
 
         <Grid Name="SideButtons" Background="#40000000" Margin="1205,0,0,0">
-            <Button Name="GI_DEFAULT" Height="50" Width="50" Margin="12,87,13,583" Style="{StaticResource b1}" ToolTip="Open Genshin Impact launcher"/>
-            <Button Name="HSR_DEFAULT" Height="50" Width="50" Margin="12,162,13,508" Style="{StaticResource b2}" ToolTip="Open Honkai: Star Rail launcher"/>
-            <Button Name="HI3_DEFAULT" Height="50" Width="50" Margin="12,237,13,433" Style="{StaticResource b3}" ToolTip="Open Honkai Impact 3rd launcher"/>
+            <Button Name="GI_DEFAULT" Uid="0" Height="50" Width="50" Margin="12,87,13,583" Style="{StaticResource b1}" ToolTip="Open Genshin Impact launcher"/>
+            <Button Name="HSR_DEFAULT" Uid="1" Height="50" Width="50" Margin="12,162,13,508" Style="{StaticResource b2}" ToolTip="Open Honkai: Star Rail launcher"/>
+            <Button Name="HI3_DEFAULT" Uid="2" Height="50" Width="50" Margin="12,237,13,433" Style="{StaticResource b3}" ToolTip="Open Honkai Impact 3rd launcher"/>
             <Button Name="CheckInPage" Margin="21,625,22,63" Style="{StaticResource b5}" IsEnabled="False" ToolTip="Check In Rewards"/>
             <Button Name="GameHomePage" Margin="21,662,22,26" Style="{StaticResource b4}" ToolTip="Game Homepage"/>
         </Grid>

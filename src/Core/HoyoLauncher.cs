@@ -1,7 +1,10 @@
 ﻿namespace HoyoLauncherProject.Core;
 
-sealed class HoyoLauncher
+sealed partial class HoyoLauncher
 {
+    [GeneratedRegex("(launcher|Launcher)", RegexOptions.Compiled)]
+    private static partial Regex LauncherName();
+    
     public static bool IsGameRunning { get; set; }
     public static string ExecutableName { get; set; }
     public static HoyoGames CurrentGameSelected { get; set; } = HoyoGames.DEFAULT;
@@ -26,21 +29,15 @@ sealed class HoyoLauncher
 
         if (Directory.Exists(GameSelected.DIR))
         {
-            var ConfigString = File.ReadAllText(Path.Combine(GameSelected.DIR,"config.ini"));
-            var Data = new IniParser.IniDataParser().Parse(ConfigString);
-
-            string
-            GameFolder = Data["launcher"]["game_install_path"],
-            GameExec = Data["launcher"]["game_start_name"],
-            GameBG = Path.Combine(GameSelected.DIR, "bg", Data["launcher"]["game_dynamic_bg_name"]);
+            var Config = GameConfig.Read(GameSelected.DIR);
 
             Current.MAIN_BACKGROUND.Children.Remove(Current.MainBG);
             Current.MAIN_BACKGROUND.Children.Remove(Current.HoyoTitleIMG);
             Current.CheckInPage.IsEnabled = true;
             Current.LaunchButton.IsEnabled = true;
 
-            Current.ChangeGame(Path.Combine(GameBG));
-            ExecutableName = Path.Combine(GameFolder, GameExec);
+            Current.ChangeGame(Path.Combine(Config.GameBackground));
+            ExecutableName = Path.Combine(Config.GameFolder, Config.GameExecutable);
             
             CurrentGameSelected = GameSelected;
         }
@@ -51,11 +48,12 @@ sealed class HoyoLauncher
     public static void OpenOriginalLauncher(HoyoGames args)
     {
         foreach(string Launcher in Directory.GetFiles(args.DIR))
-            if(Regex.IsMatch(Launcher, @"(launcher|Launcher)" , RegexOptions.Compiled))
+            if(LauncherName().IsMatch(Launcher))
                 Process.Start(Launcher);       
     }
     
     // for side buttons
     public static void CheckGameDIRS(string dir, System.Windows.Controls.Button btn) =>
         btn.IsEnabled = Directory.Exists(dir);
+
 }
