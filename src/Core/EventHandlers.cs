@@ -177,7 +177,6 @@ sealed class EventHandlers
     
     public static void ButtonSelectionClicked(object s, RoutedEventArgs e)
     {
-        Current.LaunchButton.Content = GAME_DEFAULT_TEXT;
         short GameSelected = short.Parse(((System.Windows.Controls.Button)s).Uid);
         HoyoGames HG = null;
 

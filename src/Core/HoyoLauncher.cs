@@ -88,6 +88,7 @@ sealed partial class HoyoLauncher
             
             CurrentGameSelected = GameSelected;
             AppLocal.HoyoLauncher.Default.Save();
+            Current.LaunchButton.Content = GAME_DEFAULT_TEXT;
         }
         else
             MessageBox.Show("No Directory found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -127,13 +127,20 @@
             <Setter Property="FontSize" Value="23"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="#704a1d"/>
-            <Setter Property="Background" Value="#fecf0d"/>
+            <Setter Property="Background" Value="#00000000"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="MainBorder" Background="{TemplateBinding Background}" Height="65" Width="202" CornerRadius="5,0,0,5"
-                                BorderThickness="0.5" BorderBrush="#b28d1d">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Border Height="65" Width="202" CornerRadius="5,0,0,5" BorderThickness="0.5" BorderBrush="#b28d1d">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#fecf0d" Offset="0.3" />
+                                    <GradientStop Color="#856c04" Offset="1.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border Name="MainBorder" Background="{TemplateBinding Background}" CornerRadius="5,0,0,5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
@@ -149,7 +156,7 @@
                             <EventTrigger RoutedEvent="MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#fecf0d" Duration="0:0:.1"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#00000000" Duration="0:0:.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -166,13 +173,20 @@
             <Setter Property="FontSize" Value="23"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="#704a1d"/>
-            <Setter Property="Background" Value="#fecf0d"/>
+            <Setter Property="Background" Value="#00000000"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="MainBorder" Background="{TemplateBinding Background}" Height="65" Width="35" CornerRadius="0,5,5,0"
-                                BorderThickness="0.5" BorderBrush="#b28d1d" Margin="-1,0,0,0">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Border Height="65" Width="35" CornerRadius="0,5,5,0" BorderThickness="0.5" BorderBrush="#b28d1d">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#fecf0d" Offset="0.3" />
+                                    <GradientStop Color="#856c04" Offset="1.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border Name="MainBorder" Background="{TemplateBinding Background}" CornerRadius="0,5,5,0">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
@@ -188,7 +202,7 @@
                             <EventTrigger RoutedEvent="MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#fecf0d" Duration="0:0:.1"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#00000000" Duration="0:0:.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -320,12 +334,23 @@
 
     </Window.Resources>
 
-    <Border Name="MAIN_BACKGROUND" RenderOptions.BitmapScalingMode="Fant" CornerRadius="10" KeyboardNavigation.TabNavigation="None" Background="Gray">
+    <Border Name="MAIN_BACKGROUND" RenderOptions.BitmapScalingMode="Fant" CornerRadius="10" KeyboardNavigation.TabNavigation="None">
         <Grid Name="TEMP_BACKGROUND" >
-            <Border Name="MainBG" Opacity="0.8">
+            <Border Name="MainBG">
                 <Border.Background>
-                    <ImageBrush ImageSource="Images/defaultBG.jpg"/>
+                    <ImageBrush ImageSource="/Images/defaultBG.jpg"/>
                 </Border.Background>
+                <Border>
+                    <Border.Background>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Border>
+                                    <MediaElement Name="MediaElementBG" Source="" UnloadedBehavior="Manual" MediaEnded="mediaElement_OnMediaEnded"/>
+                                </Border>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.Background>
+                </Border>
             </Border>
             <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="Images/HoyoVerse.png" Stretch="Fill"/>
 

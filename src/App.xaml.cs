@@ -22,18 +22,11 @@ namespace HoyoLauncherProject
                                     MessageBoxImage.Warning) is MessageBoxResult.OK)
                     Environment.Exit(0);
 
-            // ContextMenuAdjust();
+            var menuDropAlignmentField = typeof(SystemParameters).GetField("_menuDropAlignment", BindingFlags.NonPublic | BindingFlags.Static);
+            menuDropAlignmentField.SetValue(null, !SystemParameters.MenuDropAlignment || menuDropAlignmentField is null);
 
             base.OnStartup(e);
         }
-
-        // private static void ContextMenuAdjust()
-        // {
-        //     var menuDropAlignmentField = typeof(SystemParameters).GetField("_menuDropAlignment", BindingFlags.NonPublic | BindingFlags.Static);
-
-        //     SystemParameters.StaticPropertyChanged += (s, e) =>
-        //         menuDropAlignmentField.SetValue(null, null);
-        // }
 
     }
 }

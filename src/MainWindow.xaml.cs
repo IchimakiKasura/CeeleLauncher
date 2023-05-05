@@ -1,4 +1,7 @@
-﻿namespace HoyoLauncherProject;
+﻿using System.Security.Policy;
+using System.Windows.Controls;
+
+namespace HoyoLauncherProject;
 
 /*
     tbh i kinda want to over engineer the coding but its just a simple launcher
@@ -32,4 +35,12 @@ public partial class MainWindow : Window
 
     public void ChangeGame(string BG) =>
         MAIN_BACKGROUND.Background = new ImageBrush(new BitmapImage(new Uri(BG, UriKind.RelativeOrAbsolute)));
+
+    private void mediaElement_OnMediaEnded(object s, RoutedEventArgs e)
+    {
+        MediaElement el = (MediaElement)s;
+
+        el.Position = TimeSpan.Zero;
+        el.Play();
+    }
 }

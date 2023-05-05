@@ -77,7 +77,7 @@
 
   <ItemGroup>
     <None Update="Core\Settings\HoyoLauncher.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>HoyoLauncher.Designer.cs</LastGenOutput>
       <CustomToolNamespace>AppLocal</CustomToolNamespace>
     </None>
