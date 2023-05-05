@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿global using Forms = System.Windows.Forms;
+using System.Reflection;
 using System.Threading;
 
 namespace HoyoLauncherProject
@@ -9,6 +10,7 @@ namespace HoyoLauncherProject
     public partial class App : Application
     {
         static Mutex _mutex;
+        public static Forms.NotifyIcon nIcon = new();
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -24,6 +26,23 @@ namespace HoyoLauncherProject
 
             var menuDropAlignmentField = typeof(SystemParameters).GetField("_menuDropAlignment", BindingFlags.NonPublic | BindingFlags.Static);
             menuDropAlignmentField.SetValue(null, !SystemParameters.MenuDropAlignment || menuDropAlignmentField is null);
+
+            // Tray Icon
+            nIcon.Icon = new System.Drawing.Icon(Application.GetResourceStream(new Uri("pack://application:,,,/Images/HoyoVerseIcon.ico")).Stream);
+            nIcon.Visible = false;
+            nIcon.Text = appName;
+            nIcon.Click += (s, e) =>
+            {
+                if (MainWindow.WindowState is WindowState.Minimized)
+                {
+                    MainWindow.WindowState = WindowState.Normal;
+                    MainWindow.ShowInTaskbar = true;
+                    nIcon.Visible = false;
+                }
+            };
+            nIcon.BalloonTipText = "HoyoLauncher will be running in the background.";
+            nIcon.BalloonTipTitle = appName;
+            nIcon.BalloonTipIcon = Forms.ToolTipIcon.None;
 
             base.OnStartup(e);
         }

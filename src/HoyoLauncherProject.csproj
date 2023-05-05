@@ -5,13 +5,14 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <PropertyGroup>
     <Authors>IchimakiKasura</Authors>
     <Company>HoyoLauncher(Unofficial)</Company> <!--For the config folder naming idk on Appdata/Local-->
-    <AssemblyName>HoyoLauncher</AssemblyName>
-    <Product>HoyoLauncher</Product>
+    <AssemblyName>Hoyo Launcher</AssemblyName>
+    <Product>Hoyo Launcher</Product>
     <AssemblyVersion>1.6.5</AssemblyVersion>
     <FileVersion>1.6.5</FileVersion>
     <ApplicationIcon>Images\HoyoVerseIcon.ico</ApplicationIcon>
@@ -27,10 +28,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TrayIcon" Version="1.0.7.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="IniParser">
       <HintPath>../iniReader/IniParser.dll</HintPath>
     </Reference>
@@ -40,12 +37,14 @@
   <ItemGroup>
     <Using Include="System" />
     <Using Include="System.IO" />
+    <Using Include="System.Drawing" Alias="Draw"/>
     <Using Include="System.Windows" />
     <Using Include="System.Diagnostics" />
     <Using Include="System.Windows.Input" />
     <Using Include="System.Windows.Media" />
     <Using Include="System.ComponentModel" />
     <Using Include="System.Threading.Tasks" />
+    <Using Include="System.Windows.Controls" />
     <Using Include="System.Collections.Generic" />
     <Using Include="System.Windows.Media.Imaging" />
     <Using Include="System.Text.RegularExpressions" />

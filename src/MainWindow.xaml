@@ -421,6 +421,7 @@
                     <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1120,0,80,0" RenderTransformOrigin="0.5,0.5"/>
                 </Grid>
             </Border>
+
         </Grid>
     </Border>
 </Window>

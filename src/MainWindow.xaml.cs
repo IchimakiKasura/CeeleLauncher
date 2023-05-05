@@ -1,7 +1,4 @@
-﻿using NullSoftware.ToolKit;
-using System.Windows.Controls;
-
-namespace HoyoLauncherProject;
+﻿namespace HoyoLauncherProject;
 
 /*
     tbh i kinda want to over engineer the coding but its just a simple launcher
@@ -11,7 +8,6 @@ namespace HoyoLauncherProject;
 public partial class MainWindow : Window
 {
     public static MainWindow Current { get; set; }
-    public static TrayIcon Ti = new();
 
     public MainWindow()
     {

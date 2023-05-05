@@ -1,5 +1,4 @@
-﻿using NullSoftware.ToolKit;
-using static Define;
+﻿using static Define;
 namespace HoyoLauncherProject.Core;
 
 sealed class EventHandlers
@@ -61,16 +60,6 @@ sealed class EventHandlers
         Current.CheckInPage.Click += (s,e) => ExtraButtons(false);
 
         Current.SettingsButton.Click += (s, e) => new SettingWindow.Setting { Owner = Current }.ShowDialog();
-
-        // Tray Icon
-        Ti.Title = "HoyoLauncher";
-        Ti.Click += (s, e) => {
-            if (Current.WindowState == WindowState.Minimized)
-            {
-                Current.WindowState = WindowState.Normal;
-                Current.ShowInTaskbar = true;
-            }
-        };
     }
 
     static void ExtraButtons(bool IsHomePage)
@@ -88,11 +77,11 @@ sealed class EventHandlers
     {
         Current.WindowState = WindowState.Minimized;
         Current.ShowInTaskbar = false;
+        App.nIcon.Visible = true;
 
-        if(!AlreadyMinimized)
+        if (!AlreadyMinimized)
         {
-            ((INotificationService)Ti)
-                .Notify("HoyoLauncher", "HoyoLauncher will be running in the background.", NotificationType.None);
+            App.nIcon.ShowBalloonTip(5);
             AlreadyMinimized = true;
         }
     }
@@ -111,11 +100,11 @@ sealed class EventHandlers
 
         Current.WindowState = WindowState.Minimized;
         Current.ShowInTaskbar = false;
+        App.nIcon.Visible = true;
 
         if (!AlreadyMinimized)
         {
-            ((INotificationService)Ti)
-                .Notify("HoyoLauncher", "HoyoLauncher will be running in the background.", NotificationType.None);
+            App.nIcon.ShowBalloonTip(5);
             AlreadyMinimized = true;
         }
 
@@ -140,7 +129,7 @@ sealed class EventHandlers
         {
             Current.WindowState = WindowState.Normal;
             Current.ShowInTaskbar = true;
-
+            App.nIcon.Visible = true;
         }
 
     }
