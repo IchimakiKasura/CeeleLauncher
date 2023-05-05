@@ -8,7 +8,7 @@ sealed class GameConfig
 
     public static GameConfig Read(string GameDirectory)
     {
-        var ConfigData = File.ReadAllText(Path.Combine(GameDirectory, "config.ini"));
+        string ConfigData = File.ReadAllText(Path.Combine(GameDirectory, "config.ini"));
         var RawData = new IniParser.IniDataParser().Parse(ConfigData);
 
         return new()

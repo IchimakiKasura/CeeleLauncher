@@ -7,12 +7,11 @@ A very simple Hoyoverse launcher for Hoyoverse games on PC. the app is built bas
 - Open source
 - Removed bloat links (such as socials)
 - Shortcut button for Check-In depends on what game you currently picked.
-- Feels/Looks like the original launcher.
 
 If you want a more complex launcher you can try [Collapse Launcher](https://github.com/neon-nyan/Collapse)
 
 # Overview
-![Main](readme/rdme.png)
+![Main](readme/overview.png)
 
 ---
 

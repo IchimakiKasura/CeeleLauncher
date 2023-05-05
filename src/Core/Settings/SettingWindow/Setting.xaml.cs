@@ -1,4 +1,4 @@
-﻿using static define;
+﻿using static Define;
 
 namespace HoyoLauncherProject.Core.SettingWindow;
 
@@ -19,7 +19,9 @@ public partial class Setting : Window
         GI_DIR_TXT.Text = AppLocal.HoyoLauncher.Default.GENSHIN_IMPACT_DIR;
         HSR_DIR_TXT.Text = AppLocal.HoyoLauncher.Default.HONKAI_STAR_RAIL_DIR;
         HI3_DIR_TXT.Text = AppLocal.HoyoLauncher.Default.HONKAI_IMPACT_THIRD_DIR;
-        ZZZ_DIR_TXT.Text = AppLocal.HoyoLauncher.Default.ZENLESS_ZONE_ZERO_DIR;
+        ZZZ_DIR_TXT.Text = "Unavailable";
+        ZZZ_DIR_TXT.IsEnabled = false;
+        ZZZ_DIR_TXT.Foreground = Brushes.Gray;
     }
 
     protected override void OnClosed(EventArgs e)

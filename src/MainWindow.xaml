@@ -7,17 +7,18 @@
         Title="Hoyo Launcher (Unofficial)" Height="720" Width="1280"
         WindowStyle="None"
         ResizeMode="CanMinimize"
+        Background="Transparent"
         WindowStartupLocation="CenterScreen">
 
     <!--It's a simple launcher so no need for overkill Custom Controls-->
     <Window.Resources>
-
-        <Style TargetType="Button">
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="10"/>
         </Style>
 
         <Style x:Key="TopButtonStyles" TargetType="Button">
             <Setter Property="Width" Value="40"/>
+            <Setter Property="Focusable" Value="False"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="#c3c3c3"/>
@@ -36,12 +37,13 @@
 
         <Style x:Key="SettingsButton" TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Name="GearBG" Background="Transparent">
                             <Grid Margin="10,10,10,10">
-                                <Image Source="pack://application:,,,/Images/Buttons/gear.png" Margin="-7,-7,-7,-7"/>
+                                <Image Source="pack://application:,,,/Images/Buttons/gear.png" Margin="-4,-4,-4,-4"/>
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </Border>
@@ -91,6 +93,15 @@
         <Style x:Key="ExitButton" TargetType="Button" BasedOn="{StaticResource TopButtonStyles}">
             <Setter Property="Content" Value="✕"/>
             <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="0,10,10,0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <EventTrigger RoutedEvent="MouseEnter">
                     <BeginStoryboard>
@@ -111,6 +122,7 @@
 
         <Style x:Key="LaunchButton" TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
             <Setter Property="Content" Value="Launch"/>
             <Setter Property="FontSize" Value="23"/>
             <Setter Property="FontWeight" Value="Normal"/>
@@ -150,6 +162,7 @@
         <Style x:Key="LaunchSettings" TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Content" Value="≡"/>
+            <Setter Property="Focusable" Value="False"/>
             <Setter Property="FontSize" Value="23"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="#704a1d"/>
@@ -187,6 +200,7 @@
 
         <Style x:Key="GameSelectionButton" TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -217,15 +231,18 @@
 
         <!-- Yeah, yeah could've used Custom controls but y'know its just a simple project unlike my "Launcher DL" -->
         <Style x:Key="SideButtons" TargetType="Button">
-            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#f4cb99"/>
+            <Setter Property="Focusable" Value="False"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                            <Border Name="IMG_BORDER" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="5" Background="{TemplateBinding Background}">
-                                <Border Name="DISABLED_BORDER">
+                        <Border CornerRadius="5" Background="{TemplateBinding BorderBrush}">
+                            <Border Name="BorderMAIN"  Background="{TemplateBinding Background}" CornerRadius="5">
+                                <Border Name="DISABLED_BORDER" CornerRadius="5">
                                     <ContentPresenter/>
                                 </Border>
                             </Border>
+                        </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter TargetName="DISABLED_BORDER" Property="Background" Value="#90000000"/>
@@ -233,14 +250,14 @@
                             <EventTrigger RoutedEvent="MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" To="#f4cb99" Duration="0:0:.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="BorderMAIN" Storyboard.TargetProperty="BorderThickness" To="4" Duration="0:0:.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" To="Transparent" Duration="0:0:.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="BorderMAIN" Storyboard.TargetProperty="BorderThickness" To="0" Duration="0:0:.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -271,6 +288,7 @@
             </Setter>
         </Style>
         <Style x:Key="b4" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <ImageBrush ImageSource="/Images/Buttons/home.png"/>
@@ -278,48 +296,106 @@
             </Setter>
         </Style>
         <Style x:Key="b5" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <ImageBrush ImageSource="/Images/Buttons/rewards.png"/>
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="b6" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Images/Buttons/ZZZ.jpg"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="b7" TargetType="Button" BasedOn="{StaticResource SideButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Images/Buttons/TOT.jpg"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Window.Resources>
 
-    <Grid Name="MAIN_BACKGROUND" Background="Gray" RenderOptions.BitmapScalingMode="Fant">
+    <Border Name="MAIN_BACKGROUND" RenderOptions.BitmapScalingMode="Fant" CornerRadius="10" KeyboardNavigation.TabNavigation="None" Background="Gray">
+        <Grid Name="TEMP_BACKGROUND" >
+            <Border Name="MainBG" Opacity="0.8">
+                <Border.Background>
+                    <ImageBrush ImageSource="Images/defaultBG.jpg"/>
+                </Border.Background>
+            </Border>
+            <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="Images/HoyoVerse.png" Stretch="Fill"/>
 
-        <Image Name="MainBG" Source="Images/defaultBG.jpg" Stretch="Fill" Opacity="0.8"/>
-        <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="Images/HoyoVerse.png" Stretch="Fill"/>
+            <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
+            <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50" ToolTip="Change Game"/>
 
-        <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
-        <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50" ToolTip="Change Game"/>
+            <Border Name="GameSelection" Margin="925,414,128,120" Background="White" CornerRadius="5" Height="175" Visibility="Hidden">
+                <Grid>
+                    <Button Name="GAME_GI" Uid="0" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Margin="0,10,0,130"/>
+                    <Button Name="GAME_HSR" Uid="1" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Margin="0,50,0,90"/>
+                    <Button Name="GAME_HI3" Uid="2" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact" Height="35" Margin="0,90,0,50"/>
+                    <Button Name="GAME_ZZZ" Uid="3" Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Margin="0,130,0,10"/>
+                </Grid>
+            </Border>
 
-        <Border Name="GameSelection" Margin="925,414,128,120" Background="White" CornerRadius="5" Height="175" Visibility="Hidden">
-            <Grid>
-                <Button Name="GAME_GI" Uid="0" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Margin="0,10,0,130"/>
-                <Button Name="GAME_HSR" Uid="1" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Margin="0,50,0,90"/>
-                <Button Name="GAME_HI3" Uid="2" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact" Height="35" Margin="0,90,0,50"/>
-                <Button Name="GAME_ZZZ" Uid="3" Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Margin="0,130,0,10"/>
-            </Grid>
-        </Border>
+            <Border Name="SideButtons" Background="#50000000" Margin="1190,70,13,70" CornerRadius="10">
+                <Canvas>
+                    <Canvas Name="ToolTipSideButton" Visibility="Hidden" Height="40" Canvas.Left="-121">
+                        <Rectangle Fill="#141414" Height="10" Width="10" Canvas.Left="98" Canvas.Top="14" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="45"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <Border Name="ToolTipSideButton_Border" Background="#141414"  CornerRadius="10" Height="38" Width="23" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="81">
+                            <TextBlock Name="ToolTipSideButton_Text" Foreground="White" Margin="10,10,10,10" FontWeight="SemiBold"/>
+                        </Border>
+                    </Canvas>
 
-        <Grid Name="SideButtons" Background="#40000000" Margin="1205,0,0,0">
-            <Button Name="GI_DEFAULT" Uid="0" Height="50" Width="50" Margin="12,87,13,583" Style="{StaticResource b1}" ToolTip="Open Genshin Impact launcher"/>
-            <Button Name="HSR_DEFAULT" Uid="1" Height="50" Width="50" Margin="12,162,13,508" Style="{StaticResource b2}" ToolTip="Open Honkai: Star Rail launcher"/>
-            <Button Name="HI3_DEFAULT" Uid="2" Height="50" Width="50" Margin="12,237,13,433" Style="{StaticResource b3}" ToolTip="Open Honkai Impact 3rd launcher"/>
-            <Button Name="CheckInPage" Margin="21,625,22,63" Style="{StaticResource b5}" IsEnabled="False" ToolTip="Check In Rewards"/>
-            <Button Name="GameHomePage" Margin="21,662,22,26" Style="{StaticResource b4}" ToolTip="Game Homepage"/>
+                    <Button Name="GI_DEFAULT" Uid="0" Height="57" Width="57" Style="{StaticResource b1}" Canvas.Left="10" Canvas.Top="35" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Button Name="HSR_DEFAULT" Uid="1" Height="57" Width="57" Style="{StaticResource b2}" Canvas.Left="10" Canvas.Top="110" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Button Name="HI3_DEFAULT" Uid="2" Height="57" Width="57" Style="{StaticResource b3}" Canvas.Left="10" Canvas.Top="185" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Button Name="ZZZ_DEFAULT" Uid="3" Height="57" Width="57" Style="{StaticResource b6}" Canvas.Left="10" Canvas.Top="260" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Button Name="TOT_DEFAULT" Uid="4" Height="57" Width="57" Style="{StaticResource b7}" Canvas.Left="10" Canvas.Top="335" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Button Name="CheckInPage" Uid="5" Style="{StaticResource b5}" IsEnabled="False" Height="35" Width="35" Canvas.Left="21" Canvas.Top="479"/>
+                    <Button Name="GameHomePage" Uid="6" Style="{StaticResource b4}" Height="35" Width="35" Canvas.Left="21" Canvas.Top="524" />
+                </Canvas>
+            </Border>
+
+            <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false" CornerRadius="10"/>
+
+            <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.5">
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Border.Triggers>
+                <Grid>
+                    <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Hoyo Launcher</TextBlock>
+                    <TextBlock Foreground="White" Opacity="0.2" Padding="0,11,0,0" FontSize="15" Margin="124,0,0,0">1.6.5</TextBlock>
+                    <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1200,0,0,0"/>
+                    <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1160,0,40,0"/>
+                    <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1120,0,80,0" RenderTransformOrigin="0.5,0.5"/>
+                </Grid>
+            </Border>
         </Grid>
-
-        <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false"/>
-
-        <Grid Name="TopBorder" Background="#141414" Height="40" Margin="0,0,0,680">
-            <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Hoyo Launcher</TextBlock>
-            <TextBlock Foreground="White" Opacity="0.2" Padding="0,11,0,0" FontSize="15" Margin="124,0,0,0">1.5.0</TextBlock>
-            <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1240,0,0,0"/>
-            <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1200,0,40,0"/>
-            <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1160,0,80,0"/>
-        </Grid>
-    </Grid>
+    </Border>
 </Window>

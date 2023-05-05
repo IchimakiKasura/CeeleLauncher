@@ -12,8 +12,8 @@
     <Company>HoyoLauncher(Unofficial)</Company> <!--For the config folder naming idk on Appdata/Local-->
     <AssemblyName>Hoyo Launcher (Unofficial)</AssemblyName>
     <Product>Hoyo Launcher (Unofficial)</Product>
-    <AssemblyVersion>1.5.0</AssemblyVersion>
-    <FileVersion>1.5.0</FileVersion>
+    <AssemblyVersion>1.6.5</AssemblyVersion>
+    <FileVersion>1.6.5</FileVersion>
     <ApplicationIcon>Images\HoyoVerseIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
@@ -53,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\ZZZ.jpg" />
     <Resource Include="Images\defaultBG.jpg" />
     <Resource Include="Images\github.png" />
     <Resource Include="Images\HoyoVerse.png" />
@@ -62,6 +63,8 @@
     <Resource Include="Images\Buttons\home.png" />
     <Resource Include="Images\Buttons\rewards.png" />
     <Resource Include="Images\Buttons\HSR.jpg" />
+    <Resource Include="Images\Buttons\ZZZ.jpg" />
+    <Resource Include="Images\Buttons\TOT.jpg" />
   </ItemGroup>
 
   <ItemGroup>

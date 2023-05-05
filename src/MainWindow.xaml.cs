@@ -15,6 +15,9 @@ public partial class MainWindow : Window
         Current = this;
 
         HoyoLauncher.Initialize();
+
+        Loaded += (s,e)=>
+        new WindowTransparency(this).MakeTransparent();
     }
 
     protected override void OnClosing(CancelEventArgs e)
