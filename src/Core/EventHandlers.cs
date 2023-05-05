@@ -1,8 +1,11 @@
-﻿using static Define;
+﻿using NullSoftware.ToolKit;
+using static Define;
 namespace HoyoLauncherProject.Core;
 
 sealed class EventHandlers
 {
+    private static bool AlreadyMinimized = false;
+
     public static void Initialize()
     {
         // Window buttons and others
@@ -29,20 +32,11 @@ sealed class EventHandlers
         Current.GameHomePage.MouseLeave += SideButtonTooltips_Leave;
         Current.CheckInPage.MouseLeave += SideButtonTooltips_Leave;
 
-        Current.TOT_DEFAULT.Click += (s, e) =>
-            Process.Start(new ProcessStartInfo() { FileName = HoyoGames.TearsOfThemis.DIR, UseShellExecute = true }).Dispose();
-
         // Launch / Play
         Current.GAME_GI.Click += ButtonSelectionClicked;
         Current.GAME_HSR.Click += ButtonSelectionClicked;
         Current.GAME_HI3.Click += ButtonSelectionClicked;
-
-        // Original Launcher
-        Current.GI_DEFAULT.Click += ButtonLauncherClicked;
-        Current.HSR_DEFAULT.Click += ButtonLauncherClicked;
-        Current.HI3_DEFAULT.Click += ButtonLauncherClicked;
-
-        Current.GAME_ZZZ.Click += (s,e)=>
+        Current.GAME_ZZZ.Click += (s, e) =>
         {
             Current.GameSelection.Visibility = Visibility.Hidden;
             Current.TEMP_BACKGROUND.Children.Remove(Current.MainBG);
@@ -54,13 +48,29 @@ sealed class EventHandlers
             HoyoLauncher.CurrentGameSelected = HoyoGames.ZenlessZoneZero;
         };
 
+        // Original Launcher
+        Current.GI_DEFAULT.Click += ButtonLauncherClicked;
+        Current.HSR_DEFAULT.Click += ButtonLauncherClicked;
+        Current.HI3_DEFAULT.Click += ButtonLauncherClicked;
         Current.ZZZ_DEFAULT.Click += (s,e) =>
             MessageBox.Show("Coming Soon!", "Zenless Zone Zero", MessageBoxButton.OK, MessageBoxImage.Information);
+        Current.TOT_DEFAULT.Click += (s, e) =>
+            Process.Start(new ProcessStartInfo() { FileName = HoyoGames.TearsOfThemis.DIR, UseShellExecute = true }).Dispose();
 
         Current.GameHomePage.Click += (s,e) => ExtraButtons(true);
         Current.CheckInPage.Click += (s,e) => ExtraButtons(false);
 
         Current.SettingsButton.Click += (s, e) => new SettingWindow.Setting { Owner = Current }.ShowDialog();
+
+        // Tray Icon
+        Ti.Title = "HoyoLauncher";
+        Ti.Click += (s, e) => {
+            if (Current.WindowState == WindowState.Minimized)
+            {
+                Current.WindowState = WindowState.Normal;
+                Current.ShowInTaskbar = true;
+            }
+        };
     }
 
     static void ExtraButtons(bool IsHomePage)
@@ -73,7 +83,20 @@ sealed class EventHandlers
         Process.Start(PSI).Dispose();
     }
     static void Exit(object sender, RoutedEventArgs e) => Current.Close();
-    static void Minimize(object sender, RoutedEventArgs e) => Current.WindowState = WindowState.Minimized;
+
+    static void Minimize(object sender, RoutedEventArgs e)
+    {
+        Current.WindowState = WindowState.Minimized;
+        Current.ShowInTaskbar = false;
+
+        if(!AlreadyMinimized)
+        {
+            ((INotificationService)Ti)
+                .Notify("HoyoLauncher", "HoyoLauncher will be running in the background.", NotificationType.None);
+            AlreadyMinimized = true;
+        }
+    }
+    
     static void ThreeBarButton(object sender, RoutedEventArgs e) =>
         Current.GameSelection.Visibility = Current.GameSelection.IsVisible ? Visibility.Hidden : Visibility.Visible;
 
@@ -87,6 +110,15 @@ sealed class EventHandlers
         e.Handled = true;
 
         Current.WindowState = WindowState.Minimized;
+        Current.ShowInTaskbar = false;
+
+        if (!AlreadyMinimized)
+        {
+            ((INotificationService)Ti)
+                .Notify("HoyoLauncher", "HoyoLauncher will be running in the background.", NotificationType.None);
+            AlreadyMinimized = true;
+        }
+
         Current.GameSelection.Visibility = Visibility.Hidden;
 
         HoyoLauncher.IsGameRunning = true;
@@ -105,8 +137,12 @@ sealed class EventHandlers
         Current.LaunchSelection.IsEnabled = true;
 
         if(Current.WindowState is WindowState.Minimized)
+        {
             Current.WindowState = WindowState.Normal;
-        
+            Current.ShowInTaskbar = true;
+
+        }
+
     }
 
     static void SideButtonTooltips_Enter(object s, RoutedEventArgs e)

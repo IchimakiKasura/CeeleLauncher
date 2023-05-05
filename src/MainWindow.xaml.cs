@@ -1,4 +1,4 @@
-﻿using System.Security.Policy;
+﻿using NullSoftware.ToolKit;
 using System.Windows.Controls;
 
 namespace HoyoLauncherProject;
@@ -11,6 +11,7 @@ namespace HoyoLauncherProject;
 public partial class MainWindow : Window
 {
     public static MainWindow Current { get; set; }
+    public static TrayIcon Ti = new();
 
     public MainWindow()
     {

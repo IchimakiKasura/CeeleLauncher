@@ -345,7 +345,7 @@
                         <VisualBrush>
                             <VisualBrush.Visual>
                                 <Border>
-                                    <MediaElement Name="MediaElementBG" Source="" UnloadedBehavior="Manual" MediaEnded="mediaElement_OnMediaEnded"/>
+                                    <MediaElement Name="MediaElementBG" Source="https://github.com/IchimakiKasura/HoyoLauncher/blob/master/src/videos/bg.mp4?raw=true" UnloadedBehavior="Manual" MediaEnded="mediaElement_OnMediaEnded"/>
                                 </Border>
                             </VisualBrush.Visual>
                         </VisualBrush>

@@ -10,8 +10,8 @@
   <PropertyGroup>
     <Authors>IchimakiKasura</Authors>
     <Company>HoyoLauncher(Unofficial)</Company> <!--For the config folder naming idk on Appdata/Local-->
-    <AssemblyName>Hoyo Launcher (Unofficial)</AssemblyName>
-    <Product>Hoyo Launcher (Unofficial)</Product>
+    <AssemblyName>HoyoLauncher</AssemblyName>
+    <Product>HoyoLauncher</Product>
     <AssemblyVersion>1.6.5</AssemblyVersion>
     <FileVersion>1.6.5</FileVersion>
     <ApplicationIcon>Images\HoyoVerseIcon.ico</ApplicationIcon>
@@ -25,6 +25,10 @@
     <PublishSingleFile>True</PublishSingleFile>
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TrayIcon" Version="1.0.7.2" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="IniParser">
@@ -57,6 +61,7 @@
     <Resource Include="Images\defaultBG.jpg" />
     <Resource Include="Images\github.png" />
     <Resource Include="Images\HoyoVerse.png" />
+    <Resource Include="Images\HoyoVerseIcon.ico" />
     <Resource Include="Images\Buttons\gear.png" />
     <Resource Include="Images\Buttons\GI.jpg" />
     <Resource Include="Images\Buttons\HI3.jpg" />
