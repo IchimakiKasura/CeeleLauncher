@@ -13,9 +13,13 @@
     <Company>HoyoLauncher(Unofficial)</Company> <!--For the config folder naming idk on Appdata/Local-->
     <AssemblyName>Hoyo Launcher</AssemblyName>
     <Product>Hoyo Launcher</Product>
-    <AssemblyVersion>1.6.5</AssemblyVersion>
-    <FileVersion>1.6.5</FileVersion>
-    <ApplicationIcon>Images\HoyoVerseIcon.ico</ApplicationIcon>
+    <AssemblyVersion>1.7.0</AssemblyVersion>
+    <FileVersion>1.7.0</FileVersion>
+    <ApplicationIcon>Images\Icons\128.ico</ApplicationIcon>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <SignAssembly>False</SignAssembly>
+    <Copyright>2023</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(Configuration) == Release">
@@ -27,18 +31,26 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="IniParser">
       <HintPath>../iniReader/IniParser.dll</HintPath>
     </Reference>
   </ItemGroup>
 
-
   <ItemGroup>
     <Using Include="System" />
     <Using Include="System.IO" />
-    <Using Include="System.Drawing" Alias="Draw"/>
+    <Using Include="System.Drawing" Alias="Draw" />
     <Using Include="System.Windows" />
+    <Using Include="System.Reflection" />
     <Using Include="System.Diagnostics" />
     <Using Include="System.Windows.Input" />
     <Using Include="System.Windows.Media" />
@@ -51,6 +63,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Using Include="Define" Static="true" />
     <Using Include="HoyoLauncherProject.Core" />
     <Using Include="HoyoLauncherProject.MainWindow" Static="true" />
   </ItemGroup>
@@ -60,7 +73,7 @@
     <Resource Include="Images\defaultBG.jpg" />
     <Resource Include="Images\github.png" />
     <Resource Include="Images\HoyoVerse.png" />
-    <Resource Include="Images\HoyoVerseIcon.ico" />
+    <Resource Include="Images\HoyoVerseIcon.png" />
     <Resource Include="Images\Buttons\gear.png" />
     <Resource Include="Images\Buttons\GI.jpg" />
     <Resource Include="Images\Buttons\HI3.jpg" />
@@ -69,10 +82,14 @@
     <Resource Include="Images\Buttons\HSR.jpg" />
     <Resource Include="Images\Buttons\ZZZ.jpg" />
     <Resource Include="Images\Buttons\TOT.jpg" />
+    <Resource Include="Images\icons\16.ico" />
+    <Resource Include="Images\icons\128.ico" />
+    <Resource Include="Images\icons\256.ico" />
+    <Content Include="videos\bg.mp4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Core\Settings\HoyoLauncher.Designer.cs">
+    <Compile Update="Properties\HoyoLauncher.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>HoyoLauncher.settings</DependentUpon>
@@ -80,7 +97,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Core\Settings\HoyoLauncher.settings">
+    <None Update="Properties\HoyoLauncher.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>HoyoLauncher.Designer.cs</LastGenOutput>
       <CustomToolNamespace>AppLocal</CustomToolNamespace>

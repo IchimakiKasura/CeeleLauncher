@@ -1,5 +1,4 @@
-﻿using static Define;
-namespace HoyoLauncherProject.Core;
+﻿namespace HoyoLauncherProject.Core;
 
 sealed class EventHandlers
 {
@@ -38,8 +37,8 @@ sealed class EventHandlers
         Current.GAME_ZZZ.Click += (s, e) =>
         {
             Current.GameSelection.Visibility = Visibility.Hidden;
-            Current.TEMP_BACKGROUND.Children.Remove(Current.MainBG);
-            Current.TEMP_BACKGROUND.Children.Remove(Current.HoyoTitleIMG);
+            Current.HomeBG.Children.Remove(Current.MainBG);
+            Current.HomeBG.Children.Remove(Current.HoyoTitleIMG);
             Current.CheckInPage.IsEnabled = false;
             Current.LaunchButton.IsEnabled = false;
             Current.LaunchButton.Content = "Coming Soon";
@@ -60,6 +59,17 @@ sealed class EventHandlers
         Current.CheckInPage.Click += (s,e) => ExtraButtons(false);
 
         Current.SettingsButton.Click += (s, e) => new SettingWindow.Setting { Owner = Current }.ShowDialog();
+        Current.HomeButton.Click += delegate
+        {
+            if (Current.HomeBG.Children.Contains(Current.MainBG)) return;
+            
+            Current.MAIN_BACKGROUND.Background = null;
+            Current.HomeBG.Children.Add(Current.MainBG);
+            Current.HomeBG.Children.Add(Current.HoyoTitleIMG);
+            Current.CheckInPage.IsEnabled = false;
+            Current.LaunchButton.IsEnabled = false;
+            HoyoLauncher.CurrentGameSelected = HoyoGames.DEFAULT;
+        };
     }
 
     static void ExtraButtons(bool IsHomePage)
@@ -77,6 +87,7 @@ sealed class EventHandlers
     {
         Current.WindowState = WindowState.Minimized;
         Current.ShowInTaskbar = false;
+        Current.Hide();
         App.nIcon.Visible = true;
 
         if (!AlreadyMinimized)
@@ -100,6 +111,7 @@ sealed class EventHandlers
 
         Current.WindowState = WindowState.Minimized;
         Current.ShowInTaskbar = false;
+        Current.Hide();
         App.nIcon.Visible = true;
 
         if (!AlreadyMinimized)
@@ -189,8 +201,8 @@ sealed class EventHandlers
             break;
         }
 
-        System.Windows.Controls.Canvas.SetLeft(Current.ToolTipSideButton_Border, CanvasLeft);
-        System.Windows.Controls.Canvas.SetTop(Current.ToolTipSideButton, CanvasTop);
+        Canvas.SetLeft(Current.ToolTipSideButton_Border, CanvasLeft);
+        Canvas.SetTop(Current.ToolTipSideButton, CanvasTop);
         Current.ToolTipSideButton_Border.Width = BorderWidth;
 
         if (HG is not null)

@@ -1,6 +1,4 @@
-﻿using static Define;
-
-namespace HoyoLauncherProject.Core.SettingWindow;
+﻿namespace HoyoLauncherProject.Core.SettingWindow;
 
 public partial class Setting : Window
 {
@@ -59,9 +57,9 @@ public partial class Setting : Window
             MessageBox.Show($"ERROR:\n\nThe \"{AppName}\" location cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             switch(AppName)
             {
-                case "Genshin Impact": Current.GI_DEFAULT.IsEnabled = false; break;
-                case "Honkai Star Rail": Current.HSR_DEFAULT.IsEnabled = false; break;
-                case "Honkai Impact 3rd": Current.HI3_DEFAULT.IsEnabled = false; break;
+                case GENSHIN_IMPACT_TITLE: Current.GI_DEFAULT.IsEnabled = false; break;
+                case HONKAI_STAR_RAIL_TITLE: Current.HSR_DEFAULT.IsEnabled = false; break;
+                case HONKAI_IMPACT_THIRD_TITLE: Current.HI3_DEFAULT.IsEnabled = false; break;
             }
             return;
         }
@@ -76,19 +74,22 @@ public partial class Setting : Window
 
         foreach(var (Dir, Name, Exec) in GameDirs)
         {
-            AppName = Name;
-
             if (string.IsNullOrEmpty(Dir))
                 break;
-            
-            if(!isErrorOccured && !GameConfig.IsConfigExist(Dir))
-                isErrorOccured = true;
-
-            if(!isErrorOccured && !GameConfig.Read(Dir).GameExecutable.Contains(Exec))
-                isErrorOccured = true;
 
             if (isErrorOccured)
+            {
+                AppName = Name;
                 break;
+            }
+            
+            if(!GameConfig.IsConfigExist(Dir))
+                isErrorOccured = true;
+
+            if(!GameConfig.Read(Dir).GameExecutable.Contains(Exec))
+                isErrorOccured = true;
+
+            AppName = Name;
         }
     }
 

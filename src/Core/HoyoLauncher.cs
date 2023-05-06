@@ -78,8 +78,8 @@ sealed partial class HoyoLauncher
             
             var Config = GameConfig.Read(GameSelected.DIR);
 
-            Current.TEMP_BACKGROUND.Children.Remove(Current.MainBG);
-            Current.TEMP_BACKGROUND.Children.Remove(Current.HoyoTitleIMG);
+            Current.HomeBG.Children.Remove(Current.MainBG);
+            Current.HomeBG.Children.Remove(Current.HoyoTitleIMG);
             Current.CheckInPage.IsEnabled = true;
             Current.LaunchButton.IsEnabled = true;
 

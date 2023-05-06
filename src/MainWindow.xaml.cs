@@ -18,6 +18,10 @@ public partial class MainWindow : Window
 
         Loaded += (s,e)=>
         new WindowTransparency(this).MakeTransparent();
+
+        AppVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        #if !DEBUG
+        #endif
     }
 
     protected override void OnClosing(CancelEventArgs e)

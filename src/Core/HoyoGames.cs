@@ -1,5 +1,4 @@
-﻿using static Define;
-namespace HoyoLauncherProject.Core;
+﻿namespace HoyoLauncherProject.Core;
 
 public sealed class HoyoGames
 {
