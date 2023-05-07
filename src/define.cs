@@ -16,7 +16,7 @@ sealed class Define
     HSR_TIP = "Open Honkai: Star Rail Launcher",
     HI3_TIP = "Open Honkai Impact 3rd Launcher",
     ZZZ_TIP = "Open Zenless Zone Zero Launcher",
-    TOT_TIP = "Play Tears of Themis on Android",
+    TOT_TIP = "Play Tears of Themis on Mobile",
 
     GAME_LAUNCHED_TEXT = "Game is Running",
     GAME_DEFAULT_TEXT = "Launch";
@@ -26,6 +26,6 @@ sealed class Define
     HONKAI_STAR_RAIL_DIR = 1,
     HONKAI_IMPACT_THIRD_DIR = 2,
     ZENLESS_ZONE_ZERO_DIR = 3;
-    
 
+    public readonly static string APP_VERSION = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 }

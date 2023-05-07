@@ -1,5 +1,4 @@
-﻿global using Forms = System.Windows.Forms;
-using System.Threading;
+﻿using System.Threading;
 
 namespace HoyoLauncherProject
 {
@@ -10,6 +9,7 @@ namespace HoyoLauncherProject
     {
         static Mutex _mutex;
         public static Forms.NotifyIcon nIcon = new();
+        public static readonly string TempBG = Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4");
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -32,19 +32,28 @@ namespace HoyoLauncherProject
             nIcon.Text = appName;
             nIcon.Click += (s, e) =>
             {
-                if (MainWindow.WindowState is WindowState.Minimized)
-                {
-                    MainWindow.Show();
-                    MainWindow.WindowState = WindowState.Normal;
-                    MainWindow.ShowInTaskbar = true;
-                    nIcon.Visible = false;
-                }
+                if (MainWindow.WindowState is not WindowState.Minimized) return;
+
+                MainWindow.Show();
+                MainWindow.WindowState = WindowState.Normal;
+                MainWindow.ShowInTaskbar = true;
+                nIcon.Visible = false;
             };
 
             nIcon.BalloonTipText = "HoyoLauncher will be running in the background.";
             nIcon.BalloonTipTitle = appName;
             nIcon.BalloonTipIcon = Forms.ToolTipIcon.Info;
 
+            // Tray Context Menu
+            nIcon.ContextMenuStrip = new();
+
+            // Extracting the BG to play
+            if (!Directory.Exists(Path.Combine(Path.GetTempPath(), "HoyoverseBG")))
+                Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), "HoyoverseBG"));
+
+            if(!File.Exists(TempBG))
+                File.WriteAllBytes(TempBG, AppResources.Resources.bg);
+            
             base.OnStartup(e);
         }
 

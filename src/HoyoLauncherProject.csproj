@@ -15,7 +15,7 @@
     <Product>Hoyo Launcher</Product>
     <AssemblyVersion>1.7.0</AssemblyVersion>
     <FileVersion>1.7.0</FileVersion>
-    <ApplicationIcon>Images\Icons\128.ico</ApplicationIcon>
+    <ApplicationIcon>Images\Icons\256.ico</ApplicationIcon>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <SignAssembly>False</SignAssembly>
     <Copyright>2023</Copyright>
@@ -24,9 +24,9 @@
 
   <PropertyGroup Condition="$(Configuration) == Release">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
     <PublishProtocol>FileSystem</PublishProtocol>
-    <SelfContained>false</SelfContained>
+    <SelfContained>False</SelfContained>
     <PublishSingleFile>True</PublishSingleFile>
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
@@ -48,10 +48,12 @@
   <ItemGroup>
     <Using Include="System" />
     <Using Include="System.IO" />
+    <Using Include="System.Net.Http" />
     <Using Include="System.Drawing" Alias="Draw" />
     <Using Include="System.Windows" />
     <Using Include="System.Reflection" />
     <Using Include="System.Diagnostics" />
+    <Using Include="System.Windows.Forms" Alias="Forms" />
     <Using Include="System.Windows.Input" />
     <Using Include="System.Windows.Media" />
     <Using Include="System.ComponentModel" />
@@ -83,9 +85,9 @@
     <Resource Include="Images\Buttons\ZZZ.jpg" />
     <Resource Include="Images\Buttons\TOT.jpg" />
     <Resource Include="Images\icons\16.ico" />
+    <Resource Include="Images\icons\64.ico" />
     <Resource Include="Images\icons\128.ico" />
     <Resource Include="Images\icons\256.ico" />
-    <Content Include="videos\bg.mp4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -94,6 +96,19 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>HoyoLauncher.settings</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>AppResources</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

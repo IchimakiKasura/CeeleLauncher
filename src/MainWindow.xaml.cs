@@ -19,9 +19,14 @@ public partial class MainWindow : Window
         Loaded += (s,e)=>
         new WindowTransparency(this).MakeTransparent();
 
-        AppVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        #if !DEBUG
-        #endif
+        MediaElementBG.Source = new(App.TempBG);
+
+
+#if !DEBUG
+        AppVersion.Text = APP_VERSION;
+#else
+        AppVersion.Text = "DEVELOPMENT BUILD";
+#endif
     }
 
     protected override void OnClosing(CancelEventArgs e)
@@ -37,7 +42,7 @@ public partial class MainWindow : Window
     public void ChangeGame(string BG) =>
         MAIN_BACKGROUND.Background = new ImageBrush(new BitmapImage(new Uri(BG, UriKind.RelativeOrAbsolute)));
 
-    private void mediaElement_OnMediaEnded(object s, RoutedEventArgs e)
+    private void MediaElement_OnMediaEnded(object s, RoutedEventArgs e)
     {
         MediaElement el = (MediaElement)s;
 

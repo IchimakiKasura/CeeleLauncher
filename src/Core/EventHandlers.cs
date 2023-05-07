@@ -7,10 +7,10 @@ sealed class EventHandlers
     public static void Initialize()
     {
         // Window buttons and others
+        Current.ExitButton.Click += (s,e) => Current.Close();
+        Current.LaunchSelection.Click += (s,e) => Current.GameSelection.Visibility = Current.GameSelection.IsVisible ? Visibility.Hidden : Visibility.Visible;
         Current.MinButton.Click += Minimize;
-        Current.ExitButton.Click += Exit;
         Current.TopBorder.MouseDown += TopBarDrag;
-        Current.LaunchSelection.Click += ThreeBarButton;
         Current.LaunchButton.Click += LaunchButton;
 
         // Side Button's Tooltips
@@ -68,6 +68,7 @@ sealed class EventHandlers
             Current.HomeBG.Children.Add(Current.HoyoTitleIMG);
             Current.CheckInPage.IsEnabled = false;
             Current.LaunchButton.IsEnabled = false;
+            Current.LaunchButton.Content = GAME_DEFAULT_TEXT;
             HoyoLauncher.CurrentGameSelected = HoyoGames.DEFAULT;
         };
     }
@@ -81,9 +82,8 @@ sealed class EventHandlers
         };
         Process.Start(PSI).Dispose();
     }
-    static void Exit(object sender, RoutedEventArgs e) => Current.Close();
 
-    static void Minimize(object sender, RoutedEventArgs e)
+    static void Minimize(object s, RoutedEventArgs e)
     {
         Current.WindowState = WindowState.Minimized;
         Current.ShowInTaskbar = false;
@@ -97,10 +97,7 @@ sealed class EventHandlers
         }
     }
     
-    static void ThreeBarButton(object sender, RoutedEventArgs e) =>
-        Current.GameSelection.Visibility = Current.GameSelection.IsVisible ? Visibility.Hidden : Visibility.Visible;
-
-    static void TopBarDrag(object sender, MouseButtonEventArgs e)
+    static void TopBarDrag(object s, MouseButtonEventArgs e)
     {
         if (e.ChangedButton is MouseButton.Left) Current.DragMove();
     }
@@ -137,73 +134,51 @@ sealed class EventHandlers
         Current.LaunchButton.IsEnabled = true;
         Current.LaunchSelection.IsEnabled = true;
 
-        if(Current.WindowState is WindowState.Minimized)
-        {
-            Current.WindowState = WindowState.Normal;
-            Current.ShowInTaskbar = true;
-            App.nIcon.Visible = true;
-        }
-
+        if(Current.WindowState is not WindowState.Minimized) return;
+        Current.Show();
+        Current.WindowState = WindowState.Normal;
+        Current.ShowInTaskbar = true;
+        App.nIcon.Visible = false;
     }
 
     static void SideButtonTooltips_Enter(object s, RoutedEventArgs e)
     {
         Current.ToolTipSideButton.Visibility = Visibility.Visible;
-        short GameSelected = short.Parse(((System.Windows.Controls.Button)s).Uid);
+        short GameSelected = short.Parse(((Button)s).Uid);
+        ToolTipPlacements placements = new();
         HoyoGames HG = null ;
-        double BorderWidth = 0,
-        CanvasLeft = 0,
-        CanvasTop = 0;
 
         switch(GameSelected)
         {
             case 0:
                 HG = HoyoGames.GenshinImpact;
-                CanvasTop = 41;
-                BorderWidth = 192;
-                CanvasLeft = -88;
+                placements = new(41,-88,192);
             break;
 
             case 1:
                 HG = HoyoGames.HonkaiStarRail;
-                CanvasTop = 118;
-                BorderWidth = 196;
-                CanvasLeft = -92;
+                placements = new(118,-92,196);
             break;
 
             case 2:
                 HG = HoyoGames.HonkaiImpact3RD;
-                CanvasTop = 194;
-                BorderWidth = 209;
-                CanvasLeft = -105;
+                placements = new(194,-105,209);
             break;
             case 3:
                 HG = HoyoGames.ZenlessZoneZero;
-                CanvasTop = 268;
-                BorderWidth = 206;
-                CanvasLeft = -102;
+                placements = new(268,-102,206);
             break;
             case 4:
                 HG = HoyoGames.TearsOfThemis;
-                CanvasTop = 344;
-                BorderWidth = 195;
-                CanvasLeft = -91;
+                placements = new(344,-85,189);
             break;
-            case 5:
-                CanvasTop = 476;
-                BorderWidth = 120;
-                CanvasLeft = -16;
-            break;
-            case 6:
-                CanvasTop = 522;
-                BorderWidth = 110;
-                CanvasLeft = -6;
-            break;
+            case 5: placements = new(476,-16,120); break;
+            case 6: placements = new(522,-6,110);  break;
         }
 
-        Canvas.SetLeft(Current.ToolTipSideButton_Border, CanvasLeft);
-        Canvas.SetTop(Current.ToolTipSideButton, CanvasTop);
-        Current.ToolTipSideButton_Border.Width = BorderWidth;
+        Canvas.SetLeft(Current.ToolTipSideButton_Border, placements.CanvasLeft);
+        Canvas.SetTop(Current.ToolTipSideButton, placements.CanvasTop);
+        Current.ToolTipSideButton_Border.Width = placements.BorderWidth;
 
         if (HG is not null)
             Current.ToolTipSideButton_Text.Text = HG.TOOLTIPTEXT;
@@ -214,7 +189,7 @@ sealed class EventHandlers
     
     public static void ButtonSelectionClicked(object s, RoutedEventArgs e)
     {
-        short GameSelected = short.Parse(((System.Windows.Controls.Button)s).Uid);
+        short GameSelected = short.Parse(((Button)s).Uid);
         HoyoGames HG = null;
 
         switch(GameSelected)
@@ -231,7 +206,7 @@ sealed class EventHandlers
 
     public static void ButtonLauncherClicked(object s, RoutedEventArgs e)
     {
-        int GameSelected = int.Parse(((System.Windows.Controls.Button)s).Uid);
+        int GameSelected = int.Parse(((Button)s).Uid);
         HoyoGames HG = null;
 
         switch(GameSelected)

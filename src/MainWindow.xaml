@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Hoyo Launcher (Unofficial)" Height="720" Width="1280"
-        Icon="/Images/Icons/128.ico"
+        Icon="/Images/Icons/64.ico"
         WindowStyle="None"
         ResizeMode="CanMinimize"
         Background="Transparent"
@@ -44,7 +44,7 @@
                     <ControlTemplate TargetType="Button">
                         <Border Name="GearBG" Background="Transparent">
                             <Grid Margin="10,10,10,10">
-                                <Image Source="pack://application:,,,/Images/HoyoVerseIcon.png" Margin="-3,-3,-3,-3"/>
+                                <Image Source="/Images/HoyoVerseIcon.png" Margin="-3,-3,-3,-3"/>
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </Border>
@@ -77,7 +77,7 @@
                     <ControlTemplate TargetType="Button">
                         <Border Name="GearBG" Background="Transparent">
                             <Grid Margin="10,10,10,10">
-                                <Image Source="pack://application:,,,/Images/Buttons/gear.png" Margin="-4,-4,-4,-4"/>
+                                <Image Source="/Images/Buttons/gear.png" Margin="-4,-4,-4,-4"/>
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </Border>
@@ -385,7 +385,7 @@
                             <VisualBrush>
                                 <VisualBrush.Visual>
                                     <Border>
-                                        <MediaElement Name="MediaElementBG" Source="https://github.com/IchimakiKasura/HoyoLauncher/blob/master/src/videos/bg.mp4?raw=true" UnloadedBehavior="Manual" MediaEnded="mediaElement_OnMediaEnded"/>
+                                        <MediaElement Name="MediaElementBG" UnloadedBehavior="Manual" MediaEnded="MediaElement_OnMediaEnded"/>
                                     </Border>
                                 </VisualBrush.Visual>
                             </VisualBrush>
@@ -457,7 +457,7 @@
                 </Border.Triggers>
                 <Grid>
                     <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Hoyo Launcher</TextBlock>
-                    <TextBlock Name="AppVersion" Text="Unreleased Version: DEVELOPMENT BUILD"  Foreground="White" Opacity="0.2" Padding="0,11,0,0" FontSize="15" Margin="124,0,0,0"/>
+                    <TextBlock Name="AppVersion" Text="Unreleased Version: DEVELOPMENT BUILD"  Foreground="White" Opacity="0.2" Padding="0,10,0,0" FontSize="15" Margin="124,0,0,0"/>
                     <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1200,0,0,0"/>
                     <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1160,0,40,0"/>
                     <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1120,0,80,0" RenderTransformOrigin="0.5,0.5"/>

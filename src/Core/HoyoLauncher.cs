@@ -3,8 +3,7 @@ namespace HoyoLauncherProject.Core;
 
 sealed partial class HoyoLauncher
 {
-    [GeneratedRegex("(launcher|Launcher)", RegexOptions.Compiled)]
-    private static partial Regex LauncherName();
+    private static bool FirstRun = true;
     
     public static bool IsGameRunning { get; set; }
     public static string ExecutableName { get; set; }
@@ -50,6 +49,8 @@ sealed partial class HoyoLauncher
 
         if(HG is not null)
             GameChange(HG);
+
+        FirstRun = true;
     }
     
     // TODO:
@@ -59,50 +60,51 @@ sealed partial class HoyoLauncher
     {
         Current.GameSelection.Visibility = Visibility.Hidden;
 
-        if (Directory.Exists(GameSelected.DIR))
+        if (!Directory.Exists(GameSelected.DIR))
         {
-            SettingWindow.Setting.ValidateGameFiles(
-                new List<(string,string,string)>
-                {
-                    (GameSelected.DIR, GameSelected.CURRENT_GAME, GameSelected.CURRENT_EXECUTABLE)
-                },
-                out bool ErrorOccured,
-                out string AppName
-            );
-
-            if(ErrorOccured)
-            {
-                MessageBox.Show($"ERROR:\n\nThe \"{AppName}\" location cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            
-            var Config = GameConfig.Read(GameSelected.DIR);
-
-            Current.HomeBG.Children.Remove(Current.MainBG);
-            Current.HomeBG.Children.Remove(Current.HoyoTitleIMG);
-            Current.CheckInPage.IsEnabled = true;
-            Current.LaunchButton.IsEnabled = true;
-
-            Current.ChangeGame(Path.Combine(Config.GameBackground));
-            ExecutableName = Path.Combine(Config.GameFolder, Config.GameExecutable);
-            
-            CurrentGameSelected = GameSelected;
-            AppLocal.HoyoLauncher.Default.Save();
-            Current.LaunchButton.Content = GAME_DEFAULT_TEXT;
-        }
-        else
             MessageBox.Show("No Directory found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        SettingWindow.Setting.ValidateGameFiles(
+            new List<(string,string,string)>
+            {
+                (GameSelected.DIR, GameSelected.CURRENT_GAME, GameSelected.CURRENT_EXECUTABLE)
+            },
+            out bool ErrorOccured,
+            out string AppName
+        );
+
+        if(ErrorOccured && !FirstRun)
+        {
+            MessageBox.Show($"ERROR:\n\nThe \"{AppName}\" location cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+        
+        var Config = GameConfig.Read(GameSelected.DIR);
+
+        Current.HomeBG.Children.Remove(Current.MainBG);
+        Current.HomeBG.Children.Remove(Current.HoyoTitleIMG);
+        Current.CheckInPage.IsEnabled = true;
+        Current.LaunchButton.IsEnabled = true;
+
+        Current.ChangeGame(Path.Combine(Config.GameBackground));
+        ExecutableName = Path.Combine(Config.GameFolder, Config.GameExecutable);
+        
+        CurrentGameSelected = GameSelected;
+        AppLocal.HoyoLauncher.Default.Save();
+        Current.LaunchButton.Content = GAME_DEFAULT_TEXT;
     }
 
     public static void OpenOriginalLauncher(HoyoGames args)
     {
         foreach(string Launcher in Directory.GetFiles(args.DIR))
-            if(LauncherName().IsMatch(Launcher))
+            if(Launcher.ToLower().Contains("launcher"))
                 Process.Start(Launcher);       
     }
     
     // for side buttons
-    public static void CheckGameDIRS(string dir, System.Windows.Controls.Button btn) =>
+    public static void CheckGameDIRS(string dir, Button btn) =>
         btn.IsEnabled = Directory.Exists(dir);
 
 }

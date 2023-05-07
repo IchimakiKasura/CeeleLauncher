@@ -86,7 +86,7 @@ public partial class Setting : Window
             if(!GameConfig.IsConfigExist(Dir))
                 isErrorOccured = true;
 
-            if(!GameConfig.Read(Dir).GameExecutable.Contains(Exec))
+            if(!isErrorOccured && !GameConfig.Read(Dir).GameExecutable.Contains(Exec))
                 isErrorOccured = true;
 
             AppName = Name;
