@@ -1,29 +1,19 @@
-﻿namespace HoyoLauncherProject;
-
-/*
-    tbh i kinda want to over engineer the coding but its just a simple launcher
-    so excuse my "rushed coding" or so
-*/
+﻿namespace HoyoLauncher;
 
 public partial class MainWindow : Window
 {
-    public static MainWindow Current { get; set; }
+    public static MainWindow HoyoWindow { get; set; }
 
     public MainWindow()
     {
         InitializeComponent();
-        Current = this;
 
-        HoyoLauncher.Initialize();
+        HoyoWindow = this;
 
-        Loaded += (s,e)=>
-        new WindowTransparency(this).MakeTransparent();
-
-        MediaElementBG.Source = new(App.TempBG);
-
+        HoyoMain.Initialize();
 
 #if !DEBUG
-        AppVersion.Text = APP_VERSION;
+        AppVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 #else
         AppVersion.Text = "DEVELOPMENT BUILD";
 #endif
@@ -31,16 +21,13 @@ public partial class MainWindow : Window
 
     protected override void OnClosing(CancelEventArgs e)
     {
-        e.Cancel = HoyoLauncher.IsGameRunning;
+        e.Cancel = HoyoMain.IsGameRunning;
 
-        if(HoyoLauncher.IsGameRunning)
+        if(HoyoMain.IsGameRunning)
             MessageBox.Show("Game is running! Cannot be closed.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
 
         base.OnClosing(e);
     }
-
-    public void ChangeGame(string BG) =>
-        MAIN_BACKGROUND.Background = new ImageBrush(new BitmapImage(new Uri(BG, UriKind.RelativeOrAbsolute)));
 
     private void MediaElement_OnMediaEnded(object s, RoutedEventArgs e)
     {

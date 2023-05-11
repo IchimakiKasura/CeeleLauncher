@@ -1,0 +1,124 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>disable</Nullable>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+        <NoWin32Manifest>true</NoWin32Manifest>
+    </PropertyGroup>
+	
+    <PropertyGroup>
+        <Authors>IchimakiKasura</Authors>
+        <Company>HoyoLauncher(Unofficial)</Company> <!--For the config folder naming idk on Appdata/Local-->
+        <AssemblyName>Hoyo Launcher</AssemblyName>
+        <Product>Hoyo Launcher</Product>
+        <AssemblyVersion>1.8.0</AssemblyVersion>
+        <FileVersion>1.8.0</FileVersion>
+        <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+        <SignAssembly>False</SignAssembly>
+        <Copyright>2023</Copyright>
+        <NeutralLanguage>en</NeutralLanguage>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(Configuration) == Release">
+        <OutputType>WinExe</OutputType>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
+        <PublishProtocol>FileSystem</PublishProtocol>
+        <SelfContained>False</SelfContained>
+        <PublishSingleFile>True</PublishSingleFile>
+        <PublishReadyToRun>True</PublishReadyToRun>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Reference Include="IniParser">
+            <HintPath>../iniReader/IniParser.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Resource Include="Resources\Buttons\Selection\GenshinSelectionButton.png" />
+        <Resource Include="Resources\Buttons\Selection\HI3SelectionButton.png" />
+        <Resource Include="Resources\Buttons\Selection\HSRSelectionButton.png" />
+        <Resource Include="Resources\Buttons\Selection\ZZZSelectionButton.png" />
+        <Resource Include="Resources\Buttons\gear.png" />
+        <Resource Include="Resources\Buttons\GI.jpg" />
+        <Resource Include="Resources\Buttons\HI3.jpg" />
+        <Resource Include="Resources\Buttons\home.png" />
+        <Resource Include="Resources\Buttons\HSR.jpg" />
+        <Resource Include="Resources\Buttons\rewards.png" />
+        <Resource Include="Resources\Buttons\TOT.jpg" />
+        <Resource Include="Resources\Buttons\ZZZ.jpg" />
+        <Resource Include="Resources\Icons\128.ico" />
+        <Resource Include="Resources\Icons\16.ico" />
+        <Resource Include="Resources\Icons\256.ico" />
+        <Resource Include="Resources\Icons\64.ico" />
+		<Resource Include="Resources\HoyoVerseIcon.png" />
+		<Resource Include="Resources\HoyoVerse.png" />
+        <Resource Include="Resources\defaultBG.jpg" />
+        <Resource Include="Resources\github.png" />
+		<Resource Include="Resources\ZZZ.jpg" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Using Include="System" />
+        <Using Include="System.IO" />
+        <Using Include="System.Drawing" Alias="Draw" />
+        <Using Include="System.Windows" />
+        <Using Include="System.Net.Http" />
+        <Using Include="System.Threading" />
+        <Using Include="System.Reflection" />
+        <Using Include="System.Diagnostics" />
+        <Using Include="System.Windows.Forms" Alias="Forms" />
+        <Using Include="System.Windows.Input" />
+        <Using Include="System.Windows.Media" />
+        <Using Include="System.ComponentModel" />
+        <Using Include="System.Threading.Tasks" />
+        <Using Include="System.Windows.Controls" />
+        <Using Include="System.Collections.Generic" />
+        <Using Include="System.Windows.Media.Imaging" />
+        <Using Include="System.Text.RegularExpressions" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="HoyoLauncher.Core" />
+		<Using Include="HoyoLauncher.Core.Config" />
+		<Using Include="HoyoLauncher.MainWindow" Static="true" />
+		<Using Include="HoyoLauncher.Core.Attributes" />
+		<Using Include="HoyoLauncher.HoyoLauncher_Core" />
+		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Compile Update="Properties\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Properties\Settings.Designer.cs">
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\Resources.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+            <CustomToolNamespace>AppResources</CustomToolNamespace>
+        </EmbeddedResource>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Update="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+            <CustomToolNamespace>AppSettings</CustomToolNamespace>
+        </None>
+    </ItemGroup>
+
+</Project>

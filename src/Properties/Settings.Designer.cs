@@ -8,16 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AppLocal {
+namespace AppSettings {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
-    public sealed partial class HoyoLauncher : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static HoyoLauncher defaultInstance = ((HoyoLauncher)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new HoyoLauncher())));
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
-        public static HoyoLauncher Default {
+        public static Settings Default {
             get {
                 return defaultInstance;
             }

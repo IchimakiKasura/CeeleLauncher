@@ -1,9 +1,18 @@
-﻿<Application x:Class="HoyoLauncherProject.App"
+﻿<Application x:Class="HoyoLauncher.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:HoyoLauncherProject"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/HoyoLauncher Controls/LaunchButton/LaunchSettingsPopup.xaml"/>
+                <ResourceDictionary Source="/HoyoLauncher Controls/LaunchButton/LaunchButton.xaml"/>
+                <ResourceDictionary Source="/HoyoLauncher Controls/LaunchButton/LaunchSettings.xaml"/>
+                
+                <ResourceDictionary Source="/HoyoLauncher Controls/TopButtons/TopButton.xaml"/>
+                <ResourceDictionary Source="/HoyoLauncher Controls/TopButtons/SettingsButton.xaml"/>
+                <ResourceDictionary Source="/HoyoLauncher Controls/TopButtons/HomeButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

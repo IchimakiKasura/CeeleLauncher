@@ -1,0 +1,59 @@
+﻿<Window x:Class="HoyoLauncher.HoyoLauncherSettings.HoyoSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterOwner"
+        Background="Transparent"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Title="Settings" Height="520" Width="820"
+        ShowInTaskbar="false" Loaded="OnLoaded"
+>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/HoyoLauncherSettings/SettingsDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Border CornerRadius="10" Background="White" RenderOptions.BitmapScalingMode="Fant">
+        <Grid>
+            <Border Name="WindowDrag" Margin="0,0,0,420">
+                <Grid>
+                    <TextBlock Text="Settings" Padding="35,20,0,0" FontSize="40" FontWeight="SemiBold"/>
+                    <Button Name="ExitButton" Content="✕" Style="{StaticResource SettingExitButton}" Margin="740,28,35,27"/>
+                </Grid>
+            </Border>
+
+            <Border Background="#f6f5f3" Margin="30,100,30,80" CornerRadius="10">
+                <Grid>
+                    <TextBlock Text="Genshin Impact Location: " FontSize="20" Margin="10,11,10,299"/>
+                    <TextBox Name="GI_DIR_TXT" Margin="10,46,150,264"/>
+                    <Button Name="GI_LOCATE" Margin="615,46,10,264" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="GenshinClick"/>
+                    <TextBlock Text="Honkai Star Rail Location: " FontSize="20" Margin="10,81,10,229"/>
+                    <TextBox Name="HSR_DIR_TXT" Margin="10,116,150,194"/>
+                    <Button Name="HSR_LOCATE" Margin="615,116,10,194" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="HSRClick"/>
+                    <TextBlock Text="Honkai Impact 3rd Location: " FontSize="20" Margin="10,151,10,159"/>
+                    <TextBox Name="HI3_DIR_TXT" Margin="10,186,150,124"/>
+                    <Button Name="HI3_LOCATE" Margin="615,186,10,124" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="HI3Click"/>
+                    <TextBlock Text="Zenless Zone Zero Location: " FontSize="20" Margin="10,221,10,89"/>
+                    <TextBox x:Name="ZZZ_DIR_TXT" Margin="10,256,150,54" IsEnabled="False" Text="Unavailable" Foreground="Gray"/>
+                    <Button Name="ZZZ_LOCATE" Margin="615,256,10,54" Content="Open Folder" IsEnabled="False" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Gray"/>
+                </Grid>
+            </Border>
+
+            <Button Name="ConfirmButton" Content="Confirm" Style="{StaticResource MainButton}" Margin="625,452,35,23" Background="#393b40" FontSize="20" Click="ConfirmClick"/>
+            <Button Name="CancelButton" Content="Cancel" Style="{StaticResource MainButton}" Margin="460,452,200,23" FontSize="20"/>
+
+            <Grid Margin="45,445,432,10">
+                <TextBlock Text="About" FontWeight="SemiBold" Padding="0,10,0,0"/>
+                <TextBlock Text="Created by Icimaki Kasura&#xA;This app is not affiliated with miHoYo / Hoyoverse by any means." FontWeight="Thin" Margin="0,15,0,0" FontSize="10" Foreground="Gray" Padding="0,10,0,0"/>
+            </Grid>
+
+            <Image Name="Github" Margin="388,452,388,23" Source="/Resources/github.png" Stretch="Fill" Cursor="Hand"/>
+        </Grid>
+    </Border>
+</Window>
