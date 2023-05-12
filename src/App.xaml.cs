@@ -4,12 +4,14 @@ namespace HoyoLauncher;
 
 public partial class App : Application
 {
+    
     static Mutex _Mutex;
     static readonly string dir = Path.Combine(Path.GetTempPath(), "HoyoverseBG");
 
     public static readonly Forms.NotifyIcon AppTray = new();
     public static readonly string TempBG = Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4");
     public static readonly MediaElement PreMediaElement = new();
+    public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -30,15 +32,7 @@ public partial class App : Application
         AppTray.Icon = IconResources.Icon_16;
         AppTray.Visible = false;
         AppTray.Text = appName;
-        AppTray.Click += (s, e) =>
-        {
-            if (MainWindow.WindowState is not WindowState.Minimized) return;
-
-            MainWindow.Show();
-            MainWindow.WindowState = WindowState.Normal;
-            MainWindow.ShowInTaskbar = true;
-            AppTray.Visible = false;
-        };
+        AppTray.Click += AppTrayClick;
 
         AppTray.BalloonTipText = "HoyoLauncher will be running in the background.";
         AppTray.BalloonTipTitle = appName;
@@ -52,5 +46,22 @@ public partial class App : Application
             File.WriteAllBytes(TempBG, AppResources.Resources.bg);
 
         base.OnStartup(e);
+    }
+
+    public static void NotifTray()
+    {
+        if(!HoyoMain.FirstRun) return;
+        AppTray.ShowBalloonTip(3);
+        HoyoMain.FirstRun = false;
+    }
+
+    void AppTrayClick(object s, EventArgs e)
+    {
+        if (MainWindow.WindowState is not WindowState.Minimized) return;
+
+        MainWindow.Show();
+        MainWindow.WindowState = WindowState.Normal;
+        MainWindow.ShowInTaskbar = true;
+        AppTray.Visible = false;
     }
 }

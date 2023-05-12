@@ -7,10 +7,7 @@ public partial class HoyoSettings : Window
         InitializeComponent();
 
         HoyoWindow.BLACK_THING.Opacity = 0.5;
-
-        new System.Windows.Interop.WindowInteropHelper(this).EnsureHandle();
-        new WindowTransparency(this).MakeTransparent();
-
+        
         WindowDrag.MouseDown += (s, e) =>
             DragMove(); 
         ExitButton.Click += (s, e) =>
@@ -35,7 +32,7 @@ public partial class HoyoSettings : Window
         base.OnClosed(e);
     }
 
-    void GetFolderDirectory(TextBox txt)
+    static void GetFolderDirectory(TextBox txt)
     {
         using var Folder = new Forms.FolderBrowserDialog();
 
@@ -58,12 +55,12 @@ public partial class HoyoSettings : Window
 
         List<(ConfigRead config, HoyoGames AbsoluteName, HoyoLauncher_Controls.SideButtons.Button Launcher)> GameConfigs = new()
         {
-            (new ConfigRead().GetConfig(GI_DIR_TXT.Text), HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
-            (new ConfigRead().GetConfig(HSR_DIR_TXT.Text), HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
-            (new ConfigRead().GetConfig(HI3_DIR_TXT.Text), HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
+            (ConfigRead.GetConfig(GI_DIR_TXT.Text), HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
+            (ConfigRead.GetConfig(HSR_DIR_TXT.Text), HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
+            (ConfigRead.GetConfig(HI3_DIR_TXT.Text), HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
         };
 
-        foreach(var (config, name, Launcher) in GameConfigs)
+        foreach(var (config, name, Launcher) in CollectionsMarshal.AsSpan(GameConfigs))
         {
             HoyoMain.ValidateSettings(config, name, Launcher, out ErrorOccured);
             if(ErrorOccured) break;

@@ -1,21 +1,20 @@
-﻿namespace HoyoLauncher.HoyoLauncher_Core;
+﻿using AppRes = AppResources.Resources;
+namespace HoyoLauncher.HoyoLauncher_Core;
 
-public sealed class EventsHandle
+[Events]
+public sealed class EventsHandleS
 {
-    public static void WindowTransparency() =>
-        HoyoWindow.Loaded += (s, e) =>
-            new WindowTransparency(HoyoWindow).MakeTransparent();
     public static void WindowBackground() =>
         HoyoWindow.MediaElementBG.Source = new(App.TempBG);
     public static void WindowSideButtonToolTips()
     {
-        HoyoWindow.GENSHIN_IMPACT_LAUNCHER.ButtonToolTip = AppResources.Resources.GENSHIN_IMPACT_TIP;
-        HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER.ButtonToolTip = AppResources.Resources.HONKAI_STAR_RAIL_TIP;
-        HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER.ButtonToolTip = AppResources.Resources.HONKAI_IMPACT_THIRD_TIP;
-        HoyoWindow.ZZZ_LAUNCHER.ButtonToolTip = AppResources.Resources.ZZZ_TIP;
-        HoyoWindow.TOT_LAUNCHER.ButtonToolTip = AppResources.Resources.TOT_TIP;
-        HoyoWindow.CheckInPage.ButtonToolTip = AppResources.Resources.CHECKIN_TIP;
-        HoyoWindow.GameHomePage.ButtonToolTip = AppResources.Resources.HOMEPAGE_TIP;
+        HoyoWindow.GENSHIN_IMPACT_LAUNCHER.ButtonToolTip = AppRes.GENSHIN_IMPACT_TIP;
+        HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER.ButtonToolTip = AppRes.HONKAI_STAR_RAIL_TIP;
+        HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER.ButtonToolTip = AppRes.HONKAI_IMPACT_THIRD_TIP;
+        HoyoWindow.ZZZ_LAUNCHER.ButtonToolTip = AppRes.ZZZ_TIP;
+        HoyoWindow.TOT_LAUNCHER.ButtonToolTip = AppRes.TOT_TIP;
+        HoyoWindow.CheckInPage.ButtonToolTip = AppRes.CHECKIN_TIP;
+        HoyoWindow.GameHomePage.ButtonToolTip = AppRes.HOMEPAGE_TIP;
     }
     public static void WindowTopButtons()
     {
@@ -35,16 +34,11 @@ public sealed class EventsHandle
                         HoyoWindow.ShowInTaskbar = false;
                         HoyoWindow.Hide();
                         App.AppTray.Visible = true;
-
-                        if(HoyoMain.FirstRun)
-                        {
-                            App.AppTray.ShowBalloonTip(3);
-                            HoyoMain.FirstRun = false;
-                        }
+                        App.NotifTray();
                     break;
 
                 case "SettingsButton":
-                        var WindowSetting = new HoyoLauncherSettings.HoyoSettings { Owner = HoyoWindow }.ShowDialog();
+                        new HoyoLauncherSettings.HoyoSettings { Owner = HoyoWindow }.ShowDialog();
                     break;
 
                 case "HomeButton":
@@ -55,7 +49,7 @@ public sealed class EventsHandle
                         HoyoWindow.HomeBG.Children.Add(HoyoWindow.HoyoTitleIMG);
                         HoyoWindow.CheckInPage.IsEnabled = false;
                         HoyoWindow.LaunchButton.IsEnabled = false;
-                        HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_DEFAULT_TEXT;
+                        HoyoWindow.LaunchButton.Content = AppRes.GAME_DEFAULT_TEXT;
 
                         AppSettings.Settings.Default.LAST_GAME = 0;
                         AppSettings.Settings.Default.Save();
@@ -100,7 +94,7 @@ public sealed class EventsHandle
                     break;
             }
 
-            if(Launcher != "")
+            if(Launcher is not "")
                 Process.Start(
                     new ProcessStartInfo
                     {
@@ -137,16 +131,12 @@ public sealed class EventsHandle
 
             // App Tray
             App.AppTray.Visible = true;
-            if(HoyoMain.FirstRun)
-            {
-                App.AppTray.ShowBalloonTip(3);
-                HoyoMain.FirstRun = false;
-            }
+            App.NotifTray();
             
             // Buttons
             MainButton.IsEnabled =
             HoyoWindow.LaunchSelection.IsEnabled = false;
-            MainButton.Content = AppResources.Resources.GAME_LAUNCHED_TEXT;
+            MainButton.Content = AppRes.GAME_LAUNCHED_TEXT;
 
             HoyoMain.IsGameRunning = true;
 
@@ -161,7 +151,7 @@ public sealed class EventsHandle
             await GameProcess.WaitForExitAsync();
 
             HoyoMain.IsGameRunning = false;
-            MainButton.Content = AppResources.Resources.GAME_DEFAULT_TEXT;
+            MainButton.Content = AppRes.GAME_DEFAULT_TEXT;
             MainButton.IsEnabled =
             HoyoWindow.LaunchSelection.IsEnabled = true;
 
@@ -180,7 +170,7 @@ public sealed class EventsHandle
                 HoyoWindow.GameSelection.IsVisible ? Visibility.Hidden : Visibility.Visible;
     public static void GameSelectionButtonClick()
     {
-        void AutoClose(object s, RoutedEventArgs e)
+        static void AutoClose(object s, RoutedEventArgs e)
         {
             var SelectedButton = (Button)s;
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
@@ -196,9 +186,9 @@ public sealed class EventsHandle
                         HoyoWindow.WINDOW_BORDER.Background = new ImageBrush(new BitmapImage(new("pack://application:,,,/Resources/ZZZ.jpg", UriKind.RelativeOrAbsolute)));
                         HoyoWindow.HomeBG.Children.Remove(HoyoWindow.MainBG);
                         HoyoWindow.HomeBG.Children.Remove(HoyoWindow.HoyoTitleIMG);
-                        HoyoWindow.CheckInPage.IsEnabled = true;
+                        HoyoWindow.CheckInPage.IsEnabled = false;
                         HoyoWindow.LaunchButton.IsEnabled = false;
-                        HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_SOON_TEXT;
+                        HoyoWindow.LaunchButton.Content = AppRes.GAME_SOON_TEXT;
                     break;
             }
 

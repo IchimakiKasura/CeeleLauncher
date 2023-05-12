@@ -2,35 +2,29 @@ namespace HoyoLauncher.Core;
 
 public sealed class HoyoMain
 {
-    public static bool FirstRun = true;
+    public static bool FirstRun { get; set; }
     public static bool IsGameRunning { get; set; }
     public static string ExecutableName { get; set; }
-    public static HoyoGames CurrentGameSelected { get; set; } = HoyoGames.DEFAULT;
+    public static HoyoGames CurrentGameSelected { get; set; }
 
     public static void Initialize()
     {
         bool ErrorOccured = false;
+
+        FirstRun = true;
+        CurrentGameSelected = HoyoGames.DEFAULT;
         IsGameRunning = false;
 
-        EventsHandle.WindowBackground();
-        EventsHandle.WindowTransparency();
-        EventsHandle.WindowSideButtonToolTips();
-        EventsHandle.WindowTopButtons();
-        EventsHandle.WindowSideButtons();
-        EventsHandle.WindowLaunchGame();
-
-        EventsHandle.GameSelectionPopup();
-        EventsHandle.GameSelectionButtonClick();
-        EventsHandle.GameSelectionBackgroundSet();
+        EventsAttribute.SetEvents();
 
         List<(ConfigRead config, HoyoGames AbsoluteName, HoyoLauncher_Controls.SideButtons.Button Launcher)> GameConfigs = new()
         {
-            (new ConfigRead().GetConfig(AppSettings.Settings.Default.GENSHIN_IMPACT_DIR), HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
-            (new ConfigRead().GetConfig(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR), HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
-            (new ConfigRead().GetConfig(AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR), HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
+            (ConfigRead.GetConfig(AppSettings.Settings.Default.GENSHIN_IMPACT_DIR), HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
+            (ConfigRead.GetConfig(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR), HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
+            (ConfigRead.GetConfig(AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR), HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
         };
 
-        foreach(var (config, name, Launcher) in GameConfigs)
+        foreach(var (config, name, Launcher) in CollectionsMarshal.AsSpan(GameConfigs))
         {
             ValidateSettings(config, name, Launcher, out ErrorOccured, FirstRun);
             if(ErrorOccured) break;
@@ -42,7 +36,7 @@ public sealed class HoyoMain
 
     public static void GameChange(HoyoGames GameSelected, short uid)
     {
-        var GameConfig = new ConfigRead().GetConfig(GameSelected.GAME_DIRECTORY);
+        ConfigRead GameConfig = ConfigRead.GetConfig(GameSelected.GAME_DIRECTORY);
 
         if(!GameConfig.ConfigExist)
         {

@@ -2,8 +2,9 @@ using IniParser;
 
 namespace HoyoLauncher.Core.Config;
 
-public sealed partial class ConfigRead
+public sealed class ConfigRead
 {
+    // I like how the "GameInstallPath" and the "GameBackgroundName" isn't being used on other methods
     public bool FilePathNone = false;
     public bool ConfigExist = false;
     public string GameInstallPath { get; private set; }
@@ -11,9 +12,7 @@ public sealed partial class ConfigRead
     public string GameStartName { get; private set; }
     public ImageBrush GameBackground { get; private set; }
 
-    public ConfigRead() { }
-
-    public ConfigRead GetConfig(string FilePath)
+    public static ConfigRead GetConfig(string FilePath)
     {
         const string grp = "launcher";
         var ConfigFile = Path.Combine(FilePath, "config.ini");

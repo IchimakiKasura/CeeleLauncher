@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Hoyo Launcher (Unofficial)" Height="720" Width="1280"
         WindowStyle="None"
+        AllowsTransparency="true"
         ResizeMode="CanMinimize"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"

@@ -13,7 +13,7 @@ public partial class MainWindow : Window
         HoyoMain.Initialize();
 
 #if !DEBUG
-        AppVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        AppVersion.Text = App.Version;
 #else
         AppVersion.Text = "DEVELOPMENT BUILD";
 #endif
