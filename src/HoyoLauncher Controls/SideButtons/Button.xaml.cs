@@ -2,6 +2,7 @@
 
 public partial class Button : UserControl
 {
+    [Category("Behaviour")]
     public RoutedEventHandler Click;
     readonly static DependencyProperty ImageProperty =
         DependencyProperty.Register("Image", typeof(string), typeof(Button));

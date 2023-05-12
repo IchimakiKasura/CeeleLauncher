@@ -44,12 +44,23 @@ public sealed class HoyoMain
             return;
         }
 
-        HoyoWindow.WINDOW_BORDER.Background = GameConfig.GameBackground;
         HoyoWindow.HomeBG.Children.Remove(HoyoWindow.MainBG);
         HoyoWindow.HomeBG.Children.Remove(HoyoWindow.HoyoTitleIMG);
-        HoyoWindow.CheckInPage.IsEnabled = true;
-        HoyoWindow.LaunchButton.IsEnabled = true;
-        HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_DEFAULT_TEXT;
+
+        if(GameSelected != HoyoGames.ZenlessZoneZero)
+        {
+            HoyoWindow.WINDOW_BORDER.Background = GameConfig.GameBackground;
+            HoyoWindow.CheckInPage.IsEnabled = true;
+            HoyoWindow.LaunchButton.IsEnabled = true;
+            HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_DEFAULT_TEXT;
+        }
+        else
+        {
+            HoyoWindow.WINDOW_BORDER.Background = new ImageBrush(new BitmapImage(new("pack://application:,,,/Resources/ZZZ.jpg", UriKind.RelativeOrAbsolute)));
+            HoyoWindow.CheckInPage.IsEnabled = false;
+            HoyoWindow.LaunchButton.IsEnabled = false;
+            HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_SOON_TEXT;
+        }
         
         CurrentGameSelected = GameSelected;
         ExecutableName = GameConfig.GameStartName;

@@ -2,7 +2,7 @@
 namespace HoyoLauncher.HoyoLauncher_Core;
 
 [Events]
-public sealed class EventsHandleS
+public sealed class EventsHandles
 {
     public static void WindowBackground() =>
         HoyoWindow.MediaElementBG.Source = new(App.TempBG);
@@ -68,7 +68,10 @@ public sealed class EventsHandleS
         static void GameLauncher(object s, RoutedEventArgs e)
         {
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
-            var CurrentButton = (HoyoLauncher_Controls.SideButtons.Button)s;
+            // implicit or explicit to System Button wont fucking work
+            // because the "s" which is an object currently; is a non-instance
+            // so its throwing the "InvalidCastException"
+            var CurrentButton = s as HoyoLauncher_Controls.SideButtons.Button;
             string Launcher = "";
 
             switch(CurrentButton.Name)
@@ -178,22 +181,13 @@ public sealed class EventsHandleS
 
             switch(SelectedButton.Name)
             {
-                case "GAME_SELECTION_GI" : HG = HoyoGames.GenshinImpact; break;
-                case "GAME_SELECTION_HSR": HG = HoyoGames.HonkaiStarRail; break;
-                case "GAME_SELECTION_HI3": HG = HoyoGames.HonkaiImpactThird; break;
-
-                case "GAME_SELECTION_ZZZ":
-                        HoyoWindow.WINDOW_BORDER.Background = new ImageBrush(new BitmapImage(new("pack://application:,,,/Resources/ZZZ.jpg", UriKind.RelativeOrAbsolute)));
-                        HoyoWindow.HomeBG.Children.Remove(HoyoWindow.MainBG);
-                        HoyoWindow.HomeBG.Children.Remove(HoyoWindow.HoyoTitleIMG);
-                        HoyoWindow.CheckInPage.IsEnabled = false;
-                        HoyoWindow.LaunchButton.IsEnabled = false;
-                        HoyoWindow.LaunchButton.Content = AppRes.GAME_SOON_TEXT;
-                    break;
+                case "GAME_SELECTION_GI" : HG = HoyoGames.GenshinImpact;        break;
+                case "GAME_SELECTION_HSR": HG = HoyoGames.HonkaiStarRail;       break;
+                case "GAME_SELECTION_HI3": HG = HoyoGames.HonkaiImpactThird;    break;
+                case "GAME_SELECTION_ZZZ": HG = HoyoGames.ZenlessZoneZero;      break;
             }
 
-            if(HG is not null)
-                HoyoMain.GameChange(HG, short.Parse(SelectedButton.Uid));
+            HoyoMain.GameChange(HG, short.Parse(SelectedButton.Uid));
         }
 
         HoyoWindow.GAME_SELECTION_GI.Click += AutoClose;

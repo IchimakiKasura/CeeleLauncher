@@ -22,7 +22,8 @@ Requirements: NET 7<br>
 
 ## Notes:
 Games cannot be updated using this launcher.<br>
-but you can just click the side button to open the game original launcher
+but you can just click the side button to open the game original launcher<br>
+ - Need to be whitelisted on antivirus if you want it to actually work *smoothly* (read the comment on [App.xaml.cs Line 41](https://github.com/IchimakiKasura/HoyoLauncher/blob/master/src/App.xaml.cs#L41))
 
 ## DISCLAIMER:
 This app is not affiliated with miHoYo / Hoyoverse by any means.

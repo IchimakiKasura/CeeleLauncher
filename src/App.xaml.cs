@@ -38,12 +38,19 @@ public partial class App : Application
         AppTray.BalloonTipTitle = appName;
         AppTray.BalloonTipIcon = Forms.ToolTipIcon.None;
 
-        // Extracting the BG to play
-        if (!Directory.Exists(dir))
-            Directory.CreateDirectory(dir);
-
-        if (!File.Exists(TempBG))
-            File.WriteAllBytes(TempBG, AppResources.Resources.bg);
+        /**/// Can cause weird issues such as Anti-virus blocking it from writing
+        /**/// So add the app on the whitelist when running it.
+        /**/// if its sounds suspicious then why are you reading the source code in the first place?
+        /**/// is it that the reason you want to check if I coded some malicious shit?
+        /**/    
+        /**/    // Extracting the BG to play
+        /**/    if (!Directory.Exists(dir))
+        /**/        Directory.CreateDirectory(dir);
+        /**/
+        /**/    if (!File.Exists(TempBG))
+        /**/        File.WriteAllBytes(TempBG, AppResources.Resources.bg);
+        /**/
+        /**/
 
         base.OnStartup(e);
     }
@@ -64,4 +71,5 @@ public partial class App : Application
         MainWindow.ShowInTaskbar = true;
         AppTray.Visible = false;
     }
+
 }
