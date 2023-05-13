@@ -53,7 +53,7 @@ public partial class HoyoSettings : Window
     {
         bool ErrorOccured = false;
 
-        List<(ConfigRead config, HoyoGames AbsoluteName, HoyoLauncher_Controls.SideButtons.Button Launcher)> GameConfigs = new()
+        List<(ConfigRead config, HoyoGames AbsoluteName, HoyoButton Launcher)> GameConfigs = new()
         {
             (ConfigRead.GetConfig(GI_DIR_TXT.Text), HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
             (ConfigRead.GetConfig(HSR_DIR_TXT.Text), HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),

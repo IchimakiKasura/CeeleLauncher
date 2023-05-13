@@ -6,7 +6,6 @@
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
-        <NoWin32Manifest>true</NoWin32Manifest>
     </PropertyGroup>
 	
     <PropertyGroup>
@@ -14,13 +13,13 @@
         <Company>HoyoLauncher(Unofficial)</Company> <!--For the config folder naming idk on Appdata/Local-->
         <AssemblyName>Hoyo Launcher</AssemblyName>
         <Product>Hoyo Launcher</Product>
-        <AssemblyVersion>1.8.0</AssemblyVersion>
-        <FileVersion>1.8.0</FileVersion>
-        <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
+        <AssemblyVersion>1.8.0.1</AssemblyVersion>
+        <FileVersion>1.8.0.1</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <SignAssembly>False</SignAssembly>
         <Copyright>2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
+        <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(Configuration) == Release">
@@ -87,10 +86,12 @@
     <ItemGroup>
         <Using Include="HoyoLauncher.Core" />
 		<Using Include="HoyoLauncher.Core.Config" />
+        <Using Include="HoyoLauncher.Core.Record" />
 		<Using Include="HoyoLauncher.MainWindow" Static="true" />
 		<Using Include="HoyoLauncher.Core.Attributes" />
 		<Using Include="HoyoLauncher.HoyoLauncher_Core" />
 		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
+		<Using Include="HoyoLauncher.HoyoLauncher_Controls.SideButtons.Button" Alias="HoyoButton" />
     </ItemGroup>
     
     <ItemGroup>

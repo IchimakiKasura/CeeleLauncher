@@ -17,7 +17,7 @@ public sealed class HoyoMain
 
         EventsAttribute.SetEvents();
 
-        List<(ConfigRead config, HoyoGames AbsoluteName, HoyoLauncher_Controls.SideButtons.Button Launcher)> GameConfigs = new()
+        List<(ConfigRead config, HoyoGames AbsoluteName, HoyoButton Launcher)> GameConfigs = new()
         {
             (ConfigRead.GetConfig(AppSettings.Settings.Default.GENSHIN_IMPACT_DIR), HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
             (ConfigRead.GetConfig(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR), HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
@@ -37,6 +37,22 @@ public sealed class HoyoMain
     public static void GameChange(HoyoGames GameSelected, short uid)
     {
         ConfigRead GameConfig = ConfigRead.GetConfig(GameSelected.GAME_DIRECTORY);
+        HoyoValues values = new(
+            GameConfig.GameBackground,
+            true,
+            true,
+            true,
+            AppResources.Resources.GAME_DEFAULT_TEXT
+        );
+
+        if(GameSelected == HoyoGames.ZenlessZoneZero)
+            values = new(
+                new ImageBrush(new BitmapImage(new("pack://application:,,,/Resources/ZZZ.jpg", UriKind.RelativeOrAbsolute))),
+                true,
+                false,
+                false,
+                AppResources.Resources.GAME_SOON_TEXT
+            );
 
         if(!GameConfig.ConfigExist)
         {
@@ -44,33 +60,16 @@ public sealed class HoyoMain
             return;
         }
 
-        HoyoWindow.HomeBG.Children.Remove(HoyoWindow.MainBG);
-        HoyoWindow.HomeBG.Children.Remove(HoyoWindow.HoyoTitleIMG);
-
-        if(GameSelected != HoyoGames.ZenlessZoneZero)
-        {
-            HoyoWindow.WINDOW_BORDER.Background = GameConfig.GameBackground;
-            HoyoWindow.CheckInPage.IsEnabled = true;
-            HoyoWindow.LaunchButton.IsEnabled = true;
-            HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_DEFAULT_TEXT;
-        }
-        else
-        {
-            HoyoWindow.WINDOW_BORDER.Background = new ImageBrush(new BitmapImage(new("pack://application:,,,/Resources/ZZZ.jpg", UriKind.RelativeOrAbsolute)));
-            HoyoWindow.CheckInPage.IsEnabled = false;
-            HoyoWindow.LaunchButton.IsEnabled = false;
-            HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_SOON_TEXT;
-        }
+        HoyoChange.SetValues(values);
         
         CurrentGameSelected = GameSelected;
         ExecutableName = GameConfig.GameStartName;
 
         AppSettings.Settings.Default.LAST_GAME = uid += 1;
-
         AppSettings.Settings.Default.Save();
     }
 
-    public static void ValidateSettings(ConfigRead GameConfig, HoyoGames Game, HoyoLauncher_Controls.SideButtons.Button LauncherButton, out bool ErrorOccured, bool isNew = false)
+    public static void ValidateSettings(ConfigRead GameConfig, HoyoGames Game, HoyoButton LauncherButton, out bool ErrorOccured, bool isNew = false)
     {
         ErrorOccured = false;
 
@@ -80,22 +79,18 @@ public sealed class HoyoMain
             return;
         }
 
-        if(!GameConfig.ConfigExist)
-            ErrorOccured = true;
-        else
+        ErrorOccured = !GameConfig.ConfigExist || (Path.GetFileName(GameConfig.GameStartName) != Game.GAME_EXECUTABLE);
+
+        if(!ErrorOccured)
         {
-            if(Path.GetFileName(GameConfig.GameStartName) != Game.GAME_EXECUTABLE)
-                ErrorOccured = true;
+            LauncherButton.IsEnabled = true;
+            return;
         }
 
-        if(ErrorOccured)
-        {
-            if(!isNew)
-                MessageBox.Show($"ERROR:\n\nThe \"{Game.GAME_NAME}\" cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            
-            LauncherButton.IsEnabled = false;
-        }
-        else LauncherButton.IsEnabled = true;
+        if(!isNew)
+            MessageBox.Show($"ERROR:\n\nThe \"{Game.GAME_NAME}\" cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        
+        LauncherButton.IsEnabled = false;
     }
 
     static void LastGame()

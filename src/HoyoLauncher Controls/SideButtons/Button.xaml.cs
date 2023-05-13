@@ -5,13 +5,13 @@ public partial class Button : UserControl
     [Category("Behaviour")]
     public RoutedEventHandler Click;
     readonly static DependencyProperty ImageProperty =
-        DependencyProperty.Register("Image", typeof(string), typeof(Button));
+        DependencyProperty.Register("Image", typeof(string), typeof(HoyoButton));
     readonly static DependencyProperty BGProperty =
-        DependencyProperty.Register("BG", typeof(Brush), typeof(Button), new(new BrushConverter().ConvertFromString("#f4cb99") as Brush));
+        DependencyProperty.Register("BG", typeof(Brush), typeof(HoyoButton), new(new BrushConverter().ConvertFromString("#f4cb99") as Brush));
     readonly static DependencyProperty ButtonToolTipProperty =
-        DependencyProperty.Register("ButtonToolTip", typeof(string), typeof(Button), new("Tooltip Temp"));
+        DependencyProperty.Register("ButtonToolTip", typeof(string), typeof(HoyoButton), new("Tooltip Temp"));
     readonly static DependencyProperty CanvasMarginProperty =
-        DependencyProperty.Register("CanvasMargin", typeof(Thickness), typeof(Button), new(new Thickness(0,0,0,0)));
+        DependencyProperty.Register("CanvasMargin", typeof(Thickness), typeof(HoyoButton), new(new Thickness(0,0,0,0)));
 
     public string Image
     {

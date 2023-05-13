@@ -44,12 +44,15 @@ public sealed class EventsHandles
                 case "HomeButton":
                         if (HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) break;
 
-                        HoyoWindow.WINDOW_BORDER.Background = null;
-                        HoyoWindow.HomeBG.Children.Add(HoyoWindow.MainBG);
-                        HoyoWindow.HomeBG.Children.Add(HoyoWindow.HoyoTitleIMG);
-                        HoyoWindow.CheckInPage.IsEnabled = false;
-                        HoyoWindow.LaunchButton.IsEnabled = false;
-                        HoyoWindow.LaunchButton.Content = AppRes.GAME_DEFAULT_TEXT;
+                        HoyoChange.SetValues(
+                            new HoyoValues(
+                                null,
+                                false,
+                                false,
+                                false,
+                                AppRes.GAME_DEFAULT_TEXT
+                            )
+                        );
 
                         AppSettings.Settings.Default.LAST_GAME = 0;
                         AppSettings.Settings.Default.Save();
@@ -71,7 +74,7 @@ public sealed class EventsHandles
             // implicit or explicit to System Button wont fucking work
             // because the "s" which is an object currently; is a non-instance
             // so its throwing the "InvalidCastException"
-            var CurrentButton = s as HoyoLauncher_Controls.SideButtons.Button;
+            var CurrentButton = s as HoyoButton;
             string Launcher = "";
 
             switch(CurrentButton.Name)

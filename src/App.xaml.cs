@@ -47,10 +47,21 @@ public partial class App : Application
         /**/    if (!Directory.Exists(dir))
         /**/        Directory.CreateDirectory(dir);
         /**/
-        /**/    if (!File.Exists(TempBG))
-        /**/        File.WriteAllBytes(TempBG, AppResources.Resources.bg);
-        /**/
-        /**/
+        /**/    //if (!File.Exists(TempBG))
+        /**/    //    File.WriteAllBytes(TempBG, AppResources.Resources.bg);
+
+            // fix? idk
+            if (!File.Exists(TempBG))
+            {
+                byte[] Data = AppResources.Resources.bg;
+
+                using FileStream fs = new(TempBG, FileMode.Create);
+
+                for(int i=0; i < Data.Length; i++)
+                {
+                    fs.WriteByte(Data[i]);
+                }
+            }
 
         base.OnStartup(e);
     }

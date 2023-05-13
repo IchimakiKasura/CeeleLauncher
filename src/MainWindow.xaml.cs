@@ -15,7 +15,7 @@ public partial class MainWindow : Window
 #if !DEBUG
         AppVersion.Text = App.Version;
 #else
-        AppVersion.Text = "DEVELOPMENT BUILD";
+        AppVersion.Text = $"DEVELOPMENT BUILD: ver({App.Version})";
 #endif
     }
 
