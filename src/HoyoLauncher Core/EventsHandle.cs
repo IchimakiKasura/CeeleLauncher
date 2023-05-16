@@ -30,11 +30,7 @@ public sealed class EventsHandles
                     break;
 
                 case "MinButton":
-                        HoyoWindow.WindowState = WindowState.Minimized;
-                        HoyoWindow.ShowInTaskbar = false;
-                        HoyoWindow.Hide();
-                        App.AppTray.Visible = true;
-                        App.NotifTray();
+                        App.AppMinimizeToTray();
                     break;
 
                 case "SettingsButton":
@@ -64,7 +60,7 @@ public sealed class EventsHandles
         HoyoWindow.MinButton.Click += TopButtonClick;
         HoyoWindow.SettingsButton.Click += TopButtonClick;
         HoyoWindow.HomeButton.Click += TopButtonClick;
-        HoyoWindow.TopBorder.MouseDown += (s, e) => HoyoWindow.DragMove();
+        HoyoWindow.TopBorder.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) HoyoWindow.DragMove(); };
     }
     public static void WindowSideButtons()
     {
@@ -129,15 +125,10 @@ public sealed class EventsHandles
             e.Handled = true;
             var MainButton = (Button)s;
 
-            // Window Hide
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
-            HoyoWindow.WindowState = WindowState.Minimized;
-            HoyoWindow.ShowInTaskbar = false;
-            HoyoWindow.Hide();
 
-            // App Tray
-            App.AppTray.Visible = true;
-            App.NotifTray();
+            // Window Hide
+            App.AppMinimizeToTray();
             
             // Buttons
             MainButton.IsEnabled =

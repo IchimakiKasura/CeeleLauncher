@@ -9,6 +9,8 @@ public sealed class HoyoMain
 
     public static void Initialize()
     {
+        AppSettings.Settings.Default.Upgrade();
+
         bool ErrorOccured = false;
 
         FirstRun = true;
@@ -56,7 +58,7 @@ public sealed class HoyoMain
 
         if(!GameConfig.ConfigExist)
         {
-            MessageBox.Show($"ERROR:\n\nGame Executable not found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show($"ERROR:\nGame Executable not found!\n\nPlease Set the Location of the games first on the settings.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
 

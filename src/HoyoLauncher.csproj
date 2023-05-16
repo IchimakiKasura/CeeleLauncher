@@ -20,6 +20,7 @@
         <Copyright>2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
+        <NoWin32Manifest>true</NoWin32Manifest>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(Configuration) == Release">
@@ -30,6 +31,14 @@
         <SelfContained>False</SelfContained>
         <PublishSingleFile>True</PublishSingleFile>
         <PublishReadyToRun>True</PublishReadyToRun>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DebugType>none</DebugType>
     </PropertyGroup>
     
     <ItemGroup>
@@ -100,10 +109,15 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
-        <Compile Update="Properties\Settings.Designer.cs">
+        <Compile Update="HoyoLauncher Core\Settings.Designer.cs">
             <DesignTimeSharedInput>True</DesignTimeSharedInput>
             <AutoGen>True</AutoGen>
             <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
+        <Compile Update="Properties\Settings.Designer.cs">
+          <DesignTimeSharedInput>True</DesignTimeSharedInput>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Settings.settings</DependentUpon>
         </Compile>
     </ItemGroup>
     

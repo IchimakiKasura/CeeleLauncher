@@ -33,18 +33,23 @@
                     <TextBlock Text="Genshin Impact Location: " FontSize="20" Margin="10,11,10,299"/>
                     <TextBox Name="GI_DIR_TXT" Margin="10,46,150,264"/>
                     <Button Name="GI_LOCATE" Margin="615,46,10,264" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="GenshinClick"/>
-                    
+
                     <TextBlock Text="Honkai Star Rail Location: " FontSize="20" Margin="10,81,10,229"/>
                     <TextBox Name="HSR_DIR_TXT" Margin="10,116,150,194"/>
                     <Button Name="HSR_LOCATE" Margin="615,116,10,194" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="HSRClick"/>
-                    
+
                     <TextBlock Text="Honkai Impact 3rd Location: " FontSize="20" Margin="10,151,10,159"/>
                     <TextBox Name="HI3_DIR_TXT" Margin="10,186,150,124"/>
                     <Button Name="HI3_LOCATE" Margin="615,186,10,124" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="HI3Click"/>
-                    
+
                     <TextBlock Text="Zenless Zone Zero Location: " FontSize="20" Margin="10,221,10,89"/>
                     <TextBox x:Name="ZZZ_DIR_TXT" Margin="10,256,150,54" IsEnabled="False" Text="Unavailable" Foreground="Gray"/>
                     <Button Name="ZZZ_LOCATE" Margin="615,256,10,54" Content="Open Folder" IsEnabled="False" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Gray"/>
+
+                    <Grid Name="MinimizeToTray" Margin="15,298,603,12">
+                        <RadioButton Name="RadioButtonTray" Margin="0,8,0,0" IsHitTestVisible="False"/>
+                        <TextBlock Text="    Minimize to Tray" FontSize="17" Margin="0,2,-1,-2"/>
+                    </Grid>
                 </Grid>
             </Border>
 
@@ -57,6 +62,23 @@
             </Grid>
 
             <Image Name="Github" Margin="388,452,388,23" Source="/Resources/github.png" Stretch="Fill" Cursor="Hand"/>
+            
+            <Canvas Name="GithubToolTip" IsHitTestVisible="False" Visibility="Hidden">
+                <Rectangle Fill="#141414" Height="13" Width="13" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="429" Canvas.Left="403.6">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Border Background="#141414" CornerRadius="10" Height="37" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Top="399" Canvas.Left="322" Width="176">
+                    <TextBlock Name="ToolTipSideButton_Text" Foreground="White" Margin="10,10,10,10" FontWeight="SemiBold" Text="Visit github to report issues?"/>
+                </Border>
+            </Canvas>
+
         </Grid>
     </Border>
 </Window>

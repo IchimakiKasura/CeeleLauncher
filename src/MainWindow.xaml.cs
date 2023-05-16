@@ -29,6 +29,12 @@ public partial class MainWindow : Window
         base.OnClosing(e);
     }
 
+    protected override void OnClosed(EventArgs e)
+    {
+        AppSettings.Settings.Default.Save();
+        base.OnClosed(e);
+    }
+
     private void MediaElement_OnMediaEnded(object s, RoutedEventArgs e)
     {
         MediaElement el = (MediaElement)s;

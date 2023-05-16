@@ -83,4 +83,14 @@ public partial class App : Application
         AppTray.Visible = false;
     }
 
+    public static void AppMinimizeToTray()
+    {
+        HoyoWindow.WindowState = WindowState.Minimized;
+
+        if(HoyoLauncherSettings.HoyoSettings.IsMinimizeToTray is false) return;
+        HoyoWindow.ShowInTaskbar = false;
+        HoyoWindow.Hide();
+        AppTray.Visible = true;
+        NotifTray();
+    }
 }

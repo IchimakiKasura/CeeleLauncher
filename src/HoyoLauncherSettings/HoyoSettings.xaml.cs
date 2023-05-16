@@ -2,14 +2,15 @@
 
 public partial class HoyoSettings : Window
 {
+    public static bool? IsMinimizeToTray;
+
     public HoyoSettings()
     {
         InitializeComponent();
 
         HoyoWindow.BLACK_THING.Opacity = 0.5;
-        
-        WindowDrag.MouseDown += (s, e) =>
-            DragMove(); 
+
+        WindowDrag.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) DragMove(); };
         ExitButton.Click += (s, e) =>
             Close();
         CancelButton.Click += (s, e) =>
@@ -17,6 +18,19 @@ public partial class HoyoSettings : Window
 
         Github.MouseDown += (s,e) =>
             Process.Start(new ProcessStartInfo{ FileName = "https://github.com/IchimakiKasura/HoyoLauncher", UseShellExecute = true }).Dispose();
+            
+        Github.MouseEnter += (s,e) => GithubToolTip.Visibility = Visibility.Visible;
+        Github.MouseLeave += (s,e) => GithubToolTip.Visibility = Visibility.Hidden;
+
+        RadioButtonTray.IsChecked = IsMinimizeToTray = AppSettings.Settings.Default.MinimizedTray;
+
+        MinimizeToTray.MouseDown += (s, e) =>
+        {
+            if (e.ChangedButton is MouseButton.Left)
+            {
+                IsMinimizeToTray = RadioButtonTray.IsChecked = !RadioButtonTray.IsChecked;
+            }
+        };
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -69,6 +83,7 @@ public partial class HoyoSettings : Window
         AppSettings.Settings.Default.GENSHIN_IMPACT_DIR = GI_DIR_TXT.Text;
         AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR = HSR_DIR_TXT.Text;
         AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR = HI3_DIR_TXT.Text;
+        AppSettings.Settings.Default.MinimizedTray = (bool)IsMinimizeToTray;
         AppSettings.Settings.Default.Save();
         HoyoGames.RefreshDirectory();
 

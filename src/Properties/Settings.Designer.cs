@@ -82,5 +82,17 @@ namespace AppSettings {
                 this["LAST_GAME"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool MinimizedTray {
+            get {
+                return ((bool)(this["MinimizedTray"]));
+            }
+            set {
+                this["MinimizedTray"] = value;
+            }
+        }
     }
 }

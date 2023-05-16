@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HoyoLauncher.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AppSettings" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="HONKAI_IMPACT_THIRD_DIR" Type="System.String" Scope="User">
@@ -16,6 +16,9 @@
     </Setting>
     <Setting Name="LAST_GAME" Type="System.Int16" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MinimizedTray" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
