@@ -11,10 +11,8 @@ public partial class HoyoSettings : Window
         HoyoWindow.BLACK_THING.Opacity = 0.5;
 
         WindowDrag.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) DragMove(); };
-        ExitButton.Click += (s, e) =>
-            Close();
-        CancelButton.Click += (s, e) =>
-            Close();
+        ExitButton.Click   += (s, e) => Close();
+        CancelButton.Click += (s, e) => Close();
 
         Github.MouseDown += (s,e) =>
             Process.Start(new ProcessStartInfo{ FileName = "https://github.com/IchimakiKasura/HoyoLauncher", UseShellExecute = true }).Dispose();
@@ -27,9 +25,7 @@ public partial class HoyoSettings : Window
         MinimizeToTray.MouseDown += (s, e) =>
         {
             if (e.ChangedButton is MouseButton.Left)
-            {
                 IsMinimizeToTray = RadioButtonTray.IsChecked = !RadioButtonTray.IsChecked;
-            }
         };
     }
 
@@ -67,11 +63,11 @@ public partial class HoyoSettings : Window
     {
         bool ErrorOccured = false;
 
-        List<(ConfigRead config, HoyoGames AbsoluteName, HoyoButton Launcher)> GameConfigs = new()
+        List<(string config, HoyoGames AbsoluteName, HoyoButton Launcher)> GameConfigs = new()
         {
-            (ConfigRead.GetConfig(GI_DIR_TXT.Text), HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
-            (ConfigRead.GetConfig(HSR_DIR_TXT.Text), HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
-            (ConfigRead.GetConfig(HI3_DIR_TXT.Text), HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
+            (GI_DIR_TXT.Text, HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
+            (HSR_DIR_TXT.Text, HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
+            (HI3_DIR_TXT.Text, HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
         };
 
         foreach(var (config, name, Launcher) in CollectionsMarshal.AsSpan(GameConfigs))

@@ -5,7 +5,7 @@ namespace HoyoLauncher.HoyoLauncher_Core;
 public sealed class EventsHandles
 {
     public static void WindowBackground() =>
-        HoyoWindow.MediaElementBG.Source = new(App.TempBG);
+        HoyoWindow.MediaElementBG.Source = App.TempBG;
     public static void WindowSideButtonToolTips()
     {
         HoyoWindow.GENSHIN_IMPACT_LAUNCHER.ButtonToolTip = AppRes.GENSHIN_IMPACT_TIP;
@@ -132,6 +132,7 @@ public sealed class EventsHandles
             
             // Buttons
             MainButton.IsEnabled =
+            HoyoWindow.HomeButton.IsEnabled = 
             HoyoWindow.LaunchSelection.IsEnabled = false;
             MainButton.Content = AppRes.GAME_LAUNCHED_TEXT;
 
@@ -150,6 +151,7 @@ public sealed class EventsHandles
             HoyoMain.IsGameRunning = false;
             MainButton.Content = AppRes.GAME_DEFAULT_TEXT;
             MainButton.IsEnabled =
+            HoyoWindow.HomeButton.IsEnabled = 
             HoyoWindow.LaunchSelection.IsEnabled = true;
 
             if(HoyoWindow.WindowState is not WindowState.Minimized) return;

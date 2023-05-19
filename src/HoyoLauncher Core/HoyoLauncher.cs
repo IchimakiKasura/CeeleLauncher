@@ -19,11 +19,11 @@ public sealed class HoyoMain
 
         EventsAttribute.SetEvents();
 
-        List<(ConfigRead config, HoyoGames AbsoluteName, HoyoButton Launcher)> GameConfigs = new()
+        List<(string config, HoyoGames AbsoluteName, HoyoButton Launcher)> GameConfigs = new()
         {
-            (ConfigRead.GetConfig(AppSettings.Settings.Default.GENSHIN_IMPACT_DIR), HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
-            (ConfigRead.GetConfig(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR), HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
-            (ConfigRead.GetConfig(AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR), HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
+            (AppSettings.Settings.Default.GENSHIN_IMPACT_DIR, HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
+            (AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR, HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
+            (AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR, HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
         };
 
         foreach(var (config, name, Launcher) in CollectionsMarshal.AsSpan(GameConfigs))
@@ -71,17 +71,19 @@ public sealed class HoyoMain
         AppSettings.Settings.Default.Save();
     }
 
-    public static void ValidateSettings(ConfigRead GameConfig, HoyoGames Game, HoyoButton LauncherButton, out bool ErrorOccured, bool isNew = false)
+    public static void ValidateSettings(string GameConfig, HoyoGames Game, HoyoButton LauncherButton, out bool ErrorOccured, bool isNew = false)
     {
         ErrorOccured = false;
 
-        if(GameConfig.FilePathNone)
+        ConfigRead gc = ConfigRead.GetConfig(GameConfig); 
+
+        if(gc.FilePathNone)
         {
             LauncherButton.IsEnabled = false;
             return;
         }
 
-        ErrorOccured = !GameConfig.ConfigExist || (Path.GetFileName(GameConfig.GameStartName) != Game.GAME_EXECUTABLE);
+        ErrorOccured = !gc.ConfigExist || (Path.GetFileName(gc.GameStartName) != Game.GAME_EXECUTABLE);
 
         if(!ErrorOccured)
         {

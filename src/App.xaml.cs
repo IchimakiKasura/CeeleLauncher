@@ -1,15 +1,15 @@
-﻿using HoyoLauncher.Resources.Icons;
+﻿using System.Linq;
+using HoyoLauncher.Resources.Icons;
 
 namespace HoyoLauncher;
 
 public partial class App : Application
 {
-    
     static Mutex _Mutex;
     static readonly string dir = Path.Combine(Path.GetTempPath(), "HoyoverseBG");
 
     public static readonly Forms.NotifyIcon AppTray = new();
-    public static readonly string TempBG = Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4");
+    public static readonly Uri TempBG = new(Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4"));
     public static readonly MediaElement PreMediaElement = new();
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
@@ -51,26 +51,15 @@ public partial class App : Application
         /**/    //    File.WriteAllBytes(TempBG, AppResources.Resources.bg);
 
             // fix? idk
-            if (!File.Exists(TempBG))
+            if (!File.Exists(TempBG.AbsolutePath))
             {
-                byte[] Data = AppResources.Resources.bg;
+                using FileStream fs = new(TempBG.AbsolutePath, FileMode.CreateNew, FileAccess.Write);
 
-                using FileStream fs = new(TempBG, FileMode.Create);
-
-                for(int i=0; i < Data.Length; i++)
-                {
-                    fs.WriteByte(Data[i]);
-                }
+                foreach(byte Data in AppResources.Resources.bg.Cast<byte>())
+                    fs.WriteByte(Data);
             }
 
         base.OnStartup(e);
-    }
-
-    public static void NotifTray()
-    {
-        if(!HoyoMain.FirstRun) return;
-        AppTray.ShowBalloonTip(3);
-        HoyoMain.FirstRun = false;
     }
 
     void AppTrayClick(object s, EventArgs e)
@@ -81,6 +70,13 @@ public partial class App : Application
         MainWindow.WindowState = WindowState.Normal;
         MainWindow.ShowInTaskbar = true;
         AppTray.Visible = false;
+    }
+
+    public static void NotifTray()
+    {
+        if(!HoyoMain.FirstRun) return;
+        AppTray.ShowBalloonTip(3);
+        HoyoMain.FirstRun = false;
     }
 
     public static void AppMinimizeToTray()
