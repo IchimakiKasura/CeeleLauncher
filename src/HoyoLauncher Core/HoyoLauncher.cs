@@ -112,4 +112,13 @@ public sealed class HoyoMain
         if(HG is not null)
             GameChange(HG, uid -= 1);
     }
+
+    public static void ProcessStart(string FileName) =>
+        Process.Start(
+            new ProcessStartInfo()
+            {
+                FileName = FileName,
+                UseShellExecute = true
+            }
+        ).Dispose();
 }

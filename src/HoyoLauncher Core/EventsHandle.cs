@@ -97,13 +97,7 @@ public sealed class EventsHandles
             }
 
             if(Launcher is not "")
-                Process.Start(
-                    new ProcessStartInfo
-                    {
-                        FileName = Launcher,
-                        UseShellExecute = true
-                    }
-                ).Dispose();
+                HoyoMain.ProcessStart(Launcher);
         }
 
         HoyoWindow.GENSHIN_IMPACT_LAUNCHER.Click += GameLauncher;
@@ -113,10 +107,10 @@ public sealed class EventsHandles
         HoyoWindow.TOT_LAUNCHER.Click += GameLauncher;
 
         HoyoWindow.GameHomePage.Click += (s,e) =>
-            Process.Start(new ProcessStartInfo{ FileName = HoyoMain.CurrentGameSelected.GAME_HOMEPAGE, UseShellExecute = true }).Dispose();
+            HoyoMain.ProcessStart(HoyoMain.CurrentGameSelected.GAME_HOMEPAGE);
 
         HoyoWindow.CheckInPage.Click += (s,e) =>
-            Process.Start(new ProcessStartInfo{ FileName = HoyoMain.CurrentGameSelected.GAME_CHECK_IN_PAGE, UseShellExecute = true }).Dispose();
+            HoyoMain.ProcessStart(HoyoMain.CurrentGameSelected.GAME_CHECK_IN_PAGE);
     }
     public static void WindowLaunchGame()
     {
