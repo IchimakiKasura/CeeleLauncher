@@ -72,19 +72,23 @@ public sealed class EventsHandles
             // so its throwing the "InvalidCastException"
             var CurrentButton = s as HoyoButton;
             string Launcher = "";
+            string Message = "";
 
             switch(CurrentButton.Name)
             {
                 case "GENSHIN_IMPACT_LAUNCHER":
                     Launcher = Path.Combine(HoyoGames.GenshinImpact.GAME_DIRECTORY, "launcher.exe");
+                    Message = "Genshin Impact Launcher is opening!";
                     break;
                 
                 case "HONKAI_STAR_RAIL_LAUNCHER":
                     Launcher = Path.Combine(HoyoGames.HonkaiStarRail.GAME_DIRECTORY, "launcher.exe");
+                    Message = "Honkai Star Rail Launcher is opening!";
                     break;
                 
                 case "HONKAI_IMPACT_THIRD_LAUNCHER":
                     Launcher = Path.Combine(HoyoGames.HonkaiImpactThird.GAME_DIRECTORY, "launcher.exe");
+                    Message = "Honkai Impact Launcher is opening!";
                     break;
                 
                 case "ZZZ_LAUNCHER":
@@ -98,6 +102,9 @@ public sealed class EventsHandles
 
             if(Launcher is not "")
                 HoyoMain.ProcessStart(Launcher);
+
+            if(Message is not "")
+                MessageBox.Show(Message, "NOTIF", MessageBoxButton.OK);
         }
 
         HoyoWindow.GENSHIN_IMPACT_LAUNCHER.Click += GameLauncher;

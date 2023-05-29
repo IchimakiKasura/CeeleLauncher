@@ -56,7 +56,7 @@ public sealed class HoyoMain
                 AppResources.Resources.GAME_SOON_TEXT
             );
 
-        if(!GameConfig.ConfigExist)
+        if(!GameConfig.ConfigExist && GameSelected != HoyoGames.ZenlessZoneZero)
         {
             MessageBox.Show($"ERROR:\nGame Executable not found!\n\nPlease Set the Location of the games first on the settings.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
