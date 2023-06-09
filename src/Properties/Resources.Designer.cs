@@ -61,16 +61,6 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] bg {
-            get {
-                object obj = ResourceManager.GetObject("bg", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Check-In Rewards.
         /// </summary>
         public static string CHECKIN_TIP {

@@ -31,7 +31,7 @@
                         <Border.Background>
                             <VisualBrush>
                                 <VisualBrush.Visual>
-                                    <MediaElement Name="MediaElementBG" UnloadedBehavior="Manual" MediaEnded="MediaElement_OnMediaEnded"/>
+                                    <MediaElement Name="MediaElementBG" Source="https://github.com/IchimakiKasura/HoyoLauncher/blob/master/src/Resources/Videos/bg.mp4?raw=true" UnloadedBehavior="Manual" MediaEnded="MediaElement_OnMediaEnded"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </Border.Background>
@@ -52,7 +52,7 @@
                 </Grid>
             </Border>
 
-            <Border Name="SideButtons" Background="#50000000" Margin="1190,70,13,70" CornerRadius="10">
+            <Border Name="SideButtons" Background="#40000000" Margin="1190,70,13,70" CornerRadius="10">
                 <Canvas>
                     <ButtonControl:Button x:Name="GENSHIN_IMPACT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="35" Image="/Resources/Buttons/GI.jpg" IsEnabled="false"/>
                     <ButtonControl:Button x:Name="HONKAI_STAR_RAIL_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="110" Image="/Resources/Buttons/HSR.jpg" IsEnabled="false"/>

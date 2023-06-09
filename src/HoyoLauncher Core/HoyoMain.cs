@@ -39,8 +39,12 @@ public sealed class HoyoMain
     public static void GameChange(HoyoGames GameSelected, short uid)
     {
         ConfigRead GameConfig = ConfigRead.GetConfig(GameSelected.GAME_DIRECTORY);
+        
+        ImageBrush GameBG = 
+            GameConfig.GameBackground is null ? GameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
+
         HoyoValues values = new(
-            GameConfig.GameBackground,
+            GameBG,
             true,
             true,
             true,
@@ -48,13 +52,11 @@ public sealed class HoyoMain
         );
 
         if(GameSelected == HoyoGames.ZenlessZoneZero)
-            values = new(
-                new ImageBrush(new BitmapImage(new("pack://application:,,,/Resources/ZZZ.jpg", UriKind.RelativeOrAbsolute))),
-                true,
-                false,
-                false,
-                AppResources.Resources.GAME_SOON_TEXT
-            );
+        {
+            values.CheckInButton =
+            values.LaunchButton = false;
+            values.LaunchButtonContent = AppResources.Resources.GAME_SOON_TEXT;
+        }
 
         if(!GameConfig.ConfigExist && GameSelected != HoyoGames.ZenlessZoneZero)
         {

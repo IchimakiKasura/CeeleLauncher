@@ -52,6 +52,7 @@
         <Resource Include="Resources\Buttons\Selection\HI3SelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\HSRSelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\ZZZSelectionButton.png" />
+		
         <Resource Include="Resources\Buttons\gear.png" />
         <Resource Include="Resources\Buttons\GI.jpg" />
         <Resource Include="Resources\Buttons\HI3.jpg" />
@@ -60,15 +61,21 @@
         <Resource Include="Resources\Buttons\rewards.png" />
         <Resource Include="Resources\Buttons\TOT.jpg" />
         <Resource Include="Resources\Buttons\ZZZ.jpg" />
+		
         <Resource Include="Resources\Icons\128.ico" />
         <Resource Include="Resources\Icons\16.ico" />
         <Resource Include="Resources\Icons\256.ico" />
         <Resource Include="Resources\Icons\64.ico" />
+		
 		<Resource Include="Resources\HoyoVerseIcon.png" />
 		<Resource Include="Resources\HoyoVerse.png" />
         <Resource Include="Resources\defaultBG.jpg" />
         <Resource Include="Resources\github.png" />
-		<Resource Include="Resources\ZZZ.jpg" />
+
+		<Resource Include="Resources\DEFAULT_ZZZ_BG.jpg" />
+		<Resource Include="Resources\DEFAULT_HSR_BG.jpg" />
+		<Resource Include="Resources\DEFAULT_HI3_BG.jpg" />
+		<Resource Include="Resources\DEFAULT_GENSHIN_BG.jpg" />
     </ItemGroup>
     
     <ItemGroup>
@@ -101,6 +108,9 @@
 		<Using Include="HoyoLauncher.HoyoLauncher_Core" />
 		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
 		<Using Include="HoyoLauncher.HoyoLauncher_Controls.SideButtons.Button" Alias="HoyoButton" />
+
+		<Using Include="HoyoLauncher.Resources"/>
+		<Using Include="HoyoLauncher.Resources.Icons"/>
     </ItemGroup>
     
     <ItemGroup>
@@ -136,5 +146,6 @@
             <CustomToolNamespace>AppSettings</CustomToolNamespace>
         </None>
     </ItemGroup>
+
 
 </Project>

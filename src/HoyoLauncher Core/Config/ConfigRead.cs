@@ -14,6 +14,8 @@ public sealed class ConfigRead
 
     public static ConfigRead GetConfig(string FilePath)
     {
+        ImageBrush GameBG_TEMP = null;
+
         const string grp = "launcher";
         var ConfigFile = Path.Combine(FilePath, "config.ini");
         bool configexist = File.Exists(ConfigFile);
@@ -37,13 +39,20 @@ public sealed class ConfigRead
         var gamebg = ParsedObject[grp]["game_dynamic_bg_name"];
         var gamename = ParsedObject[grp]["game_start_name"];
 
+        var CheckBGExist = Path.Combine(FilePath, "bg", gamebg);
+
+        if(File.Exists(CheckBGExist))
+        {
+            GameBG_TEMP = new(new BitmapImage(new(Path.Combine(FilePath, "bg", gamebg), UriKind.RelativeOrAbsolute)));
+        }
+
         return new()
         {
             ConfigExist = configexist,
             GameInstallPath = gamepath,
             GameBackgroundName = Path.Combine(FilePath, "bg", gamebg),
             GameStartName = Path.Combine(gamepath, gamename),
-            GameBackground = new(new BitmapImage(new(Path.Combine(FilePath, "bg", gamebg), UriKind.RelativeOrAbsolute)))
+            GameBackground = GameBG_TEMP
         };
     }
 }

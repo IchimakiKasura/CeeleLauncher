@@ -4,8 +4,6 @@ namespace HoyoLauncher.HoyoLauncher_Core;
 [Events]
 public sealed class EventsHandles
 {
-    public static void WindowBackground() =>
-        HoyoWindow.MediaElementBG.Source = App.TempBG;
     public static void WindowSideButtonToolTips()
     {
         HoyoWindow.GENSHIN_IMPACT_LAUNCHER.ButtonToolTip = AppRes.GENSHIN_IMPACT_TIP;

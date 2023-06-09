@@ -1,16 +1,14 @@
-﻿using System.Linq;
-using HoyoLauncher.Resources.Icons;
-
-namespace HoyoLauncher;
+﻿namespace HoyoLauncher;
 
 public partial class App : Application
 {
     static Mutex _Mutex;
-    static readonly string dir = Path.Combine(Path.GetTempPath(), "HoyoverseBG");
+    //static readonly string dir = Path.Combine(Path.GetTempPath(), "HoyoverseBG");
+    //public static readonly Uri TempBG = new(Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4"));
+    //public static readonly MediaElement PreMediaElement = new();
 
     public static readonly Forms.NotifyIcon AppTray = new();
-    public static readonly Uri TempBG = new(Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4"));
-    public static readonly MediaElement PreMediaElement = new();
+
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
     protected override void OnStartup(StartupEventArgs e)
@@ -38,26 +36,17 @@ public partial class App : Application
         AppTray.BalloonTipTitle = appName;
         AppTray.BalloonTipIcon = Forms.ToolTipIcon.None;
 
-        /**/// Can cause weird issues such as Anti-virus blocking it from writing
-        /**/// So add the app on the whitelist when running it.
-        /**/// if its sounds suspicious then why are you reading the source code in the first place?
-        /**/// is it that the reason you want to check if I coded some malicious shit?
-        /**/    
-        /**/    // Extracting the BG to play
-        /**/    if (!Directory.Exists(dir))
-        /**/        Directory.CreateDirectory(dir);
-        /**/
-        /**/    //if (!File.Exists(TempBG))
-        /**/    //    File.WriteAllBytes(TempBG, AppResources.Resources.bg);
+        // Due to write permissions or idfk why it wont write on the TEMP i removed it.
+        //if (!Directory.Exists(dir))
+        //Directory.CreateDirectory(dir);
 
-            // fix? idk
-            if (!File.Exists(TempBG.AbsolutePath))
-            {
-                using FileStream fs = new(TempBG.AbsolutePath, FileMode.CreateNew, FileAccess.Write);
+        //if (!File.Exists(TempBG.AbsolutePath))
+        //{
+        //    using FileStream fs = File.Create(TempBG.AbsolutePath);
 
-                foreach(byte Data in AppResources.Resources.bg.Cast<byte>())
-                    fs.WriteByte(Data);
-            }
+        //    foreach(byte Data in AppResources.Resources.bg.Cast<byte>())
+        //    fs.WriteByte(Data);
+        //}
 
         base.OnStartup(e);
     }

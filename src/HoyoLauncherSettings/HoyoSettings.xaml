@@ -58,7 +58,7 @@
 
             <Grid Margin="45,445,432,10">
                 <TextBlock Text="About" FontWeight="SemiBold" Padding="0,10,0,0"/>
-                <TextBlock Text="Created by Icimaki Kasura&#xA;This app is not affiliated with miHoYo / Hoyoverse by any means." FontWeight="Thin" Margin="0,15,0,0" FontSize="10" Foreground="Gray" Padding="0,10,0,0"/>
+                <TextBlock Text="Created by Ichimaki Kasura&#xA;This app is not affiliated with miHoYo / Hoyoverse by any means." FontWeight="Thin" Margin="0,15,0,0" FontSize="10" Foreground="Gray" Padding="0,10,0,0"/>
             </Grid>
 
             <Image Name="Github" Margin="388,452,388,23" Source="/Resources/github.png" Stretch="Fill" Cursor="Hand"/>
