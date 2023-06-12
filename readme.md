@@ -16,7 +16,7 @@ If you want a more complex launcher you can try [Collapse Launcher](https://gith
 | | |
 |-|-|
 |![](readme/main.png)|![](readme/settings.png)|
-|![](readme/genshin.png)|![](readme/starrail.png)|
+|![](readme/genshin.png)|![](readme/StarRail.png)|
 |![](readme/hi3.png)|![](readme/zzz.png)|
 ---
 
