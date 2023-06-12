@@ -13,9 +13,11 @@ the app is built based on my own preference.
 If you want a more complex launcher you can try [Collapse Launcher](https://github.com/neon-nyan/Collapse)
 
 # Overview
-(ver 1.6 -outdated pic-)
-![Main](readme/overview.png)
-
+| | |
+|-|-|
+|![](readme/main.png)|![](readme/settings.png)|
+|![](readme/genshin.png)|![](readme/starrail.png)|
+|![](readme/hi3.png)|![](readme/zzz.png)|
 ---
 
 Requirements: NET 7<br>
@@ -23,7 +25,6 @@ Requirements: NET 7<br>
 ## Notes:
 Games cannot be updated using this launcher.<br>
 but you can just click the side button to open the game original launcher<br>
- - Need to be whitelisted on antivirus if you want it to actually work *smoothly* (read the comment on [App.xaml.cs Line 41](https://github.com/IchimakiKasura/HoyoLauncher/blob/master/src/App.xaml.cs#L41))
-
+ - ~~Need to be whitelisted on antivirus if you want it to actually work *smoothly* read the comment on App.xaml.cs Line 41~~
 ## DISCLAIMER:
 This app is not affiliated with miHoYo / Hoyoverse by any means.
