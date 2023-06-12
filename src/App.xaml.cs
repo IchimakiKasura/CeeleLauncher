@@ -2,13 +2,12 @@
 
 public partial class App : Application
 {
-    static Mutex _Mutex;
     //static readonly string dir = Path.Combine(Path.GetTempPath(), "HoyoverseBG");
     //public static readonly Uri TempBG = new(Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4"));
     //public static readonly MediaElement PreMediaElement = new();
-
+    
+    static Mutex _Mutex;
     public static readonly Forms.NotifyIcon AppTray = new();
-
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
     protected override void OnStartup(StartupEventArgs e)
@@ -38,12 +37,11 @@ public partial class App : Application
 
         // Due to write permissions or idfk why it wont write on the TEMP i removed it.
         //if (!Directory.Exists(dir))
-        //Directory.CreateDirectory(dir);
-
+        //  Directory.CreateDirectory(dir);
+        //
         //if (!File.Exists(TempBG.AbsolutePath))
         //{
         //    using FileStream fs = File.Create(TempBG.AbsolutePath);
-
         //    foreach(byte Data in AppResources.Resources.bg.Cast<byte>())
         //    fs.WriteByte(Data);
         //}
@@ -72,7 +70,7 @@ public partial class App : Application
     {
         HoyoWindow.WindowState = WindowState.Minimized;
 
-        if(HoyoLauncherSettings.HoyoSettings.IsMinimizeToTray is false) return;
+        if(AppSettings.Settings.Default.MinimizedTray is false) return;
         HoyoWindow.ShowInTaskbar = false;
         HoyoWindow.Hide();
         AppTray.Visible = true;

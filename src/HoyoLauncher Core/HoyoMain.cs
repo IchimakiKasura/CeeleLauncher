@@ -9,7 +9,7 @@ public sealed class HoyoMain
 
     public static void Initialize()
     {
-        AppSettings.Settings.Default.Upgrade();
+        UpdateConfig();
 
         bool ErrorOccured = false;
 
@@ -60,8 +60,9 @@ public sealed class HoyoMain
 
         if(!GameConfig.ConfigExist && GameSelected != HoyoGames.ZenlessZoneZero)
         {
-            MessageBox.Show($"ERROR:\nGame Executable not found!\n\nPlease Set the Location of the games first on the settings.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            values.LaunchButton = false;
+            values.LaunchButtonContent = AppResources.Resources.GAME_NOTFOUND;
+            //MessageBox.Show($"ERROR:\nGame Executable not found!\n\nPlease Set the Location of the games first on the settings.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         HoyoChange.SetValues(values);
@@ -113,6 +114,20 @@ public sealed class HoyoMain
 
         if(HG is not null)
             GameChange(HG, uid -= 1);
+    }
+
+    // Updates the settings on the run
+    // using the old version settings and copying it into new version.
+    //
+    // This prevents when editing the current settings it keeps
+    // using the old version settings unless the old version is deleted.
+    static void UpdateConfig()
+    {
+        if(!AppSettings.Settings.Default.FIRSTRUN)
+        {
+            AppSettings.Settings.Default.Upgrade();
+            AppSettings.Settings.Default.FIRSTRUN = true;
+        }
     }
 
     public static void ProcessStart(string FileName) =>

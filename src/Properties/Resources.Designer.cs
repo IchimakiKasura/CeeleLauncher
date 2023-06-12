@@ -88,6 +88,15 @@ namespace AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unavailable.
+        /// </summary>
+        public static string GAME_NOTFOUND {
+            get {
+                return ResourceManager.GetString("GAME_NOTFOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coming Soon.
         /// </summary>
         public static string GAME_SOON_TEXT {

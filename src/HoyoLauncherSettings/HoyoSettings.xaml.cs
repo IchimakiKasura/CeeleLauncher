@@ -2,7 +2,7 @@
 
 public partial class HoyoSettings : Window
 {
-    public static bool IsMinimizeToTray;
+    bool IsMinimizeToTray;
 
     public HoyoSettings()
     {

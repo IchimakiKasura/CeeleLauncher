@@ -47,12 +47,15 @@
         </Reference>
     </ItemGroup>
 
+    <!-- Resources -->
     <ItemGroup>
+        <!-- Selection Button pictures -->
         <Resource Include="Resources\Buttons\Selection\GenshinSelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\HI3SelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\HSRSelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\ZZZSelectionButton.png" />
 		
+        <!-- Button pictures -->
         <Resource Include="Resources\Buttons\gear.png" />
         <Resource Include="Resources\Buttons\GI.jpg" />
         <Resource Include="Resources\Buttons\HI3.jpg" />
@@ -62,16 +65,19 @@
         <Resource Include="Resources\Buttons\TOT.jpg" />
         <Resource Include="Resources\Buttons\ZZZ.jpg" />
 		
+        <!-- Icon pictures -->
         <Resource Include="Resources\Icons\128.ico" />
         <Resource Include="Resources\Icons\16.ico" />
         <Resource Include="Resources\Icons\256.ico" />
         <Resource Include="Resources\Icons\64.ico" />
 		
+        <!-- Others uhh pictures -->
 		<Resource Include="Resources\HoyoVerseIcon.png" />
 		<Resource Include="Resources\HoyoVerse.png" />
         <Resource Include="Resources\defaultBG.jpg" />
         <Resource Include="Resources\github.png" />
 
+        <!-- Background pictures -->
 		<Resource Include="Resources\DEFAULT_ZZZ_BG.jpg" />
 		<Resource Include="Resources\DEFAULT_HSR_BG.jpg" />
 		<Resource Include="Resources\DEFAULT_HI3_BG.jpg" />
@@ -100,10 +106,11 @@
     </ItemGroup>
 
     <ItemGroup>
+		<Using Include="HoyoLauncher.MainWindow" Static="true" />
+
         <Using Include="HoyoLauncher.Core" />
 		<Using Include="HoyoLauncher.Core.Config" />
         <Using Include="HoyoLauncher.Core.Record" />
-		<Using Include="HoyoLauncher.MainWindow" Static="true" />
 		<Using Include="HoyoLauncher.Core.Attributes" />
 		<Using Include="HoyoLauncher.HoyoLauncher_Core" />
 		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
