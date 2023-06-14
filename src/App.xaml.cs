@@ -6,16 +6,15 @@ public partial class App : Application
     //public static readonly Uri TempBG = new(Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4"));
     //public static readonly MediaElement PreMediaElement = new();
     
-    static Mutex _Mutex;
-    public static readonly Forms.NotifyIcon AppTray = new();
+    static bool createdNew;
+    static string appName = Assembly.GetExecutingAssembly().GetName().Name;
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+    static Mutex _Mutex = new(true, appName+Version, out createdNew);
+    public static readonly Forms.NotifyIcon AppTray = new();
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        string appName = Assembly.GetExecutingAssembly().GetName().Name;
-
-        _Mutex = new(true, appName, out bool createdNew);
-
         if (!createdNew)
             if (MessageBox.Show("Only one instance at a time!", "Warning",
                                 MessageBoxButton.OK,

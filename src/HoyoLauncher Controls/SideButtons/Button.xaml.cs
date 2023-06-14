@@ -46,6 +46,8 @@ public partial class Button : UserControl
         };
     }
 
+    public static implicit operator System.Windows.Controls.Button(HoyoButton source) => source.mainButton;
+
     protected virtual void OnClicked(RoutedEventArgs Event) =>
         Click?.Invoke(this, Event);
 

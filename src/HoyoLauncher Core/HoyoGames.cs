@@ -1,4 +1,5 @@
-﻿namespace HoyoLauncher.HoyoLauncher_Core;
+﻿using static AppResources.Resources;
+namespace HoyoLauncher.HoyoLauncher_Core;
 
 public sealed class HoyoGames
 {
@@ -33,8 +34,8 @@ public sealed class HoyoGames
         new
         (
             AppSettings.Settings.Default.GENSHIN_IMPACT_DIR,
-            AppResources.Resources.GENSHIN_IMPACT_EXEC,
-            AppResources.Resources.GENSHIN_IMPACT_TITLE,
+            GENSHIN_IMPACT_EXEC,
+            GENSHIN_IMPACT_TITLE,
             "https://genshin.hoyoverse.com/en",
             "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&hyl_auth_required=true&hyl_presentation_style=fullscreen&utm_source=hoyolab&utm_medium=tools&lang=en-us&bbs_theme=dark&bbs_theme_device=1",
             DefaultBG.GENSHIN_BG
@@ -44,8 +45,8 @@ public sealed class HoyoGames
         new
         (
             AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR,
-            AppResources.Resources.HONKAI_STAR_RAIL_EXEC,
-            AppResources.Resources.HONKAI_STAR_RAIL_TITLE,
+            HONKAI_STAR_RAIL_EXEC,
+            HONKAI_STAR_RAIL_TITLE,
             "https://hsr.hoyoverse.com/en-us/",
             "https://act.hoyolab.com/bbs/event/signin/hkrpg/index.html?act_id=e202303301540311&hyl_auth_required=true&hyl_presentation_style=fullscreen&utm_source=hoyolab&utm_medium=tools&utm_campaign=checkin&utm_id=6&lang=en-us&bbs_theme=dark&bbs_theme_device=1",
             DefaultBG.HSR_BG
@@ -55,8 +56,8 @@ public sealed class HoyoGames
         new
         (
             AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR,
-            AppResources.Resources.HONKAI_IMPACT_THIRD_EXEC,
-            AppResources.Resources.HONKAI_IMPACT_THIRD_TITLE,
+            HONKAI_IMPACT_THIRD_EXEC,
+            HONKAI_IMPACT_THIRD_TITLE,
             "https://honkaiimpact3.hoyoverse.com/global/en-us/fab",
             "https://act.hoyolab.com/bbs/event/signin-bh3/index.html?act_id=e202110291205111&utm_source=hoyolab&utm_medium=tools&bbs_theme=dark&bbs_theme_device=1",
             DefaultBG.HI3_BG

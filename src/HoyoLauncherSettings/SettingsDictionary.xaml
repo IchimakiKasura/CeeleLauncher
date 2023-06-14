@@ -38,11 +38,12 @@
         <Setter Property="Background" Value="White"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Foreground" Value="#f4cb99"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Name="MainBG" Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="6" BorderThickness="1">
+                                BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="6" BorderThickness="{TemplateBinding BorderThickness}">
                         <Border Name="Highlight" Background="Transparent">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>

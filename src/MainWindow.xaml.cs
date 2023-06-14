@@ -17,6 +17,12 @@ public partial class MainWindow : Window
 #else
         AppVersion.Text = $"DEVELOPMENT BUILD: ver({App.Version})";
 #endif
+
+        Loaded += delegate
+        {
+            if(!AppSettings.Settings.Default.FIRSTRUN)
+                new FirstRunWindow { Owner = HoyoWindow }.ShowDialog();
+        };
     }
 
     protected override void OnClosing(CancelEventArgs e)
@@ -38,7 +44,7 @@ public partial class MainWindow : Window
     private void MediaElement_OnMediaEnded(object s, RoutedEventArgs e)
     {
         MediaElement el = (MediaElement)s;
-
+        
         el.Position = TimeSpan.Zero;
         el.Play();
     }

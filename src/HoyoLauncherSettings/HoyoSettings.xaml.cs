@@ -2,8 +2,6 @@
 
 public partial class HoyoSettings : Window
 {
-    bool IsMinimizeToTray;
-
     public HoyoSettings()
     {
         InitializeComponent();
@@ -20,12 +18,12 @@ public partial class HoyoSettings : Window
         Github.MouseEnter += (s,e) => GithubToolTip.Visibility = Visibility.Visible;
         Github.MouseLeave += (s,e) => GithubToolTip.Visibility = Visibility.Hidden;
 
-        RadioButtonTray.IsChecked = IsMinimizeToTray = AppSettings.Settings.Default.MinimizedTray;
+        RadioButtonTray.IsChecked = AppSettings.Settings.Default.MinimizedTray;
 
         MinimizeToTray.MouseDown += (s, e) =>
         {
             if (e.ChangedButton is MouseButton.Left)
-                IsMinimizeToTray = (bool)(RadioButtonTray.IsChecked = !RadioButtonTray.IsChecked);
+                AppSettings.Settings.Default.MinimizedTray = (bool)(RadioButtonTray.IsChecked = !RadioButtonTray.IsChecked);
         };
     }
 
@@ -76,10 +74,9 @@ public partial class HoyoSettings : Window
             if(ErrorOccured) break;
         }
 
-        AppSettings.Settings.Default.GENSHIN_IMPACT_DIR = GI_DIR_TXT.Text;
-        AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR = HSR_DIR_TXT.Text;
-        AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR = HI3_DIR_TXT.Text;
-        AppSettings.Settings.Default.MinimizedTray = IsMinimizeToTray;
+        AppSettings.Settings.Default.GENSHIN_IMPACT_DIR         = GI_DIR_TXT.Text;
+        AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR       = HSR_DIR_TXT.Text;
+        AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR    = HI3_DIR_TXT.Text;
         AppSettings.Settings.Default.Save();
         HoyoGames.RefreshDirectory();
 

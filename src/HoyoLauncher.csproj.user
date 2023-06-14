@@ -8,6 +8,9 @@
     <Compile Update="HoyoLauncherSettings\HoyoSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="FirstRunWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="HoyoLauncher Controls\LaunchButton\LaunchButton.xaml">
@@ -35,6 +38,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="HoyoLauncherSettings\SettingsDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="FirstRunWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

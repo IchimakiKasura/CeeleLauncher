@@ -70,7 +70,7 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Launch.
+        ///   Looks up a localized string similar to  Play.
         /// </summary>
         public static string GAME_DEFAULT_TEXT {
             get {
@@ -88,7 +88,7 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unavailable.
+        ///   Looks up a localized string similar to Location not set.
         /// </summary>
         public static string GAME_NOTFOUND {
             get {

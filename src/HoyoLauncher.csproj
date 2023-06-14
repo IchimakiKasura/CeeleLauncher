@@ -82,6 +82,13 @@
 		<Resource Include="Resources\DEFAULT_HSR_BG.jpg" />
 		<Resource Include="Resources\DEFAULT_HI3_BG.jpg" />
 		<Resource Include="Resources\DEFAULT_GENSHIN_BG.jpg" />
+		
+		<!-- Tour pictures -->
+		<Resource Include="Resources\ShortTour\1.png" />
+		<Resource Include="Resources\ShortTour\2.png" />
+		<Resource Include="Resources\ShortTour\3.png" />
+		<Resource Include="Resources\ShortTour\4.png" />
+		<Resource Include="Resources\ShortTour\5.png" />
     </ItemGroup>
     
     <ItemGroup>

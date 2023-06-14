@@ -1,0 +1,39 @@
+﻿<Window x:Class="HoyoLauncher.FirstRunWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterOwner"
+        Background="Transparent"
+        AllowsTransparency="true"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Title="Settings" Height="520" Width="820"
+        ShowInTaskbar="false">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/HoyoLauncherSettings/SettingsDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Border CornerRadius="20" Background="White" RenderOptions.BitmapScalingMode="Fant" Margin="66,0,66,0">
+        <Grid>
+            <Border Name="WindowDrag" Margin="0,0,0,438">
+                <Grid>
+                    <TextBlock Text="Short Tour" Padding="35,20,0,0" FontSize="35" FontWeight="SemiBold"/>
+                </Grid>
+            </Border>
+
+            <Border Background="#f6f5f3" Margin="70,82,70,80" CornerRadius="10">
+                <Image Name="MainImageSource"/>
+            </Border>
+
+            <Button Name="NextButton" Content="Next" Style="{StaticResource MainButton}" Foreground="#dba867" Margin="349,454,189,21" FontSize="20"/>
+            <Button Name="BackButton" Content="Back" Style="{StaticResource MainButton}" Foreground="Black" Margin="189,454,349,21" FontSize="20" IsEnabled="False"/>
+
+        </Grid>
+    </Border>
+</Window>

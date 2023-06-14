@@ -16,7 +16,7 @@ public sealed class EventsHandles
     }
     public static void WindowTopButtons()
     {
-        static void TopButtonClick(object sender, RoutedEventArgs e)
+        static void TopButtonClick(object sender, RoutedEventArgs events)
         {
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
             var CurrentButton = (Button)sender;
@@ -38,15 +38,15 @@ public sealed class EventsHandles
                 case "HomeButton":
                         if (HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) break;
 
-                        HoyoChange.SetValues(
-                            new HoyoValues(
-                                null,
-                                false,
-                                false,
-                                false,
-                                AppRes.GAME_DEFAULT_TEXT
-                            )
-                        );
+                        new HoyoValues()
+                        {
+                            Background = null,
+                            RemoveMainBG = false,
+                            CheckInButton = false,
+                            LaunchButton = false,
+                            LaunchButtonContent = AppRes.GAME_DEFAULT_TEXT
+                        }
+                        .ApplyChanges();
 
                         AppSettings.Settings.Default.LAST_GAME = 0;
                         AppSettings.Settings.Default.Save();
@@ -182,7 +182,7 @@ public sealed class EventsHandles
                 case "GAME_SELECTION_ZZZ": HG = HoyoGames.ZenlessZoneZero;      break;
             }
 
-            HoyoMain.GameChange(HG, short.Parse(SelectedButton.Uid));
+            HoyoMain.GameChange(HG, SelectedButton.Uid);
         }
 
         HoyoWindow.GAME_SELECTION_GI.Click += AutoClose;
