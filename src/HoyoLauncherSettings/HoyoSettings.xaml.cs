@@ -2,9 +2,18 @@
 
 public partial class HoyoSettings : Window
 {
+    readonly static string UniqueHashBUILD = HoyoMain.GenerateMD5HASH();
+
     public HoyoSettings()
     {
         InitializeComponent();
+
+        AboutTextPlaceHolder.Text = 
+        $"""
+        Created by Ichimaki Kasura
+        This app is not affiliated with miHoYo / Hoyoverse by any means.
+        BUILD: {App.Version}_{UniqueHashBUILD}
+        """;
 
         HoyoWindow.BLACK_THING.Opacity = 0.5;
 

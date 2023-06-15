@@ -160,4 +160,12 @@ public sealed class HoyoMain
                 UseShellExecute = true
             }
         ).Dispose();
+
+    // keeps fake builds that might be injected with malware.
+    public static string GenerateMD5HASH()
+    {
+        using var md5 = System.Security.Cryptography.MD5.Create();
+        using var stream = File.OpenRead(Environment.ProcessPath);
+        return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-","");
+    }
 }

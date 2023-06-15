@@ -69,7 +69,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="TextBox">
+    <Style x:Key="TextBoxStyle" TargetType="TextBox" >
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="BorderBrush" Value="Transparent"/>

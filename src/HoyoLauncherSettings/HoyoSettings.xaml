@@ -31,19 +31,19 @@
             <Border Background="#f6f5f3" Margin="30,100,30,80" CornerRadius="10">
                 <Grid>
                     <TextBlock Text="Genshin Impact Location: " FontSize="20" FontWeight="SemiBold" Margin="10,11,10,299"/>
-                    <TextBox Name="GI_DIR_TXT" Margin="10,46,150,264"/>
+                    <TextBox Name="GI_DIR_TXT" Margin="10,46,150,264" Style="{StaticResource TextBoxStyle}"/>
                     <Button Name="GI_LOCATE" Margin="615,46,10,264" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="GenshinClick" FontSize="14" BorderThickness="2"/>
 
                     <TextBlock Text="Honkai Star Rail Location: " FontSize="20" FontWeight="SemiBold" Margin="10,81,10,229"/>
-                    <TextBox Name="HSR_DIR_TXT" Margin="10,116,150,194"/>
+                    <TextBox Name="HSR_DIR_TXT" Margin="10,116,150,194" Style="{StaticResource TextBoxStyle}"/>
                     <Button Name="HSR_LOCATE" Margin="615,116,10,194" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="HSRClick" FontSize="14" BorderThickness="2"/>
 
                     <TextBlock Text="Honkai Impact 3rd Location: " FontSize="20" FontWeight="SemiBold" Margin="10,151,10,159"/>
-                    <TextBox Name="HI3_DIR_TXT" Margin="10,186,150,124"/>
+                    <TextBox Name="HI3_DIR_TXT" Margin="10,186,150,124" Style="{StaticResource TextBoxStyle}"/>
                     <Button Name="HI3_LOCATE" Margin="615,186,10,124" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="HI3Click" FontSize="14" BorderThickness="2"/>
 
                     <TextBlock Text="Zenless Zone Zero Location: " FontSize="20" FontWeight="SemiBold" Margin="10,221,10,89"/>
-                    <TextBox x:Name="ZZZ_DIR_TXT" Margin="10,256,150,54" IsEnabled="False" Text="Unavailable" Foreground="Gray"/>
+                    <TextBox x:Name="ZZZ_DIR_TXT" Margin="10,256,150,54" IsEnabled="False" Text="Unavailable" Foreground="Gray" Style="{StaticResource TextBoxStyle}"/>
                     <Button Name="ZZZ_LOCATE" Margin="615,256,10,54" Content="Open Folder" IsEnabled="False" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Gray" FontSize="14" BorderThickness="2"/>
 
                     <Grid Name="MinimizeToTray" Margin="15,298,590,12">
@@ -58,7 +58,8 @@
 
             <Grid Margin="45,445,432,10">
                 <TextBlock Text="About" FontWeight="SemiBold" Padding="0,10,0,0"/>
-                <TextBlock Text="Created by Ichimaki Kasura&#xA;This app is not affiliated with miHoYo / Hoyoverse by any means." FontWeight="Thin" Margin="0,15,0,0" FontSize="10" Foreground="Gray" Padding="0,10,0,0"/>
+                <TextBox Name="AboutTextPlaceHolder" FontWeight="Thin" Margin="0,15,0,0" FontSize="10" Foreground="Gray" Padding="0,10,0,0"
+                Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalScrollBarVisibility="Hidden" Cursor="Arrow"/>
             </Grid>
 
             <Image Name="Github" Margin="388,452,388,23" Source="/Resources/github.png" Stretch="Fill" Cursor="Hand"/>

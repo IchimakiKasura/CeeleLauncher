@@ -16,6 +16,14 @@ public sealed class EventsHandles
     }
     public static void WindowTopButtons()
     {
+        List<Button> HoyoWindowButtons = new()
+        {
+            HoyoWindow.ExitButton,
+            HoyoWindow.MinButton,
+            HoyoWindow.SettingsButton,
+            HoyoWindow.HomeButton
+        };
+
         static void TopButtonClick(object sender, RoutedEventArgs events)
         {
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
@@ -44,20 +52,18 @@ public sealed class EventsHandles
                             RemoveMainBG = false,
                             CheckInButton = false,
                             LaunchButton = false,
-                            LaunchButtonContent = AppRes.GAME_DEFAULT_TEXT
+                            LaunchButtonContent = "Welcome"
                         }
                         .ApplyChanges();
 
                         AppSettings.Settings.Default.LAST_GAME = 0;
-                        AppSettings.Settings.Default.Save();
                     break;
             }
         }
 
-        HoyoWindow.ExitButton.Click += TopButtonClick;
-        HoyoWindow.MinButton.Click += TopButtonClick;
-        HoyoWindow.SettingsButton.Click += TopButtonClick;
-        HoyoWindow.HomeButton.Click += TopButtonClick;
+        foreach(Button button in HoyoWindowButtons)
+            button.Click += TopButtonClick;
+
         HoyoWindow.TopBorder.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) HoyoWindow.DragMove(); };
     }
     public static void WindowSideButtons()
