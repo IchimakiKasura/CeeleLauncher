@@ -4,7 +4,7 @@
     <Style x:Key="LaunchButton" TargetType="Button">
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Content" Value="Launch"/>
+        <Setter Property="Content" Value="Play"/>
         <Setter Property="FontSize" Value="23"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="Foreground" Value="#704a1d"/>

@@ -2,50 +2,52 @@
 
 public partial class FirstRunWindow : Window
 {
-    int CurrentImage = 1;
-
+    static int CurrentImage;
     public FirstRunWindow()
     {
         InitializeComponent();
+
+        CurrentImage = 1;
+        
         HoyoWindow.BLACK_THING.Opacity = 0.5;
         WindowDrag.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) DragMove(); };
 
-        MainImageSource.Source = new BitmapImage(new Uri($"pack://application:,,,/Resources/ShortTour/{CurrentImage}.png"));
-
+        MainImageSource.Source = ImageLocation();
 
         NextButton.Click += (s, e) =>
         {
-            CurrentImage+=1;
-
-            if(CurrentImage <= 5)
-                MainImageSource.Source = new BitmapImage(new Uri($"pack://application:,,,/Resources/ShortTour/{CurrentImage}.png"));
-
-            if(CurrentImage is 5)
-                NextButton.Content = "Close";
-            
-            if (CurrentImage is 6) Close();
-
-
-            if (CurrentImage > 1)
+            switch(++CurrentImage)
             {
-                BackButton.Foreground = new BrushConverter().ConvertFromString("#dba867") as Brush;
-                BackButton.IsEnabled = true;
+                case 5: NextButton.Content = "Close"; break;
+                case 6: Close();                      return;
             }
+
+            MainImageSource.Source = ImageLocation();
+
+            if(CurrentImage < 1) return;
+            
+            BackButton.Foreground = new BrushConverter().ConvertFromString("#dba867") as Brush;
+            BackButton.IsEnabled = true;
+
         };
 
         BackButton.Click += (s, e) =>
         {
-            MainImageSource.Source = new BitmapImage(new Uri($"pack://application:,,,/Resources/ShortTour/{CurrentImage-=1}.png"));
+            --CurrentImage;
+
+            MainImageSource.Source = ImageLocation();
             NextButton.Content = "Next";
 
-            if (CurrentImage is 1)
-            {
-                BackButton.Foreground = Brushes.Black;
-                BackButton.IsEnabled = false;
-            }
+            if (CurrentImage is not 1) return;
+
+            BackButton.Foreground = Brushes.Black;
+            BackButton.IsEnabled = false;
         };
     }
 
+    private static BitmapImage ImageLocation()
+        => new(new Uri($"pack://application:,,,/Resources/ShortTour/{CurrentImage}.png"));
+    
 
     protected override void OnClosed(EventArgs e)
     {

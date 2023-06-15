@@ -18,7 +18,7 @@ public partial class MainWindow : Window
         AppVersion.Text = $"DEVELOPMENT BUILD: ver({App.Version})";
 #endif
 
-        Loaded += delegate
+        MediaElementBG.Loaded += delegate
         {
             if(!AppSettings.Settings.Default.FIRSTRUN)
                 new FirstRunWindow { Owner = HoyoWindow }.ShowDialog();

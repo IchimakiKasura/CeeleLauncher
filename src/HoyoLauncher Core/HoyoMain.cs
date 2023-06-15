@@ -2,9 +2,25 @@ namespace HoyoLauncher.Core;
 
 public sealed class HoyoMain
 {
+    private static bool _isgamerunning;
+    public static bool IsGameRunning
+    { 
+        get => _isgamerunning;
+        set
+        {
+            _isgamerunning = value;
+
+            if(CurrentGameSelected == HoyoGames.DEFAULT) return;
+
+            HoyoWindow.LaunchButton.IsEnabled =
+            HoyoWindow.HomeButton.IsEnabled = 
+            HoyoWindow.LaunchSelection.IsEnabled = !value;
+            HoyoWindow.LaunchButton.Content = value ? AppResources.Resources.GAME_LAUNCHED_TEXT : AppResources.Resources.GAME_DEFAULT_TEXT;
+        }
+    }
+
     public static bool FirstRun { get; set; }
-    public static bool IsGameRunning { get; set; }
-    public static string ExecutableName { get; set; }
+    public static string ExecutableName { get; private set; }
     public static HoyoGames CurrentGameSelected { get; private set; }
 
     public static void Initialize()
@@ -36,9 +52,8 @@ public sealed class HoyoMain
             LastGame();
     }
 
-    public static void GameChange(HoyoGames GS, string uid) =>
-        GameChange(GS, short.Parse(uid));
-
+    public static void GameChange(HoyoGames GameSelected, string uid) =>
+        GameChange(GameSelected, short.Parse(uid));
     public static void GameChange(HoyoGames GameSelected, short uid)
     {
         ConfigRead GameConfig = ConfigRead.GetConfig(GameSelected.GAME_DIRECTORY);
@@ -89,9 +104,11 @@ public sealed class HoyoMain
             return;
         }
 
-        ErrorOccured = !GameConfigData.ConfigExist || (Path.GetFileName(GameConfigData.GameStartName) != Game.GAME_EXECUTABLE);
-
-        if(!ErrorOccured)
+        // ahh goofy ☠️
+        if
+        (
+            !(ErrorOccured = !GameConfigData.ConfigExist || (Path.GetFileName(GameConfigData.GameStartName) != Game.GAME_EXECUTABLE))
+        )
         {
             LauncherButton.IsEnabled = true;
             return;

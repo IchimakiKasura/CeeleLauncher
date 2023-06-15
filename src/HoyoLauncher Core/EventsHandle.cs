@@ -126,15 +126,7 @@ public sealed class EventsHandles
 
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
 
-            // Window Hide
             App.AppMinimizeToTray();
-            
-            // Buttons
-            MainButton.IsEnabled =
-            HoyoWindow.HomeButton.IsEnabled = 
-            HoyoWindow.LaunchSelection.IsEnabled = false;
-            MainButton.Content = AppRes.GAME_LAUNCHED_TEXT;
-
             HoyoMain.IsGameRunning = true;
 
             using var GameProcess = Process.Start(
@@ -146,12 +138,7 @@ public sealed class EventsHandles
             );
 
             await GameProcess.WaitForExitAsync();
-
             HoyoMain.IsGameRunning = false;
-            MainButton.Content = AppRes.GAME_DEFAULT_TEXT;
-            MainButton.IsEnabled =
-            HoyoWindow.HomeButton.IsEnabled = 
-            HoyoWindow.LaunchSelection.IsEnabled = true;
 
             if(HoyoWindow.WindowState is not WindowState.Minimized) return;
 
@@ -160,6 +147,7 @@ public sealed class EventsHandles
             HoyoWindow.ShowInTaskbar = true;
             App.AppTray.Visible = false;
         };
+
     }
 
     public static void GameSelectionPopup() =>

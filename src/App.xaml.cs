@@ -7,16 +7,16 @@ public partial class App : Application
     //public static readonly MediaElement PreMediaElement = new();
     
     static bool createdNew;
-    static string appName = Assembly.GetExecutingAssembly().GetName().Name;
+    static readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name;
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
-    static Mutex _Mutex = new(true, appName+Version, out createdNew);
+    private static readonly Mutex _Mutex = new(true, AppName+Version, out createdNew);
     public static readonly Forms.NotifyIcon AppTray = new();
 
     protected override void OnStartup(StartupEventArgs e)
     {
         if (!createdNew)
-            if (MessageBox.Show("Only one instance at a time!", "Warning",
+            if (MessageBox.Show("Only one instance at a time!",
+                                "Warning",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Warning) is MessageBoxResult.OK)
                 Environment.Exit(0);
@@ -24,31 +24,24 @@ public partial class App : Application
         var menuDropAlignmentField = typeof(SystemParameters).GetField("_menuDropAlignment", BindingFlags.NonPublic | BindingFlags.Static);
         menuDropAlignmentField.SetValue(null, !SystemParameters.MenuDropAlignment || menuDropAlignmentField is null);
 
-        // Tray Icon
-        AppTray.Icon = IconResources.Icon_16;
-        AppTray.Visible = false;
-        AppTray.Text = appName;
-        AppTray.Click += AppTrayClick;
-
-        AppTray.BalloonTipText = "HoyoLauncher will be running in the background.";
-        AppTray.BalloonTipTitle = appName;
-        AppTray.BalloonTipIcon = Forms.ToolTipIcon.None;
-
-        // Due to write permissions or idfk why it wont write on the TEMP i removed it.
-        //if (!Directory.Exists(dir))
-        //  Directory.CreateDirectory(dir);
-        //
-        //if (!File.Exists(TempBG.AbsolutePath))
-        //{
-        //    using FileStream fs = File.Create(TempBG.AbsolutePath);
-        //    foreach(byte Data in AppResources.Resources.bg.Cast<byte>())
-        //    fs.WriteByte(Data);
-        //}
+        AppInitializeTray();
 
         base.OnStartup(e);
     }
 
-    void AppTrayClick(object s, EventArgs e)
+    private void AppInitializeTray()
+    {
+        AppTray.Icon = IconResources.Icon_16;
+        AppTray.Visible = false;
+        AppTray.Text = AppName;
+        AppTray.Click += AppTrayClick;
+
+        AppTray.BalloonTipText = "HoyoLauncher will be running in the background.";
+        AppTray.BalloonTipTitle = AppName;
+        AppTray.BalloonTipIcon = Forms.ToolTipIcon.None;
+    }
+
+    private void AppTrayClick(object s, EventArgs e)
     {
         if (MainWindow.WindowState is not WindowState.Minimized) return;
 
@@ -58,9 +51,10 @@ public partial class App : Application
         AppTray.Visible = false;
     }
 
-    public static void NotifTray()
+    private static void AppNotification()
     {
         if(!HoyoMain.FirstRun) return;
+
         AppTray.ShowBalloonTip(3);
         HoyoMain.FirstRun = false;
     }
@@ -70,9 +64,10 @@ public partial class App : Application
         HoyoWindow.WindowState = WindowState.Minimized;
 
         if(AppSettings.Settings.Default.MinimizedTray is false) return;
+
         HoyoWindow.ShowInTaskbar = false;
         HoyoWindow.Hide();
         AppTray.Visible = true;
-        NotifTray();
+        AppNotification();
     }
 }

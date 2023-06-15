@@ -6,6 +6,8 @@ namespace HoyoLauncher.Core.Attributes;
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class EventsAttribute : Attribute
 {
+    private static readonly BindingFlags Flags = BindingFlags.Public | BindingFlags.Static;
+
     public EventsAttribute() { }
 
     public static void SetEvents()
@@ -13,8 +15,7 @@ public sealed class EventsAttribute : Attribute
         foreach(Type types in Assembly.GetExecutingAssembly().GetTypes())
             if(types.GetCustomAttributes(typeof(EventsAttribute), true).Length > 0)
             {
-                BindingFlags flags = BindingFlags.Public | BindingFlags.Static;
-                foreach(MethodInfo methods in types.GetMethods(flags))
+                foreach(MethodInfo methods in types.GetMethods(Flags))
                     methods.Invoke(types, null);
             }
     }
