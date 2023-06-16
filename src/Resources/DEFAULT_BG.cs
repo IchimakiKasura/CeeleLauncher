@@ -1,5 +1,6 @@
 ﻿namespace HoyoLauncher.Resources;
 
+// yeah yeah yeah, i should've put it in Resources.resx but having that "default" annoys me
 public sealed class DefaultBG
 {
     public static ImageBrush GENSHIN_BG

@@ -1,5 +1,5 @@
 ﻿using AppRes = AppResources.Resources;
-namespace HoyoLauncher.HoyoLauncher_Core;
+namespace HoyoLauncher.Core;
 
 [Events]
 public sealed class EventsHandles

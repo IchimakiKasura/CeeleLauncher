@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="HoyoLauncher Controls\SideButtons\HoyoButton.xaml.cs">
+    <Compile Update="HoyoLauncher.Controls\SideButtons\HoyoButton.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="HoyoLauncherSettings\HoyoSettings.xaml.cs">
@@ -13,25 +13,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="HoyoLauncher Controls\LaunchButton\LaunchButton.xaml">
+    <Page Update="HoyoLauncher.Controls\LaunchButton\LaunchButton.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="HoyoLauncher Controls\LaunchButton\LaunchSettings.xaml">
+    <Page Update="HoyoLauncher.Controls\LaunchButton\LaunchSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="HoyoLauncher Controls\SideButtons\HoyoButton.xaml">
+    <Page Update="HoyoLauncher.Controls\SideButtons\HoyoButton.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="HoyoLauncher Controls\LaunchButton\LaunchSettingsPopup.xaml">
+    <Page Update="HoyoLauncher.Controls\LaunchButton\LaunchSettingsPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="HoyoLauncher Controls\TopButtons\HomeButton.xaml">
+    <Page Update="HoyoLauncher.Controls\TopButtons\HomeButton.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="HoyoLauncher Controls\TopButtons\SettingsButton.xaml">
+    <Page Update="HoyoLauncher.Controls\TopButtons\SettingsButton.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="HoyoLauncher Controls\TopButtons\TopButton.xaml">
+    <Page Update="HoyoLauncher.Controls\TopButtons\TopButton.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="HoyoLauncherSettings\HoyoSettings.xaml">

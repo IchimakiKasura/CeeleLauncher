@@ -1,4 +1,4 @@
-﻿namespace HoyoLauncher.HoyoLauncher_Controls.SideButtons;
+﻿namespace HoyoLauncher.Controls.SideButtons;
 
 public partial class HoyoButton : UserControl
 {

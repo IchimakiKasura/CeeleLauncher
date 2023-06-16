@@ -74,6 +74,7 @@
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Background" Value="#dedede"/>
+        <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
@@ -81,13 +82,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="1"
                             CornerRadius="5">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        <ScrollViewer Margin="5,0,5,0" x:Name="PART_ContentHost" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
@@ -112,5 +107,16 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="Hyperlink">
+        <Setter Property="TextDecorations" Value="None"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#997f5f"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -1,5 +1,5 @@
 ﻿using static AppResources.Resources;
-namespace HoyoLauncher.HoyoLauncher_Core;
+namespace HoyoLauncher.Core;
 
 public sealed class HoyoGames
 {

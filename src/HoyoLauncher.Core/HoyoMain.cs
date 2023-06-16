@@ -150,6 +150,13 @@ public sealed class HoyoMain
         if(!AppSettings.Settings.Default.FIRSTRUN)
         {
             AppSettings.Settings.Default.Upgrade();
+
+            HoyoWindow.Loaded += async (s, e) =>
+            {
+                await Task.Delay(1000);
+                new ShortTour { Owner = HoyoWindow }.ShowDialog();
+            };
+
             AppSettings.Settings.Default.FIRSTRUN = true;
         }
     }
@@ -174,6 +181,8 @@ public sealed class HoyoMain
 
     private static void UpdateIsGameRunning()
     {
+        if (CurrentGameSelected == HoyoGames.DEFAULT) return;
+
         HoyoWindow.HomeButton.IsEnabled = !IsGameRunning;
 
         HoyoWindow.LaunchButton.IsEnabled = false;

@@ -19,14 +19,8 @@ public partial class MainWindow : Window
 #if !DEBUG
         AppVersion.Text = App.Version;
 #else
-        AppVersion.Text = $"DEVELOPMENT BUILD: ver({App.Version})";
+        AppVersion.Text += $": test ver({App.Version})";
 #endif
-
-        MediaElementBG.Loaded += delegate
-        {
-            if(!AppSettings.Settings.Default.FIRSTRUN)
-                new ShortTour { Owner = HoyoWindow }.ShowDialog();
-        };
     }
 
     protected override void OnClosing(CancelEventArgs e)

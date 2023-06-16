@@ -7,7 +7,7 @@
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
     </PropertyGroup>
-	
+    
     <PropertyGroup>
         <Authors>IchimakiKasura</Authors>
         <Company>HoyoLauncher(Unofficial)</Company> <!--For the config folder naming idk on Appdata/Local-->
@@ -16,11 +16,9 @@
         <AssemblyVersion>1.8.0.1</AssemblyVersion>
         <FileVersion>1.8.0.1</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-        <SignAssembly>False</SignAssembly>
         <Copyright>2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
-        <NoWin32Manifest>true</NoWin32Manifest>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(Configuration) == Release">
@@ -31,18 +29,11 @@
         <SelfContained>False</SelfContained>
         <PublishSingleFile>True</PublishSingleFile>
         <PublishReadyToRun>True</PublishReadyToRun>
+        <DebugType>None</DebugType>
     </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <DebugType>none</DebugType>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <DebugType>none</DebugType>
-    </PropertyGroup>
-    
+	
     <ItemGroup>
-		<ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj"/>
+        <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj" />
     </ItemGroup>
 
     <!-- Resources -->
@@ -52,7 +43,7 @@
         <Resource Include="Resources\Buttons\Selection\HI3SelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\HSRSelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\ZZZSelectionButton.png" />
-		
+        
         <!-- Button pictures -->
         <Resource Include="Resources\Buttons\gear.png" />
         <Resource Include="Resources\Buttons\GI.jpg" />
@@ -62,31 +53,31 @@
         <Resource Include="Resources\Buttons\rewards.png" />
         <Resource Include="Resources\Buttons\TOT.jpg" />
         <Resource Include="Resources\Buttons\ZZZ.jpg" />
-		
+        
         <!-- Icon pictures -->
         <Resource Include="Resources\Icons\128.ico" />
         <Resource Include="Resources\Icons\16.ico" />
         <Resource Include="Resources\Icons\256.ico" />
         <Resource Include="Resources\Icons\64.ico" />
-		
+        
         <!-- Others uhh pictures -->
-		<Resource Include="Resources\HoyoVerseIcon.png" />
-		<Resource Include="Resources\HoyoVerse.png" />
+        <Resource Include="Resources\HoyoVerseIcon.png" />
+        <Resource Include="Resources\HoyoVerse.png" />
         <Resource Include="Resources\defaultBG.jpg" />
         <Resource Include="Resources\github.png" />
 
         <!-- Background pictures -->
-		<Resource Include="Resources\DEFAULT_ZZZ_BG.jpg" />
-		<Resource Include="Resources\DEFAULT_HSR_BG.jpg" />
-		<Resource Include="Resources\DEFAULT_HI3_BG.jpg" />
-		<Resource Include="Resources\DEFAULT_GENSHIN_BG.jpg" />
-		
-		<!-- Tour pictures -->
-		<Resource Include="Resources\ShortTour\1.png" />
-		<Resource Include="Resources\ShortTour\2.png" />
-		<Resource Include="Resources\ShortTour\3.png" />
-		<Resource Include="Resources\ShortTour\4.png" />
-		<Resource Include="Resources\ShortTour\5.png" />
+        <Resource Include="Resources\DEFAULT_ZZZ_BG.jpg" />
+        <Resource Include="Resources\DEFAULT_HSR_BG.jpg" />
+        <Resource Include="Resources\DEFAULT_HI3_BG.jpg" />
+        <Resource Include="Resources\DEFAULT_GENSHIN_BG.jpg" />
+        
+        <!-- Tour pictures -->
+        <Resource Include="Resources\ShortTour\1.png" />
+        <Resource Include="Resources\ShortTour\2.png" />
+        <Resource Include="Resources\ShortTour\3.png" />
+        <Resource Include="Resources\ShortTour\4.png" />
+        <Resource Include="Resources\ShortTour\5.png" />
     </ItemGroup>
     
     <ItemGroup>
@@ -111,18 +102,17 @@
     </ItemGroup>
 
     <ItemGroup>
-		<Using Include="HoyoLauncher.MainWindow" Static="true" />
+        <Using Include="HoyoLauncher.MainWindow" Static="true" />
 
         <Using Include="HoyoLauncher.Core" />
-		<Using Include="HoyoLauncher.Core.Config" />
+        <Using Include="HoyoLauncher.Core.Config" />
         <Using Include="HoyoLauncher.Core.Record" />
-		<Using Include="HoyoLauncher.Core.Attributes" />
-		<Using Include="HoyoLauncher.HoyoLauncher_Core" />
-		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
-		<Using Include="HoyoLauncher.HoyoLauncher_Controls.SideButtons" />
+        <Using Include="HoyoLauncher.Core.Attributes" />
+        <Using Include="HoyoLauncher.Controls.SideButtons" />
 
-		<Using Include="HoyoLauncher.Resources" />
-		<Using Include="HoyoLauncher.Resources.Icons" />
+        <Using Include="HoyoLauncher.Resources" />
+        <Using Include="HoyoLauncher.Resources.Icons" />
+        <Using Include="HoyoLauncher.Resources.Buttons.Selection" />
     </ItemGroup>
     
     <ItemGroup>
