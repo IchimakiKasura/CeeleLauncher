@@ -21,7 +21,7 @@
 
     <Border Name="WINDOW_BORDER" RenderOptions.BitmapScalingMode="Fant" CornerRadius="10" KeyboardNavigation.TabNavigation="None">
         <Grid Name="WINDOW_GRID">
-            
+
             <Grid Name="HomeBG">
                 <Border Name="MainBG">
                     <Border.Background>
@@ -41,7 +41,7 @@
             </Grid>
 
             <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
-            <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50" ToolTip="Change Game"/>
+            <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50"/>
 
             <Border Name="GameSelection" Margin="925,420,128,120" Background="White" CornerRadius="5" Visibility="Hidden" Padding="5,9,5,0">
                 <Grid>
@@ -54,18 +54,18 @@
 
             <Border Name="SideButtons" Background="#40000000" Margin="1190,70,13,70" CornerRadius="10">
                 <Canvas>
-                    <ButtonControl:Button x:Name="GENSHIN_IMPACT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="35" Image="/Resources/Buttons/GI.jpg" IsEnabled="false"/>
-                    <ButtonControl:Button x:Name="HONKAI_STAR_RAIL_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="110" Image="/Resources/Buttons/HSR.jpg" IsEnabled="false"/>
-                    <ButtonControl:Button x:Name="HONKAI_IMPACT_THIRD_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="185" Image="/Resources/Buttons/HI3.jpg" IsEnabled="false"/>
-                    <ButtonControl:Button x:Name="ZZZ_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="260" Image="/Resources/Buttons/ZZZ.jpg"/>
-                    <ButtonControl:Button x:Name="TOT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="335" Image="/Resources/Buttons/TOT.jpg"/>
+                    <ButtonControl:HoyoButton x:Name="GENSHIN_IMPACT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="25" Image="/Resources/Buttons/GI.jpg" IsEnabled="false" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="HONKAI_STAR_RAIL_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="100" Image="/Resources/Buttons/HSR.jpg" IsEnabled="false" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="HONKAI_IMPACT_THIRD_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="175" Image="/Resources/Buttons/HI3.jpg" IsEnabled="false" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="ZZZ_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="250" Image="/Resources/Buttons/ZZZ.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="TOT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="325" Image="/Resources/Buttons/TOT.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-                    <ButtonControl:Button x:Name="CheckInPage" IsEnabled="False" Height="35" Width="35" Canvas.Left="21" Canvas.Top="479" Image="/Resources/Buttons/rewards.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
-                    <ButtonControl:Button x:Name="GameHomePage" Height="35" Width="35" Canvas.Left="21" Canvas.Top="524" Image="/Resources/Buttons/home.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
+                    <ButtonControl:HoyoButton x:Name="CheckInPage" IsEnabled="False" Height="35" Width="35" Canvas.Left="21" Canvas.Top="479" Image="/Resources/Buttons/rewards.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
+                    <ButtonControl:HoyoButton x:Name="GameHomePage" Height="35" Width="35" Canvas.Left="21" Canvas.Top="524" Image="/Resources/Buttons/home.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
                 </Canvas>
             </Border>
 
-            <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false" CornerRadius="10"/>
+            <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false" CornerRadius="10" Margin="0,0,1280,0"/>
 
             <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.5" Style="{StaticResource TopButtonTrigger}">
                 <Grid>

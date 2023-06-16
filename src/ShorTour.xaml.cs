@@ -1,9 +1,9 @@
 ﻿namespace HoyoLauncher;
 
-public partial class FirstRunWindow : Window
+public partial class ShortTour : Window
 {
     static int CurrentImage;
-    public FirstRunWindow()
+    public ShortTour()
     {
         InitializeComponent();
 
@@ -47,7 +47,6 @@ public partial class FirstRunWindow : Window
 
     private static BitmapImage ImageLocation()
         => new(new Uri($"pack://application:,,,/Resources/ShortTour/{CurrentImage}.png"));
-    
 
     protected override void OnClosed(EventArgs e)
     {

@@ -166,17 +166,18 @@ public sealed class EventsHandles
         {
             var SelectedButton = (Button)s;
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
-            HoyoGames HG = null;
+            HoyoGames SelectedHoyoGame = null;
 
             switch(SelectedButton.Name)
             {
-                case "GAME_SELECTION_GI" : HG = HoyoGames.GenshinImpact;        break;
-                case "GAME_SELECTION_HSR": HG = HoyoGames.HonkaiStarRail;       break;
-                case "GAME_SELECTION_HI3": HG = HoyoGames.HonkaiImpactThird;    break;
-                case "GAME_SELECTION_ZZZ": HG = HoyoGames.ZenlessZoneZero;      break;
+                case "GAME_SELECTION_GI" : SelectedHoyoGame = HoyoGames.GenshinImpact;        break;
+                case "GAME_SELECTION_HSR": SelectedHoyoGame = HoyoGames.HonkaiStarRail;       break;
+                case "GAME_SELECTION_HI3": SelectedHoyoGame = HoyoGames.HonkaiImpactThird;    break;
+                case "GAME_SELECTION_ZZZ": SelectedHoyoGame = HoyoGames.ZenlessZoneZero;      break;
             }
 
-            HoyoMain.GameChange(HG, SelectedButton.Uid);
+            HoyoMain.CurrentGameSelected = SelectedHoyoGame;
+            HoyoMain.GameChange(SelectedButton.Uid);
         }
 
         HoyoWindow.GAME_SELECTION_GI.Click += AutoClose;

@@ -1,11 +1,11 @@
 ﻿namespace HoyoLauncher.HoyoLauncher_Controls.SideButtons;
 
-public partial class Button : UserControl
+public partial class HoyoButton : UserControl
 {
     [Category("Behaviour")]
     public RoutedEventHandler Click;
     readonly static DependencyProperty ImageProperty =
-        DependencyProperty.Register("Image", typeof(string), typeof(HoyoButton));
+        DependencyProperty.Register("Image", typeof(ImageSource), typeof(HoyoButton));
     readonly static DependencyProperty BGProperty =
         DependencyProperty.Register("BG", typeof(Brush), typeof(HoyoButton), new(new BrushConverter().ConvertFromString("#f4cb99") as Brush));
     readonly static DependencyProperty ButtonToolTipProperty =
@@ -13,9 +13,9 @@ public partial class Button : UserControl
     readonly static DependencyProperty CanvasMarginProperty =
         DependencyProperty.Register("CanvasMargin", typeof(Thickness), typeof(HoyoButton), new(new Thickness(0,0,0,0)));
 
-    public string Image
+    public ImageSource Image
     {
-        get => (string)GetValue(ImageProperty);
+        get => (ImageSource)GetValue(ImageProperty);
         set => SetValue(ImageProperty, value);
     }
     public Brush BG
@@ -34,7 +34,7 @@ public partial class Button : UserControl
         set => SetValue(CanvasMarginProperty, value);
     }
 
-    public Button()
+    public HoyoButton()
     {
         InitializeComponent();
 

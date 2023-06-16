@@ -2,14 +2,15 @@
 
 public partial class App : Application
 {
-    //static readonly string dir = Path.Combine(Path.GetTempPath(), "HoyoverseBG");
-    //public static readonly Uri TempBG = new(Path.Combine(Path.GetTempPath(), "HoyoverseBG", "bg.mp4"));
-    //public static readonly MediaElement PreMediaElement = new();
-    
     static bool createdNew;
+
     static readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name;
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+    public readonly static string UniqueHashBUILD = HoyoMain.GenerateMD5HASH();
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members")]
     private static readonly Mutex _Mutex = new(true, AppName+Version, out createdNew);
+
     public static readonly Forms.NotifyIcon AppTray = new();
 
     protected override void OnStartup(StartupEventArgs e)

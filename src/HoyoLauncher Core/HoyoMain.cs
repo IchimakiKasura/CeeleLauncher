@@ -10,18 +10,13 @@ public sealed class HoyoMain
         {
             _isgamerunning = value;
 
-            if(CurrentGameSelected == HoyoGames.DEFAULT) return;
-
-            HoyoWindow.LaunchButton.IsEnabled =
-            HoyoWindow.HomeButton.IsEnabled = 
-            HoyoWindow.LaunchSelection.IsEnabled = !value;
-            HoyoWindow.LaunchButton.Content = value ? AppResources.Resources.GAME_LAUNCHED_TEXT : AppResources.Resources.GAME_DEFAULT_TEXT;
+            UpdateIsGameRunning();
         }
     }
 
     public static bool FirstRun { get; set; }
+    public static HoyoGames CurrentGameSelected { get; set; }
     public static string ExecutableName { get; private set; }
-    public static HoyoGames CurrentGameSelected { get; private set; }
 
     public static void Initialize()
     {
@@ -52,14 +47,14 @@ public sealed class HoyoMain
             LastGame();
     }
 
-    public static void GameChange(HoyoGames GameSelected, string uid) =>
-        GameChange(GameSelected, short.Parse(uid));
-    public static void GameChange(HoyoGames GameSelected, short uid)
+    public static void GameChange(string uid) =>
+        GameChange(short.Parse(uid));
+    public static void GameChange(short uid)
     {
-        ConfigRead GameConfig = ConfigRead.GetConfig(GameSelected.GAME_DIRECTORY);
+        ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
         
         ImageBrush GameBG = 
-            GameConfig.GameBackground is null ? GameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
+            GameConfig.GameBackground is null ? CurrentGameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
 
         HoyoValues values = new() 
         {
@@ -70,22 +65,27 @@ public sealed class HoyoMain
             LaunchButtonContent = AppResources.Resources.GAME_DEFAULT_TEXT     
         };
 
-        if(GameSelected == HoyoGames.ZenlessZoneZero)
+        if(CurrentGameSelected == HoyoGames.ZenlessZoneZero)
         {
             values.CheckInButton =
             values.LaunchButton = false;
             values.LaunchButtonContent = AppResources.Resources.GAME_SOON_TEXT;
         }
 
-        if(!GameConfig.ConfigExist && GameSelected != HoyoGames.ZenlessZoneZero)
+        if(!GameConfig.ConfigExist && CurrentGameSelected != HoyoGames.ZenlessZoneZero)
         {
             values.LaunchButton = false;
             values.LaunchButtonContent = AppResources.Resources.GAME_NOTFOUND;
         }
 
+        if(IsGameRunning)
+        {
+            values.LaunchButton = false;
+            values.LaunchButtonContent = AppResources.Resources.GAME_LAUNCHED_TEXT;
+        }
+
         values.ApplyChanges();
         
-        CurrentGameSelected = GameSelected;
         ExecutableName = GameConfig.GameStartName;
 
         AppSettings.Settings.Default.LAST_GAME = uid += 1;
@@ -115,7 +115,7 @@ public sealed class HoyoMain
         }
 
         if(!FirstRun)
-            MessageBox.Show($"ERROR:\n\nThe \"{Game.GAME_NAME}\" cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show($"ERROR:\n\nThe \"{Game.GAME_NAME}\" config cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         
         LauncherButton.IsEnabled = false;
     }
@@ -123,18 +123,21 @@ public sealed class HoyoMain
     // Sets to the last game selected
     static void LastGame()
     {
-        HoyoGames Hoyogame = null;
+        HoyoGames SelectedHoyoGame = null;
         short uid = AppSettings.Settings.Default.LAST_GAME;
 
         switch(uid)
         {
-            case 1: Hoyogame = HoyoGames.GenshinImpact; break;
-            case 2: Hoyogame = HoyoGames.HonkaiStarRail; break;
-            case 3: Hoyogame = HoyoGames.HonkaiImpactThird; break;
+            case 1: SelectedHoyoGame = HoyoGames.GenshinImpact; break;
+            case 2: SelectedHoyoGame = HoyoGames.HonkaiStarRail; break;
+            case 3: SelectedHoyoGame = HoyoGames.HonkaiImpactThird; break;
         }
 
-        if(Hoyogame is not null)
-            GameChange(Hoyogame, --uid);
+        if(SelectedHoyoGame is not null)
+        {
+            CurrentGameSelected = SelectedHoyoGame;
+            GameChange(--uid);
+        }
     }
 
     // Updates the settings on the run
@@ -168,4 +171,33 @@ public sealed class HoyoMain
         using var stream = File.OpenRead(Environment.ProcessPath);
         return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-","");
     }
+
+    private static void UpdateIsGameRunning()
+    {
+        HoyoWindow.HomeButton.IsEnabled = !IsGameRunning;
+
+        HoyoWindow.LaunchButton.IsEnabled = false;
+        HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_LAUNCHED_TEXT;
+
+        if (IsGameRunning) return;
+
+        ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
+
+        string LaunchButtonContent = string.Empty switch
+        {
+            _ when CurrentGameSelected == HoyoGames.ZenlessZoneZero
+                => AppResources.Resources.GAME_SOON_TEXT,
+
+            _ when !GameConfig.ConfigExist && CurrentGameSelected != HoyoGames.ZenlessZoneZero
+                => AppResources.Resources.GAME_NOTFOUND,
+
+            _ => AppResources.Resources.GAME_DEFAULT_TEXT
+        };
+
+        if(LaunchButtonContent == AppResources.Resources.GAME_DEFAULT_TEXT)
+            HoyoWindow.LaunchButton.IsEnabled = true;
+
+        HoyoWindow.LaunchButton.Content = LaunchButtonContent;
+    }
+
 }

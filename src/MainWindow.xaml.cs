@@ -8,6 +8,10 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
+        // Having this to be front so darken the whole app
+        // Hinders other elements to be not selectable on Designer
+        BLACK_THING.Margin = new(0);
+
         HoyoWindow = this;
 
         HoyoMain.Initialize();
@@ -21,7 +25,7 @@ public partial class MainWindow : Window
         MediaElementBG.Loaded += delegate
         {
             if(!AppSettings.Settings.Default.FIRSTRUN)
-                new FirstRunWindow { Owner = HoyoWindow }.ShowDialog();
+                new ShortTour { Owner = HoyoWindow }.ShowDialog();
         };
     }
 

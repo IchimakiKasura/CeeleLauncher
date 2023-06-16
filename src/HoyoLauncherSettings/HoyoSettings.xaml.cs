@@ -2,7 +2,6 @@
 
 public partial class HoyoSettings : Window
 {
-    readonly static string UniqueHashBUILD = HoyoMain.GenerateMD5HASH();
 
     public HoyoSettings()
     {
@@ -12,7 +11,7 @@ public partial class HoyoSettings : Window
         $"""
         Created by Ichimaki Kasura
         This app is not affiliated with miHoYo / Hoyoverse by any means.
-        BUILD: {App.Version}_{UniqueHashBUILD}
+        BUILD: {App.Version}_{App.UniqueHashBUILD}
         """;
 
         HoyoWindow.BLACK_THING.Opacity = 0.5;

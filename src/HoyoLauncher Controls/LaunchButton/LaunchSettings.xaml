@@ -12,17 +12,37 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Height="65" Width="35" CornerRadius="0,5,5,0" BorderThickness="0.5" BorderBrush="#b28d1d">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                <GradientStop Color="#fecf0d" Offset="0.3" />
-                                <GradientStop Color="#856c04" Offset="1.5" />
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Border Name="MainBorder" Background="{TemplateBinding Background}" CornerRadius="0,5,5,0">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                    <Grid>
+                        
+                        <Canvas Name="ButtonTooltip" IsHitTestVisible="False" Opacity="0" Margin="0,-66,0,66" Grid.ColumnSpan="2">
+                            <Rectangle Fill="#141414" Height="13" Width="12" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="11" Canvas.Top="40">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="-1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="135"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Border Background="#141414" CornerRadius="10" Height="37" Width="96" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="-49">
+                                <TextBlock FontSize="12" Foreground="White" Margin="10,10,10,10" FontWeight="SemiBold" Text="Change Game"/>
+                            </Border>
+                        </Canvas>
+
+                        <Border Height="65" Width="35" CornerRadius="0,5,5,0" BorderThickness="0.5" BorderBrush="#b28d1d">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#fecf0d" Offset="0.3" />
+                                    <GradientStop Color="#856c04" Offset="1.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border Name="MainBorder" Background="{TemplateBinding Background}" CornerRadius="0,5,5,0">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
                         </Border>
-                    </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="MainBorder" Property="Background" Value="#a68217"/>
@@ -31,6 +51,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#cca222" Duration="0:0:.1"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonTooltip" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:.1"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -38,6 +59,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#00000000" Duration="0:0:.1"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonTooltip" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:.1"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
