@@ -42,9 +42,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <Reference Include="IniParser">
-            <HintPath>../iniReader/IniParser.dll</HintPath>
-        </Reference>
+		<ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj"/>
     </ItemGroup>
 
     <!-- Resources -->
@@ -121,10 +119,10 @@
 		<Using Include="HoyoLauncher.Core.Attributes" />
 		<Using Include="HoyoLauncher.HoyoLauncher_Core" />
 		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
-		<Using Include="HoyoLauncher.HoyoLauncher_Controls.SideButtons"/>
+		<Using Include="HoyoLauncher.HoyoLauncher_Controls.SideButtons" />
 
-		<Using Include="HoyoLauncher.Resources"/>
-		<Using Include="HoyoLauncher.Resources.Icons"/>
+		<Using Include="HoyoLauncher.Resources" />
+		<Using Include="HoyoLauncher.Resources.Icons" />
     </ItemGroup>
     
     <ItemGroup>
