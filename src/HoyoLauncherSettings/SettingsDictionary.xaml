@@ -82,7 +82,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="1"
                             CornerRadius="5">
-                        <ScrollViewer Margin="5,0,5,0" x:Name="PART_ContentHost" />
+                        <ScrollViewer Margin="5,-1,5,2" x:Name="PART_ContentHost" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">

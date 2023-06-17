@@ -28,46 +28,70 @@
                 </Grid>
             </Border>
 
-            <Grid>
-                <Border Name="Button_Location"  Background="#f6f5f3" Margin="40,101,660,390" CornerRadius="10,10,0,0">
-                    <TextBlock Text="Locations" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
+            <Grid Mouse.MouseDown="ChangePageClick">
+                <Border Name="Button_Locations"  Background="#f6f5f3" Margin="40,101,660,390" CornerRadius="10,10,0,0">
+                    <TextBlock Foreground="#997f5f" IsHitTestVisible="False" Text="Locations" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
                 </Border>
                 <Border Name="Button_Others" Background="#e3e1de" Margin="161,101,539,390" CornerRadius="10,10,0,0">
-                    <TextBlock Text="Others" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
+                    <TextBlock IsHitTestVisible="False" Text="Others" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
                 </Border>
                 <Border Name="Button_About" Background="#e3e1de" Margin="282,101,418,390" CornerRadius="10,10,0,0">
-                    <TextBlock Text="About" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
+                    <TextBlock IsHitTestVisible="False" Text="About" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
                 </Border>
             </Grid>
 
             <Border Background="#f6f5f3" Margin="30,130,30,80" CornerRadius="10">
                 <Grid>
-                    <Canvas Name="Locations" Visibility="Visible">
-                        <TextBlock Text="Genshin Impact Location: " FontSize="20" FontWeight="SemiBold" Margin="10,11,10,299"/>
+                    <Canvas Name="Locations" Visibility="Visible" ButtonBase.Click="LocationButtonClick">
+                        <TextBlock Text="Genshin Impact Location: " FontSize="20" FontWeight="SemiBold" Canvas.Left="18" Canvas.Top="14" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         <TextBox Name="GI_DIR_TXT" Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Canvas.Left="29" Canvas.Top="46" Width="564"/>
-                        <Button Name="GI_LOCATE" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="GenshinClick" FontSize="14" BorderThickness="2" Height="29" Canvas.Left="611" Canvas.Top="46" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132"/>
+                        <Button Name="GI_LOCATE" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" FontSize="14" BorderThickness="2" Height="29" Canvas.Left="611" Canvas.Top="46" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132"/>
 
-                        <TextBlock Text="Honkai Star Rail Location: " FontSize="20" FontWeight="SemiBold" Margin="10,81,10,229"/>
+                        <TextBlock Text="Honkai Star Rail Location: " FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Left="18" Canvas.Top="84" VerticalAlignment="Top"/>
                         <TextBox Name="HSR_DIR_TXT" Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Canvas.Left="29" Canvas.Top="116" Width="564"/>
-                        <Button Name="HSR_LOCATE" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="HSRClick" FontSize="14" BorderThickness="2" Height="29" Canvas.Left="611" Canvas.Top="116" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132"/>
+                        <Button Name="HSR_LOCATE" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" FontSize="14" BorderThickness="2" Height="29" Canvas.Left="611" Canvas.Top="116" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132"/>
 
-                        <TextBlock Text="Honkai Impact 3rd Location: " FontSize="20" FontWeight="SemiBold" Margin="10,151,10,159"/>
+                        <TextBlock Text="Honkai Impact 3rd Location: " FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Left="18" Canvas.Top="154" VerticalAlignment="Top"/>
                         <TextBox Name="HI3_DIR_TXT" Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Canvas.Left="29" Canvas.Top="186" Width="564"/>
-                        <Button Name="HI3_LOCATE" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" Click="HI3Click" FontSize="14" BorderThickness="2" Height="29" Canvas.Left="611" Canvas.Top="186" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132"/>
+                        <Button Name="HI3_LOCATE" Content="Open Folder" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Black" FontSize="14" BorderThickness="2" Height="29" Canvas.Left="611" Canvas.Top="186" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132"/>
 
-                        <TextBlock Text="Zenless Zone Zero Location: " FontSize="20" FontWeight="SemiBold" Margin="10,221,10,89"/>
+                        <TextBlock Text="Zenless Zone Zero Location: " FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Left="18" Canvas.Top="224" VerticalAlignment="Top"/>
                         <TextBox x:Name="ZZZ_DIR_TXT" Text="Unavailable" Style="{StaticResource TextBoxStyle}" HorizontalContentAlignment="Center" IsReadOnly="True" Canvas.Left="29" Canvas.Top="256" Width="564"/>
                         <Button Name="ZZZ_LOCATE" Content="Open Folder" IsEnabled="False" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Gray" FontSize="14" BorderThickness="2" Height="29" Canvas.Left="611" Canvas.Top="256" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132"/>
                     </Canvas>
 
                     <Canvas Name="Others" Visibility="Hidden" Margin="20">
-                        <Border Name="RadioButtonTray_Click" Cursor="Hand" Background="Transparent" Height="26" Width="164">
-                            <RadioButton Name="RadioButtonTray" IsHitTestVisible="False" Content="Minimize to Tray" Margin="0,0,55,9">
+
+                        <Border Background="#e3e1de" HorizontalAlignment="Left" Height="270" VerticalAlignment="Center" Width="360" Canvas.Left="360" CornerRadius="10" Padding="15">
+                            <TextBlock Name="Tooltip_Text" Text="[TOOL TIP TEXT MESSAGES | INFO ]" FontSize="20" TextWrapping="Wrap"/>
+                        </Border>
+
+                        <Border Name="RadioButtonTray_Click" Cursor="Hand" Background="Transparent" Height="26" Width="164" HorizontalAlignment="Center" Canvas.Top="24" VerticalAlignment="Top" Canvas.Left="31">
+                            <RadioButton Name="RadioButtonTray" IsHitTestVisible="False" Content="Minimize to Tray" Margin="-20,0,75,9">
                                 <RadioButton.RenderTransform>
                                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                                 </RadioButton.RenderTransform>
                             </RadioButton>
                         </Border>
+
+                        <Border Name="RadioButtonBackground_Click" Cursor="Hand" Background="Transparent" Height="26" Width="233" HorizontalAlignment="Left" Canvas.Top="65" VerticalAlignment="Center" Canvas.Left="11">
+                            <RadioButton Name="RadioButtonBackground" IsHitTestVisible="False" Content="Enable Background Video" Margin="0,0,55,9">
+                                <RadioButton.RenderTransform>
+                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                </RadioButton.RenderTransform>
+                            </RadioButton>
+                        </Border>
+
+                        <Border Name="RadioButtonSelectiveStartup_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Left" Canvas.Top="106" VerticalAlignment="Center" Canvas.Left="11">
+                            <RadioButton Name="RadioButtonSelectiveStartup" IsHitTestVisible="False" Content="Enable Last Game Played on Start" Margin="0,0,55,9">
+                                <RadioButton.RenderTransform>
+                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                </RadioButton.RenderTransform>
+                            </RadioButton>
+                        </Border>
+
+                        <Button Content="Clear Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="11"/>
+
                     </Canvas>
 
                     <Canvas Name="About" Visibility="Hidden">
@@ -87,7 +111,7 @@
                             <LineBreak/>
                             <Hyperlink Click="GithubPR">Contribute on the Project</Hyperlink>
                         </TextBlock>
-                        <Image Source="/Resources/HoyoVerseIcon.png" Stretch="Fill" Cursor="Hand" Height="130" Width="130" Canvas.Top="-2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <Image Source="/Resources/HoyoVerseIcon.png" Stretch="Fill" Height="130" Width="130" Canvas.Top="-2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         <Image Source="/Resources/github.png" MouseDown="GithubIconButton" Stretch="Fill" Cursor="Hand" Height="40" Canvas.Left="508" Width="40" Canvas.Top="252" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Canvas>
                 </Grid>

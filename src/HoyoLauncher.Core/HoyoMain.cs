@@ -59,13 +59,14 @@ public sealed class HoyoMain
             values.LaunchButton = false;
             values.LaunchButtonContent = AppResources.Resources.GAME_SOON_TEXT;
         }
-        else if(!GameConfig.ConfigExist)
+        else if(!GameConfig.ConfigExist || GameConfig.GameName != CurrentGameSelected.GAME_EXECUTABLE)
         {
             values.LaunchButton = false;
+            values.Background = CurrentGameSelected.GAME_DEFAULT_BG;
             values.LaunchButtonContent = AppResources.Resources.GAME_NOTFOUND;
         }
 
-        if(IsGameRunning)
+        if (IsGameRunning)
         {
             values.LaunchButton = false;
             values.LaunchButtonContent = AppResources.Resources.GAME_LAUNCHED_TEXT;

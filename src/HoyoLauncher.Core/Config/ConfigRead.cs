@@ -10,6 +10,7 @@ public sealed class ConfigRead
     public string GameInstallPath { get; private set; }
     public string GameBackgroundName { get; private set; }
     public string GameStartName { get; private set; }
+    public string GameName { get ; private set; }
     public ImageBrush GameBackground { get; private set; }
 
     public static ConfigRead GetConfig(string FilePath)
@@ -62,7 +63,8 @@ public sealed class ConfigRead
             GameInstallPath = gamepath,
             GameBackgroundName = Path.Combine(FilePath, "bg", gamebg),
             GameStartName = Path.Combine(gamepath, gamename),
-            GameBackground = GameBG_TEMP
+            GameBackground = GameBG_TEMP,
+            GameName = gamename
         };
     }    
 }

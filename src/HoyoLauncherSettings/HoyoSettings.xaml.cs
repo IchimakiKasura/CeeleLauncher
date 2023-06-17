@@ -3,7 +3,6 @@
 public partial class HoyoSettings : Window
 {
 
-    // Hear me out, I'm kinda lazy when making the Button_Location etc.. so fuck the mess
     readonly Brush SelectedPageColor = new BrushConverter().ConvertFromString("#f6f5f3") as Brush;
     readonly Brush UnSelectedPageColor = new BrushConverter().ConvertFromString("#e3e1de") as Brush;
 
@@ -16,7 +15,7 @@ public partial class HoyoSettings : Window
 
         HoyoWindow.BLACK_THING.Opacity = 0.5;
 
-        WindowDrag.MouseDown += (s, e) => {  };
+        WindowDrag.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) DragMove(); };
         ExitButton.Click   += (s, e) => Close();
         CancelButton.Click += (s, e) => Close();
 
@@ -27,10 +26,6 @@ public partial class HoyoSettings : Window
             if (e.ChangedButton is MouseButton.Left)
                 AppSettings.Settings.Default.MinimizedTray = (bool)(RadioButtonTray.IsChecked = !RadioButtonTray.IsChecked);
         };
-
-        Button_Location.MouseDown += (s, e) =>  ChangePage(e, location: 0);
-        Button_Others.MouseDown += (s, e) =>    ChangePage(e, others: 0);
-        Button_About.MouseDown += (s, e) =>     ChangePage(e, about: 0);
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -46,22 +41,30 @@ public partial class HoyoSettings : Window
         base.OnClosed(e);
     }
 
-    static void GetFolderDirectory(TextBox txt)
+    void LocationButtonClick(object s, RoutedEventArgs e)
     {
         using var Folder = new Forms.FolderBrowserDialog();
+        TextBox textBox = null;
 
-        if(Folder.ShowDialog() is Forms.DialogResult.Cancel)
+        switch(((Button)e.Source).Name)
+        {
+            case "GI_LOCATE":
+                textBox = GI_DIR_TXT;
+                break;
+            case "HSR_LOCATE":
+                textBox = HSR_DIR_TXT;
+                break;
+            case "HI3_LOCATE":
+                textBox = HI3_DIR_TXT;
+                break;
+        }
+        e.Handled = true;
+
+        if (Folder.ShowDialog() is Forms.DialogResult.Cancel)
             return;
 
-        txt.Text = Folder.SelectedPath;
+        textBox.Text = Folder.SelectedPath;
     }
-
-    void GenshinClick(object s, RoutedEventArgs e) =>
-        GetFolderDirectory(GI_DIR_TXT);
-    void HSRClick(object s, RoutedEventArgs e) =>
-        GetFolderDirectory(HSR_DIR_TXT);
-    void HI3Click(object s, RoutedEventArgs e) =>
-        GetFolderDirectory(HI3_DIR_TXT);
 
     void ConfirmClick(object s, RoutedEventArgs e)
     {
@@ -97,20 +100,33 @@ public partial class HoyoSettings : Window
             Close();
     }
 
-    void ChangePage(MouseButtonEventArgs e,
-                    Visibility location = Visibility.Hidden,
-                    Visibility others = Visibility.Hidden,
-                    Visibility about = Visibility.Hidden)
+    // lmao "List" was unnecessary but i like chaos
+    void ChangePageClick(object s, MouseButtonEventArgs e)
     {
+        var sButton = ((Border)e.Source);
+        List<Canvas> pages = new() { Locations, Others, About };
+        List<Border> buttons = new() { Button_Locations, Button_Others, Button_About };
+
         if (e.ChangedButton is not MouseButton.Left) return;
 
-        Locations.Visibility = location;
-        Others.Visibility = others;
-        About.Visibility = about;
+        foreach (var page in pages)
+            page.Visibility = Visibility.Hidden;
 
-        Button_Location.Background = location is Visibility.Visible ? SelectedPageColor : UnSelectedPageColor;
-        Button_Others.Background = others is Visibility.Visible ? SelectedPageColor : UnSelectedPageColor;
-        Button_About.Background = about is Visibility.Visible ? SelectedPageColor : UnSelectedPageColor;
+        foreach (var button in buttons)
+        {
+            ((TextBlock)button.Child).Foreground = Brushes.Black;
+            button.Background = UnSelectedPageColor;
+        }
+
+        sButton.Background = SelectedPageColor;
+        ((TextBlock)sButton.Child).Foreground = (Brush)new BrushConverter().ConvertFromString("#997f5f");
+
+        switch (sButton.Name)
+        {
+            case "Button_Locations":    Locations.Visibility = Visibility.Visible;  break;
+            case "Button_Others":       Others.Visibility = Visibility.Visible;     break;
+            case "Button_About":        About.Visibility = Visibility.Visible;      break;
+        }
     }
 
     static void RefreshCurrentSelectedGame()
