@@ -20,6 +20,7 @@ public partial class MainWindow : Window
         AppVersion.Text = App.Version;
 #else
         AppVersion.Text += $": test ver({App.Version})";
+        Console.WriteLine(App.UniqueHashBUILD);
 #endif
     }
 

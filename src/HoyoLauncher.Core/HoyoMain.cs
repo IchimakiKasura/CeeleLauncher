@@ -22,29 +22,17 @@ public sealed class HoyoMain
     {
         UpdateConfig();
 
-        bool ErrorOccured = false;
-
         FirstRun = true;
         CurrentGameSelected = HoyoGames.DEFAULT;
         IsGameRunning = false;
 
         EventsAttribute.SetEvents();
 
-        List<(string config, HoyoGames AbsoluteName, HoyoButton Launcher)> GameConfigs = new()
-        {
-            (AppSettings.Settings.Default.GENSHIN_IMPACT_DIR, HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
-            (AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR, HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
-            (AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR, HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
-        };
+        ValidateSettings(AppSettings.Settings.Default.GENSHIN_IMPACT_DIR, HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER, out bool _);
+        ValidateSettings(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR, HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER, out bool _);
+        ValidateSettings(AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR, HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER, out bool _);
 
-        foreach(var (config, name, Launcher) in CollectionsMarshal.AsSpan(GameConfigs))
-        {
-            ValidateSettings(config, name, Launcher, out ErrorOccured);
-            if(ErrorOccured) break;
-        }
-
-        if(!ErrorOccured)
-            LastGame();
+        LastGame();
     }
 
     public static void GameChange(string uid) =>
@@ -71,8 +59,7 @@ public sealed class HoyoMain
             values.LaunchButton = false;
             values.LaunchButtonContent = AppResources.Resources.GAME_SOON_TEXT;
         }
-
-        if(!GameConfig.ConfigExist && CurrentGameSelected != HoyoGames.ZenlessZoneZero)
+        else if(!GameConfig.ConfigExist)
         {
             values.LaunchButton = false;
             values.LaunchButtonContent = AppResources.Resources.GAME_NOTFOUND;
@@ -114,9 +101,6 @@ public sealed class HoyoMain
             return;
         }
 
-        if(!FirstRun)
-            MessageBox.Show($"ERROR:\n\nThe \"{Game.GAME_NAME}\" config cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        
         LauncherButton.IsEnabled = false;
     }
 
@@ -175,7 +159,13 @@ public sealed class HoyoMain
     public static string GenerateMD5HASH()
     {
         using var md5 = System.Security.Cryptography.MD5.Create();
-        using var stream = File.OpenRead(Environment.ProcessPath);
+
+        #if DEBUG
+            using var stream = File.OpenRead(Assembly.GetExecutingAssembly().Location);
+        #else
+            using var stream = File.OpenRead(Environment.ProcessPath);
+        #endif
+
         return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-","");
     }
 

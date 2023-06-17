@@ -30,13 +30,13 @@
 
             <Grid>
                 <Border Name="Button_Location"  Background="#f6f5f3" Margin="40,101,660,390" CornerRadius="10,10,0,0">
-                    <TextBlock Text="Locations" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
+                    <TextBlock Text="Locations" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
                 </Border>
                 <Border Name="Button_Others" Background="#e3e1de" Margin="161,101,539,390" CornerRadius="10,10,0,0">
-                    <TextBlock Text="Others" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
+                    <TextBlock Text="Others" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
                 </Border>
                 <Border Name="Button_About" Background="#e3e1de" Margin="282,101,418,390" CornerRadius="10,10,0,0">
-                    <TextBlock Text="About" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
+                    <TextBlock Text="About" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Segoe ui"/>
                 </Border>
             </Grid>
 
@@ -88,7 +88,7 @@
                             <Hyperlink Click="GithubPR">Contribute on the Project</Hyperlink>
                         </TextBlock>
                         <Image Source="/Resources/HoyoVerseIcon.png" Stretch="Fill" Cursor="Hand" Height="130" Width="130" Canvas.Top="-2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                        <Image Name="Github" Source="/Resources/github.png" Stretch="Fill" Cursor="Hand" Height="40" Canvas.Left="508" Width="40" Canvas.Top="252" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Image Source="/Resources/github.png" MouseDown="GithubIconButton" Stretch="Fill" Cursor="Hand" Height="40" Canvas.Left="508" Width="40" Canvas.Top="252" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Canvas>
                 </Grid>
             </Border>
