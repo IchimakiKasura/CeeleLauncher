@@ -86,12 +86,12 @@ namespace AppSettings {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool MinimizedTray {
+        public bool CHECKBOX_MINIMIZE_TRAY {
             get {
-                return ((bool)(this["MinimizedTray"]));
+                return ((bool)(this["CHECKBOX_MINIMIZE_TRAY"]));
             }
             set {
-                this["MinimizedTray"] = value;
+                this["CHECKBOX_MINIMIZE_TRAY"] = value;
             }
         }
         
@@ -104,6 +104,30 @@ namespace AppSettings {
             }
             set {
                 this["FIRSTRUN"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CHECKBOX_BACKGROUND {
+            get {
+                return ((bool)(this["CHECKBOX_BACKGROUND"]));
+            }
+            set {
+                this["CHECKBOX_BACKGROUND"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CHECKBOX_LASTGAME {
+            get {
+                return ((bool)(this["CHECKBOX_LASTGAME"]));
+            }
+            set {
+                this["CHECKBOX_LASTGAME"] = value;
             }
         }
     }

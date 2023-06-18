@@ -1,8 +1,6 @@
 ﻿<Window x:Class="HoyoLauncher.HoyoLauncherSettings.HoyoSettings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         WindowStartupLocation="CenterOwner"
         Background="Transparent"
         AllowsTransparency="true"
@@ -63,18 +61,21 @@
                     <Canvas Name="Others" Visibility="Hidden" Margin="20">
 
                         <Border Background="#e3e1de" HorizontalAlignment="Left" Height="270" VerticalAlignment="Center" Width="360" Canvas.Left="360" CornerRadius="10" Padding="15">
-                            <TextBlock Name="Tooltip_Text" Text="[TOOL TIP TEXT MESSAGES | INFO ]" FontSize="20" TextWrapping="Wrap"/>
+                            <TextBlock Name="Tooltip_Text" Text="[ TOOL TIP TEXT MESSAGES ]" FontSize="20" TextWrapping="Wrap"/>
                         </Border>
 
-                        <Border Name="RadioButtonTray_Click" Cursor="Hand" Background="Transparent" Height="26" Width="164" HorizontalAlignment="Center" Canvas.Top="24" VerticalAlignment="Top" Canvas.Left="31">
-                            <RadioButton Name="RadioButtonTray" IsHitTestVisible="False" Content="Minimize to Tray" Margin="-20,0,75,9">
+                        <Border Name="RadioButtonTray_Click" Cursor="Hand" Background="Transparent" Height="26" Width="201" HorizontalAlignment="Left" Canvas.Top="24" VerticalAlignment="Center" Canvas.Left="31">
+                            <Border.Uid>
+                                Put the app to System Tray when Game Launched or Minimized. Does not affect the Exit button.
+                            </Border.Uid>
+                            <RadioButton Name="RadioButtonTray" IsHitTestVisible="False" Content="Minimize to system tray" Margin="-20,0,75,9">
                                 <RadioButton.RenderTransform>
                                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                                 </RadioButton.RenderTransform>
                             </RadioButton>
                         </Border>
 
-                        <Border Name="RadioButtonBackground_Click" Cursor="Hand" Background="Transparent" Height="26" Width="233" HorizontalAlignment="Left" Canvas.Top="65" VerticalAlignment="Center" Canvas.Left="11">
+                        <Border Name="RadioButtonBackground_Click" Cursor="Hand" Background="Transparent" Height="26" Width="233" HorizontalAlignment="Left" Canvas.Top="65" VerticalAlignment="Center" Canvas.Left="11" Uid="Enable or Disable the video on the Hoyo Menu / Home Screen.(Changes to static picture)&#xa;&#xa;&#xa;&#xa;[ The animated background requires Internet. ]&#xa;[Requires App Restart]">
                             <RadioButton Name="RadioButtonBackground" IsHitTestVisible="False" Content="Enable Background Video" Margin="0,0,55,9">
                                 <RadioButton.RenderTransform>
                                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
@@ -83,6 +84,9 @@
                         </Border>
 
                         <Border Name="RadioButtonSelectiveStartup_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Left" Canvas.Top="106" VerticalAlignment="Center" Canvas.Left="11">
+                            <Border.Uid>
+                                Enable or Disable the Automatic Select on the last game choosed.
+                            </Border.Uid>
                             <RadioButton Name="RadioButtonSelectiveStartup" IsHitTestVisible="False" Content="Enable Last Game Played on Start" Margin="0,0,55,9">
                                 <RadioButton.RenderTransform>
                                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
@@ -90,7 +94,233 @@
                             </RadioButton>
                         </Border>
 
-                        <Button Content="Clear Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="11"/>
+                        <TextBlock Text="Launcher Language: " FontSize="18" Canvas.Left="11" Canvas.Top="152" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <ComboBox Name="Funni" Canvas.Left="180" Canvas.Top="149" HorizontalAlignment="Center" VerticalAlignment="Top" Height="31" Width="132" HorizontalContentAlignment="Center" SelectedIndex="45" FontSize="16.4" FontWeight="SemiBold" Uid="Change Launcher Lanugauge.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[ NOT WORKING | JUST FOR FUN ]">
+                            <ComboBoxItem Content="Afar"/>
+                            <ComboBoxItem Content="Abkhazian"/>
+                            <ComboBoxItem Content="Afrikaans"/>
+                            <ComboBoxItem Content="Amharic"/>
+                            <ComboBoxItem Content="Arabic"/>
+                            <ComboBoxItem Content="Arabic (U.A.E.)"/>
+                            <ComboBoxItem Content="Arabic (Bahrain)"/>
+                            <ComboBoxItem Content="Arabic (Algeria)"/>
+                            <ComboBoxItem Content="Arabic (Egypt)"/>
+                            <ComboBoxItem Content="Arabic (Iraq)"/>
+                            <ComboBoxItem Content="Arabic (Jordan)"/>
+                            <ComboBoxItem Content="Arabic (Kuwait)"/>
+                            <ComboBoxItem Content="Arabic (Lebanon)"/>
+                            <ComboBoxItem Content="Arabic (libya)"/>
+                            <ComboBoxItem Content="Arabic (Morocco)"/>
+                            <ComboBoxItem Content="Arabic (Oman)"/>
+                            <ComboBoxItem Content="Arabic (Qatar)"/>
+                            <ComboBoxItem Content="Arabic (Saudi Arabia)"/>
+                            <ComboBoxItem Content="Arabic (Syria)"/>
+                            <ComboBoxItem Content="Arabic (Tunisia)"/>
+                            <ComboBoxItem Content="Arabic (Yemen)"/>
+                            <ComboBoxItem Content="Assamese"/>
+                            <ComboBoxItem Content="Aymara"/>
+                            <ComboBoxItem Content="Azeri"/>
+                            <ComboBoxItem Content="Bashkir"/>
+                            <ComboBoxItem Content="Belarusian"/>
+                            <ComboBoxItem Content="Bulgarian"/>
+                            <ComboBoxItem Content="Bihari"/>
+                            <ComboBoxItem Content="Bislama"/>
+                            <ComboBoxItem Content="Bengali"/>
+                            <ComboBoxItem Content="Tibetan"/>
+                            <ComboBoxItem Content="Breton"/>
+                            <ComboBoxItem Content="Catalan"/>
+                            <ComboBoxItem Content="Corsican"/>
+                            <ComboBoxItem Content="Czech"/>
+                            <ComboBoxItem Content="Welsh"/>
+                            <ComboBoxItem Content="Danish"/>
+                            <ComboBoxItem Content="German"/>
+                            <ComboBoxItem Content="German (Austria)"/>
+                            <ComboBoxItem Content="German (Switzerland)"/>
+                            <ComboBoxItem Content="German (Liechtenstein)"/>
+                            <ComboBoxItem Content="German (Luxembourg)"/>
+                            <ComboBoxItem Content="Divehi"/>
+                            <ComboBoxItem Content="Bhutani"/>
+                            <ComboBoxItem Content="Greek"/>
+                            <ComboBoxItem Content="English"/>
+                            <ComboBoxItem Content="English (Australia)"/>
+                            <ComboBoxItem Content="English (Belize)"/>
+                            <ComboBoxItem Content="English (Canada)"/>
+                            <ComboBoxItem Content="English (United Kingdom)"/>
+                            <ComboBoxItem Content="English (Ireland)"/>
+                            <ComboBoxItem Content="English (Jamaica)"/>
+                            <ComboBoxItem Content="English (New Zealand)"/>
+                            <ComboBoxItem Content="English (Philippines)"/>
+                            <ComboBoxItem Content="English (Trinidad)"/>
+                            <ComboBoxItem Content="English (United States)"/>
+                            <ComboBoxItem Content="English (South Africa)"/>
+                            <ComboBoxItem Content="English (Zimbabwe)"/>
+                            <ComboBoxItem Content="Esperanto"/>
+                            <ComboBoxItem Content="Spanish"/>
+                            <ComboBoxItem Content="Spanish (Argentina)"/>
+                            <ComboBoxItem Content="Spanish (Bolivia)"/>
+                            <ComboBoxItem Content="Spanish (Chile)"/>
+                            <ComboBoxItem Content="Spanish (Colombia)"/>
+                            <ComboBoxItem Content="Spanish (Costa Rica)"/>
+                            <ComboBoxItem Content="Spanish (Dominican Republic)"/>
+                            <ComboBoxItem Content="Spanish (Ecuador)"/>
+                            <ComboBoxItem Content="Spanish (España)"/>
+                            <ComboBoxItem Content="Spanish (Guatemala)"/>
+                            <ComboBoxItem Content="Spanish (Honduras)"/>
+                            <ComboBoxItem Content="Spanish (Mexico)"/>
+                            <ComboBoxItem Content="Spanish (Nicaragua)"/>
+                            <ComboBoxItem Content="Spanish (Panama)"/>
+                            <ComboBoxItem Content="Spanish (Peru)"/>
+                            <ComboBoxItem Content="Spanish (Puerto Rico)"/>
+                            <ComboBoxItem Content="Spanish (Paraguay)"/>
+                            <ComboBoxItem Content="Spanish (El Salvador)"/>
+                            <ComboBoxItem Content="Spanish (United States)"/>
+                            <ComboBoxItem Content="Spanish (Uruguay)"/>
+                            <ComboBoxItem Content="Spanish (Venezuela)"/>
+                            <ComboBoxItem Content="Estonian"/>
+                            <ComboBoxItem Content="Basque"/>
+                            <ComboBoxItem Content="Farsi"/>
+                            <ComboBoxItem Content="Finnish"/>
+                            <ComboBoxItem Content="Fiji"/>
+                            <ComboBoxItem Content="Faeroese"/>
+                            <ComboBoxItem Content="French"/>
+                            <ComboBoxItem Content="French (Belgium)"/>
+                            <ComboBoxItem Content="French (Canada)"/>
+                            <ComboBoxItem Content="French (Switzerland)"/>
+                            <ComboBoxItem Content="French (Luxembourg)"/>
+                            <ComboBoxItem Content="French (Monaco)"/>
+                            <ComboBoxItem Content="Frisian"/>
+                            <ComboBoxItem Content="Irish"/>
+                            <ComboBoxItem Content="Gaelic"/>
+                            <ComboBoxItem Content="Galician"/>
+                            <ComboBoxItem Content="Guarani"/>
+                            <ComboBoxItem Content="Gujarati"/>
+                            <ComboBoxItem Content="Hausa"/>
+                            <ComboBoxItem Content="Hebrew"/>
+                            <ComboBoxItem Content="Hindi"/>
+                            <ComboBoxItem Content="Croatian"/>
+                            <ComboBoxItem Content="Hungarian"/>
+                            <ComboBoxItem Content="Armenian"/>
+                            <ComboBoxItem Content="Interlingua"/>
+                            <ComboBoxItem Content="Indonesian"/>
+                            <ComboBoxItem Content="Interlingue"/>
+                            <ComboBoxItem Content="Inupiak"/>
+                            <ComboBoxItem Content="Indonesian"/>
+                            <ComboBoxItem Content="Icelandic"/>
+                            <ComboBoxItem Content="Italian"/>
+                            <ComboBoxItem Content="Italian (Switzerland)"/>
+                            <ComboBoxItem Content="Hebrew"/>
+                            <ComboBoxItem Content="Japanese"/>
+                            <ComboBoxItem Content="Yiddish"/>
+                            <ComboBoxItem Content="Javanese"/>
+                            <ComboBoxItem Content="Georgian"/>
+                            <ComboBoxItem Content="Kazakh"/>
+                            <ComboBoxItem Content="Greenlandic"/>
+                            <ComboBoxItem Content="Cambodian"/>
+                            <ComboBoxItem Content="Kannada"/>
+                            <ComboBoxItem Content="Korean"/>
+                            <ComboBoxItem Content="Konkani"/>
+                            <ComboBoxItem Content="Kashmiri"/>
+                            <ComboBoxItem Content="Kurdish"/>
+                            <ComboBoxItem Content="Kirghiz"/>
+                            <ComboBoxItem Content="Kyrgyz"/>
+                            <ComboBoxItem Content="Latin"/>
+                            <ComboBoxItem Content="Lingala"/>
+                            <ComboBoxItem Content="Laothian"/>
+                            <ComboBoxItem Content="Slovenian"/>
+                            <ComboBoxItem Content="Lithuanian"/>
+                            <ComboBoxItem Content="Latvian"/>
+                            <ComboBoxItem Content="Malagasy"/>
+                            <ComboBoxItem Content="Maori"/>
+                            <ComboBoxItem Content="FYRO Macedonian"/>
+                            <ComboBoxItem Content="Malayalam"/>
+                            <ComboBoxItem Content="Mongolian"/>
+                            <ComboBoxItem Content="Moldavian"/>
+                            <ComboBoxItem Content="Marathi"/>
+                            <ComboBoxItem Content="Malay"/>
+                            <ComboBoxItem Content="Maltese"/>
+                            <ComboBoxItem Content="Burmese"/>
+                            <ComboBoxItem Content="Nauru"/>
+                            <ComboBoxItem Content="Norwegian (Bokmal)"/>
+                            <ComboBoxItem Content="Nepali (India)"/>
+                            <ComboBoxItem Content="Dutch"/>
+                            <ComboBoxItem Content="Dutch (Belgium)"/>
+                            <ComboBoxItem Content="Norwegian"/>
+                            <ComboBoxItem Content="Norwegian (Bokmal)"/>
+                            <ComboBoxItem Content="Occitan"/>
+                            <ComboBoxItem Content="(Afan)/Oromoor/Oriya"/>
+                            <ComboBoxItem Content="Oriya"/>
+                            <ComboBoxItem Content="Punjabi"/>
+                            <ComboBoxItem Content="Polish"/>
+                            <ComboBoxItem Content="Pashto/Pushto"/>
+                            <ComboBoxItem Content="Portuguese"/>
+                            <ComboBoxItem Content="Portuguese (Brazil)"/>
+                            <ComboBoxItem Content="Quechua"/>
+                            <ComboBoxItem Content="Rhaeto-Romanic"/>
+                            <ComboBoxItem Content="Kirundi"/>
+                            <ComboBoxItem Content="Romanian"/>
+                            <ComboBoxItem Content="Romanian (Moldova)"/>
+                            <ComboBoxItem Content="Russian"/>
+                            <ComboBoxItem Content="Russian (Moldova)"/>
+                            <ComboBoxItem Content="Kinyarwanda"/>
+                            <ComboBoxItem Content="Sanskrit"/>
+                            <ComboBoxItem Content="Sorbian"/>
+                            <ComboBoxItem Content="Sindhi"/>
+                            <ComboBoxItem Content="Sangro"/>
+                            <ComboBoxItem Content="Serbo-Croatian"/>
+                            <ComboBoxItem Content="Singhalese"/>
+                            <ComboBoxItem Content="Slovak"/>
+                            <ComboBoxItem Content="Slovenian"/>
+                            <ComboBoxItem Content="Samoan"/>
+                            <ComboBoxItem Content="Shona"/>
+                            <ComboBoxItem Content="Somali"/>
+                            <ComboBoxItem Content="Albanian"/>
+                            <ComboBoxItem Content="Serbian"/>
+                            <ComboBoxItem Content="Siswati"/>
+                            <ComboBoxItem Content="Sesotho"/>
+                            <ComboBoxItem Content="Sundanese"/>
+                            <ComboBoxItem Content="Swedish"/>
+                            <ComboBoxItem Content="Swedish (Finland)"/>
+                            <ComboBoxItem Content="Swahili"/>
+                            <ComboBoxItem Content="Sutu"/>
+                            <ComboBoxItem Content="Syriac"/>
+                            <ComboBoxItem Content="Tamil"/>
+                            <ComboBoxItem Content="Telugu"/>
+                            <ComboBoxItem Content="Tajik"/>
+                            <ComboBoxItem Content="Thai"/>
+                            <ComboBoxItem Content="Tigrinya"/>
+                            <ComboBoxItem Content="Turkmen"/>
+                            <ComboBoxItem Content="Tagalog"/>
+                            <ComboBoxItem Content="Tswana"/>
+                            <ComboBoxItem Content="Tonga"/>
+                            <ComboBoxItem Content="Turkish"/>
+                            <ComboBoxItem Content="Tsonga"/>
+                            <ComboBoxItem Content="Tatar"/>
+                            <ComboBoxItem Content="Twi"/>
+                            <ComboBoxItem Content="Ukrainian"/>
+                            <ComboBoxItem Content="Urdu"/>
+                            <ComboBoxItem Content="English"/>
+                            <ComboBoxItem Content="Uzbek"/>
+                            <ComboBoxItem Content="Vietnamese"/>
+                            <ComboBoxItem Content="Volapuk"/>
+                            <ComboBoxItem Content="Wolof"/>
+                            <ComboBoxItem Content="Xhosa"/>
+                            <ComboBoxItem Content="Yiddish"/>
+                            <ComboBoxItem Content="Yoruba"/>
+                            <ComboBoxItem Content="Chinese"/>
+                            <ComboBoxItem Content="Chinese (China)"/>
+                            <ComboBoxItem Content="Chinese (Hong Kong SAR)"/>
+                            <ComboBoxItem Content="Chinese (Macau SAR)"/>
+                            <ComboBoxItem Content="Chinese (Singapore)"/>
+                            <ComboBoxItem Content="Chinese (Taiwan)"/>
+                            <ComboBoxItem Content="Zulu"/>
+                        </ComboBox>
+
+                        <Button Name="Button_ClearLocationTexts" Click="ResetLocationButtonClick" Content="Clear Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="11">
+                            <Button.Uid>
+                                Clear the Location on the "Location tab"
+                            </Button.Uid>
+                        </Button>
+                        <Button Name="Button_ResetSettings" Click="ResetSettingsButtonClick" Content="Reset To Default" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="180" Uid="Reset all the settings to its default state.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[App Restart Optional]"/>
 
                     </Canvas>
 

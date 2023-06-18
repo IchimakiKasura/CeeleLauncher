@@ -1,7 +1,10 @@
-﻿namespace HoyoLauncher.HoyoLauncherSettings;
+﻿using HoyoLauncher.HoyoLauncherSettings.Settings.OthersTab;
+
+namespace HoyoLauncher.HoyoLauncherSettings;
 
 public partial class HoyoSettings : Window
 {
+    public static HoyoSettings _hoyosettings;
 
     readonly Brush SelectedPageColor = new BrushConverter().ConvertFromString("#f6f5f3") as Brush;
     readonly Brush UnSelectedPageColor = new BrushConverter().ConvertFromString("#e3e1de") as Brush;
@@ -9,9 +12,11 @@ public partial class HoyoSettings : Window
     public HoyoSettings()
     {
         InitializeComponent();
+        _hoyosettings = this;
 
         VERSION.Text = App.Version;
         BUILDHASH.Text = $"({App.UniqueHashBUILD})";
+        Tooltip_Text.Text = "";
 
         HoyoWindow.BLACK_THING.Opacity = 0.5;
 
@@ -19,13 +24,19 @@ public partial class HoyoSettings : Window
         ExitButton.Click   += (s, e) => Close();
         CancelButton.Click += (s, e) => Close();
 
-        RadioButtonTray.IsChecked = AppSettings.Settings.Default.MinimizedTray;
+        HoyoTooltips.SetToolTips();
+        HoyoRadioButtons.SetRadioButtons();
 
-        RadioButtonTray_Click.MouseDown += (s, e) =>
+        foreach (var btn in new List<Border>{ Button_Locations, Button_Others, Button_About })
         {
-            if (e.ChangedButton is MouseButton.Left)
-                AppSettings.Settings.Default.MinimizedTray = (bool)(RadioButtonTray.IsChecked = !RadioButtonTray.IsChecked);
-        };
+            btn.MouseEnter += (s,e) => ((TextBlock)btn.Child).Foreground = (Brush)new BrushConverter().ConvertFromString("#f4cb99");
+            btn.MouseLeave += (s,e) =>
+            {
+                if(btn.Background.ToString() == "#FFF6F5F3")
+                    ((TextBlock)btn.Child).Foreground = (Brush)new BrushConverter().ConvertFromString("#997f5f");
+                else ((TextBlock)btn.Child).Foreground = Brushes.Black;
+            };
+        }
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -48,15 +59,9 @@ public partial class HoyoSettings : Window
 
         switch(((Button)e.Source).Name)
         {
-            case "GI_LOCATE":
-                textBox = GI_DIR_TXT;
-                break;
-            case "HSR_LOCATE":
-                textBox = HSR_DIR_TXT;
-                break;
-            case "HI3_LOCATE":
-                textBox = HI3_DIR_TXT;
-                break;
+            case "GI_LOCATE": textBox = GI_DIR_TXT; break;
+            case "HSR_LOCATE": textBox = HSR_DIR_TXT; break;
+            case "HI3_LOCATE": textBox = HI3_DIR_TXT; break;
         }
         e.Handled = true;
 
@@ -103,16 +108,14 @@ public partial class HoyoSettings : Window
     // lmao "List" was unnecessary but i like chaos
     void ChangePageClick(object s, MouseButtonEventArgs e)
     {
-        var sButton = ((Border)e.Source);
-        List<Canvas> pages = new() { Locations, Others, About };
-        List<Border> buttons = new() { Button_Locations, Button_Others, Button_About };
+        var sButton = (Border)e.Source;
 
         if (e.ChangedButton is not MouseButton.Left) return;
 
-        foreach (var page in pages)
+        foreach (var page in new List<Canvas>{ Locations, Others, About })
             page.Visibility = Visibility.Hidden;
 
-        foreach (var button in buttons)
+        foreach (var button in new List<Border>{ Button_Locations, Button_Others, Button_About })
         {
             ((TextBlock)button.Child).Foreground = Brushes.Black;
             button.Background = UnSelectedPageColor;
@@ -127,6 +130,24 @@ public partial class HoyoSettings : Window
             case "Button_Others":       Others.Visibility = Visibility.Visible;     break;
             case "Button_About":        About.Visibility = Visibility.Visible;      break;
         }
+    }
+
+    void ResetLocationButtonClick(object s, RoutedEventArgs e)
+    {
+        GI_DIR_TXT.Text = "";
+        HSR_DIR_TXT.Text = "";
+        HI3_DIR_TXT.Text = "";
+    }
+
+    void ResetSettingsButtonClick(object s, RoutedEventArgs e)
+    {
+        AppSettings.Settings.Default.Reset();
+        GI_DIR_TXT.Text = AppSettings.Settings.Default.GENSHIN_IMPACT_DIR;
+        HSR_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR;
+        HI3_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR;
+        RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY;
+        RadioButtonBackground.IsChecked = AppSettings.Settings.Default.CHECKBOX_BACKGROUND;
+        RadioButtonSelectiveStartup.IsChecked = AppSettings.Settings.Default.CHECKBOX_LASTGAME;
     }
 
     static void RefreshCurrentSelectedGame()

@@ -17,11 +17,17 @@
     <Setting Name="LAST_GAME" Type="System.Int16" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="MinimizedTray" Type="System.Boolean" Scope="User">
+    <Setting Name="CHECKBOX_MINIMIZE_TRAY" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="FIRSTRUN" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="CHECKBOX_BACKGROUND" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CHECKBOX_LASTGAME" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -32,7 +32,11 @@ public sealed class HoyoMain
         ValidateSettings(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR, HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER, out bool _);
         ValidateSettings(AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR, HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER, out bool _);
 
-        LastGame();
+        if (!AppSettings.Settings.Default.CHECKBOX_BACKGROUND)
+            HoyoWindow.MediaElementBG.Source = null;
+
+        if(AppSettings.Settings.Default.CHECKBOX_LASTGAME)
+            LastGame();
     }
 
     public static void GameChange(string uid) =>
