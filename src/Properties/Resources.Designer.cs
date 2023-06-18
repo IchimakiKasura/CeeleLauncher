@@ -106,6 +106,15 @@ namespace AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string GAME_UPDATE_TEXT {
+            get {
+                return ResourceManager.GetString("GAME_UPDATE_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GenshinImpact.exe.
         /// </summary>
         public static string GENSHIN_IMPACT_EXEC {

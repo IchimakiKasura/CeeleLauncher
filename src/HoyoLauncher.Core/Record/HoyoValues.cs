@@ -7,6 +7,7 @@ public sealed record HoyoValues
     public bool CheckInButton { get; set; }
     public bool LaunchButton { get; set; }
     public string LaunchButtonContent { get; set; }
+    public Visibility VersionBubble { get; set; }
 
     public void ApplyChanges()
     {
@@ -14,6 +15,7 @@ public sealed record HoyoValues
         HoyoWindow.CheckInPage.IsEnabled = CheckInButton;
         HoyoWindow.LaunchButton.IsEnabled = LaunchButton;
         HoyoWindow.LaunchButton.Content = LaunchButtonContent;
+        HoyoWindow.VERSION_BUBBLE.Visibility = VersionBubble;
 
         if(RemoveMainBG)
         {

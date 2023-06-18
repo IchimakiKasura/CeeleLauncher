@@ -65,6 +65,13 @@
                 </Canvas>
             </Border>
 
+            <Border Name="VERSION_BUBBLE" CornerRadius="10" Background="#9FFFFFFF" Margin="734,605,389,50" Visibility="Hidden">
+                <Grid>
+                    <TextBlock Text="New Version is out!" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" FontSize="15" FontWeight="SemiBold"/>
+                    <TextBlock Name="VERSION_TEXT" Text="VERSION_TEXT" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,32,0,0" FontSize="15" FontWeight="SemiBold"/>
+                </Grid>
+            </Border>
+
             <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false" CornerRadius="10" Margin="0,0,1280,0"/>
 
             <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.5" Style="{StaticResource TopButtonTrigger}">

@@ -44,7 +44,9 @@ public sealed class HoyoMain
     public static void GameChange(short uid)
     {
         ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
-        
+
+        ExecutableName = GameConfig.GameStartName;
+
         ImageBrush GameBG = 
             GameConfig.GameBackground is null ? CurrentGameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
 
@@ -54,7 +56,8 @@ public sealed class HoyoMain
             RemoveMainBG = true,
             CheckInButton = true,
             LaunchButton = true,
-            LaunchButtonContent = AppResources.Resources.GAME_DEFAULT_TEXT     
+            LaunchButtonContent = AppResources.Resources.GAME_DEFAULT_TEXT,
+            VersionBubble = Visibility.Hidden
         };
 
         if(CurrentGameSelected == HoyoGames.ZenlessZoneZero)
@@ -76,9 +79,47 @@ public sealed class HoyoMain
             values.LaunchButtonContent = AppResources.Resources.GAME_LAUNCHED_TEXT;
         }
 
+
+        if(CurrentGameSelected.GAME_VERSION_API_LINK != "")
+        {
+            var GameLatestVersion = new VersionChecker(CurrentGameSelected.GAME_VERSION_API_LINK).Version();
+            var GameOnlineBackground = new VersionChecker(CurrentGameSelected.GAME_BACKGROUND_API_LINK).BackgroundHash();
+
+#if DEBUG
+            Console.WriteLine($"""
+
+                 =================================================
+                 Game Selected: {GameConfig.GameName}
+                  Game Executable: {GameConfig.GameStartName}
+                 -------------------------------------------------
+                  Current Game Version: {GameConfig.GameVersion}
+                  Latest Game Version: {GameLatestVersion}
+                 -------------------------------------------------
+                  Game Background Checksum (client): {GameConfig.GameBackgroundMD5}
+                  Game Background Checksum (server): {GameOnlineBackground.HASH}
+
+                  Game Background Location (client): {GameConfig.GameBackground.ImageSource}
+                  Game Background Location (server): {GameOnlineBackground.BG_LINK}
+                 =================================================
+                
+                """);
+#endif
+
+            if (!Equals(GameConfig.GameVersion, GameLatestVersion))
+            {
+                HoyoWindow.VERSION_TEXT.Text = GameLatestVersion;
+
+                ExecutableName = Path.Combine(CurrentGameSelected.GAME_DIRECTORY, "launcher.exe");
+
+                values.VersionBubble = Visibility.Visible;
+                values.LaunchButtonContent = AppResources.Resources.GAME_UPDATE_TEXT;
+            }
+
+            if(!Equals(GameConfig.GameBackgroundMD5, GameOnlineBackground.HASH))
+                values.Background = new(new BitmapImage(new(GameOnlineBackground.BG_LINK)));
+        }
+
         values.ApplyChanges();
-        
-        ExecutableName = GameConfig.GameStartName;
 
         AppSettings.Settings.Default.LAST_GAME = uid += 1;
         AppSettings.Settings.Default.Save();
@@ -129,11 +170,6 @@ public sealed class HoyoMain
         }
     }
 
-    // Updates the settings on the run
-    // using the old version settings and copying it into new version.
-    //
-    // This prevents when editing the current settings it keeps
-    // using the old version settings unless the old version is deleted.
     static void UpdateConfig()
     {
         if(!AppSettings.Settings.Default.FIRSTRUN)

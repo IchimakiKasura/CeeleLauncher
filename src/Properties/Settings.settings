@@ -29,5 +29,23 @@
     <Setting Name="CHECKBOX_LASTGAME" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="HI3_VERSION_API" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://sdk-os-static.mihoyo.com/bh3_global/mdk/launcher/api/resource?launcher_id=10</Value>
+    </Setting>
+    <Setting Name="GENSHIN_VERSION_API" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://sdk-os-static.mihoyo.com/hk4e_global/mdk/launcher/api/resource?launcher_id=10&amp;key=gcStgarh</Value>
+    </Setting>
+    <Setting Name="HSR_VERSION_API" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://hkrpg-launcher-static.hoyoverse.com/hkrpg_global/mdk/launcher/api/resource?launcher_id=35&amp;key=vplOVX8Vn7cwG8yb</Value>
+    </Setting>
+    <Setting Name="HI3_CONTENT_API" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://sdk-os-static.mihoyo.com/bh3_global/mdk/launcher/api/content?filter_adv=true&amp;language=en-us&amp;launcher_id=10</Value>
+    </Setting>
+    <Setting Name="GENSHIN_CONTENT_API" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://sdk-os-static.mihoyo.com/hk4e_global/mdk/launcher/api/content?filter_adv=true&amp;language=en-us&amp;launcher_id=10&amp;key=gcStgarh</Value>
+    </Setting>
+    <Setting Name="HSR_CONTENT_API" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://hkrpg-launcher-static.hoyoverse.com/hkrpg_global/mdk/launcher/api/content?filter_adv=true&amp;language=en-us&amp;launcher_id=35&amp;key=vplOVX8Vn7cwG8yb</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

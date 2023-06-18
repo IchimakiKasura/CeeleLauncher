@@ -52,7 +52,8 @@ public sealed class EventsHandles
                             RemoveMainBG = false,
                             CheckInButton = false,
                             LaunchButton = false,
-                            LaunchButtonContent = "Welcome"
+                            LaunchButtonContent = "Welcome",
+                            VersionBubble = Visibility.Hidden
                         }
                         .ApplyChanges();
 
@@ -108,7 +109,7 @@ public sealed class EventsHandles
                 HoyoMain.ProcessStart(Launcher);
 
             if(Message is not "")
-                MessageBox.Show(Message, "NOTIF", MessageBoxButton.OK);
+                MessageBox.Show(Message, "A Very Cool Message Box", MessageBoxButton.OK);
         }
 
         HoyoWindow.GENSHIN_IMPACT_LAUNCHER.Click += GameLauncher;
@@ -128,7 +129,13 @@ public sealed class EventsHandles
         HoyoWindow.LaunchButton.Click += async (s,e) =>
         {
             e.Handled = true;
-            var MainButton = (Button)s;
+
+            if(Equals(HoyoWindow.LaunchButton.Content, AppRes.GAME_UPDATE_TEXT))
+            {
+                HoyoMain.ProcessStart(HoyoMain.ExecutableName);
+                MessageBox.Show("Opening Original Launcher to Update the game!", "A Very Cool Message Box", MessageBoxButton.OK);
+                return;
+            }
 
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
 

@@ -136,6 +136,10 @@
     <value>Coming Soon</value>
     <comment>Button Soon</comment>
   </data>
+  <data name="GAME_UPDATE_TEXT" xml:space="preserve">
+    <value>Update</value>
+    <comment>Button Update</comment>
+  </data>
   <data name="GENSHIN_IMPACT_EXEC" xml:space="preserve">
     <value>GenshinImpact.exe</value>
     <comment>Genshin Impact Executable Name</comment>

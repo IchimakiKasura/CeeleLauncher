@@ -130,5 +130,65 @@ namespace AppSettings {
                 this["CHECKBOX_LASTGAME"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://sdk-os-static.mihoyo.com/bh3_global/mdk/launcher/api/resource?launcher_id" +
+            "=10")]
+        public string HI3_VERSION_API {
+            get {
+                return ((string)(this["HI3_VERSION_API"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://sdk-os-static.mihoyo.com/hk4e_global/mdk/launcher/api/resource?launcher_i" +
+            "d=10&key=gcStgarh")]
+        public string GENSHIN_VERSION_API {
+            get {
+                return ((string)(this["GENSHIN_VERSION_API"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://hkrpg-launcher-static.hoyoverse.com/hkrpg_global/mdk/launcher/api/resourc" +
+            "e?launcher_id=35&key=vplOVX8Vn7cwG8yb")]
+        public string HSR_VERSION_API {
+            get {
+                return ((string)(this["HSR_VERSION_API"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://sdk-os-static.mihoyo.com/bh3_global/mdk/launcher/api/content?filter_adv=t" +
+            "rue&language=en-us&launcher_id=10")]
+        public string HI3_CONTENT_API {
+            get {
+                return ((string)(this["HI3_CONTENT_API"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://sdk-os-static.mihoyo.com/hk4e_global/mdk/launcher/api/content?filter_adv=" +
+            "true&language=en-us&launcher_id=10&key=gcStgarh")]
+        public string GENSHIN_CONTENT_API {
+            get {
+                return ((string)(this["GENSHIN_CONTENT_API"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://hkrpg-launcher-static.hoyoverse.com/hkrpg_global/mdk/launcher/api/content" +
+            "?filter_adv=true&language=en-us&launcher_id=35&key=vplOVX8Vn7cwG8yb")]
+        public string HSR_CONTENT_API {
+            get {
+                return ((string)(this["HSR_CONTENT_API"]));
+            }
+        }
     }
 }

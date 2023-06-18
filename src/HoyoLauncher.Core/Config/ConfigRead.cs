@@ -12,13 +12,15 @@ public sealed class ConfigRead
     public string GameStartName { get; private set; }
     public string GameName { get ; private set; }
     public ImageBrush GameBackground { get; private set; }
+    public string GameVersion { get; private set; }
+    public string GameBackgroundMD5 { get; private set; }
 
     public static ConfigRead GetConfig(string FilePath)
     {
         ImageBrush GameBG_TEMP = null;
 
         const string grp = "launcher";
-        string gamepath, gamebg, gamename;
+        string gamepath, gamebg, gamename, gamebgmd5, gamever;
 
         var ConfigFile = Path.Combine(FilePath, "config.ini");
         bool configexist = File.Exists(ConfigFile);
@@ -35,14 +37,15 @@ public sealed class ConfigRead
                 ConfigExist = configexist
             };
 
-        var DataObject = File.ReadAllText(Path.Combine(FilePath, "config.ini"));
-        var ParsedObject = new IniDataParser().Parse(DataObject);
+        var LauncherConfig = File.ReadAllText(Path.Combine(FilePath, "config.ini"));
+        var ParsedLauncherObject = new IniDataParser().Parse(LauncherConfig);
 
         try
         {
-            gamepath = ParsedObject[grp]["game_install_path"];
-            gamebg = ParsedObject[grp]["game_dynamic_bg_name"];
-            gamename = ParsedObject[grp]["game_start_name"];
+            gamepath = ParsedLauncherObject[grp]["game_install_path"];
+            gamebg = ParsedLauncherObject[grp]["game_dynamic_bg_name"];
+            gamename = ParsedLauncherObject[grp]["game_start_name"];
+            gamebgmd5 = ParsedLauncherObject[grp]["game_dynamic_bg_md5"];
         }
         catch
         {
@@ -57,6 +60,11 @@ public sealed class ConfigRead
         if(File.Exists(CheckBGExist))
             GameBG_TEMP = new(new BitmapImage(new(Path.Combine(FilePath, "bg", gamebg), UriKind.RelativeOrAbsolute)));
 
+        var GameConfig = File.ReadAllText(Path.Combine(gamepath, "config.ini"));
+        var ParsedGameObject = new IniDataParser().Parse(GameConfig);
+
+        gamever = ParsedGameObject["General"]["game_version"];
+
         return new()
         {
             ConfigExist = configexist,
@@ -64,7 +72,9 @@ public sealed class ConfigRead
             GameBackgroundName = Path.Combine(FilePath, "bg", gamebg),
             GameStartName = Path.Combine(gamepath, gamename),
             GameBackground = GameBG_TEMP,
-            GameName = gamename
+            GameName = gamename,
+            GameVersion = gamever,
+            GameBackgroundMD5 = gamebgmd5
         };
     }    
 }

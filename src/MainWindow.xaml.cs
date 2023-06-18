@@ -8,10 +8,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        // Having this to be front so darken the whole app
-        // Hinders other elements to be not selectable on Designer
         BLACK_THING.Margin = new(0);
-
         HoyoWindow = this;
 
         HoyoMain.Initialize();
@@ -20,7 +17,7 @@ public partial class MainWindow : Window
         AppVersion.Text = App.Version;
 #else
         AppVersion.Text += $": test ver({App.Version})";
-        Console.WriteLine(App.UniqueHashBUILD);
+        Console.WriteLine("BUILD HASH: "+App.UniqueHashBUILD);
 #endif
     }
 

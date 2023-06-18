@@ -55,10 +55,10 @@
         <Resource Include="Resources\Buttons\ZZZ.jpg" />
         
         <!-- Icon pictures -->
-        <Resource Include="Resources\Icons\128.ico" />
         <Resource Include="Resources\Icons\16.ico" />
-        <Resource Include="Resources\Icons\256.ico" />
         <Resource Include="Resources\Icons\64.ico" />
+        <Resource Include="Resources\Icons\128.ico" />
+        <Resource Include="Resources\Icons\256.ico" />
         
         <!-- Others uhh pictures -->
         <Resource Include="Resources\HoyoVerseIcon.png" />
@@ -108,11 +108,13 @@
         <Using Include="HoyoLauncher.Core.Config" />
         <Using Include="HoyoLauncher.Core.Record" />
         <Using Include="HoyoLauncher.Core.Attributes" />
+		<Using Include="HoyoLauncher.Core.FetchVersions" />
         <Using Include="HoyoLauncher.Controls.SideButtons" />
 
         <Using Include="HoyoLauncher.Resources" />
         <Using Include="HoyoLauncher.Resources.Icons" />
-        <Using Include="HoyoLauncher.Resources.Buttons.Selection" />
+		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
+		
     </ItemGroup>
     
     <ItemGroup>
