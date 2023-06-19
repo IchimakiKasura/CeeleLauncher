@@ -11,7 +11,6 @@ public sealed class EventsHandles
         HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER.ButtonToolTip = AppRes.HONKAI_IMPACT_THIRD_TIP;
         HoyoWindow.ZZZ_LAUNCHER.ButtonToolTip = AppRes.ZZZ_TIP;
         HoyoWindow.TOT_LAUNCHER.ButtonToolTip = AppRes.TOT_TIP;
-        HoyoWindow.CheckInPage.ButtonToolTip = AppRes.CHECKIN_TIP;
         HoyoWindow.GameHomePage.ButtonToolTip = AppRes.HOMEPAGE_TIP;
     }
     public static void WindowTopButtons()
@@ -50,7 +49,6 @@ public sealed class EventsHandles
                         {
                             Background = null,
                             RemoveMainBG = false,
-                            CheckInButton = false,
                             LaunchButton = false,
                             LaunchButtonContent = "Welcome",
                             VersionBubble = Visibility.Hidden
@@ -72,28 +70,21 @@ public sealed class EventsHandles
         static void GameLauncher(object s, RoutedEventArgs e)
         {
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
-            // implicit or explicit to System Button wont fucking work
-            // because the "s" which is an object currently; is a non-instance
-            // so its throwing the "InvalidCastException"
             var CurrentButton = s as HoyoButton;
             string Launcher = "";
-            string Message = "";
 
             switch(CurrentButton.Name)
             {
                 case "GENSHIN_IMPACT_LAUNCHER":
-                    Launcher = Path.Combine(HoyoGames.GenshinImpact.GAME_DIRECTORY, "launcher.exe");
-                    Message = "Genshin Impact Launcher is opening!";
+                    Launcher = HoyoGames.GenshinImpact.GAME_CHECK_IN_PAGE;
                     break;
                 
                 case "HONKAI_STAR_RAIL_LAUNCHER":
-                    Launcher = Path.Combine(HoyoGames.HonkaiStarRail.GAME_DIRECTORY, "launcher.exe");
-                    Message = "Honkai Star Rail Launcher is opening!";
+                    Launcher = HoyoGames.HonkaiStarRail.GAME_CHECK_IN_PAGE;
                     break;
                 
                 case "HONKAI_IMPACT_THIRD_LAUNCHER":
-                    Launcher = Path.Combine(HoyoGames.HonkaiImpactThird.GAME_DIRECTORY, "launcher.exe");
-                    Message = "Honkai Impact Launcher is opening!";
+                    Launcher = HoyoGames.HonkaiImpactThird.GAME_CHECK_IN_PAGE;
                     break;
                 
                 case "ZZZ_LAUNCHER":
@@ -107,9 +98,6 @@ public sealed class EventsHandles
 
             if(Launcher is not "")
                 HoyoMain.ProcessStart(Launcher);
-
-            if(Message is not "")
-                MessageBox.Show(Message, "A Very Cool Message Box", MessageBoxButton.OK);
         }
 
         HoyoWindow.GENSHIN_IMPACT_LAUNCHER.Click += GameLauncher;
@@ -120,9 +108,6 @@ public sealed class EventsHandles
 
         HoyoWindow.GameHomePage.Click += (s,e) =>
             HoyoMain.ProcessStart(HoyoMain.CurrentGameSelected.GAME_HOMEPAGE);
-
-        HoyoWindow.CheckInPage.Click += (s,e) =>
-            HoyoMain.ProcessStart(HoyoMain.CurrentGameSelected.GAME_CHECK_IN_PAGE);
     }
     public static void WindowLaunchGame()
     {
@@ -184,7 +169,7 @@ public sealed class EventsHandles
             }
 
             HoyoMain.CurrentGameSelected = SelectedHoyoGame;
-            HoyoMain.GameChange(SelectedButton.Uid);
+            GameChange.SetGame(SelectedButton.Uid);
         }
 
         HoyoWindow.GAME_SELECTION_GI.Click += AutoClose;

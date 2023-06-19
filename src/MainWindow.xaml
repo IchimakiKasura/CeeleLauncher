@@ -54,13 +54,13 @@
 
             <Border Name="SideButtons" Background="#40000000" Margin="1190,70,13,70" CornerRadius="10">
                 <Canvas>
-                    <ButtonControl:HoyoButton x:Name="GENSHIN_IMPACT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="25" Image="/Resources/Buttons/GI.jpg" IsEnabled="false" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ButtonControl:HoyoButton x:Name="HONKAI_STAR_RAIL_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="100" Image="/Resources/Buttons/HSR.jpg" IsEnabled="false" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ButtonControl:HoyoButton x:Name="HONKAI_IMPACT_THIRD_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="175" Image="/Resources/Buttons/HI3.jpg" IsEnabled="false" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="GENSHIN_IMPACT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="25" Image="/Resources/Buttons/GI.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="HONKAI_STAR_RAIL_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="100" Image="/Resources/Buttons/HSR.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="HONKAI_IMPACT_THIRD_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="175" Image="/Resources/Buttons/HI3.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <ButtonControl:HoyoButton x:Name="ZZZ_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="250" Image="/Resources/Buttons/ZZZ.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <ButtonControl:HoyoButton x:Name="TOT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="325" Image="/Resources/Buttons/TOT.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-                    <ButtonControl:HoyoButton x:Name="CheckInPage" IsEnabled="False" Height="35" Width="35" Canvas.Left="21" Canvas.Top="479" Image="/Resources/Buttons/rewards.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
+                    <!--<ButtonControl:HoyoButton x:Name="CheckInPage" IsEnabled="False" Height="35" Width="35" Canvas.Left="21" Canvas.Top="479" Image="/Resources/Buttons/rewards.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>-->
                     <ButtonControl:HoyoButton x:Name="GameHomePage" Height="35" Width="35" Canvas.Left="21" Canvas.Top="524" Image="/Resources/Buttons/home.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
                 </Canvas>
             </Border>

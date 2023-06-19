@@ -75,16 +75,16 @@ public partial class HoyoSettings : Window
     {
         bool ErrorOccured = false;
 
-        List<(string config, HoyoGames AbsoluteName, HoyoButton Launcher)> GameConfigs = new()
+        List<(string config, HoyoGames AbsoluteName)> GameConfigs = new()
         {
-            (GI_DIR_TXT.Text, HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER),
-            (HSR_DIR_TXT.Text, HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER),
-            (HI3_DIR_TXT.Text, HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER)
+            (GI_DIR_TXT.Text, HoyoGames.GenshinImpact),
+            (HSR_DIR_TXT.Text, HoyoGames.HonkaiStarRail),
+            (HI3_DIR_TXT.Text, HoyoGames.HonkaiImpactThird)
         };
 
-        foreach(var (config, name, Launcher) in CollectionsMarshal.AsSpan(GameConfigs))
+        foreach(var (config, name) in CollectionsMarshal.AsSpan(GameConfigs))
         {
-            HoyoMain.ValidateSettings(config, name, Launcher, out bool IsInvalidGame);
+            HoyoMain.ValidateSettings(config, name, out bool IsInvalidGame);
 
             if(IsInvalidGame)
             {
@@ -137,22 +137,28 @@ public partial class HoyoSettings : Window
         GI_DIR_TXT.Text = "";
         HSR_DIR_TXT.Text = "";
         HI3_DIR_TXT.Text = "";
+
+        MessageBox.Show("Locations are now cleared!", HoyoWindow.Title);
     }
 
     void ResetSettingsButtonClick(object s, RoutedEventArgs e)
     {
         AppSettings.Settings.Default.Reset();
+
         GI_DIR_TXT.Text = AppSettings.Settings.Default.GENSHIN_IMPACT_DIR;
         HSR_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR;
         HI3_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR;
+
         RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY;
         RadioButtonBackground.IsChecked = AppSettings.Settings.Default.CHECKBOX_BACKGROUND;
         RadioButtonSelectiveStartup.IsChecked = AppSettings.Settings.Default.CHECKBOX_LASTGAME;
+
+        MessageBox.Show("Settings has been Reset!", HoyoWindow.Title);
     }
 
     static void RefreshCurrentSelectedGame()
     {
         if(HoyoMain.CurrentGameSelected != HoyoGames.DEFAULT)
-            HoyoMain.GameChange(--AppSettings.Settings.Default.LAST_GAME);
+            GameChange.SetGame(--AppSettings.Settings.Default.LAST_GAME);
     }
 }

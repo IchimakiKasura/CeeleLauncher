@@ -83,6 +83,7 @@
     <ItemGroup>
         <Using Include="System" />
         <Using Include="System.IO" />
+        <Using Include="System.Linq" />
         <Using Include="System.Drawing" Alias="Draw" />
         <Using Include="System.Windows" />
         <Using Include="System.Net.Http" />
@@ -105,10 +106,11 @@
         <Using Include="HoyoLauncher.MainWindow" Static="true" />
 
         <Using Include="HoyoLauncher.Core" />
+		<Using Include="HoyoLauncher.Core.API" />
         <Using Include="HoyoLauncher.Core.Config" />
         <Using Include="HoyoLauncher.Core.Record" />
         <Using Include="HoyoLauncher.Core.Attributes" />
-		<Using Include="HoyoLauncher.Core.FetchVersions" />
+        <Using Include="HoyoLauncher.Core.GameChanger" />
         <Using Include="HoyoLauncher.Controls.SideButtons" />
 
         <Using Include="HoyoLauncher.Resources" />

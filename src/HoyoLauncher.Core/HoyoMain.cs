@@ -1,10 +1,10 @@
 namespace HoyoLauncher.Core;
 
-public sealed class HoyoMain
+public class HoyoMain
 {
-    private static bool _isgamerunning;
+    private static bool _isgamerunning = false;
     public static bool IsGameRunning
-    { 
+    {
         get => _isgamerunning;
         set
         {
@@ -14,140 +14,39 @@ public sealed class HoyoMain
         }
     }
 
-    public static bool FirstRun { get; set; }
-    public static HoyoGames CurrentGameSelected { get; set; }
-    public static string ExecutableName { get; private set; }
+    public static bool FirstRun { get; set; } = true;
+    public static HoyoGames CurrentGameSelected { get; set; } = HoyoGames.DEFAULT;
+    public static string ExecutableName { get; set; }
 
     public static void Initialize()
     {
         UpdateConfig();
 
-        FirstRun = true;
-        CurrentGameSelected = HoyoGames.DEFAULT;
-        IsGameRunning = false;
-
         EventsAttribute.SetEvents();
 
-        ValidateSettings(AppSettings.Settings.Default.GENSHIN_IMPACT_DIR, HoyoGames.GenshinImpact, HoyoWindow.GENSHIN_IMPACT_LAUNCHER, out bool _);
-        ValidateSettings(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR, HoyoGames.HonkaiStarRail, HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER, out bool _);
-        ValidateSettings(AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR, HoyoGames.HonkaiImpactThird, HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER, out bool _);
+        ValidateSettings(AppSettings.Settings.Default.GENSHIN_IMPACT_DIR, HoyoGames.GenshinImpact, out bool _);
+        ValidateSettings(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR, HoyoGames.HonkaiStarRail, out bool _);
+        ValidateSettings(AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR, HoyoGames.HonkaiImpactThird, out bool _);
 
         if (!AppSettings.Settings.Default.CHECKBOX_BACKGROUND)
             HoyoWindow.MediaElementBG.Source = null;
 
-        if(AppSettings.Settings.Default.CHECKBOX_LASTGAME)
+        if (AppSettings.Settings.Default.CHECKBOX_LASTGAME)
             LastGame();
     }
 
-    public static void GameChange(string uid) =>
-        GameChange(short.Parse(uid));
-    public static void GameChange(short uid)
+    public static void ValidateSettings(string GameConfigName, HoyoGames Game, out bool ErrorOccured)
     {
-        ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
-
-        ExecutableName = GameConfig.GameStartName;
-
-        ImageBrush GameBG = 
-            GameConfig.GameBackground is null ? CurrentGameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
-
-        HoyoValues values = new() 
-        {
-            Background = GameBG,
-            RemoveMainBG = true,
-            CheckInButton = true,
-            LaunchButton = true,
-            LaunchButtonContent = AppResources.Resources.GAME_DEFAULT_TEXT,
-            VersionBubble = Visibility.Hidden
-        };
-
-        if(CurrentGameSelected == HoyoGames.ZenlessZoneZero)
-        {
-            values.CheckInButton =
-            values.LaunchButton = false;
-            values.LaunchButtonContent = AppResources.Resources.GAME_SOON_TEXT;
-        }
-        else if(!GameConfig.ConfigExist || GameConfig.GameName != CurrentGameSelected.GAME_EXECUTABLE)
-        {
-            values.LaunchButton = false;
-            values.Background = CurrentGameSelected.GAME_DEFAULT_BG;
-            values.LaunchButtonContent = AppResources.Resources.GAME_NOTFOUND;
-        }
-
-        if (IsGameRunning)
-        {
-            values.LaunchButton = false;
-            values.LaunchButtonContent = AppResources.Resources.GAME_LAUNCHED_TEXT;
-        }
-
-
-        if(CurrentGameSelected.GAME_VERSION_API_LINK != "")
-        {
-            var GameLatestVersion = new VersionChecker(CurrentGameSelected.GAME_VERSION_API_LINK).Version();
-            var GameOnlineBackground = new VersionChecker(CurrentGameSelected.GAME_BACKGROUND_API_LINK).BackgroundHash();
-
-#if DEBUG
-            Console.WriteLine($"""
-
-                 =================================================
-                 Game Selected: {GameConfig.GameName}
-                  Game Executable: {GameConfig.GameStartName}
-                 -------------------------------------------------
-                  Current Game Version: {GameConfig.GameVersion}
-                  Latest Game Version: {GameLatestVersion}
-                 -------------------------------------------------
-                  Game Background Checksum (client): {GameConfig.GameBackgroundMD5}
-                  Game Background Checksum (server): {GameOnlineBackground.HASH}
-
-                  Game Background Location (client): {GameConfig.GameBackground.ImageSource}
-                  Game Background Location (server): {GameOnlineBackground.BG_LINK}
-                 =================================================
-                
-                """);
-#endif
-
-            if (!Equals(GameConfig.GameVersion, GameLatestVersion))
-            {
-                HoyoWindow.VERSION_TEXT.Text = GameLatestVersion;
-
-                ExecutableName = Path.Combine(CurrentGameSelected.GAME_DIRECTORY, "launcher.exe");
-
-                values.VersionBubble = Visibility.Visible;
-                values.LaunchButtonContent = AppResources.Resources.GAME_UPDATE_TEXT;
-            }
-
-            if(!Equals(GameConfig.GameBackgroundMD5, GameOnlineBackground.HASH))
-                values.Background = new(new BitmapImage(new(GameOnlineBackground.BG_LINK)));
-        }
-
-        values.ApplyChanges();
-
-        AppSettings.Settings.Default.LAST_GAME = uid += 1;
-        AppSettings.Settings.Default.Save();
-    }
-
-    public static void ValidateSettings(string GameConfigName, HoyoGames Game, HoyoButton LauncherButton, out bool ErrorOccured)
-    {
+        ConfigRead GameConfigData = ConfigRead.GetConfig(GameConfigName);
         ErrorOccured = false;
 
-        ConfigRead GameConfigData = ConfigRead.GetConfig(GameConfigName); 
-
-        if(GameConfigData.FilePathNone)
-        {
-            LauncherButton.IsEnabled = false;
+        if (GameConfigData.FilePathNone)
             return;
-        }
+        
+        Game.GAME_DIR_VALID = true;
 
-        // ahh goofy ☠️
-        if
-        (
-            !(ErrorOccured = !GameConfigData.ConfigExist || (Path.GetFileName(GameConfigData.GameStartName) != Game.GAME_EXECUTABLE))
-        )
-        {
-            LauncherButton.IsEnabled = true;
-            return;
-        }
-
-        LauncherButton.IsEnabled = false;
+        if (!GameConfigData.ConfigExist || Path.GetFileName(GameConfigData.GameStartName) != Game.GAME_EXECUTABLE)
+            Game.GAME_DIR_VALID = !(ErrorOccured = true);
     }
 
     // Sets to the last game selected
@@ -156,23 +55,23 @@ public sealed class HoyoMain
         HoyoGames SelectedHoyoGame = null;
         short uid = AppSettings.Settings.Default.LAST_GAME;
 
-        switch(uid)
+        switch (uid)
         {
             case 1: SelectedHoyoGame = HoyoGames.GenshinImpact; break;
             case 2: SelectedHoyoGame = HoyoGames.HonkaiStarRail; break;
             case 3: SelectedHoyoGame = HoyoGames.HonkaiImpactThird; break;
         }
 
-        if(SelectedHoyoGame is not null)
+        if (SelectedHoyoGame is not null)
         {
             CurrentGameSelected = SelectedHoyoGame;
-            GameChange(--uid);
+            GameChange.SetGame(--uid);
         }
     }
 
     static void UpdateConfig()
     {
-        if(!AppSettings.Settings.Default.FIRSTRUN)
+        if (!AppSettings.Settings.Default.FIRSTRUN)
         {
             AppSettings.Settings.Default.Upgrade();
 
@@ -201,13 +100,13 @@ public sealed class HoyoMain
     {
         using var md5 = System.Security.Cryptography.MD5.Create();
 
-        #if DEBUG
-            using var stream = File.OpenRead(Assembly.GetExecutingAssembly().Location);
-        #else
+#if DEBUG
+        using var stream = File.OpenRead(Assembly.GetExecutingAssembly().Location);
+#else
             using var stream = File.OpenRead(Environment.ProcessPath);
-        #endif
+#endif
 
-        return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-","");
+        return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
     }
 
     private static void UpdateIsGameRunning()
@@ -234,10 +133,31 @@ public sealed class HoyoMain
             _ => AppResources.Resources.GAME_DEFAULT_TEXT
         };
 
-        if(LaunchButtonContent == AppResources.Resources.GAME_DEFAULT_TEXT)
+        if (LaunchButtonContent == AppResources.Resources.GAME_DEFAULT_TEXT)
             HoyoWindow.LaunchButton.IsEnabled = true;
 
         HoyoWindow.LaunchButton.Content = LaunchButtonContent;
     }
+
+#if DEBUG
+    // public static void DebugList(ConfigRead GameConfig, API.RetrieveAPI GameAPIData)
+    // {
+    //     Console.WriteLine($"""
+    //         =================================================
+    //         Game Selected: {GameConfig.GameName}
+    //         Game Executable: {GameConfig.GameStartName}
+    //         -------------------------------------------------
+    //         Current Game Version: {GameConfig.GameVersion}
+    //         Latest Game Version: {GameAPIData.LatestVersion}
+    //         -------------------------------------------------
+    //         Game Background Checksum (client): {GameConfig.GameBackgroundMD5}
+    //         Game Background Checksum (server): {GameAPIData.BackgroundHASH}
+
+    //         Game Background Location (client): {GameConfig.GameBackground.ImageSource}
+    //         Game Background Location (server): {GameAPIData.BackgroundLINK}
+    //         =================================================
+    //     """);
+    // }
+#endif
 
 }

@@ -124,7 +124,7 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Genshin Impact Launcher.
+        ///   Looks up a localized string similar to Genshin Impact Check-In Rewards.
         /// </summary>
         public static string GENSHIN_IMPACT_TIP {
             get {
@@ -160,7 +160,7 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Honkai Impact 3rd Launcher.
+        ///   Looks up a localized string similar to Honkai Impact 3rd Check-In Rewards.
         /// </summary>
         public static string HONKAI_IMPACT_THIRD_TIP {
             get {
@@ -187,7 +187,7 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Honkai: Star Rail Launcher.
+        ///   Looks up a localized string similar to Honkai: Star Rail Check-In Rewards.
         /// </summary>
         public static string HONKAI_STAR_RAIL_TIP {
             get {

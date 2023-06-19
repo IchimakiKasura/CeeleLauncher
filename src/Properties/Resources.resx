@@ -145,7 +145,7 @@
     <comment>Genshin Impact Executable Name</comment>
   </data>
   <data name="GENSHIN_IMPACT_TIP" xml:space="preserve">
-    <value>Open Genshin Impact Launcher</value>
+    <value>Genshin Impact Check-In Rewards</value>
     <comment>Genhsin Impact Button ToolTip</comment>
   </data>
   <data name="GENSHIN_IMPACT_TITLE" xml:space="preserve">
@@ -160,7 +160,7 @@
     <comment>Honkai Impact 3rd Executable Name</comment>
   </data>
   <data name="HONKAI_IMPACT_THIRD_TIP" xml:space="preserve">
-    <value>Open Honkai Impact 3rd Launcher</value>
+    <value>Honkai Impact 3rd Check-In Rewards</value>
     <comment>Honkai Impact 3rd Button ToolTip</comment>
   </data>
   <data name="HONKAI_IMPACT_THIRD_TITLE" xml:space="preserve">
@@ -172,7 +172,7 @@
     <comment>Honkai Star Rail Executable Name</comment>
   </data>
   <data name="HONKAI_STAR_RAIL_TIP" xml:space="preserve">
-    <value>Open Honkai: Star Rail Launcher</value>
+    <value>Honkai: Star Rail Check-In Rewards</value>
     <comment>Honkai Star Rail Button ToolTip</comment>
   </data>
   <data name="HONKAI_STAR_RAIL_TITLE" xml:space="preserve">

@@ -4,13 +4,16 @@ namespace HoyoLauncher.Core;
 public sealed class HoyoGames
 {
     public string GAME_DIRECTORY { get; private set; }
+    public bool GAME_DIR_VALID { get; set; } = false;
     public string GAME_EXECUTABLE { get; }
     public string GAME_NAME { get; }
     public string GAME_HOMEPAGE { get; }
     public string GAME_CHECK_IN_PAGE { get; }
     public ImageBrush GAME_DEFAULT_BG { get; }
-    public string GAME_VERSION_API_LINK { get; }
-    public string GAME_BACKGROUND_API_LINK { get; }
+    public string GAME_RESOURCE_API_LINK { get; }
+    public string GAME_CONTENT_API_LINK { get; }
+
+    public RetrieveAPI API_CACHE { get; set; }
 
     private HoyoGames(
         string GameDirectory,
@@ -29,8 +32,8 @@ public sealed class HoyoGames
         GAME_HOMEPAGE = GameHomepage;
         GAME_CHECK_IN_PAGE = GameCheckInPage;
         GAME_DEFAULT_BG = GameDefaultBG;
-        GAME_VERSION_API_LINK = GameApiLink;
-        GAME_BACKGROUND_API_LINK = GameBGapi;
+        GAME_RESOURCE_API_LINK = GameApiLink;
+        GAME_CONTENT_API_LINK = GameBGapi;
     }
 
     public readonly static HoyoGames DEFAULT =
