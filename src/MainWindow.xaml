@@ -44,7 +44,7 @@
             <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50"/>
 
             <Border Name="GameSelection" Margin="925,420,128,120" Background="White" CornerRadius="5" Visibility="Hidden" Padding="5,9,5,0">
-                <Grid>
+                <Grid Name="GameSelection_Click">
                     <Button Name="GAME_SELECTION_GI" Uid="0" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Margin="0,0,0,130"/>
                     <Button Name="GAME_SELECTION_HSR" Uid="1" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Margin="0,40,0,90"/>
                     <Button Name="GAME_SELECTION_HI3" Uid="2" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact" Height="35" Margin="0,80,0,50"/>
@@ -53,20 +53,19 @@
             </Border>
 
             <Border Name="SideButtons" Background="#40000000" Margin="1190,70,13,70" CornerRadius="10">
-                <Canvas>
-                    <ButtonControl:HoyoButton x:Name="GENSHIN_IMPACT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="25" Image="/Resources/Buttons/GI.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ButtonControl:HoyoButton x:Name="HONKAI_STAR_RAIL_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="100" Image="/Resources/Buttons/HSR.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ButtonControl:HoyoButton x:Name="HONKAI_IMPACT_THIRD_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="175" Image="/Resources/Buttons/HI3.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ButtonControl:HoyoButton x:Name="ZZZ_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="250" Image="/Resources/Buttons/ZZZ.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ButtonControl:HoyoButton x:Name="TOT_LAUNCHER" Height="57" Width="57" Canvas.Left="10" Canvas.Top="325" Image="/Resources/Buttons/TOT.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Canvas x:Name="SideButton_Click">
+                    <ButtonControl:HoyoButton x:Name="GENSHIN_IMPACT_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="25" Image="/Resources/Buttons/GI.jpg"/>
+                    <ButtonControl:HoyoButton x:Name="HONKAI_STAR_RAIL_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="100" Image="/Resources/Buttons/HSR.jpg"/>
+                    <ButtonControl:HoyoButton x:Name="HONKAI_IMPACT_THIRD_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="175" Image="/Resources/Buttons/HI3.jpg"/>
+                    <ButtonControl:HoyoButton x:Name="ZZZ_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="250" Image="/Resources/Buttons/ZZZ.jpg"/>
+                    <ButtonControl:HoyoButton x:Name="TOT_SITE" Height="57" Width="57" Canvas.Left="10" Canvas.Top="325" Image="/Resources/Buttons/TOT.jpg"/>
 
-                    <!--<ButtonControl:HoyoButton x:Name="CheckInPage" IsEnabled="False" Height="35" Width="35" Canvas.Left="21" Canvas.Top="479" Image="/Resources/Buttons/rewards.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>-->
                     <ButtonControl:HoyoButton x:Name="GameHomePage" Height="35" Width="35" Canvas.Left="21" Canvas.Top="524" Image="/Resources/Buttons/home.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
                 </Canvas>
             </Border>
 
             <Border Name="VERSION_BUBBLE" CornerRadius="10" Background="#9FFFFFFF" Margin="734,605,389,50" Visibility="Hidden">
-                <Grid>
+                <Grid Margin="-103,0,-103,0" >
                     <TextBlock Text="New Version is out!" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" FontSize="15" FontWeight="SemiBold"/>
                     <TextBlock Name="VERSION_TEXT" Text="VERSION_TEXT" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,32,0,0" FontSize="15" FontWeight="SemiBold"/>
                 </Grid>

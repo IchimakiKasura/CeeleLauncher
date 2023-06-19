@@ -16,8 +16,16 @@ public sealed class GameChange : HoyoMain
     public static void SetGame(short uid)
     {
         HoyoValues values = new(TempValues);
+
         ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
         ImageBrush GameBG = GameConfig.GameBackground is null ? CurrentGameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
+        
+        void ConnectionFailure()
+        {
+            values.Background = GameBG;
+            values.VersionBubble = Visibility.Hidden;
+            values.LaunchButtonContent = "NO INTERNET";
+        }
 
         values.Background = GameBG;
         ExecutableName = GameConfig.GameStartName;
@@ -29,12 +37,12 @@ public sealed class GameChange : HoyoMain
             CurrentGameSelected.GAME_DIR_VALID
         };
 
-        if (ConditionMet.All(x=>x))
+        if (ConditionMet.All(x => x))
         {
-            var GameAPI = CurrentGameSelected.API_CACHE ??= new RetrieveAPI(CurrentGameSelected.GAME_CONTENT_API_LINK, CurrentGameSelected.GAME_RESOURCE_API_LINK);
+            HoyoWindow.VERSION_TEXT.Foreground = Brushes.Black;
+            HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.SemiBold;
 
-            if(GameAPI.LatestVersion == "CONNECTION FALIURE")
-                CurrentGameSelected.API_CACHE = null;
+            var GameAPI = CurrentGameSelected.API_CACHE ??= new RetrieveAPI(CurrentGameSelected.GAME_CONTENT_API_LINK, CurrentGameSelected.GAME_RESOURCE_API_LINK);
 
             if (GameConfig.GameVersion != GameAPI.LatestVersion)
             {
@@ -47,14 +55,19 @@ public sealed class GameChange : HoyoMain
             }
 
             if (GameConfig.GameBackgroundMD5 != GameAPI.BackgroundHASH)
-                values.Background = new ImageBrush(new BitmapImage(new(GameAPI.BackgroundLINK))) ?? GameBG;
+                values.Background = GameAPI.BackgroundLINK ??= GameBG;
+
+            if (GameAPI.LatestVersion == "CONNECTION FAILURE, PLEASE RETRY AGAIN")
+            {
+                ConnectionFailure();
+                values.VersionBubble = Visibility.Visible;
+                values.LaunchButton = false;
+                HoyoWindow.VERSION_TEXT.Foreground = Brushes.Red;
+                HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.Bold;
+                CurrentGameSelected.API_CACHE = null;
+            }
         }
-        else
-        {
-            values.Background = GameBG;
-            values.VersionBubble = Visibility.Hidden;
-            values.LaunchButtonContent = "NO INTERNET";
-        }
+        else ConnectionFailure();
 
         if (CurrentGameSelected == HoyoGames.ZenlessZoneZero)
         {

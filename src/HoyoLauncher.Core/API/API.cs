@@ -8,7 +8,7 @@ public sealed class RetrieveAPI
 {
     public string LatestVersion { get; set; }
     public string BackgroundHASH { get; set; }
-    public string BackgroundLINK { get; set; }
+    public ImageBrush BackgroundLINK { get; set; }
 
     readonly JsonElement Resources;
     readonly JsonElement Content;
@@ -36,12 +36,13 @@ public sealed class RetrieveAPI
             LatestVersion = Resources.GetProperty("data").GetProperty("game").GetProperty("latest").GetProperty("version").ToString();
 
             BackgroundHASH = Content.GetProperty("data").GetProperty("adv").GetProperty("bg_checksum").ToString();
-            BackgroundLINK = Content.GetProperty("data").GetProperty("adv").GetProperty("background").ToString();
+            BackgroundLINK = 
+                new ImageBrush(new BitmapImage(new(Content.GetProperty("data").GetProperty("adv").GetProperty("background").ToString())));
         }
         catch {
-            LatestVersion = "CONNECTION FALIURE";
+            LatestVersion = "CONNECTION FAILURE, PLEASE RETRY AGAIN";
             BackgroundHASH = "";
-            BackgroundLINK = HoyoMain.CurrentGameSelected.GAME_DEFAULT_BG.ImageSource.ToString();
+            BackgroundLINK = null;
         }
     }
 

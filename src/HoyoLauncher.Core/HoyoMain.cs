@@ -138,26 +138,4 @@ public class HoyoMain
 
         HoyoWindow.LaunchButton.Content = LaunchButtonContent;
     }
-
-#if DEBUG
-    // public static void DebugList(ConfigRead GameConfig, API.RetrieveAPI GameAPIData)
-    // {
-    //     Console.WriteLine($"""
-    //         =================================================
-    //         Game Selected: {GameConfig.GameName}
-    //         Game Executable: {GameConfig.GameStartName}
-    //         -------------------------------------------------
-    //         Current Game Version: {GameConfig.GameVersion}
-    //         Latest Game Version: {GameAPIData.LatestVersion}
-    //         -------------------------------------------------
-    //         Game Background Checksum (client): {GameConfig.GameBackgroundMD5}
-    //         Game Background Checksum (server): {GameAPIData.BackgroundHASH}
-
-    //         Game Background Location (client): {GameConfig.GameBackground.ImageSource}
-    //         Game Background Location (server): {GameAPIData.BackgroundLINK}
-    //         =================================================
-    //     """);
-    // }
-#endif
-
 }

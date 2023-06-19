@@ -6,11 +6,11 @@ public sealed class EventsHandles
 {
     public static void WindowSideButtonToolTips()
     {
-        HoyoWindow.GENSHIN_IMPACT_LAUNCHER.ButtonToolTip = AppRes.GENSHIN_IMPACT_TIP;
-        HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER.ButtonToolTip = AppRes.HONKAI_STAR_RAIL_TIP;
-        HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER.ButtonToolTip = AppRes.HONKAI_IMPACT_THIRD_TIP;
-        HoyoWindow.ZZZ_LAUNCHER.ButtonToolTip = AppRes.ZZZ_TIP;
-        HoyoWindow.TOT_LAUNCHER.ButtonToolTip = AppRes.TOT_TIP;
+        HoyoWindow.GENSHIN_IMPACT_REWARDS.ButtonToolTip = AppRes.GENSHIN_IMPACT_TIP;
+        HoyoWindow.HONKAI_STAR_RAIL_REWARDS.ButtonToolTip = AppRes.HONKAI_STAR_RAIL_TIP;
+        HoyoWindow.HONKAI_IMPACT_THIRD_REWARDS.ButtonToolTip = AppRes.HONKAI_IMPACT_THIRD_TIP;
+        HoyoWindow.ZZZ_REWARDS.ButtonToolTip = AppRes.ZZZ_TIP;
+        HoyoWindow.TOT_SITE.ButtonToolTip = AppRes.TOT_TIP;
         HoyoWindow.GameHomePage.ButtonToolTip = AppRes.HOMEPAGE_TIP;
     }
     public static void WindowTopButtons()
@@ -70,29 +70,20 @@ public sealed class EventsHandles
         static void GameLauncher(object s, RoutedEventArgs e)
         {
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
-            var CurrentButton = s as HoyoButton;
+            var CurrentButton = e.Source as HoyoButton;
+
             string Launcher = "";
 
             switch(CurrentButton.Name)
             {
-                case "GENSHIN_IMPACT_LAUNCHER":
-                    Launcher = HoyoGames.GenshinImpact.GAME_CHECK_IN_PAGE;
-                    break;
+                case "GameHomePage": Launcher = HoyoMain.CurrentGameSelected.GAME_HOMEPAGE; break;
+                case "GENSHIN_IMPACT_REWARDS": Launcher = HoyoGames.GenshinImpact.GAME_CHECK_IN_PAGE; break;
+                case "HONKAI_STAR_RAIL_REWARDS": Launcher = HoyoGames.HonkaiStarRail.GAME_CHECK_IN_PAGE; break;
+                case "HONKAI_IMPACT_THIRD_REWARDS": Launcher = HoyoGames.HonkaiImpactThird.GAME_CHECK_IN_PAGE; break;
+                case "TOT_SITE": Launcher = HoyoGames.TearsOfThemis.GAME_DIRECTORY; break;
                 
-                case "HONKAI_STAR_RAIL_LAUNCHER":
-                    Launcher = HoyoGames.HonkaiStarRail.GAME_CHECK_IN_PAGE;
-                    break;
-                
-                case "HONKAI_IMPACT_THIRD_LAUNCHER":
-                    Launcher = HoyoGames.HonkaiImpactThird.GAME_CHECK_IN_PAGE;
-                    break;
-                
-                case "ZZZ_LAUNCHER":
+                case "ZZZ_REWARDS":
                     MessageBox.Show("Game is not released yet!", "Zenless Zone Zero", MessageBoxButton.OK);
-                    break;
-                
-                case "TOT_LAUNCHER":
-                    Launcher = HoyoGames.TearsOfThemis.GAME_DIRECTORY;
                     break;
             }
 
@@ -100,14 +91,7 @@ public sealed class EventsHandles
                 HoyoMain.ProcessStart(Launcher);
         }
 
-        HoyoWindow.GENSHIN_IMPACT_LAUNCHER.Click += GameLauncher;
-        HoyoWindow.HONKAI_STAR_RAIL_LAUNCHER.Click += GameLauncher;
-        HoyoWindow.HONKAI_IMPACT_THIRD_LAUNCHER.Click += GameLauncher;
-        HoyoWindow.ZZZ_LAUNCHER.Click += GameLauncher;
-        HoyoWindow.TOT_LAUNCHER.Click += GameLauncher;
-
-        HoyoWindow.GameHomePage.Click += (s,e) =>
-            HoyoMain.ProcessStart(HoyoMain.CurrentGameSelected.GAME_HOMEPAGE);
+        HoyoWindow.SideButton_Click.AddHandler(System.Windows.Controls.Primitives.ButtonBase.ClickEvent, new RoutedEventHandler(GameLauncher));
     }
     public static void WindowLaunchGame()
     {
@@ -156,7 +140,7 @@ public sealed class EventsHandles
     {
         static void AutoClose(object s, RoutedEventArgs e)
         {
-            var SelectedButton = (Button)s;
+            var SelectedButton = (Button)e.Source;
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
             HoyoGames SelectedHoyoGame = null;
 
@@ -172,10 +156,7 @@ public sealed class EventsHandles
             GameChange.SetGame(SelectedButton.Uid);
         }
 
-        HoyoWindow.GAME_SELECTION_GI.Click += AutoClose;
-        HoyoWindow.GAME_SELECTION_HSR.Click += AutoClose;
-        HoyoWindow.GAME_SELECTION_HI3.Click += AutoClose;
-        HoyoWindow.GAME_SELECTION_ZZZ.Click += AutoClose;
+        HoyoWindow.GameSelection_Click.AddHandler(System.Windows.Controls.Primitives.ButtonBase.ClickEvent, new RoutedEventHandler(AutoClose));
     }
     public static void GameSelectionBackgroundSet()
     {

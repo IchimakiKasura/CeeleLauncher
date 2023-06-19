@@ -3,32 +3,22 @@
 namespace HoyoLauncher.HoyoLauncherSettings.Settings.OthersTab;
 sealed class HoyoTooltips
 {
+    readonly static List<UIElement> Elements = new()
+    {
+        _hoyosettings.RadioButtonTray_Click,
+        _hoyosettings.RadioButtonBackground_Click,
+        _hoyosettings.RadioButtonSelectiveStartup_Click,
+        _hoyosettings.Button_ClearLocationTexts,
+        _hoyosettings.Button_ResetSettings,
+        _hoyosettings.Funni
+    };
+
     public static void SetToolTips()
     {
-        _hoyosettings.RadioButtonTray_Click.MouseEnter += ShowTooltip;
-        _hoyosettings.RadioButtonBackground_Click.MouseEnter += ShowTooltip;
-        _hoyosettings.RadioButtonSelectiveStartup_Click.MouseEnter += ShowTooltip;
-
-        _hoyosettings.Button_ClearLocationTexts.MouseEnter += ShowTooltip;
-        _hoyosettings.Button_ResetSettings.MouseEnter += ShowTooltip;
-
-        _hoyosettings.Funni.MouseEnter += ShowTooltip;
-
-
-        _hoyosettings.RadioButtonTray_Click.MouseLeave += RemoveTooltip;
-        _hoyosettings.RadioButtonBackground_Click.MouseLeave += RemoveTooltip;
-        _hoyosettings.RadioButtonSelectiveStartup_Click.MouseLeave += RemoveTooltip;
-
-        _hoyosettings.Button_ClearLocationTexts.MouseLeave += RemoveTooltip;
-        _hoyosettings.Button_ResetSettings.MouseLeave += RemoveTooltip;
-
-        _hoyosettings.Funni.MouseLeave += RemoveTooltip;
+        foreach(var element in Elements)
+        {
+            element.MouseEnter += (s,e) => _hoyosettings.Tooltip_Text.Text = ((UIElement)s).Uid;
+            element.MouseLeave += (s,e) => _hoyosettings.Tooltip_Text.Text = "";
+        }
     }
-
-    static void ShowTooltip(object s, MouseEventArgs e) =>
-        _hoyosettings.Tooltip_Text.Text = ((UIElement)s).Uid;
-
-    static void RemoveTooltip(object s, MouseEventArgs e) =>
-        _hoyosettings.Tooltip_Text.Text = "";
-    
 }

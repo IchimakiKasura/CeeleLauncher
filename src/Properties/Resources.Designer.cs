@@ -214,7 +214,7 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Zenless Zone Zero Launcher.
+        ///   Looks up a localized string similar to Open Zenless Zone Zero Check-In Rewards.
         /// </summary>
         public static string ZZZ_TIP {
             get {
