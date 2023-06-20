@@ -1,17 +1,17 @@
-﻿using AppRes = AppResources.Resources;
-namespace HoyoLauncher.Core;
+﻿namespace HoyoLauncher.Core;
 
 [Events]
 public sealed class EventsHandles
 {
     public static void WindowSideButtonToolTips()
     {
-        HoyoWindow.GENSHIN_IMPACT_REWARDS.ButtonToolTip = AppRes.GENSHIN_IMPACT_TIP;
-        HoyoWindow.HONKAI_STAR_RAIL_REWARDS.ButtonToolTip = AppRes.HONKAI_STAR_RAIL_TIP;
-        HoyoWindow.HONKAI_IMPACT_THIRD_REWARDS.ButtonToolTip = AppRes.HONKAI_IMPACT_THIRD_TIP;
-        HoyoWindow.ZZZ_REWARDS.ButtonToolTip = AppRes.ZZZ_TIP;
-        HoyoWindow.TOT_SITE.ButtonToolTip = AppRes.TOT_TIP;
-        HoyoWindow.GameHomePage.ButtonToolTip = AppRes.HOMEPAGE_TIP;
+        HoyoWindow.GENSHIN_IMPACT_REWARDS.ButtonToolTip = ToolTips.GENSHIN_IMPACT_TIP;
+        HoyoWindow.HONKAI_STAR_RAIL_REWARDS.ButtonToolTip = ToolTips.HONKAI_STAR_RAIL_TIP;
+        HoyoWindow.HONKAI_IMPACT_THIRD_REWARDS.ButtonToolTip = ToolTips.HONKAI_IMPACT_THIRD_TIP;
+        HoyoWindow.ZZZ_REWARDS.ButtonToolTip = ToolTips.ZZZ_TIP;
+        HoyoWindow.TOT_SITE.ButtonToolTip = ToolTips.TOT_TIP;
+        HoyoWindow.GameHomePage.ButtonToolTip = ToolTips.HOMEPAGE_TIP;
+        HoyoWindow.GameMapPage.ButtonToolTip = ToolTips.MAPPAGE_TIP;
     }
     public static void WindowTopButtons()
     {
@@ -77,11 +77,13 @@ public sealed class EventsHandles
             switch(CurrentButton.Name)
             {
                 case "GameHomePage": Launcher = HoyoMain.CurrentGameSelected.GAME_HOMEPAGE; break;
+                case "GameMapPage": Launcher = HoyoMain.CurrentGameSelected.GAME_MAP_PAGE; break;
                 case "GENSHIN_IMPACT_REWARDS": Launcher = HoyoGames.GenshinImpact.GAME_CHECK_IN_PAGE; break;
                 case "HONKAI_STAR_RAIL_REWARDS": Launcher = HoyoGames.HonkaiStarRail.GAME_CHECK_IN_PAGE; break;
                 case "HONKAI_IMPACT_THIRD_REWARDS": Launcher = HoyoGames.HonkaiImpactThird.GAME_CHECK_IN_PAGE; break;
                 case "TOT_SITE": Launcher = HoyoGames.TearsOfThemis.GAME_DIRECTORY; break;
-                
+
+
                 case "ZZZ_REWARDS":
                     MessageBox.Show("Game is not released yet!", "Zenless Zone Zero", MessageBoxButton.OK);
                     break;
@@ -99,7 +101,7 @@ public sealed class EventsHandles
         {
             e.Handled = true;
 
-            if(Equals(HoyoWindow.LaunchButton.Content, AppRes.GAME_UPDATE_TEXT))
+            if(Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_UPDATE_TEXT))
             {
                 HoyoMain.ProcessStart(HoyoMain.ExecutableName);
                 MessageBox.Show("Opening Original Launcher to Update the game!", "A Very Cool Message Box", MessageBoxButton.OK);
@@ -151,6 +153,8 @@ public sealed class EventsHandles
                 case "GAME_SELECTION_HI3": SelectedHoyoGame = HoyoGames.HonkaiImpactThird;    break;
                 case "GAME_SELECTION_ZZZ": SelectedHoyoGame = HoyoGames.ZenlessZoneZero;      break;
             }
+
+            HoyoWindow.GameMapPage.IsEnabled = SelectedHoyoGame.GAME_MAP_PAGE is not "";
 
             HoyoMain.CurrentGameSelected = SelectedHoyoGame;
             GameChange.SetGame(SelectedButton.Uid);

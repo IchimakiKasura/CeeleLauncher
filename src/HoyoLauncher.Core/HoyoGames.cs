@@ -1,5 +1,4 @@
-﻿using static AppResources.Resources;
-namespace HoyoLauncher.Core;
+﻿namespace HoyoLauncher.Core;
 
 public sealed class HoyoGames
 {
@@ -12,6 +11,7 @@ public sealed class HoyoGames
     public ImageBrush GAME_DEFAULT_BG { get; }
     public string GAME_RESOURCE_API_LINK { get; }
     public string GAME_CONTENT_API_LINK { get; }
+    public string GAME_MAP_PAGE { get; }
 
     public RetrieveAPI API_CACHE { get; set; }
 
@@ -23,7 +23,8 @@ public sealed class HoyoGames
         string GameCheckInPage,
         ImageBrush GameDefaultBG,
         string GameApiLink,
-        string GameBGapi
+        string GameBGapi,
+        string Gamemappage
         )
     {
         GAME_DIRECTORY = GameDirectory;
@@ -34,48 +35,52 @@ public sealed class HoyoGames
         GAME_DEFAULT_BG = GameDefaultBG;
         GAME_RESOURCE_API_LINK = GameApiLink;
         GAME_CONTENT_API_LINK = GameBGapi;
+        GAME_MAP_PAGE = Gamemappage;
     }
 
     public readonly static HoyoGames DEFAULT =
-        new("","", "", "https://www.hoyoverse.com/en-us/","",null,"","");
+        new("","", "", "https://www.hoyoverse.com/en-us/","",null,"","","");
 
     public readonly static HoyoGames GenshinImpact =
         new
         (
             AppSettings.Settings.Default.GENSHIN_IMPACT_DIR,
-            GENSHIN_IMPACT_EXEC,
-            GENSHIN_IMPACT_TITLE,
+            Games.GENSHIN_IMPACT_EXEC,
+            Games.GENSHIN_IMPACT_TITLE,
             "https://genshin.hoyoverse.com/en",
-            "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&hyl_auth_required=true&hyl_presentation_style=fullscreen&utm_source=hoyolab&utm_medium=tools&lang=en-us&bbs_theme=dark&bbs_theme_device=1",
+            "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481",
             DefaultBG.GENSHIN_BG,
             AppSettings.Settings.Default.GENSHIN_VERSION_API,
-            AppSettings.Settings.Default.GENSHIN_CONTENT_API
+            AppSettings.Settings.Default.GENSHIN_CONTENT_API,
+            "https://act.hoyolab.com/ys/app/interactive-map/index.html"
         );
 
     public readonly static HoyoGames HonkaiStarRail =
         new
         (
             AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR,
-            HONKAI_STAR_RAIL_EXEC,
-            HONKAI_STAR_RAIL_TITLE,
+            Games.HONKAI_STAR_RAIL_EXEC,
+            Games.HONKAI_STAR_RAIL_TITLE,
             "https://hsr.hoyoverse.com/en-us/",
-            "https://act.hoyolab.com/bbs/event/signin/hkrpg/index.html?act_id=e202303301540311&hyl_auth_required=true&hyl_presentation_style=fullscreen&utm_source=hoyolab&utm_medium=tools&utm_campaign=checkin&utm_id=6&lang=en-us&bbs_theme=dark&bbs_theme_device=1",
+            "https://act.hoyolab.com/bbs/event/signin/hkrpg/index.html?act_id=e202303301540311",
             DefaultBG.HSR_BG,
             AppSettings.Settings.Default.HSR_VERSION_API,
-            AppSettings.Settings.Default.HSR_CONTENT_API
+            AppSettings.Settings.Default.HSR_CONTENT_API,
+            "https://act.hoyolab.com/sr/app/interactive-map/index.html"
         );
 
     public readonly static HoyoGames HonkaiImpactThird =
         new
         (
             AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR,
-            HONKAI_IMPACT_THIRD_EXEC,
-            HONKAI_IMPACT_THIRD_TITLE,
+            Games.HONKAI_IMPACT_THIRD_EXEC,
+            Games.HONKAI_IMPACT_THIRD_TITLE,
             "https://honkaiimpact3.hoyoverse.com/global/en-us/fab",
-            "https://act.hoyolab.com/bbs/event/signin-bh3/index.html?act_id=e202110291205111&utm_source=hoyolab&utm_medium=tools&bbs_theme=dark&bbs_theme_device=1",
+            "https://act.hoyolab.com/bbs/event/signin-bh3/index.html?act_id=e202110291205111",
             DefaultBG.HI3_BG,
             AppSettings.Settings.Default.HI3_VERSION_API,
-            AppSettings.Settings.Default.HI3_CONTENT_API
+            AppSettings.Settings.Default.HI3_CONTENT_API,
+            ""
         );
 
     public readonly static HoyoGames ZenlessZoneZero =
@@ -87,6 +92,7 @@ public sealed class HoyoGames
             "https://zenless.hoyoverse.com/en-us",
             "",
             DefaultBG.ZZZ_BG,
+            "",
             "",
             ""
         );
@@ -100,6 +106,7 @@ public sealed class HoyoGames
             "https://tot.hoyoverse.com/en-us",
             "",
             null,
+            "",
             "",
             ""
         );

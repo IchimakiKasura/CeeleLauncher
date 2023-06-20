@@ -22,14 +22,14 @@ namespace AppResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class ToolTips {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal ToolTips() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AppResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HoyoLauncher.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HoyoLauncher.Properties.ToolTips", typeof(ToolTips).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,74 +70,11 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Play.
-        /// </summary>
-        public static string GAME_DEFAULT_TEXT {
-            get {
-                return ResourceManager.GetString("GAME_DEFAULT_TEXT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game is Running.
-        /// </summary>
-        public static string GAME_LAUNCHED_TEXT {
-            get {
-                return ResourceManager.GetString("GAME_LAUNCHED_TEXT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Location not set.
-        /// </summary>
-        public static string GAME_NOTFOUND {
-            get {
-                return ResourceManager.GetString("GAME_NOTFOUND", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Coming Soon.
-        /// </summary>
-        public static string GAME_SOON_TEXT {
-            get {
-                return ResourceManager.GetString("GAME_SOON_TEXT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string GAME_UPDATE_TEXT {
-            get {
-                return ResourceManager.GetString("GAME_UPDATE_TEXT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to GenshinImpact.exe.
-        /// </summary>
-        public static string GENSHIN_IMPACT_EXEC {
-            get {
-                return ResourceManager.GetString("GENSHIN_IMPACT_EXEC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Genshin Impact Check-In Rewards.
         /// </summary>
         public static string GENSHIN_IMPACT_TIP {
             get {
                 return ResourceManager.GetString("GENSHIN_IMPACT_TIP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Genshin Impact.
-        /// </summary>
-        public static string GENSHIN_IMPACT_TITLE {
-            get {
-                return ResourceManager.GetString("GENSHIN_IMPACT_TITLE", resourceCulture);
             }
         }
         
@@ -151,38 +88,11 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BH3.exe.
-        /// </summary>
-        public static string HONKAI_IMPACT_THIRD_EXEC {
-            get {
-                return ResourceManager.GetString("HONKAI_IMPACT_THIRD_EXEC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Honkai Impact 3rd Check-In Rewards.
         /// </summary>
         public static string HONKAI_IMPACT_THIRD_TIP {
             get {
                 return ResourceManager.GetString("HONKAI_IMPACT_THIRD_TIP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Honkai Impact 3rd.
-        /// </summary>
-        public static string HONKAI_IMPACT_THIRD_TITLE {
-            get {
-                return ResourceManager.GetString("HONKAI_IMPACT_THIRD_TITLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to StarRail.exe.
-        /// </summary>
-        public static string HONKAI_STAR_RAIL_EXEC {
-            get {
-                return ResourceManager.GetString("HONKAI_STAR_RAIL_EXEC", resourceCulture);
             }
         }
         
@@ -196,11 +106,11 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Honkai Star Rail.
+        ///   Looks up a localized string similar to Game Interactive Map.
         /// </summary>
-        public static string HONKAI_STAR_RAIL_TITLE {
+        public static string MAPPAGE_TIP {
             get {
-                return ResourceManager.GetString("HONKAI_STAR_RAIL_TITLE", resourceCulture);
+                return ResourceManager.GetString("MAPPAGE_TIP", resourceCulture);
             }
         }
         
@@ -214,7 +124,7 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Zenless Zone Zero Check-In Rewards.
+        ///   Looks up a localized string similar to Zenless Zone Zero Check-In Rewards.
         /// </summary>
         public static string ZZZ_TIP {
             get {

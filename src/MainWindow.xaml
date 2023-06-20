@@ -60,6 +60,7 @@
                     <ButtonControl:HoyoButton x:Name="ZZZ_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="250" Image="/Resources/Buttons/ZZZ.jpg"/>
                     <ButtonControl:HoyoButton x:Name="TOT_SITE" Height="57" Width="57" Canvas.Left="10" Canvas.Top="325" Image="/Resources/Buttons/TOT.jpg"/>
 
+                    <ButtonControl:HoyoButton x:Name="GameMapPage" Height="36" Width="35" Canvas.Left="21" Canvas.Top="478" Image="/Resources/Buttons/globe.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <ButtonControl:HoyoButton x:Name="GameHomePage" Height="35" Width="35" Canvas.Left="21" Canvas.Top="524" Image="/Resources/Buttons/home.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
                 </Canvas>
             </Border>

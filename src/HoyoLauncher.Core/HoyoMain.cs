@@ -41,12 +41,10 @@ public class HoyoMain
         ErrorOccured = false;
 
         if (GameConfigData.FilePathNone)
-            return;
-        
-        Game.GAME_DIR_VALID = true;
-
-        if (!GameConfigData.ConfigExist || Path.GetFileName(GameConfigData.GameStartName) != Game.GAME_EXECUTABLE)
+            Game.GAME_DIR_VALID = false;
+        else if (!GameConfigData.ConfigExist || Path.GetFileName(GameConfigData.GameStartName) != Game.GAME_EXECUTABLE)
             Game.GAME_DIR_VALID = !(ErrorOccured = true);
+        else Game.GAME_DIR_VALID = true;
     }
 
     // Sets to the last game selected
@@ -116,7 +114,7 @@ public class HoyoMain
         HoyoWindow.HomeButton.IsEnabled = !IsGameRunning;
 
         HoyoWindow.LaunchButton.IsEnabled = false;
-        HoyoWindow.LaunchButton.Content = AppResources.Resources.GAME_LAUNCHED_TEXT;
+        HoyoWindow.LaunchButton.Content = LaunchText.GAME_LAUNCHED_TEXT;
 
         if (IsGameRunning) return;
 
@@ -125,15 +123,15 @@ public class HoyoMain
         string LaunchButtonContent = string.Empty switch
         {
             _ when CurrentGameSelected == HoyoGames.ZenlessZoneZero
-                => AppResources.Resources.GAME_SOON_TEXT,
+                => LaunchText.GAME_SOON_TEXT,
 
             _ when !GameConfig.ConfigExist && CurrentGameSelected != HoyoGames.ZenlessZoneZero
-                => AppResources.Resources.GAME_NOTFOUND,
+                => LaunchText.GAME_NOTFOUND,
 
-            _ => AppResources.Resources.GAME_DEFAULT_TEXT
+            _ => LaunchText.GAME_DEFAULT_TEXT
         };
 
-        if (LaunchButtonContent == AppResources.Resources.GAME_DEFAULT_TEXT)
+        if (LaunchButtonContent == LaunchText.GAME_DEFAULT_TEXT)
             HoyoWindow.LaunchButton.IsEnabled = true;
 
         HoyoWindow.LaunchButton.Content = LaunchButtonContent;

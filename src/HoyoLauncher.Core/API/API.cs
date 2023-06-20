@@ -1,51 +1,50 @@
-﻿using System.Net;
-using System.Text;
-using System.Text.Json;
-
-namespace HoyoLauncher.Core.API;
+﻿namespace HoyoLauncher.Core.API;
 
 public sealed class RetrieveAPI
 {
-    public string LatestVersion { get; set; }
-    public string BackgroundHASH { get; set; }
-    public ImageBrush BackgroundLINK { get; set; }
+    public string LatestVersion { get; private set; } = "CONNECTION FAILURE, PLEASE RETRY AGAIN";
+    public string BackgroundHASH { get; private set; } = "";
+    public ImageBrush BackgroundLINK { get; set; } = null;
 
     readonly JsonElement Resources;
     readonly JsonElement Content;
 
-    public RetrieveAPI(string CONTENT, string RESOURCES)
+    public static async Task<RetrieveAPI> Fetch(string CONTENT, string RESOURCES)
     {
-        using Stream ContentStreamData = CheckVersion(CONTENT).Result;
-        using Stream ResourcesStreamData = CheckVersion(RESOURCES).Result;
+        using Stream
+        ContentStreamData = await CheckVersion(CONTENT),
+        ResourcesStreamData = await CheckVersion(RESOURCES);
 
-        if (ContentStreamData == Stream.Null || ResourcesStreamData == Stream.Null) return;
+        return new(ReadJsonData(ContentStreamData).RootElement, ReadJsonData(ResourcesStreamData).RootElement);
+    }
 
-        using StreamReader ContentReader = new(ContentStreamData, Encoding.UTF8);
-        using StreamReader ResourcesReader = new(ResourcesStreamData, Encoding.UTF8);
-        
-        Content = JsonDocument.Parse(ContentReader.ReadToEnd()).RootElement;
-        Resources = JsonDocument.Parse(ResourcesReader.ReadToEnd()).RootElement;
-
+    private RetrieveAPI(JsonElement _Content, JsonElement _Resources)
+    {
+        Content = _Content;
+        Resources = _Resources;
         SetAPIValues();
     }
-
+    
     void SetAPIValues() 
     {
-        try
+        if(Resources.TryGetProperty("data", out JsonElement VersionProperty))
+            LatestVersion = VersionProperty.GetProperty("game").GetProperty("latest").GetProperty("version").ToString();
+        
+        if(Content.TryGetProperty("data", out JsonElement ContentProperty))
         {
-            LatestVersion = Resources.GetProperty("data").GetProperty("game").GetProperty("latest").GetProperty("version").ToString();
+            var adv = ContentProperty.GetProperty("adv");
 
-            BackgroundHASH = Content.GetProperty("data").GetProperty("adv").GetProperty("bg_checksum").ToString();
-            BackgroundLINK = 
-                new ImageBrush(new BitmapImage(new(Content.GetProperty("data").GetProperty("adv").GetProperty("background").ToString())));
-        }
-        catch {
-            LatestVersion = "CONNECTION FAILURE, PLEASE RETRY AGAIN";
-            BackgroundHASH = "";
-            BackgroundLINK = null;
+            BackgroundHASH = adv.GetProperty("bg_checksum").ToString();
+            BackgroundLINK = new ImageBrush(new BitmapImage(new(adv.GetProperty("background").ToString())));
         }
     }
 
+    static JsonDocument ReadJsonData(Stream stream)
+    {
+        using StreamReader DataStream = new(stream, Encoding.UTF8);
+        string DataJSON = stream != Stream.Null ? DataStream.ReadToEnd() : "{}";
+        return JsonDocument.Parse(DataJSON);
+    }
     static async Task<Stream> CheckVersion(string APILink)
     {
         HttpResponseMessage resp;

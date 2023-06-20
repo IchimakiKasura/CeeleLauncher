@@ -6,14 +6,14 @@ public sealed class GameChange : HoyoMain
     {
         RemoveMainBG = true,
         LaunchButton = true,
-        LaunchButtonContent = AppResources.Resources.GAME_DEFAULT_TEXT,
+        LaunchButtonContent = LaunchText.GAME_DEFAULT_TEXT,
         VersionBubble = Visibility.Hidden
     };
 
     public static void SetGame(string uid) =>
         SetGame(short.Parse(uid));
 
-    public static void SetGame(short uid)
+    public static async void SetGame(short uid)
     {
         HoyoValues values = new(TempValues);
 
@@ -24,7 +24,7 @@ public sealed class GameChange : HoyoMain
         {
             values.Background = GameBG;
             values.VersionBubble = Visibility.Hidden;
-            values.LaunchButtonContent = "NO INTERNET";
+            values.LaunchButtonContent = LaunchText.GAME_NO_INTERNET_TEXT;
         }
 
         values.Background = GameBG;
@@ -42,7 +42,7 @@ public sealed class GameChange : HoyoMain
             HoyoWindow.VERSION_TEXT.Foreground = Brushes.Black;
             HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.SemiBold;
 
-            var GameAPI = CurrentGameSelected.API_CACHE ??= new RetrieveAPI(CurrentGameSelected.GAME_CONTENT_API_LINK, CurrentGameSelected.GAME_RESOURCE_API_LINK);
+            var GameAPI = CurrentGameSelected.API_CACHE ??= await RetrieveAPI.Fetch(CurrentGameSelected.GAME_CONTENT_API_LINK, CurrentGameSelected.GAME_RESOURCE_API_LINK);
 
             if (GameConfig.GameVersion != GameAPI.LatestVersion)
             {
@@ -51,7 +51,7 @@ public sealed class GameChange : HoyoMain
                 ExecutableName = Path.Combine(CurrentGameSelected.GAME_DIRECTORY, "launcher.exe");
 
                 values.VersionBubble = Visibility.Visible;
-                values.LaunchButtonContent = AppResources.Resources.GAME_UPDATE_TEXT;
+                values.LaunchButtonContent = LaunchText.GAME_UPDATE_TEXT;
             }
 
             if (GameConfig.GameBackgroundMD5 != GameAPI.BackgroundHASH)
@@ -73,18 +73,18 @@ public sealed class GameChange : HoyoMain
         {
             values.LaunchButton = false;
             values.Background = CurrentGameSelected.GAME_DEFAULT_BG;
-            values.LaunchButtonContent = AppResources.Resources.GAME_SOON_TEXT;
+            values.LaunchButtonContent = LaunchText.GAME_SOON_TEXT;
         } 
         else if (!GameConfig.ConfigExist || GameConfig.GameName != CurrentGameSelected.GAME_EXECUTABLE)
         {
             values.LaunchButton = false;
-            values.LaunchButtonContent = AppResources.Resources.GAME_NOTFOUND;
+            values.LaunchButtonContent = LaunchText.GAME_NOTFOUND;
         }
 
         if (IsGameRunning)
         {
             values.LaunchButton = false;
-            values.LaunchButtonContent = AppResources.Resources.GAME_LAUNCHED_TEXT;
+            values.LaunchButtonContent = LaunchText.GAME_LAUNCHED_TEXT;
         }
 
         values.ApplyChanges();

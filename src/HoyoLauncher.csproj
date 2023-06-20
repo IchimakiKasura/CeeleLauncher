@@ -49,6 +49,7 @@
         <Resource Include="Resources\Buttons\GI.jpg" />
         <Resource Include="Resources\Buttons\HI3.jpg" />
         <Resource Include="Resources\Buttons\home.png" />
+        <Resource Include="Resources\Buttons\globe.png" />
         <Resource Include="Resources\Buttons\HSR.jpg" />
         <Resource Include="Resources\Buttons\TOT.jpg" />
         <Resource Include="Resources\Buttons\ZZZ.jpg" />
@@ -82,10 +83,13 @@
     <ItemGroup>
         <Using Include="System" />
         <Using Include="System.IO" />
+        <Using Include="System.Net" />
+        <Using Include="System.Text" />
         <Using Include="System.Linq" />
         <Using Include="System.Drawing" Alias="Draw" />
         <Using Include="System.Windows" />
         <Using Include="System.Net.Http" />
+        <Using Include="System.Text.Json" />
         <Using Include="System.Threading" />
         <Using Include="System.Reflection" />
         <Using Include="System.Diagnostics" />
@@ -116,13 +120,24 @@
         <Using Include="HoyoLauncher.Resources.Icons" />
 		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
 		
+		<Using Include="AppResources" />
     </ItemGroup>
     
     <ItemGroup>
-        <Compile Update="Properties\Resources.Designer.cs">
+        <Compile Update="Properties\ToolTips.Designer.cs">
+          <DependentUpon>ToolTips.resx</DependentUpon>
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+        </Compile>
+        <Compile Update="Properties\LaunchText.Designer.cs">
+          <DependentUpon>LaunchText.resx</DependentUpon>
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+        </Compile>
+        <Compile Update="Properties\Games.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.resx</DependentUpon>
+            <DependentUpon>Games.resx</DependentUpon>
         </Compile>
         <Compile Update="HoyoLauncher Core\Settings.Designer.cs">
             <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -137,9 +152,19 @@
     </ItemGroup>
     
     <ItemGroup>
-        <EmbeddedResource Update="Properties\Resources.resx">
+        <EmbeddedResource Update="Properties\ToolTips.resx">
+          <CustomToolNamespace>AppResources</CustomToolNamespace>
+          <LastGenOutput>ToolTips.Designer.cs</LastGenOutput>
+          <Generator>PublicResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\LaunchText.resx">
+          <CustomToolNamespace>AppResources</CustomToolNamespace>
+          <LastGenOutput>LaunchText.Designer.cs</LastGenOutput>
+          <Generator>PublicResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\Games.resx">
             <Generator>PublicResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+            <LastGenOutput>Games.Designer.cs</LastGenOutput>
             <CustomToolNamespace>AppResources</CustomToolNamespace>
         </EmbeddedResource>
     </ItemGroup>
