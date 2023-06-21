@@ -19,13 +19,6 @@ public sealed class GameChange : HoyoMain
 
         ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
         ImageBrush GameBG = GameConfig.GameBackground is null ? CurrentGameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
-        
-        void ConnectionFailure()
-        {
-            values.Background = GameBG;
-            values.VersionBubble = Visibility.Hidden;
-            values.LaunchButtonContent = LaunchText.GAME_NO_INTERNET_TEXT;
-        }
 
         values.Background = GameBG;
         ExecutableName = GameConfig.GameStartName;
@@ -42,6 +35,7 @@ public sealed class GameChange : HoyoMain
             HoyoWindow.VERSION_TEXT.Foreground = Brushes.Black;
             HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.SemiBold;
 
+            // Fetch once and never fetch again (until app was restarted)
             var GameAPI = CurrentGameSelected.API_CACHE ??= await RetrieveAPI.Fetch(CurrentGameSelected.GAME_CONTENT_API_LINK, CurrentGameSelected.GAME_RESOURCE_API_LINK);
 
             if (GameConfig.GameVersion != GameAPI.LatestVersion)
@@ -59,7 +53,7 @@ public sealed class GameChange : HoyoMain
 
             if (GameAPI.LatestVersion == "CONNECTION FAILURE, PLEASE RETRY AGAIN")
             {
-                ConnectionFailure();
+                ConnectionFailure(ref values, GameBG);
                 values.VersionBubble = Visibility.Visible;
                 values.LaunchButton = false;
                 HoyoWindow.VERSION_TEXT.Foreground = Brushes.Red;
@@ -67,7 +61,7 @@ public sealed class GameChange : HoyoMain
                 CurrentGameSelected.API_CACHE = null;
             }
         }
-        else ConnectionFailure();
+        else ConnectionFailure(ref values, GameBG);
 
         if (CurrentGameSelected == HoyoGames.ZenlessZoneZero)
         {
@@ -91,6 +85,13 @@ public sealed class GameChange : HoyoMain
 
         AppSettings.Settings.Default.LAST_GAME = uid += 1;
         AppSettings.Settings.Default.Save();
+    }
+
+    static void ConnectionFailure(ref HoyoValues values, ImageBrush GameBG)
+    {
+        values.Background = GameBG;
+        values.VersionBubble = Visibility.Hidden;
+        values.LaunchButtonContent = LaunchText.GAME_NO_INTERNET_TEXT;
     }
 
 }

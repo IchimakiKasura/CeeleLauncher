@@ -20,8 +20,6 @@ public class HoyoMain
 
     public static void Initialize()
     {
-        HoyoWindow.BLACK_THING.Margin = new(0);
-
         UpdateConfig();
 
         EventsAttribute.SetEvents();

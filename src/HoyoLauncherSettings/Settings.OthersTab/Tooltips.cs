@@ -11,6 +11,7 @@ sealed class HoyoTooltips
             _hoyosettings.RadioButtonTray_Click,
             _hoyosettings.RadioButtonBackground_Click,
             _hoyosettings.RadioButtonSelectiveStartup_Click,
+            _hoyosettings.RadioButtonDisableTitle_Click,
             _hoyosettings.Button_ClearLocationTexts,
             _hoyosettings.Button_ResetSettings,
             _hoyosettings.Funni

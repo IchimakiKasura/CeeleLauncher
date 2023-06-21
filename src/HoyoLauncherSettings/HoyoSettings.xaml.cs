@@ -19,7 +19,7 @@ public partial class HoyoSettings : Window
         BUILDHASH.Text = $"({App.UniqueHashBUILD})";
         Tooltip_Text.Text = "";
 
-        HoyoWindow.BLACK_THING.Opacity = 0.5;
+        HoyoWindow.BLACK_THING.Visibility = Visibility.Visible;
 
         WindowDrag.MouseDown += App.DragMove<HoyoSettings>;
 
@@ -50,7 +50,7 @@ public partial class HoyoSettings : Window
 
     protected override void OnClosed(EventArgs e)
     {
-        HoyoWindow.BLACK_THING.Opacity = 0;
+        HoyoWindow.BLACK_THING.Visibility = Visibility.Collapsed;
         base.OnClosed(e);
     }
 
@@ -115,7 +115,7 @@ public partial class HoyoSettings : Window
         if (e.ChangedButton is not MouseButton.Left) return;
 
         foreach (var page in new List<Canvas>{ Locations, Others, About })
-            page.Visibility = Visibility.Hidden;
+            page.Visibility = Visibility.Collapsed;
 
         foreach (var button in new List<Border>{ Button_Locations, Button_Others, Button_About })
         {
@@ -154,6 +154,7 @@ public partial class HoyoSettings : Window
         RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY;
         RadioButtonBackground.IsChecked = AppSettings.Settings.Default.CHECKBOX_BACKGROUND;
         RadioButtonSelectiveStartup.IsChecked = AppSettings.Settings.Default.CHECKBOX_LASTGAME;
+        RadioButtonDisableTitle.IsChecked = AppSettings.Settings.Default.CHECKBOX_TITLE;
 
         MessageBox.Show("Settings has been Reset!", HoyoWindow.Title);
     }

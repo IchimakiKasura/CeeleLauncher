@@ -14,7 +14,7 @@ public partial class ShortTour : Window
 
         CurrentImage = 1;
         
-        HoyoWindow.BLACK_THING.Opacity = 0.5;
+        HoyoWindow.BLACK_THING.Visibility = Visibility.Visible;
         WindowDrag.MouseDown += App.DragMove<ShortTour>;
 
         MainImageSource.Source = ImageLocation();
@@ -55,7 +55,7 @@ public partial class ShortTour : Window
 
     protected override void OnClosed(EventArgs e)
     {
-        HoyoWindow.BLACK_THING.Opacity = 0;
+        HoyoWindow.BLACK_THING.Visibility = Visibility.Collapsed;
         base.OnClosed(e);
     }
 }

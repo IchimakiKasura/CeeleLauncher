@@ -72,7 +72,7 @@
                 </Grid>
             </Border>
 
-            <Border Name="BLACK_THING" Background="Black" Opacity="0" IsHitTestVisible="false" CornerRadius="10" Margin="0,0,1280,0"/>
+            <Border Name="BLACK_THING" Background="Black" Opacity="0.5" Visibility="Collapsed" CornerRadius="10"/>
 
             <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.5" Style="{StaticResource TopButtonTrigger}">
                 <Grid>

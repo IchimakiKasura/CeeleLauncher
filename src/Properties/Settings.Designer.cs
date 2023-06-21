@@ -190,5 +190,17 @@ namespace AppSettings {
                 return ((string)(this["HSR_CONTENT_API"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CHECKBOX_TITLE {
+            get {
+                return ((bool)(this["CHECKBOX_TITLE"]));
+            }
+            set {
+                this["CHECKBOX_TITLE"] = value;
+            }
+        }
     }
 }

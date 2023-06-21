@@ -47,5 +47,8 @@
     <Setting Name="HSR_CONTENT_API" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://hkrpg-launcher-static.hoyoverse.com/hkrpg_global/mdk/launcher/api/content?filter_adv=true&amp;language=en-us&amp;launcher_id=35&amp;key=vplOVX8Vn7cwG8yb</Value>
     </Setting>
+    <Setting Name="CHECKBOX_TITLE" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

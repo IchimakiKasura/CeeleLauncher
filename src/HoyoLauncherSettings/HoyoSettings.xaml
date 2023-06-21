@@ -58,7 +58,7 @@
                         <Button Name="ZZZ_LOCATE" Content="Open Folder" IsEnabled="False" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="Gray" FontSize="14" BorderThickness="2" Height="29" Canvas.Left="611" Canvas.Top="256" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132"/>
                     </Canvas>
 
-                    <Canvas Name="Others" Visibility="Hidden" Margin="20">
+                    <Canvas Name="Others" Visibility="Collapsed" Margin="20">
 
                         <Border Background="#e3e1de" HorizontalAlignment="Left" Height="270" VerticalAlignment="Center" Width="360" Canvas.Left="360" CornerRadius="10" Padding="15">
                             <TextBlock Name="Tooltip_Text" Text="[ TOOL TIP TEXT MESSAGES ]" FontSize="20" TextWrapping="Wrap"/>
@@ -87,15 +87,26 @@
                             <Border.Uid>
                                 Enable or Disable the Automatic Select on the last game choosed.
                             </Border.Uid>
-                            <RadioButton Name="RadioButtonSelectiveStartup" IsHitTestVisible="False" Content="Enable Last Game Played on Start" Margin="0,0,55,9">
+                            <RadioButton Name="RadioButtonSelectiveStartup" IsHitTestVisible="False" Content="Enable Last Game Played on Start" Margin="0,0,100,9">
                                 <RadioButton.RenderTransform>
                                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                                 </RadioButton.RenderTransform>
                             </RadioButton>
                         </Border>
 
-                        <TextBlock Text="Launcher Language: " FontSize="18" Canvas.Left="11" Canvas.Top="152" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                        <ComboBox Name="Funni" Canvas.Left="180" Canvas.Top="149" HorizontalAlignment="Center" VerticalAlignment="Top" Height="31" Width="132" HorizontalContentAlignment="Center" SelectedIndex="45" FontSize="16.4" FontWeight="SemiBold" Uid="Change Launcher Lanugauge.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[ NOT WORKING | JUST FOR FUN ]">
+                        <Border Name="RadioButtonDisableTitle_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="147" VerticalAlignment="Top" Canvas.Left="11">
+                            <Border.Uid>
+                                Display the "Hoyoverse" Title Logo on Home screen?
+                            </Border.Uid>
+                            <RadioButton Name="RadioButtonDisableTitle" IsHitTestVisible="False" Content="Remove Hoyoverse Title on Home" Margin="0,0,100,9">
+                                <RadioButton.RenderTransform>
+                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                </RadioButton.RenderTransform>
+                            </RadioButton>
+                        </Border>
+
+                        <TextBlock Text="Launcher Language: " FontSize="18" Canvas.Left="11" Canvas.Top="192" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <ComboBox Name="Funni" Canvas.Left="180" Canvas.Top="188" HorizontalAlignment="Center" VerticalAlignment="Top" Height="32" Width="132" HorizontalContentAlignment="Center" SelectedIndex="45" FontSize="16.4" FontWeight="SemiBold" Uid="Change Launcher Lanugauge.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[ NOT WORKING | JUST FOR FUN ]">
                             <ComboBoxItem Content="Afar"/>
                             <ComboBoxItem Content="Abkhazian"/>
                             <ComboBoxItem Content="Afrikaans"/>
@@ -324,7 +335,7 @@
 
                     </Canvas>
 
-                    <Canvas Name="About" Visibility="Hidden">
+                    <Canvas Name="About" Visibility="Collapsed">
                         <TextBlock FontSize="15" HorizontalAlignment="Center" Canvas.Top="124" VerticalAlignment="Top" Canvas.Left="10" >
                             <Bold>(Unofficial) HoyoLauncher</Bold> <Run Name="VERSION">[VERSION]</Run><InlineUIContainer BaselineAlignment="Center"><TextBox ToolTip="Build Hash" Name="BUILDHASH" Foreground="Gray" Text="[BUILDHASH]" Background="Transparent" BorderThickness="0" IsReadOnly="True" Margin="0,0,0,0"/></InlineUIContainer> <LineBreak/>
                             © 2023 Created by <Hyperlink Click="GithubHome">Ichimaki Kasura</Hyperlink> <LineBreak/>
