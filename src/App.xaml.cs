@@ -2,20 +2,20 @@
 
 public partial class App : Application
 {
-    static bool createdNew;
+    static bool AppAlreadyOpened;
 
     static readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name;
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
     public readonly static string UniqueHashBUILD = HoyoMain.GenerateMD5HASH();
+    private static readonly Mutex _Mutex = new(true, AppName + Version + "test", out AppAlreadyOpened);
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members")]
-    private static readonly Mutex _Mutex = new(true, AppName+Version, out createdNew);
+    public static Brush ConvertColorFromString(string color) => new BrushConverter().ConvertFromString(color) as Brush;
 
     public static readonly Forms.NotifyIcon AppTray = new();
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        if (!createdNew)
+        if (!AppAlreadyOpened)
             if (MessageBox.Show("Only one instance at a time!",
                                 "Warning",
                                 MessageBoxButton.OK,
@@ -54,7 +54,7 @@ public partial class App : Application
 
     private static void AppNotification()
     {
-        if(!HoyoMain.FirstRun) return;
+        if (!HoyoMain.FirstRun) return;
 
         AppTray.ShowBalloonTip(3);
         HoyoMain.FirstRun = false;
@@ -64,11 +64,26 @@ public partial class App : Application
     {
         HoyoWindow.WindowState = WindowState.Minimized;
 
-        if(AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY is false) return;
+        if (AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY is false) return;
 
         HoyoWindow.ShowInTaskbar = false;
         HoyoWindow.Hide();
         AppTray.Visible = true;
         AppNotification();
+    }
+
+    public static void DragMove<T>(object s, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton is not MouseButton.Left) return;
+
+        Type type = Assembly.GetExecutingAssembly().GetType(typeof(T).ToString());
+        
+        if (type.IsSubclassOf(typeof(Window)))
+            foreach (PropertyInfo propertyInfo in type.GetProperties())
+                if (propertyInfo.GetCustomAttributes(typeof(StaticWindowAttribute), true).Length is 1)
+                {
+                    var propertValue = propertyInfo.GetValue(null); 
+                    propertValue.GetType().GetMethod("DragMove").Invoke(propertValue, null);
+                }
     }
 }

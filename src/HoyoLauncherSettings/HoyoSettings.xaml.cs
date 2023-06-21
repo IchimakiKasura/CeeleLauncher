@@ -4,10 +4,11 @@ namespace HoyoLauncher.HoyoLauncherSettings;
 
 public partial class HoyoSettings : Window
 {
-    public static HoyoSettings _hoyosettings;
+    [StaticWindow]
+    public static HoyoSettings _hoyosettings { get; set; }
 
-    readonly Brush SelectedPageColor = new BrushConverter().ConvertFromString("#f6f5f3") as Brush;
-    readonly Brush UnSelectedPageColor = new BrushConverter().ConvertFromString("#e3e1de") as Brush;
+    readonly Brush SelectedPageColor = App.ConvertColorFromString("#f6f5f3");
+    readonly Brush UnSelectedPageColor = App.ConvertColorFromString("#e3e1de");
 
     public HoyoSettings()
     {
@@ -20,7 +21,8 @@ public partial class HoyoSettings : Window
 
         HoyoWindow.BLACK_THING.Opacity = 0.5;
 
-        WindowDrag.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) DragMove(); };
+        WindowDrag.MouseDown += App.DragMove<HoyoSettings>;
+
         ExitButton.Click   += (s, e) => Close();
         CancelButton.Click += (s, e) => Close();
 
@@ -29,11 +31,11 @@ public partial class HoyoSettings : Window
 
         foreach (var btn in new List<Border>{ Button_Locations, Button_Others, Button_About })
         {
-            btn.MouseEnter += (s,e) => ((TextBlock)btn.Child).Foreground = (Brush)new BrushConverter().ConvertFromString("#f4cb99");
+            btn.MouseEnter += (s,e) => ((TextBlock)btn.Child).Foreground = App.ConvertColorFromString("#f4cb99");
             btn.MouseLeave += (s,e) =>
             {
                 if(btn.Background.ToString() == "#FFF6F5F3")
-                    ((TextBlock)btn.Child).Foreground = (Brush)new BrushConverter().ConvertFromString("#997f5f");
+                    ((TextBlock)btn.Child).Foreground = App.ConvertColorFromString("#997f5f");
                 else ((TextBlock)btn.Child).Foreground = Brushes.Black;
             };
         }
@@ -122,7 +124,7 @@ public partial class HoyoSettings : Window
         }
 
         sButton.Background = SelectedPageColor;
-        ((TextBlock)sButton.Child).Foreground = (Brush)new BrushConverter().ConvertFromString("#997f5f");
+        ((TextBlock)sButton.Child).Foreground = App.ConvertColorFromString("#997f5f");
 
         switch (sButton.Name)
         {

@@ -30,18 +30,9 @@ public sealed class EventsHandles
 
             switch(CurrentButton.Name)
             {
-                case "ExitButton":
-                        HoyoWindow.Close();
-                    break;
-
-                case "MinButton":
-                        App.AppMinimizeToTray();
-                    break;
-
-                case "SettingsButton":
-                        new HoyoLauncherSettings.HoyoSettings { Owner = HoyoWindow }.ShowDialog();
-                    break;
-
+                case "ExitButton": HoyoWindow.Close(); break;
+                case "MinButton": App.AppMinimizeToTray(); break;
+                case "SettingsButton": new HoyoLauncherSettings.HoyoSettings { Owner = HoyoWindow }.ShowDialog(); break;
                 case "HomeButton":
                         if (HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) break;
 
@@ -63,7 +54,7 @@ public sealed class EventsHandles
         foreach(Button button in HoyoWindowButtons)
             button.Click += TopButtonClick;
 
-        HoyoWindow.TopBorder.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) HoyoWindow.DragMove(); };
+        HoyoWindow.TopBorder.MouseDown += App.DragMove<MainWindow>;
     }
     public static void WindowSideButtons()
     {
@@ -82,8 +73,6 @@ public sealed class EventsHandles
                 case "HONKAI_STAR_RAIL_REWARDS": Launcher = HoyoGames.HonkaiStarRail.GAME_CHECK_IN_PAGE; break;
                 case "HONKAI_IMPACT_THIRD_REWARDS": Launcher = HoyoGames.HonkaiImpactThird.GAME_CHECK_IN_PAGE; break;
                 case "TOT_SITE": Launcher = HoyoGames.TearsOfThemis.GAME_DIRECTORY; break;
-
-
                 case "ZZZ_REWARDS":
                     MessageBox.Show("Game is not released yet!", "Zenless Zone Zero", MessageBoxButton.OK);
                     break;

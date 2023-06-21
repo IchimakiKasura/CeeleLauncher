@@ -45,23 +45,22 @@ public sealed class RetrieveAPI
         string DataJSON = stream != Stream.Null ? DataStream.ReadToEnd() : "{}";
         return JsonDocument.Parse(DataJSON);
     }
+    
     static async Task<Stream> CheckVersion(string APILink)
     {
         HttpResponseMessage resp;
 
-        try
+        using (HttpClient req = new(handler: new HttpClientHandler() { Proxy = null }))
         {
-            using (HttpClient req = new(handler: new HttpClientHandler() { Proxy = null }))
-            {
-                req.Timeout = TimeSpan.FromMilliseconds(800);
-                req.DefaultRequestVersion = HttpVersion.Version30;
-                req.DefaultRequestHeaders.Add("User-Agent", "VersionCheck");
-                var res = req.GetAsync(APILink).Result;
-                resp = res;
-            }
-
-            return await resp.Content.ReadAsStreamAsync();
+            req.Timeout = TimeSpan.FromMilliseconds(1000);
+            req.DefaultRequestVersion = HttpVersion.Version30;
+            req.DefaultRequestHeaders.Add("User-Agent", "VersionCheck");
+            var res = req.GetAsync(APILink).Result;
+            resp = res;
         }
-        catch { return Stream.Null; }
+
+        if(resp.IsSuccessStatusCode)
+            return await resp.Content.ReadAsStreamAsync();
+        return Stream.Null;
     }
 }

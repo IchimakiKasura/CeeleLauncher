@@ -2,13 +2,12 @@
 
 public partial class MainWindow : Window
 {
+    [StaticWindow]
     public static MainWindow HoyoWindow { get; set; }
 
     public MainWindow()
     {
         InitializeComponent();
-
-        BLACK_THING.Margin = new(0);
         HoyoWindow = this;
 
         HoyoMain.Initialize();
@@ -27,14 +26,9 @@ public partial class MainWindow : Window
 
         if(HoyoMain.IsGameRunning)
             MessageBox.Show("Game is running! Cannot be closed.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        else AppSettings.Settings.Default.Save(); 
 
         base.OnClosing(e);
-    }
-
-    protected override void OnClosed(EventArgs e)
-    {
-        AppSettings.Settings.Default.Save();
-        base.OnClosed(e);
     }
 
     private void MediaElement_OnMediaEnded(object s, RoutedEventArgs e)

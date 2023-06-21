@@ -38,9 +38,16 @@ public sealed class HoyoGames
         GAME_MAP_PAGE = Gamemappage;
     }
 
+
+    ///<summary>
+    /// Default Values
+    ///</summary>
     public readonly static HoyoGames DEFAULT =
         new("","", "", "https://www.hoyoverse.com/en-us/","",null,"","","");
 
+    ///<summary>
+    /// Genshin Impact's Values
+    ///</summary>
     public readonly static HoyoGames GenshinImpact =
         new
         (
@@ -55,6 +62,9 @@ public sealed class HoyoGames
             "https://act.hoyolab.com/ys/app/interactive-map/index.html"
         );
 
+    ///<summary>
+    /// Honkai Star Rail's Values
+    ///</summary>
     public readonly static HoyoGames HonkaiStarRail =
         new
         (
@@ -69,6 +79,9 @@ public sealed class HoyoGames
             "https://act.hoyolab.com/sr/app/interactive-map/index.html"
         );
 
+    ///<summary>
+    /// Honkai Impact 3rd's Values
+    ///</summary>
     public readonly static HoyoGames HonkaiImpactThird =
         new
         (
@@ -83,6 +96,9 @@ public sealed class HoyoGames
             ""
         );
 
+    ///<summary>
+    /// Zenless Zone Zero's Values
+    ///</summary>
     public readonly static HoyoGames ZenlessZoneZero =
         new
         (
@@ -97,6 +113,9 @@ public sealed class HoyoGames
             ""
         );
 
+    ///<summary>
+    /// Tears Of Themis Values
+    ///</summary>
     public readonly static HoyoGames TearsOfThemis =
         new
         (

@@ -14,9 +14,7 @@ public sealed class EventsAttribute : Attribute
     {
         foreach(Type types in Assembly.GetExecutingAssembly().GetTypes())
             if(types.GetCustomAttributes(typeof(EventsAttribute), true).Length > 0)
-            {
                 foreach(MethodInfo methods in types.GetMethods(Flags))
                     methods.Invoke(types, null);
-            }
     }
 }

@@ -7,7 +7,7 @@ public partial class HoyoButton : UserControl
     readonly static DependencyProperty ImageProperty =
         DependencyProperty.Register("Image", typeof(ImageSource), typeof(HoyoButton));
     readonly static DependencyProperty BGProperty =
-        DependencyProperty.Register("BG", typeof(Brush), typeof(HoyoButton), new(new BrushConverter().ConvertFromString("#f4cb99") as Brush));
+        DependencyProperty.Register("BG", typeof(Brush), typeof(HoyoButton), new(App.ConvertColorFromString("#f4cb99")));
     readonly static DependencyProperty ButtonToolTipProperty =
         DependencyProperty.Register("ButtonToolTip", typeof(string), typeof(HoyoButton), new("Tooltip Temp"));
     readonly static DependencyProperty CanvasMarginProperty =

@@ -20,6 +20,8 @@ public class HoyoMain
 
     public static void Initialize()
     {
+        HoyoWindow.BLACK_THING.Margin = new(0);
+
         UpdateConfig();
 
         EventsAttribute.SetEvents();
@@ -60,27 +62,24 @@ public class HoyoMain
             case 3: SelectedHoyoGame = HoyoGames.HonkaiImpactThird; break;
         }
 
-        if (SelectedHoyoGame is not null)
-        {
-            CurrentGameSelected = SelectedHoyoGame;
-            GameChange.SetGame(--uid);
-        }
+        if (SelectedHoyoGame is null) return;
+        CurrentGameSelected = SelectedHoyoGame;
+        GameChange.SetGame(--uid);
     }
 
     static void UpdateConfig()
     {
-        if (!AppSettings.Settings.Default.FIRSTRUN)
+        if (AppSettings.Settings.Default.FIRSTRUN) return;
+
+        AppSettings.Settings.Default.Upgrade();
+
+        HoyoWindow.Loaded += async (s, e) =>
         {
-            AppSettings.Settings.Default.Upgrade();
+            await Task.Delay(1000);
+            new ShortTour { Owner = HoyoWindow }.ShowDialog();
+        };
 
-            HoyoWindow.Loaded += async (s, e) =>
-            {
-                await Task.Delay(1000);
-                new ShortTour { Owner = HoyoWindow }.ShowDialog();
-            };
-
-            AppSettings.Settings.Default.FIRSTRUN = true;
-        }
+        AppSettings.Settings.Default.FIRSTRUN = true;
     }
 
     // boilerplate
@@ -101,7 +100,7 @@ public class HoyoMain
 #if DEBUG
         using var stream = File.OpenRead(Assembly.GetExecutingAssembly().Location);
 #else
-            using var stream = File.OpenRead(Environment.ProcessPath);
+        using var stream = File.OpenRead(Environment.ProcessPath);
 #endif
 
         return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
@@ -120,20 +119,24 @@ public class HoyoMain
 
         ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
 
-        string LaunchButtonContent = string.Empty switch
-        {
-            _ when CurrentGameSelected == HoyoGames.ZenlessZoneZero
-                => LaunchText.GAME_SOON_TEXT,
-
-            _ when !GameConfig.ConfigExist && CurrentGameSelected != HoyoGames.ZenlessZoneZero
-                => LaunchText.GAME_NOTFOUND,
-
-            _ => LaunchText.GAME_DEFAULT_TEXT
-        };
+        string LaunchButtonContent = ContentSwitch(GameConfig);
 
         if (LaunchButtonContent == LaunchText.GAME_DEFAULT_TEXT)
             HoyoWindow.LaunchButton.IsEnabled = true;
 
         HoyoWindow.LaunchButton.Content = LaunchButtonContent;
+    }
+
+    private static string ContentSwitch(ConfigRead GameConfig)
+    {
+        string DefaultText = LaunchText.GAME_DEFAULT_TEXT;
+
+        if(!GameConfig.ConfigExist)
+            DefaultText = LaunchText.GAME_NOTFOUND;
+
+        if(CurrentGameSelected == HoyoGames.ZenlessZoneZero)
+            DefaultText = LaunchText.GAME_SOON_TEXT;
+
+        return DefaultText;
     }
 }

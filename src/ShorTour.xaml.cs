@@ -2,15 +2,20 @@
 
 public partial class ShortTour : Window
 {
+    [StaticWindow]
+    public static ShortTour ShortTourWindow { get; set; }
+
     static int CurrentImage;
     public ShortTour()
     {
         InitializeComponent();
 
+        ShortTourWindow = this;
+
         CurrentImage = 1;
         
         HoyoWindow.BLACK_THING.Opacity = 0.5;
-        WindowDrag.MouseDown += (s, e) => { if (e.ChangedButton is MouseButton.Left) DragMove(); };
+        WindowDrag.MouseDown += App.DragMove<ShortTour>;
 
         MainImageSource.Source = ImageLocation();
 
@@ -26,7 +31,7 @@ public partial class ShortTour : Window
 
             if(CurrentImage < 1) return;
             
-            BackButton.Foreground = new BrushConverter().ConvertFromString("#dba867") as Brush;
+            BackButton.Foreground = App.ConvertColorFromString("#dba867");
             BackButton.IsEnabled = true;
 
         };
