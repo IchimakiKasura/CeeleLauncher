@@ -326,12 +326,12 @@
                             <ComboBoxItem Content="Zulu"/>
                         </ComboBox>
 
-                        <Button Name="Button_ClearLocationTexts" Click="ResetLocationButtonClick" Content="Clear Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="11">
+                        <Button Name="Button_ClearLocationTexts" Content="Clear Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="11">
                             <Button.Uid>
                                 Clear the Location on the "Location tab"
                             </Button.Uid>
                         </Button>
-                        <Button Name="Button_ResetSettings" Click="ResetSettingsButtonClick" Content="Reset To Default" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="180" Uid="Reset all the settings to its default state.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[App Restart Optional]"/>
+                        <Button Name="Button_ResetSettings" Content="Reset To Default" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="180" Uid="Reset all the settings to its default state.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[App Restart Optional]"/>
 
                     </Canvas>
 

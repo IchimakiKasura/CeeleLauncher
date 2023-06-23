@@ -1,25 +1,23 @@
-﻿using static HoyoLauncher.HoyoLauncherSettings.HoyoSettings;
-
-namespace HoyoLauncher.HoyoLauncherSettings.Settings.OthersTab;
+﻿namespace HoyoLauncher.HoyoLauncherSettings.Settings.OthersTab;
 sealed class HoyoTooltips
 {
-    static List<UIElement> Elements;
     public static void SetToolTips()
     {
-        Elements = new()
+        List<UIElement> Elements = new()
         {
-            _hoyosettings.RadioButtonTray_Click,
-            _hoyosettings.RadioButtonBackground_Click,
-            _hoyosettings.RadioButtonSelectiveStartup_Click,
-            _hoyosettings.RadioButtonDisableTitle_Click,
-            _hoyosettings.Button_ClearLocationTexts,
-            _hoyosettings.Button_ResetSettings,
-            _hoyosettings.Funni
+            HoyoSettingStatic.RadioButtonTray_Click,
+            HoyoSettingStatic.RadioButtonBackground_Click,
+            HoyoSettingStatic.RadioButtonSelectiveStartup_Click,
+            HoyoSettingStatic.RadioButtonDisableTitle_Click,
+            HoyoSettingStatic.Button_ClearLocationTexts,
+            HoyoSettingStatic.Button_ResetSettings,
+            HoyoSettingStatic.Funni
         };
+
         foreach(var element in Elements)
         {
-            element.MouseEnter += (s,e) => _hoyosettings.Tooltip_Text.Text = ((UIElement)s).Uid;
-            element.MouseLeave += (s,e) => _hoyosettings.Tooltip_Text.Text = "";
+            element.MouseEnter += (s,e) => HoyoSettingStatic.Tooltip_Text.Text = ((UIElement)s).Uid;
+            element.MouseLeave += (s,e) => HoyoSettingStatic.Tooltip_Text.Text = "";
         }
     }
 }

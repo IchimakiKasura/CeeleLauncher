@@ -1,11 +1,12 @@
-﻿using HoyoLauncher.HoyoLauncherSettings.Settings.OthersTab;
+﻿global using static HoyoLauncher.HoyoLauncherSettings.HoyoSettings;
+using HoyoLauncher.HoyoLauncherSettings.Settings.OthersTab;
 
 namespace HoyoLauncher.HoyoLauncherSettings;
 
 public partial class HoyoSettings : Window
 {
     [StaticWindow]
-    public static HoyoSettings _hoyosettings { get; set; }
+    public static HoyoSettings HoyoSettingStatic { get; set; }
 
     readonly Brush SelectedPageColor = App.ConvertColorFromString("#f6f5f3");
     readonly Brush UnSelectedPageColor = App.ConvertColorFromString("#e3e1de");
@@ -13,7 +14,7 @@ public partial class HoyoSettings : Window
     public HoyoSettings()
     {
         InitializeComponent();
-        _hoyosettings = this;
+        HoyoSettingStatic = this;
 
         VERSION.Text = App.Version;
         BUILDHASH.Text = $"({App.UniqueHashBUILD})";
@@ -28,6 +29,7 @@ public partial class HoyoSettings : Window
 
         HoyoTooltips.SetToolTips();
         HoyoRadioButtons.SetRadioButtons();
+        HoyoSettingsButtons.SetButtons();
 
         foreach (var btn in new List<Border>{ Button_Locations, Button_Others, Button_About })
         {
@@ -46,6 +48,11 @@ public partial class HoyoSettings : Window
         GI_DIR_TXT.Text = AppSettings.Settings.Default.GENSHIN_IMPACT_DIR;
         HSR_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR;
         HI3_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR;
+        
+        RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY;
+        RadioButtonBackground.IsChecked = AppSettings.Settings.Default.CHECKBOX_BACKGROUND;
+        RadioButtonSelectiveStartup.IsChecked = AppSettings.Settings.Default.CHECKBOX_LASTGAME;
+        RadioButtonDisableTitle.IsChecked = AppSettings.Settings.Default.CHECKBOX_TITLE;
     }
 
     protected override void OnClosed(EventArgs e)
@@ -57,36 +64,36 @@ public partial class HoyoSettings : Window
     void LocationButtonClick(object s, RoutedEventArgs e)
     {
         using var Folder = new Forms.FolderBrowserDialog();
-        TextBox textBox = null;
-
-        switch(((Button)e.Source).Name)
-        {
-            case "GI_LOCATE": textBox = GI_DIR_TXT; break;
-            case "HSR_LOCATE": textBox = HSR_DIR_TXT; break;
-            case "HI3_LOCATE": textBox = HI3_DIR_TXT; break;
-        }
+        string path = null;
         e.Handled = true;
 
         if (Folder.ShowDialog() is Forms.DialogResult.Cancel)
             return;
 
-        textBox.Text = Folder.SelectedPath;
+        path = Folder.SelectedPath;
+
+        switch(((Button)e.Source).Name)
+        {
+            case "GI_LOCATE": AppSettings.Settings.Default.GENSHIN_IMPACT_DIR = GI_DIR_TXT.Text = path; break;
+            case "HSR_LOCATE": AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR = HSR_DIR_TXT.Text = path; break;
+            case "HI3_LOCATE": AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR = HI3_DIR_TXT.Text = path; break;
+        }
     }
 
     void ConfirmClick(object s, RoutedEventArgs e)
     {
         bool ErrorOccured = false;
 
-        List<(string config, HoyoGames AbsoluteName)> GameConfigs = new()
+        List<(TextBox config, HoyoGames AbsoluteName)> GameConfigs = new()
         {
-            (GI_DIR_TXT.Text, HoyoGames.GenshinImpact),
-            (HSR_DIR_TXT.Text, HoyoGames.HonkaiStarRail),
-            (HI3_DIR_TXT.Text, HoyoGames.HonkaiImpactThird)
+            (GI_DIR_TXT, HoyoGames.GenshinImpact),
+            (HSR_DIR_TXT, HoyoGames.HonkaiStarRail),
+            (HI3_DIR_TXT, HoyoGames.HonkaiImpactThird)
         };
 
         foreach(var (config, name) in CollectionsMarshal.AsSpan(GameConfigs))
         {
-            HoyoMain.ValidateSettings(config, name, out bool IsInvalidGame);
+            HoyoMain.ValidateSettings(config.Text, name, out bool IsInvalidGame);
 
             if(IsInvalidGame)
             {
@@ -95,9 +102,6 @@ public partial class HoyoSettings : Window
             }
         }
 
-        AppSettings.Settings.Default.GENSHIN_IMPACT_DIR         = GI_DIR_TXT.Text;
-        AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR       = HSR_DIR_TXT.Text;
-        AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR    = HI3_DIR_TXT.Text;
         AppSettings.Settings.Default.Save();
         HoyoGames.RefreshDirectory();
 
@@ -132,31 +136,6 @@ public partial class HoyoSettings : Window
             case "Button_Others":       Others.Visibility = Visibility.Visible;     break;
             case "Button_About":        About.Visibility = Visibility.Visible;      break;
         }
-    }
-
-    void ResetLocationButtonClick(object s, RoutedEventArgs e)
-    {
-        GI_DIR_TXT.Text = "";
-        HSR_DIR_TXT.Text = "";
-        HI3_DIR_TXT.Text = "";
-
-        MessageBox.Show("Locations are now cleared!", HoyoWindow.Title);
-    }
-
-    void ResetSettingsButtonClick(object s, RoutedEventArgs e)
-    {
-        AppSettings.Settings.Default.Reset();
-
-        GI_DIR_TXT.Text = AppSettings.Settings.Default.GENSHIN_IMPACT_DIR;
-        HSR_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR;
-        HI3_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR;
-
-        RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY;
-        RadioButtonBackground.IsChecked = AppSettings.Settings.Default.CHECKBOX_BACKGROUND;
-        RadioButtonSelectiveStartup.IsChecked = AppSettings.Settings.Default.CHECKBOX_LASTGAME;
-        RadioButtonDisableTitle.IsChecked = AppSettings.Settings.Default.CHECKBOX_TITLE;
-
-        MessageBox.Show("Settings has been Reset!", HoyoWindow.Title);
     }
 
     static void RefreshCurrentSelectedGame()
