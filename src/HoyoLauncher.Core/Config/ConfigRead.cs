@@ -19,7 +19,7 @@ public sealed class ConfigRead
     {
         ImageBrush GameBG_TEMP = null;
 
-        const string grp = "launcher";
+        const string GroupName = "launcher";
         string gamepath, gamebg, gamename, gamebgmd5, gamever;
 
         var ConfigFile = Path.Combine(FilePath, "config.ini");
@@ -42,10 +42,10 @@ public sealed class ConfigRead
 
         try
         {
-            gamepath = ParsedLauncherObject[grp]["game_install_path"];
-            gamebg = ParsedLauncherObject[grp]["game_dynamic_bg_name"];
-            gamename = ParsedLauncherObject[grp]["game_start_name"];
-            gamebgmd5 = ParsedLauncherObject[grp]["game_dynamic_bg_md5"];
+            gamepath = ParsedLauncherObject[GroupName]["game_install_path"];
+            gamebg = ParsedLauncherObject[GroupName]["game_dynamic_bg_name"];
+            gamename = ParsedLauncherObject[GroupName]["game_start_name"];
+            gamebgmd5 = ParsedLauncherObject[GroupName]["game_dynamic_bg_md5"];
         }
         catch
         {

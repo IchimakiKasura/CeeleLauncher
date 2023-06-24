@@ -94,10 +94,7 @@
                             </RadioButton>
                         </Border>
 
-                        <Border Name="RadioButtonDisableTitle_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="147" VerticalAlignment="Top" Canvas.Left="11">
-                            <Border.Uid>
-                                Display the "Hoyoverse" Title Logo on Home screen?
-                            </Border.Uid>
+                        <Border Name="RadioButtonDisableTitle_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="147" VerticalAlignment="Top" Canvas.Left="11" Uid="Display the &quot;Hoyoverse&quot; Title Logo on Home screen?&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[Requires App Restart]">
                             <RadioButton Name="RadioButtonDisableTitle" IsHitTestVisible="False" Content="Remove Hoyoverse Title on Home" Margin="0,0,100,9">
                                 <RadioButton.RenderTransform>
                                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>

@@ -50,14 +50,9 @@ public sealed class RetrieveAPI
     {
         HttpResponseMessage resp;
 
-        using (HttpClient req = new(handler: new HttpClientHandler() { Proxy = null }))
-        {
-            req.Timeout = TimeSpan.FromMilliseconds(1000);
-            req.DefaultRequestVersion = HttpVersion.Version30;
-            req.DefaultRequestHeaders.Add("User-Agent", "VersionCheck");
-            var res = req.GetAsync(APILink).Result;
-            resp = res;
-        }
+        using HttpClient req = new(handler: new HttpClientHandler() { Proxy = null });// { Timeout = TimeSpan.FromMilliseconds(1000) };
+
+        resp = await req.GetAsync(APILink);
 
         if(resp.IsSuccessStatusCode)
             return await resp.Content.ReadAsStreamAsync();

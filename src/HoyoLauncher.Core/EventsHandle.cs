@@ -125,16 +125,38 @@ public sealed class EventsHandles
 
     }
 
-    public static void GameSelectionPopup() =>
+    public static void GameSelectionPopup()
+    {
+        void PlayAnimation()
+        {
+            Storyboard storyboard = new();
+            ThicknessAnimation MarginAnimation = new(
+                new(925, 580, 128, 120),
+                new(925, 420, 128, 120),
+                TimeSpan.FromMilliseconds(250)
+            );
+
+            Storyboard.SetTargetProperty(MarginAnimation, new("Margin"));
+            Storyboard.SetTarget(MarginAnimation, HoyoWindow.GameSelection);
+            storyboard.Children.Add(MarginAnimation);
+            storyboard.Begin();
+        }
+
         HoyoWindow.LaunchSelection.Click += (s, e) =>
+        {
             HoyoWindow.GameSelection.Visibility =
-                HoyoWindow.GameSelection.IsVisible ? Visibility.Hidden : Visibility.Visible;
+            HoyoWindow.GameSelection.IsVisible ? Visibility.Collapsed : Visibility.Visible;
+
+            if (HoyoWindow.GameSelection.Visibility is Visibility.Visible)
+                PlayAnimation();
+        };
+    }
     public static void GameSelectionButtonClick()
     {
         static void AutoClose(object s, RoutedEventArgs e)
         {
             var SelectedButton = (Button)e.Source;
-            HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
+            HoyoWindow.GameSelection.Visibility = Visibility.Collapsed;
             HoyoGames SelectedHoyoGame = null;
 
             switch(SelectedButton.Name)

@@ -26,11 +26,13 @@ public sealed record HoyoValues
 
         if(RemoveMainBG)
         {
+            if(!HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) return;
             HoyoWindow.HomeBG.Children.Remove(HoyoWindow.MainBG);
             HoyoWindow.HomeBG.Children.Remove(HoyoWindow.HoyoTitleIMG);
         }
         else
         {
+            if(HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) return;
             HoyoWindow.HomeBG.Children.Add(HoyoWindow.MainBG);
             HoyoWindow.HomeBG.Children.Add(HoyoWindow.HoyoTitleIMG);
         }

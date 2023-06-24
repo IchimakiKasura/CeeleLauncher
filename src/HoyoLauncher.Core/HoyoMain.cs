@@ -61,7 +61,17 @@ public class HoyoMain
         }
 
         if (SelectedHoyoGame is null) return;
+
         CurrentGameSelected = SelectedHoyoGame;
+
+        new HoyoValues()
+        {
+            RemoveMainBG = true,
+            Background = CurrentGameSelected.GAME_DEFAULT_BG,
+            LaunchButtonContent = "Loading",
+            VersionBubble = Visibility.Collapsed,
+        }.ApplyChanges();
+
         GameChange.SetGame(--uid);
     }
 

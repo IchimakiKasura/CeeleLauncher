@@ -43,13 +43,13 @@
             <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
             <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50"/>
 
-            <Border Name="GameSelection" Margin="925,420,128,120" Background="White" CornerRadius="5" Visibility="Hidden" Padding="5,9,5,0">
-                <Grid Name="GameSelection_Click">
-                    <Button Name="GAME_SELECTION_GI" Uid="0" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Margin="0,0,0,130"/>
-                    <Button Name="GAME_SELECTION_HSR" Uid="1" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Margin="0,40,0,90"/>
-                    <Button Name="GAME_SELECTION_HI3" Uid="2" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact" Height="35" Margin="0,80,0,50"/>
-                    <Button Name="GAME_SELECTION_ZZZ" Uid="3" Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Margin="0,120,0,10"/>
-                </Grid>
+            <Border Name="GameSelection" Style="{StaticResource GameSelectionBorder}" Visibility="Collapsed">
+                <Canvas Name="GameSelection_Click" ClipToBounds="True">
+                    <Button Name="GAME_SELECTION_GI" Uid="0" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Width="217" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="7"/>
+                    <Button Name="GAME_SELECTION_HSR" Uid="1" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Width="217" HorizontalAlignment="Center" Canvas.Top="47" VerticalAlignment="Top"/>
+                    <Button Name="GAME_SELECTION_HI3" Uid="2" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact 3rd" Height="35" Width="217" HorizontalAlignment="Center" Canvas.Top="87" VerticalAlignment="Top"/>
+                    <Button Name="GAME_SELECTION_ZZZ" Uid="3" Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Width="217" HorizontalAlignment="Center" Canvas.Top="127" VerticalAlignment="Top"/>
+                </Canvas>
             </Border>
 
             <Border Name="SideButtons" Background="#40000000" Margin="1190,70,13,70" CornerRadius="10">
@@ -65,7 +65,7 @@
                 </Canvas>
             </Border>
 
-            <Border Name="VERSION_BUBBLE" CornerRadius="10" Background="#9FFFFFFF" Margin="734,605,389,50" Visibility="Hidden">
+            <Border Name="VERSION_BUBBLE" CornerRadius="10" Background="#9FFFFFFF" Margin="734,605,389,50" Visibility="Collapsed">
                 <Grid Margin="-103,0,-103,0" >
                     <TextBlock Text="New Version is out!" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" FontSize="15" FontWeight="SemiBold"/>
                     <TextBlock Name="VERSION_TEXT" Text="VERSION_TEXT" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,32,0,0" FontSize="15" FontWeight="SemiBold"/>
