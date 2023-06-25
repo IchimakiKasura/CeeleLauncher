@@ -63,6 +63,7 @@ public class HoyoMain
         if (SelectedHoyoGame is null) return;
 
         CurrentGameSelected = SelectedHoyoGame;
+        HoyoWindow.GameScreenshotFolder.IsEnabled = SelectedHoyoGame.GAME_SCREENSHOT_DIR is not "" && SelectedHoyoGame.GAME_DIR_VALID;
 
         new HoyoValues()
         {
@@ -91,14 +92,19 @@ public class HoyoMain
     }
 
     // boilerplate
-    public static void ProcessStart(string FileName) =>
-        Process.Start(
-            new ProcessStartInfo()
+    public static void ProcessStart(string FileName)
+    {
+        using Process process = new()
+        {
+            StartInfo = new ProcessStartInfo()
             {
+                Domain = "explorer.exe",
                 FileName = FileName,
                 UseShellExecute = true
             }
-        ).Dispose();
+        };
+        process.Start();
+    }
 
     // keeps fake builds that might be injected with malware.
     public static string GenerateMD5HASH()

@@ -334,7 +334,7 @@
 
                     <Canvas Name="About" Visibility="Collapsed">
                         <TextBlock FontSize="15" HorizontalAlignment="Center" Canvas.Top="124" VerticalAlignment="Top" Canvas.Left="10" >
-                            <Bold>(Unofficial) HoyoLauncher</Bold> <Run Name="VERSION">[VERSION]</Run><InlineUIContainer BaselineAlignment="Center"><TextBox ToolTip="Build Hash" Name="BUILDHASH" Foreground="Gray" Text="[BUILDHASH]" Background="Transparent" BorderThickness="0" IsReadOnly="True" Margin="0,0,0,0"/></InlineUIContainer> <LineBreak/>
+                            <Bold>Ceele Launcher</Bold> <Run Name="VERSION">[VERSION]</Run><InlineUIContainer BaselineAlignment="Center"><TextBox ToolTip="Build Hash" Name="BUILDHASH" Foreground="Gray" Text="[BUILDHASH]" Background="Transparent" BorderThickness="0" IsReadOnly="True" Margin="0,0,0,0"/></InlineUIContainer> <LineBreak/>
                             © 2023 Created by <Hyperlink Click="GithubHome">Ichimaki Kasura</Hyperlink> <LineBreak/>
                             Under <Hyperlink Click="GithubLicense">MIT License</Hyperlink>. All rights reserved.
                             <LineBreak/>
@@ -349,7 +349,7 @@
                             <LineBreak/>
                             <Hyperlink Click="GithubPR">Contribute on the Project</Hyperlink>
                         </TextBlock>
-                        <Image Source="/Resources/HoyoVerseIcon.png" Stretch="Fill" Height="130" Width="130" Canvas.Top="-2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <Image Source="/Resources/ceele_Icon.png" Stretch="Fill" Height="110" Width="110" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="11" Canvas.Top="11"/>
                         <Image Source="/Resources/github.png" MouseDown="GithubIconButton" Stretch="Fill" Cursor="Hand" Height="40" Canvas.Left="508" Width="40" Canvas.Top="252" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Canvas>
                 </Grid>

@@ -138,8 +138,11 @@
   <data name="MAPPAGE_TIP" xml:space="preserve">
     <value>Game Interactive Map</value>
   </data>
+  <data name="SCREENSHOT_TIP" xml:space="preserve">
+    <value>Open Screenshot folder</value>
+  </data>
   <data name="TOT_TIP" xml:space="preserve">
-    <value>Play Tears of Themis on Mobile</value>
+    <value>Tears of Themis Check-In Rewards</value>
     <comment>Tears of Thermis Button ToolTip</comment>
   </data>
   <data name="ZZZ_TIP" xml:space="preserve">

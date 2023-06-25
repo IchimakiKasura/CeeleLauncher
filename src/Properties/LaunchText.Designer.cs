@@ -79,6 +79,15 @@ namespace AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play on Mobile.
+        /// </summary>
+        public static string GAME_MOBILE {
+            get {
+                return ResourceManager.GetString("GAME_MOBILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NO INTERNET.
         /// </summary>
         public static string GAME_NO_INTERNET_TEXT {

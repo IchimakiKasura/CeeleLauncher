@@ -9,7 +9,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border Name="GearBG" Background="Transparent">
                         <Grid Margin="10,10,10,10">
-                            <Image Source="/Resources/HoyoVerseIcon.png" Margin="-3,-3,-3,-3"/>
+                            <Image Source="/Resources/ceele_Icon.png" Margin="-3,-3,-3,-3"/>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Grid>
                     </Border>

@@ -10,11 +10,11 @@
     
     <PropertyGroup>
         <Authors>IchimakiKasura</Authors>
-        <Company>HoyoLauncher(Unofficial)</Company> <!--For the config folder naming idk on Appdata/Local-->
-        <AssemblyName>Hoyo Launcher</AssemblyName>
-        <Product>Hoyo Launcher</Product>
-        <AssemblyVersion>1.8.0.1</AssemblyVersion>
-        <FileVersion>1.8.0.1</FileVersion>
+        <Company>CeeleLauncher</Company> <!--For the config folder naming idk on Appdata/Local-->
+        <AssemblyName>Ceele Launcher</AssemblyName>
+        <Product>Ceele Launcher</Product>
+        <AssemblyVersion>1.8.0.3</AssemblyVersion>
+        <FileVersion>1.8.0.3</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <Copyright>2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
@@ -42,7 +42,8 @@
         <Resource Include="Resources\Buttons\Selection\GenshinSelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\HI3SelectionButton.png" />
         <Resource Include="Resources\Buttons\Selection\HSRSelectionButton.png" />
-        <Resource Include="Resources\Buttons\Selection\ZZZSelectionButton.png" />
+		<Resource Include="Resources\Buttons\Selection\ZZZSelectionButton.png" />
+		<Resource Include="Resources\Buttons\Selection\TOTSelectionButton.png" />
         
         <!-- Button pictures -->
         <Resource Include="Resources\Buttons\gear.png" />
@@ -50,6 +51,7 @@
         <Resource Include="Resources\Buttons\HI3.jpg" />
         <Resource Include="Resources\Buttons\home.png" />
         <Resource Include="Resources\Buttons\globe.png" />
+        <Resource Include="Resources\Buttons\screenshot.png" />
         <Resource Include="Resources\Buttons\HSR.jpg" />
         <Resource Include="Resources\Buttons\TOT.jpg" />
         <Resource Include="Resources\Buttons\ZZZ.jpg" />
@@ -61,16 +63,17 @@
         <Resource Include="Resources\Icons\256.ico" />
         
         <!-- Others uhh pictures -->
-        <Resource Include="Resources\HoyoVerseIcon.png" />
-        <Resource Include="Resources\HoyoVerse.png" />
+		<Resource Include="Resources\ceele_Icon.png" />
+        <Resource Include="Resources\CeeleLauncher.png" />
         <Resource Include="Resources\defaultBG.jpg" />
-        <Resource Include="Resources\github.png" />
+		<Resource Include="Resources\github.png" />
 
         <!-- Background pictures -->
-        <Resource Include="Resources\DEFAULT_ZZZ_BG.jpg" />
+		<Resource Include="Resources\DEFAULT_GENSHIN_BG.jpg" />
         <Resource Include="Resources\DEFAULT_HSR_BG.jpg" />
         <Resource Include="Resources\DEFAULT_HI3_BG.jpg" />
-        <Resource Include="Resources\DEFAULT_GENSHIN_BG.jpg" />
+        <Resource Include="Resources\DEFAULT_ZZZ_BG.jpg" />
+		<Resource Include="Resources\DEFAULT_TOT_BG.jpg" />
         
         <!-- Tour pictures -->
         <Resource Include="Resources\ShortTour\1.png" />

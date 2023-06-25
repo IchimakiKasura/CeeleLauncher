@@ -12,8 +12,10 @@ public sealed class HoyoGames
     public string GAME_RESOURCE_API_LINK { get; }
     public string GAME_CONTENT_API_LINK { get; }
     public string GAME_MAP_PAGE { get; }
+    public string GAME_SCREENSHOT_DIR { get; }
 
     public RetrieveAPI API_CACHE { get; set; }
+    public string GAME_INSTALL_PATH { get; set; }
 
     private HoyoGames(
         string GameDirectory,
@@ -24,7 +26,8 @@ public sealed class HoyoGames
         ImageBrush GameDefaultBG,
         string GameApiLink,
         string GameBGapi,
-        string Gamemappage
+        string Gamemappage,
+        string GameSS
         )
     {
         GAME_DIRECTORY = GameDirectory;
@@ -36,6 +39,7 @@ public sealed class HoyoGames
         GAME_RESOURCE_API_LINK = GameApiLink;
         GAME_CONTENT_API_LINK = GameBGapi;
         GAME_MAP_PAGE = Gamemappage;
+        GAME_SCREENSHOT_DIR = GameSS;
     }
 
 
@@ -43,7 +47,7 @@ public sealed class HoyoGames
     /// Default Values
     ///</summary>
     public readonly static HoyoGames DEFAULT =
-        new("","", "", "https://www.hoyoverse.com/en-us/","",null,"","","");
+        new("","", "", "https://www.hoyoverse.com/en-us/","",null,"","","","");
 
     ///<summary>
     /// Genshin Impact's Values
@@ -54,12 +58,13 @@ public sealed class HoyoGames
             AppSettings.Settings.Default.GENSHIN_IMPACT_DIR,
             Games.GENSHIN_IMPACT_EXEC,
             Games.GENSHIN_IMPACT_TITLE,
-            "https://genshin.hoyoverse.com/en",
+            "https://genshin.hoyoverse.com/en/home",
             "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481",
             DefaultBG.GENSHIN_BG,
             AppSettings.Settings.Default.GENSHIN_VERSION_API,
             AppSettings.Settings.Default.GENSHIN_CONTENT_API,
-            "https://act.hoyolab.com/ys/app/interactive-map/index.html"
+            "https://act.hoyolab.com/ys/app/interactive-map/index.html",
+            "ScreenShot"
         );
 
     ///<summary>
@@ -71,12 +76,13 @@ public sealed class HoyoGames
             AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR,
             Games.HONKAI_STAR_RAIL_EXEC,
             Games.HONKAI_STAR_RAIL_TITLE,
-            "https://hsr.hoyoverse.com/en-us/",
+            "https://hsr.hoyoverse.com/en-us/home",
             "https://act.hoyolab.com/bbs/event/signin/hkrpg/index.html?act_id=e202303301540311",
             DefaultBG.HSR_BG,
             AppSettings.Settings.Default.HSR_VERSION_API,
             AppSettings.Settings.Default.HSR_CONTENT_API,
-            "https://act.hoyolab.com/sr/app/interactive-map/index.html"
+            "https://act.hoyolab.com/sr/app/interactive-map/index.html",
+            Path.Combine("StarRail_Data", "ScreenShots")
         );
 
     ///<summary>
@@ -93,6 +99,7 @@ public sealed class HoyoGames
             DefaultBG.HI3_BG,
             AppSettings.Settings.Default.HI3_VERSION_API,
             AppSettings.Settings.Default.HI3_CONTENT_API,
+            "",
             ""
         );
 
@@ -110,6 +117,7 @@ public sealed class HoyoGames
             DefaultBG.ZZZ_BG,
             "",
             "",
+            "",
             ""
         );
 
@@ -123,8 +131,9 @@ public sealed class HoyoGames
             "",
             "",
             "https://tot.hoyoverse.com/en-us",
+            "https://act.hoyolab.com/bbs/event/signin/nxx/index.html?act_id=e202202281857121",
+            DefaultBG.TOT_BG,
             "",
-            null,
             "",
             "",
             ""

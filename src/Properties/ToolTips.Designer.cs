@@ -115,7 +115,16 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play Tears of Themis on Mobile.
+        ///   Looks up a localized string similar to Open Screenshot folder.
+        /// </summary>
+        public static string SCREENSHOT_TIP {
+            get {
+                return ResourceManager.GetString("SCREENSHOT_TIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tears of Themis Check-In Rewards.
         /// </summary>
         public static string TOT_TIP {
             get {

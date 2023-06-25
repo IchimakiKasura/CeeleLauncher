@@ -21,4 +21,9 @@ public sealed class SelectionResources
     {
         get => new(new BitmapImage(new("pack://application:,,,/Resources/Buttons/Selection/ZZZSelectionButton.png")));
     }
+
+    public static ImageBrush TOTImage
+    {
+        get => new(new BitmapImage(new("pack://application:,,,/Resources/Buttons/Selection/TOTSelectionButton.png")));
+    }
 }

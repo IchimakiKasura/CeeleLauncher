@@ -37,7 +37,7 @@
                         </Border.Background>
                     </Border>
                 </Border>
-                <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="/Resources/HoyoVerse.png" Stretch="Fill"/>
+                <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="/Resources/CeeleLauncher.png" Stretch="Fill"/>
             </Grid>
 
             <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
@@ -49,6 +49,7 @@
                     <Button Name="GAME_SELECTION_HSR" Uid="1" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Width="217" HorizontalAlignment="Center" Canvas.Top="47" VerticalAlignment="Top"/>
                     <Button Name="GAME_SELECTION_HI3" Uid="2" Style="{StaticResource GameSelectionButton}" Content="Honkai Impact 3rd" Height="35" Width="217" HorizontalAlignment="Center" Canvas.Top="87" VerticalAlignment="Top"/>
                     <Button Name="GAME_SELECTION_ZZZ" Uid="3" Style="{StaticResource GameSelectionButton}" Content="Zenless zone zero" Height="35" Width="217" HorizontalAlignment="Center" Canvas.Top="127" VerticalAlignment="Top"/>
+                    <Button Name="GAME_SELECTION_TOT" Uid="4" Style="{StaticResource GameSelectionButton}" Content="Tears of Themis" Height="35" Width="217" HorizontalAlignment="Center" Canvas.Top="167" VerticalAlignment="Top"/>
                 </Canvas>
             </Border>
 
@@ -60,6 +61,7 @@
                     <ButtonControl:HoyoButton x:Name="ZZZ_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="250" Image="/Resources/Buttons/ZZZ.jpg"/>
                     <ButtonControl:HoyoButton x:Name="TOT_SITE" Height="57" Width="57" Canvas.Left="10" Canvas.Top="325" Image="/Resources/Buttons/TOT.jpg"/>
 
+                    <ButtonControl:HoyoButton x:Name="GameScreenshotFolder" Height="36" Width="35" Canvas.Left="21" Canvas.Top="432" Image="/Resources/Buttons/screenshot.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <ButtonControl:HoyoButton x:Name="GameMapPage" Height="36" Width="35" Canvas.Left="21" Canvas.Top="478" Image="/Resources/Buttons/globe.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <ButtonControl:HoyoButton x:Name="GameHomePage" Height="35" Width="35" Canvas.Left="21" Canvas.Top="524" Image="/Resources/Buttons/home.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
                 </Canvas>
@@ -76,7 +78,7 @@
 
             <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.5" Style="{StaticResource TopButtonTrigger}">
                 <Grid>
-                    <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Hoyo Launcher</TextBlock>
+                    <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Ceele Launcher</TextBlock>
                     <TextBlock Name="AppVersion" Text="Unreleased Version: DEVELOPMENT BUILD"  Foreground="White" Opacity="0.2" Padding="0,10,0,0" FontSize="15" Margin="124,0,0,0"/>
                     <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1200,0,0,0"/>
                     <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1160,0,40,0"/>

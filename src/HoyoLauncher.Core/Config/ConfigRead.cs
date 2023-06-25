@@ -4,7 +4,6 @@ namespace HoyoLauncher.Core.Config;
 
 public sealed class ConfigRead
 {
-    // I like how the "GameInstallPath" and the "GameBackgroundName" isn't being used on other methods
     public bool FilePathNone { get; private set; } = false;
     public bool ConfigExist { get; private set; } = false;
     public string GameInstallPath { get; private set; }

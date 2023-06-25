@@ -125,6 +125,9 @@
     <value>Game is Running</value>
     <comment>Button Launched</comment>
   </data>
+  <data name="GAME_MOBILE" xml:space="preserve">
+    <value>Play on Mobile</value>
+  </data>
   <data name="GAME_NOTFOUND" xml:space="preserve">
     <value>Location not set</value>
     <comment>Button NotFound</comment>

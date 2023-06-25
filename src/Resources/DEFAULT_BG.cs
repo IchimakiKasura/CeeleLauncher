@@ -22,4 +22,8 @@ public sealed class DefaultBG
     {
         get => new(new BitmapImage(new("pack://application:,,,/Resources/DEFAULT_ZZZ_BG.jpg", UriKind.RelativeOrAbsolute)));
     }
+    public static ImageBrush TOT_BG
+    {
+        get => new(new BitmapImage(new("pack://application:,,,/Resources/DEFAULT_TOT_BG.jpg", UriKind.RelativeOrAbsolute)));
+    }
 }

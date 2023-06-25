@@ -14,6 +14,7 @@ public sealed class EventsHandles
         HoyoWindow.TOT_SITE.ButtonToolTip = ToolTips.TOT_TIP;
         HoyoWindow.GameHomePage.ButtonToolTip = ToolTips.HOMEPAGE_TIP;
         HoyoWindow.GameMapPage.ButtonToolTip = ToolTips.MAPPAGE_TIP;
+        HoyoWindow.GameScreenshotFolder.ButtonToolTip = ToolTips.SCREENSHOT_TIP;
     }
     public static void WindowTopButtons()
     {
@@ -69,12 +70,13 @@ public sealed class EventsHandles
 
             switch(CurrentButton.Name)
             {
+                case "GameScreenshotFolder": Launcher = Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, HoyoMain.CurrentGameSelected.GAME_SCREENSHOT_DIR); break;
                 case "GameHomePage": Launcher = HoyoMain.CurrentGameSelected.GAME_HOMEPAGE; break;
                 case "GameMapPage": Launcher = HoyoMain.CurrentGameSelected.GAME_MAP_PAGE; break;
                 case "GENSHIN_IMPACT_REWARDS": Launcher = HoyoGames.GenshinImpact.GAME_CHECK_IN_PAGE; break;
                 case "HONKAI_STAR_RAIL_REWARDS": Launcher = HoyoGames.HonkaiStarRail.GAME_CHECK_IN_PAGE; break;
                 case "HONKAI_IMPACT_THIRD_REWARDS": Launcher = HoyoGames.HonkaiImpactThird.GAME_CHECK_IN_PAGE; break;
-                case "TOT_SITE": Launcher = HoyoGames.TearsOfThemis.GAME_DIRECTORY; break;
+                case "TOT_SITE": Launcher = HoyoGames.TearsOfThemis.GAME_CHECK_IN_PAGE; break;
                 case "ZZZ_REWARDS":
                     MessageBox.Show("Game is not released yet!", "Zenless Zone Zero", MessageBoxButton.OK);
                     break;
@@ -92,6 +94,12 @@ public sealed class EventsHandles
         {
             e.Handled = true;
 
+            if(HoyoMain.CurrentGameSelected == HoyoGames.TearsOfThemis)
+            {
+                HoyoMain.ProcessStart(HoyoMain.CurrentGameSelected.GAME_DIRECTORY);
+                return;
+            }
+
             if(Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_UPDATE_TEXT))
             {
                 HoyoMain.ProcessStart(HoyoMain.ExecutableName);
@@ -104,7 +112,7 @@ public sealed class EventsHandles
             App.AppMinimizeToTray();
             HoyoMain.IsGameRunning = true;
 
-            using var GameProcess = Process.Start(
+            using Process GameProcess = Process.Start(
                 new ProcessStartInfo()
                 {
                     FileName = HoyoMain.ExecutableName,
@@ -132,7 +140,7 @@ public sealed class EventsHandles
             Storyboard storyboard = new();
             ThicknessAnimation MarginAnimation = new(
                 new(925, 580, 128, 120),
-                new(925, 420, 128, 120),
+                new(925, 380, 128, 120),
                 TimeSpan.FromMilliseconds(250)
             );
 
@@ -165,9 +173,11 @@ public sealed class EventsHandles
                 case "GAME_SELECTION_HSR": SelectedHoyoGame = HoyoGames.HonkaiStarRail;       break;
                 case "GAME_SELECTION_HI3": SelectedHoyoGame = HoyoGames.HonkaiImpactThird;    break;
                 case "GAME_SELECTION_ZZZ": SelectedHoyoGame = HoyoGames.ZenlessZoneZero;      break;
+                case "GAME_SELECTION_TOT": SelectedHoyoGame = HoyoGames.TearsOfThemis;        break;
             }
 
             HoyoWindow.GameMapPage.IsEnabled = SelectedHoyoGame.GAME_MAP_PAGE is not "";
+            HoyoWindow.GameScreenshotFolder.IsEnabled = SelectedHoyoGame.GAME_SCREENSHOT_DIR is not "" && SelectedHoyoGame.GAME_DIR_VALID;
 
             HoyoMain.CurrentGameSelected = SelectedHoyoGame;
             GameChange.SetGame(SelectedButton.Uid);
@@ -181,5 +191,6 @@ public sealed class EventsHandles
         HoyoWindow.GAME_SELECTION_HSR.Background = SelectionResources.HonkaiStarRailImage;
         HoyoWindow.GAME_SELECTION_HI3.Background = SelectionResources.HonkaiImpactImage;
         HoyoWindow.GAME_SELECTION_ZZZ.Background = SelectionResources.ZZZImage;
+        HoyoWindow.GAME_SELECTION_TOT.Background = SelectionResources.TOTImage;
     }
 }

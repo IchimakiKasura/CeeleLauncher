@@ -5,7 +5,7 @@
         <Setter Property="Background" Value="White"/>
         <Setter Property="Padding" Value="5,5,5,5"/>
         <Setter Property="CornerRadius" Value="5"/>
-        <Setter Property="Margin" Value="925,420,128,120"/>
+        <Setter Property="Margin" Value="925,380,128,120"/>
         <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
     </Style>
     
