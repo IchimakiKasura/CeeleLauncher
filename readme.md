@@ -1,8 +1,8 @@
-<center>
+<div align="center">
 <img src="readme/CeeleLauncher.png" height="200"><br>
 A very simple Game launcher for Mihoyo/Hoyoverse games on PC.<br>
 the app is built based on my own preference.
-</center>
+</div>
 <br>
 
 ## Features
