@@ -13,7 +13,7 @@ public partial class MainWindow : Window
         HoyoMain.Initialize();
 
 #if !DEBUG
-        AppVersion.Text = App.Version;
+        AppVersion.Text = App.IsPreview ? App.Version+" PREVIEW BUILD | NOT OFFICIAL VERSION" : App.Version;
 #else
         AppVersion.Text += $": test ver({App.Version})";
         Console.WriteLine("BUILD HASH: "+App.UniqueHashBUILD);

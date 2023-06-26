@@ -16,9 +16,10 @@
         <AssemblyVersion>1.8.0.3</AssemblyVersion>
         <FileVersion>1.8.0.3</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-        <Copyright>2023</Copyright>
+        <Copyright>Copyright © Ceele Launcher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies> 
     </PropertyGroup>
 
     <PropertyGroup Condition="$(Configuration) == Release">

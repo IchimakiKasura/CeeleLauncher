@@ -94,8 +94,8 @@
                             </RadioButton>
                         </Border>
 
-                        <Border Name="RadioButtonDisableTitle_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="147" VerticalAlignment="Top" Canvas.Left="11" Uid="Display the &quot;Hoyoverse&quot; Title Logo on Home screen?&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[Requires App Restart]">
-                            <RadioButton Name="RadioButtonDisableTitle" IsHitTestVisible="False" Content="Remove Hoyoverse Title on Home" Margin="0,0,100,9">
+                        <Border Name="RadioButtonDisableTitle_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="147" VerticalAlignment="Top" Canvas.Left="11" Uid="Display the Ceele Title Logo on Home screen?&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[Requires App Restart]">
+                            <RadioButton Name="RadioButtonDisableTitle" IsHitTestVisible="False" Content="Show Ceele Title on Home" Margin="0,0,100,9">
                                 <RadioButton.RenderTransform>
                                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                                 </RadioButton.RenderTransform>
@@ -328,8 +328,8 @@
                                 Clear the Location on the "Location tab"
                             </Button.Uid>
                         </Button>
-                        <Button Name="Button_ResetSettings" Content="Reset To Default" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="180" Uid="Reset all the settings to its default state.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[App Restart Optional]"/>
 
+                        <Button Name="Button_ResetSettings" Content="Reset To Default" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="241" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="180" Uid="Reset all the settings to its default state.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[App Restart Optional]"/>
                     </Canvas>
 
                     <Canvas Name="About" Visibility="Collapsed">

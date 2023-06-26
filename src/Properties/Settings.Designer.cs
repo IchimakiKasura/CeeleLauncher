@@ -193,7 +193,7 @@ namespace AppSettings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool CHECKBOX_TITLE {
             get {
                 return ((bool)(this["CHECKBOX_TITLE"]));

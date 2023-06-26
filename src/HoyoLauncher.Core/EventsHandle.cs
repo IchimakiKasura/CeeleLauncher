@@ -4,7 +4,7 @@
 public sealed class EventsHandles
 {
     public static void WindowHomeLogo() =>
-        HoyoWindow.HoyoTitleIMG.Visibility = AppSettings.Settings.Default.CHECKBOX_TITLE ? Visibility.Collapsed : Visibility.Visible;
+        HoyoWindow.HoyoTitleIMG.Visibility = AppSettings.Settings.Default.CHECKBOX_TITLE ? Visibility.Visible : Visibility.Collapsed;
     public static void WindowSideButtonToolTips()
     {
         HoyoWindow.GENSHIN_IMPACT_REWARDS.ButtonToolTip = ToolTips.GENSHIN_IMPACT_TIP;

@@ -2,6 +2,9 @@ namespace HoyoLauncher;
 
 public partial class App
 {
+
+    public static readonly bool IsPreview = true;
+
     static readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name;
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
     public readonly static string UniqueHashBUILD = HoyoMain.GenerateMD5HASH();

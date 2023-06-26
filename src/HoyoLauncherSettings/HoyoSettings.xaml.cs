@@ -17,7 +17,10 @@ public partial class HoyoSettings : Window
         HoyoSettingStatic = this;
 
         VERSION.Text = App.Version;
-        BUILDHASH.Text = $"({App.UniqueHashBUILD})";
+
+        BUILDHASH.Text = 
+            App.IsPreview ? $"({App.UniqueHashBUILD}) PREVIEW BUILD | NOT OFFICIAL VERSION" : $"({App.UniqueHashBUILD})";
+        
         Tooltip_Text.Text = "";
 
         HoyoWindow.BLACK_THING.Visibility = Visibility.Visible;

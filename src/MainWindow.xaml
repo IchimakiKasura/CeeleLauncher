@@ -37,7 +37,7 @@
                         </Border.Background>
                     </Border>
                 </Border>
-                <Image Name="HoyoTitleIMG" Margin="226,269,226,269" Source="/Resources/CeeleLauncher.png" Stretch="Fill"/>
+                <Image Name="HoyoTitleIMG" Margin="226,287,226,251" Source="/Resources/CeeleLauncher.png" Stretch="Fill"/>
             </Grid>
 
             <Button Name="LaunchButton" Style="{StaticResource LaunchButton}" Margin="915,605,163,50" IsEnabled="false"/>
