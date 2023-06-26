@@ -13,13 +13,16 @@
         <Company>CeeleLauncher</Company> <!--For the config folder naming idk on Appdata/Local-->
         <AssemblyName>Ceele Launcher</AssemblyName>
         <Product>Ceele Launcher</Product>
-        <AssemblyVersion>1.8.0.3</AssemblyVersion>
-        <FileVersion>1.8.0.3</FileVersion>
+        <AssemblyVersion>1.8.626.3</AssemblyVersion>
+        <FileVersion>1.8.626.3</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <Copyright>Copyright © Ceele Launcher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
-        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies> 
+        <SignAssembly>True</SignAssembly>
+        <AssemblyOriginatorKeyFile>mykey.snk</AssemblyOriginatorKeyFile>
+        <RepositoryType>https://github.com/IchimakiKasura/CeeleLauncher</RepositoryType>
+        <IncludeSymbols>False</IncludeSymbols>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(Configuration) == Release">
@@ -31,6 +34,14 @@
         <PublishSingleFile>True</PublishSingleFile>
         <PublishReadyToRun>True</PublishReadyToRun>
         <DebugType>None</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DebugType>none</DebugType>
     </PropertyGroup>
 	
     <ItemGroup>
