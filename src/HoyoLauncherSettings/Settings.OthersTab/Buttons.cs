@@ -16,7 +16,7 @@ sealed class HoyoSettingsButtons
         HoyoSettingStatic.HSR_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR;
         HoyoSettingStatic.HI3_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR;
 
-        HoyoSettingStatic.RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY;
+        HoyoSettingStatic.RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_EXIT_TRAY;
         HoyoSettingStatic.RadioButtonBackground.IsChecked = AppSettings.Settings.Default.CHECKBOX_BACKGROUND;
         HoyoSettingStatic.RadioButtonSelectiveStartup.IsChecked = AppSettings.Settings.Default.CHECKBOX_LASTGAME;
         HoyoSettingStatic.RadioButtonDisableTitle.IsChecked = AppSettings.Settings.Default.CHECKBOX_TITLE;

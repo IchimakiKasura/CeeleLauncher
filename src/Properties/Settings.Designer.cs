@@ -86,12 +86,12 @@ namespace AppSettings {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CHECKBOX_MINIMIZE_TRAY {
+        public bool CHECKBOX_EXIT_TRAY {
             get {
-                return ((bool)(this["CHECKBOX_MINIMIZE_TRAY"]));
+                return ((bool)(this["CHECKBOX_EXIT_TRAY"]));
             }
             set {
-                this["CHECKBOX_MINIMIZE_TRAY"] = value;
+                this["CHECKBOX_EXIT_TRAY"] = value;
             }
         }
         

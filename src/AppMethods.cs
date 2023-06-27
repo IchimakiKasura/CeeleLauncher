@@ -16,15 +16,21 @@ public partial class App
         AppTray.Icon = IconResources.Icon_16;
         AppTray.Visible = false;
         AppTray.Text = AppName;
-        AppTray.Click += AppTrayClick;
+        AppTray.MouseDown += AppTrayClick;
 
-        AppTray.BalloonTipText = "HoyoLauncher will be running in the background.";
+        AppTray.BalloonTipText = "Ceele will be running in the background.";
         AppTray.BalloonTipTitle = AppName;
         AppTray.BalloonTipIcon = Forms.ToolTipIcon.None;
+
+        AppTray.ContextMenuStrip = new();
+        AppTray.ContextMenuStrip.Items.Add("Open", null, AppMenuOpen);
+        AppTray.ContextMenuStrip.Items.Add("Close", null, AppMenuClose);
     }
 
-    private void AppTrayClick(object s, EventArgs e)
+    private void AppTrayClick(object s, Forms.MouseEventArgs e)
     {
+        if (e.Button is not Forms.MouseButtons.Left) return;
+
         if (MainWindow.WindowState is not WindowState.Minimized) return;
 
         MainWindow.Show();
@@ -32,6 +38,21 @@ public partial class App
         MainWindow.ShowInTaskbar = true;
         AppTray.Visible = false;
     }
+
+    private void AppMenuOpen(object s, EventArgs e)
+    {
+        MainWindow.Show();
+        MainWindow.WindowState = WindowState.Normal;
+        MainWindow.ShowInTaskbar = true;
+        AppTray.Visible = false;
+    }
+
+    private void AppMenuClose(object s, EventArgs e)
+    {
+        IsFromTray = true;
+        HoyoWindow.Close();
+    }
+
 
     private static void AppNotification()
     {
@@ -45,7 +66,7 @@ public partial class App
     {
         HoyoWindow.WindowState = WindowState.Minimized;
 
-        if (AppSettings.Settings.Default.CHECKBOX_MINIMIZE_TRAY is false) return;
+        if (AppSettings.Settings.Default.CHECKBOX_EXIT_TRAY is false) return;
 
         HoyoWindow.ShowInTaskbar = false;
         HoyoWindow.Hide();

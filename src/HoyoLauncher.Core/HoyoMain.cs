@@ -37,7 +37,7 @@ public class HoyoMain
 
     public static void ValidateSettings(string GameConfigName, HoyoGames Game, out bool ErrorOccured)
     {
-        ConfigRead GameConfigData = ConfigRead.GetConfig(GameConfigName);
+        ConfigRead GameConfigData = Game.GAME_CONFIG_CACHE = ConfigRead.GetConfig(GameConfigName);
         ErrorOccured = false;
 
         if (GameConfigData.FilePathNone)
@@ -131,7 +131,7 @@ public class HoyoMain
 
         if (IsGameRunning) return;
 
-        ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
+        ConfigRead GameConfig = CurrentGameSelected.GAME_CONFIG_CACHE;
 
         string LaunchButtonContent = ContentSwitch(GameConfig);
 

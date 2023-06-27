@@ -4,6 +4,7 @@ public partial class App : Application
 {
     static bool AppAlreadyOpened;
     private static readonly Mutex _Mutex = new(true, AppName + Version + "test", out AppAlreadyOpened);
+    public static bool IsFromTray { get; private set; }= false;
 
     protected override void OnStartup(StartupEventArgs e)
     {

@@ -13,8 +13,8 @@
         <Company>CeeleLauncher</Company> <!--For the config folder naming idk on Appdata/Local-->
         <AssemblyName>Ceele Launcher</AssemblyName>
         <Product>Ceele Launcher</Product>
-        <AssemblyVersion>1.8.626.3</AssemblyVersion>
-        <FileVersion>1.8.626.3</FileVersion>
+        <AssemblyVersion>1.8.627.3</AssemblyVersion>
+        <FileVersion>1.8.627.3</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <Copyright>Copyright © Ceele Launcher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>

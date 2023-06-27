@@ -26,7 +26,12 @@ public partial class MainWindow : Window
 
         if(HoyoMain.IsGameRunning)
             MessageBox.Show("Game is running! Cannot be closed.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-        else AppSettings.Settings.Default.Save(); 
+        else if (AppSettings.Settings.Default.CHECKBOX_EXIT_TRAY && !App.IsFromTray)
+        {
+            App.AppMinimizeToTray();
+            e.Cancel = true;
+        }
+        else AppSettings.Settings.Default.Save();
 
         base.OnClosing(e);
     }

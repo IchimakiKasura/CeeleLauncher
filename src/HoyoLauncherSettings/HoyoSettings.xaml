@@ -66,9 +66,9 @@
 
                         <Border Name="RadioButtonTray_Click" Cursor="Hand" Background="Transparent" Height="26" Width="201" HorizontalAlignment="Left" Canvas.Top="24" VerticalAlignment="Center" Canvas.Left="31">
                             <Border.Uid>
-                                Put the app to System Tray when Game Launched or Minimized. Does not affect the Exit button.
+                                Put the app to System Tray when Game is Launched or when Launcher is Closed. Does not affect the Minimize button.
                             </Border.Uid>
-                            <RadioButton Name="RadioButtonTray" IsHitTestVisible="False" Content="Minimize to system tray" Margin="-20,0,75,9">
+                            <RadioButton Name="RadioButtonTray" IsHitTestVisible="False" Content="Close to system tray" Margin="-20,0,75,9">
                                 <RadioButton.RenderTransform>
                                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                                 </RadioButton.RenderTransform>

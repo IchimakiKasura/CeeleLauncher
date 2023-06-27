@@ -34,7 +34,7 @@ public sealed class EventsHandles
             switch(CurrentButton.Name)
             {
                 case "ExitButton": HoyoWindow.Close(); break;
-                case "MinButton": App.AppMinimizeToTray(); break;
+                case "MinButton": HoyoWindow.WindowState = WindowState.Minimized; break;
                 case "SettingsButton": new HoyoLauncherSettings.HoyoSettings { Owner = HoyoWindow }.ShowDialog(); break;
                 case "HomeButton":
                         if (HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) break;

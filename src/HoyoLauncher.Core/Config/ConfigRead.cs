@@ -14,6 +14,11 @@ public sealed class ConfigRead
     public string GameVersion { get; private set; }
     public string GameBackgroundMD5 { get; private set; }
 
+    private ConfigRead()
+    { }
+
+    public static ConfigRead CreateInstance() => new();
+
     public static ConfigRead GetConfig(string FilePath)
     {
         ImageBrush GameBG_TEMP = null;
@@ -36,7 +41,9 @@ public sealed class ConfigRead
                 ConfigExist = configexist
             };
 
-        var LauncherConfig = File.ReadAllText(Path.Combine(FilePath, "config.ini"));
+        using StreamReader ConfigReader = new(File.OpenRead(Path.Combine(FilePath, "config.ini")));
+
+        var LauncherConfig = ConfigReader.ReadToEnd();
         var ParsedLauncherObject = new IniDataParser().Parse(LauncherConfig);
 
         try

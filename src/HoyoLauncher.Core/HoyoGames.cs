@@ -16,6 +16,7 @@ public sealed class HoyoGames
 
     public RetrieveAPI API_CACHE { get; set; }
     public string GAME_INSTALL_PATH { get; set; }
+    public ConfigRead GAME_CONFIG_CACHE { get; set; } = ConfigRead.CreateInstance();
 
     private HoyoGames(
         string GameDirectory,

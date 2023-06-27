@@ -19,7 +19,7 @@ public sealed class GameChange : HoyoMain
         
         HoyoValues values = new(TempValues);
 
-        ConfigRead GameConfig = ConfigRead.GetConfig(CurrentGameSelected.GAME_DIRECTORY);
+        ConfigRead GameConfig = CurrentGameSelected.GAME_CONFIG_CACHE;
         ImageBrush GameBG = GameConfig.GameBackground is null ? CurrentGameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
         CurrentGameSelected.GAME_INSTALL_PATH ??= GameConfig.GameInstallPath;
 
