@@ -1,8 +1,6 @@
-using IniParser;
-
 namespace HoyoLauncher.Core.Config;
 
-public sealed class ConfigRead
+public sealed class GameConfigRead
 {
     public bool FilePathNone { get; private set; } = false;
     public bool ConfigExist { get; private set; } = false;
@@ -14,12 +12,17 @@ public sealed class ConfigRead
     public string GameVersion { get; private set; }
     public string GameBackgroundMD5 { get; private set; }
 
-    private ConfigRead()
+
+    private static GameConfigRead instance = null;
+    public static GameConfigRead Instance
+    {
+        get => instance ??= new GameConfigRead();
+    }
+
+    private GameConfigRead()
     { }
 
-    public static ConfigRead CreateInstance() => new();
-
-    public static ConfigRead GetConfig(string FilePath)
+    public static GameConfigRead GetConfig(string FilePath)
     {
         ImageBrush GameBG_TEMP = null;
 
@@ -41,11 +44,8 @@ public sealed class ConfigRead
                 ConfigExist = configexist
             };
 
-        using StreamReader ConfigReader = new(File.OpenRead(Path.Combine(FilePath, "config.ini")));
-
-        var LauncherConfig = ConfigReader.ReadToEnd();
-        var ParsedLauncherObject = new IniDataParser().Parse(LauncherConfig);
-
+        var ParsedLauncherObject = ReadFile(Path.Combine(FilePath, "config.ini"));
+        
         try
         {
             gamepath = ParsedLauncherObject[GroupName]["game_install_path"];
@@ -66,8 +66,7 @@ public sealed class ConfigRead
         if(File.Exists(CheckBGExist))
             GameBG_TEMP = new(new BitmapImage(new(Path.Combine(FilePath, "bg", gamebg), UriKind.RelativeOrAbsolute)));
 
-        var GameConfig = File.ReadAllText(Path.Combine(gamepath, "config.ini"));
-        var ParsedGameObject = new IniDataParser().Parse(GameConfig);
+        var ParsedGameObject = ReadFile(Path.Combine(gamepath, "config.ini"));
 
         gamever = ParsedGameObject["General"]["game_version"];
 
@@ -83,4 +82,14 @@ public sealed class ConfigRead
             GameBackgroundMD5 = gamebgmd5
         };
     }    
+
+    static IniData ReadFile(string filePath)
+    {
+        using StreamReader streamReader  = new(File.OpenRead(filePath));
+
+        var Data = streamReader.ReadToEnd();
+        streamReader.Close();
+
+        return new IniDataParser().Parse(Data); 
+    }
 }

@@ -16,7 +16,7 @@ public sealed class HoyoGames
 
     public RetrieveAPI API_CACHE { get; set; }
     public string GAME_INSTALL_PATH { get; set; }
-    public ConfigRead GAME_CONFIG_CACHE { get; set; } = ConfigRead.CreateInstance();
+    public GameConfigRead GAME_CONFIG_CACHE { get; set; } = GameConfigRead.Instance;
 
     private HoyoGames(
         string GameDirectory,
@@ -56,7 +56,7 @@ public sealed class HoyoGames
     public readonly static HoyoGames GenshinImpact =
         new
         (
-            AppSettings.Settings.Default.GENSHIN_IMPACT_DIR,
+            App.Config.GI_DIR,
             Games.GENSHIN_IMPACT_EXEC,
             Games.GENSHIN_IMPACT_TITLE,
             "https://genshin.hoyoverse.com/en/home",
@@ -74,7 +74,7 @@ public sealed class HoyoGames
     public readonly static HoyoGames HonkaiStarRail =
         new
         (
-            AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR,
+            App.Config.HSR_DIR,
             Games.HONKAI_STAR_RAIL_EXEC,
             Games.HONKAI_STAR_RAIL_TITLE,
             "https://hsr.hoyoverse.com/en-us/home",
@@ -92,7 +92,7 @@ public sealed class HoyoGames
     public readonly static HoyoGames HonkaiImpactThird =
         new
         (
-            AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR,
+            App.Config.HI3_DIR,
             Games.HONKAI_IMPACT_THIRD_EXEC,
             Games.HONKAI_IMPACT_THIRD_TITLE,
             "https://honkaiimpact3.hoyoverse.com/global/en-us/fab",
@@ -110,7 +110,7 @@ public sealed class HoyoGames
     public readonly static HoyoGames ZenlessZoneZero =
         new
         (
-            AppSettings.Settings.Default.ZENLESS_ZONE_ZERO_DIR,
+            App.Config.ZZZ_DIR,
             "",
             "",
             "https://zenless.hoyoverse.com/en-us",
@@ -142,8 +142,8 @@ public sealed class HoyoGames
 
     public static void RefreshDirectory()
     {
-        GenshinImpact.GAME_DIRECTORY = AppSettings.Settings.Default.GENSHIN_IMPACT_DIR;
-        HonkaiStarRail.GAME_DIRECTORY = AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR;
-        HonkaiImpactThird.GAME_DIRECTORY = AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR;
+        GenshinImpact.GAME_DIRECTORY = App.Config.GI_DIR;
+        HonkaiStarRail.GAME_DIRECTORY = App.Config.HSR_DIR;
+        HonkaiImpactThird.GAME_DIRECTORY = App.Config.HI3_DIR;
     }
 }

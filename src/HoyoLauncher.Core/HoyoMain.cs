@@ -18,26 +18,31 @@ public class HoyoMain
     public static HoyoGames CurrentGameSelected { get; set; } = HoyoGames.DEFAULT;
     public static string ExecutableName { get; set; }
 
-    public static void Initialize()
+    public static async void Initialize()
     {
-        UpdateConfig();
+        if (!MainConfig.CheckConfig())
+            MainConfig.CreateConfig();
+
+        App.Config = await MainConfig.ReadConfig();
+
+        AppFirstRun();
 
         EventsAttribute.SetEvents();
 
-        ValidateSettings(AppSettings.Settings.Default.GENSHIN_IMPACT_DIR, HoyoGames.GenshinImpact, out bool _);
-        ValidateSettings(AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR, HoyoGames.HonkaiStarRail, out bool _);
-        ValidateSettings(AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR, HoyoGames.HonkaiImpactThird, out bool _);
+        ValidateSettings(App.Config.GI_DIR, HoyoGames.GenshinImpact, out bool _);
+        ValidateSettings(App.Config.HSR_DIR, HoyoGames.HonkaiStarRail, out bool _);
+        ValidateSettings(App.Config.HI3_DIR, HoyoGames.HonkaiImpactThird, out bool _);
 
-        if (!AppSettings.Settings.Default.CHECKBOX_BACKGROUND)
+        if (!App.Config.CHECKBOX_BACKGROUND)
             HoyoWindow.MediaElementBG.Source = null;
 
-        if (AppSettings.Settings.Default.CHECKBOX_LASTGAME)
+        if (App.Config.CHECKBOX_LAST_GAME)
             LastGame();
     }
 
     public static void ValidateSettings(string GameConfigName, HoyoGames Game, out bool ErrorOccured)
     {
-        ConfigRead GameConfigData = Game.GAME_CONFIG_CACHE = ConfigRead.GetConfig(GameConfigName);
+        GameConfigRead GameConfigData = Game.GAME_CONFIG_CACHE = GameConfigRead.GetConfig(GameConfigName);
         ErrorOccured = false;
 
         if (GameConfigData.FilePathNone)
@@ -51,7 +56,7 @@ public class HoyoMain
     static void LastGame()
     {
         HoyoGames SelectedHoyoGame = null;
-        short uid = AppSettings.Settings.Default.LAST_GAME;
+        int uid = App.Config.LAST_GAME;
 
         switch (uid)
         {
@@ -76,19 +81,17 @@ public class HoyoMain
         GameChange.SetGame(--uid);
     }
 
-    static void UpdateConfig()
+    static void AppFirstRun()
     {
-        if (AppSettings.Settings.Default.FIRSTRUN) return;
-
-        AppSettings.Settings.Default.Upgrade();
-
+        if (App.Config.FIRST_RUN) return;
+        
         HoyoWindow.Loaded += async (s, e) =>
         {
             await Task.Delay(1000);
             new ShortTour { Owner = HoyoWindow }.ShowDialog();
         };
 
-        AppSettings.Settings.Default.FIRSTRUN = true;
+        App.Config.FIRST_RUN = true;
     }
 
     // boilerplate
@@ -131,7 +134,7 @@ public class HoyoMain
 
         if (IsGameRunning) return;
 
-        ConfigRead GameConfig = CurrentGameSelected.GAME_CONFIG_CACHE;
+        GameConfigRead GameConfig = CurrentGameSelected.GAME_CONFIG_CACHE;
 
         string LaunchButtonContent = ContentSwitch(GameConfig);
 
@@ -141,7 +144,7 @@ public class HoyoMain
         HoyoWindow.LaunchButton.Content = LaunchButtonContent;
     }
 
-    private static string ContentSwitch(ConfigRead GameConfig)
+    private static string ContentSwitch(GameConfigRead GameConfig)
     {
         string DefaultText = LaunchText.GAME_DEFAULT_TEXT;
 

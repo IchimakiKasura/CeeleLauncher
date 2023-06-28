@@ -2,33 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AppSettings" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="HONKAI_IMPACT_THIRD_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="GENSHIN_IMPACT_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="HONKAI_STAR_RAIL_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="ZENLESS_ZONE_ZERO_DIR" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="LAST_GAME" Type="System.Int16" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="CHECKBOX_EXIT_TRAY" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="FIRSTRUN" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="CHECKBOX_BACKGROUND" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="CHECKBOX_LASTGAME" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="HI3_VERSION_API" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://sdk-os-static.mihoyo.com/bh3_global/mdk/launcher/api/resource?launcher_id=10</Value>
     </Setting>
@@ -46,9 +19,6 @@
     </Setting>
     <Setting Name="HSR_CONTENT_API" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://hkrpg-launcher-static.hoyoverse.com/hkrpg_global/mdk/launcher/api/content?filter_adv=true&amp;language=en-us&amp;launcher_id=35&amp;key=vplOVX8Vn7cwG8yb</Value>
-    </Setting>
-    <Setting Name="CHECKBOX_TITLE" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

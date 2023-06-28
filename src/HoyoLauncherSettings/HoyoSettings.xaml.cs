@@ -48,14 +48,14 @@ public partial class HoyoSettings : Window
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        GI_DIR_TXT.Text = AppSettings.Settings.Default.GENSHIN_IMPACT_DIR;
-        HSR_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR;
-        HI3_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR;
+        GI_DIR_TXT.Text = App.Config.GI_DIR;
+        HSR_DIR_TXT.Text = App.Config.HSR_DIR;
+        HI3_DIR_TXT.Text = App.Config.HI3_DIR;
         
-        RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_EXIT_TRAY;
-        RadioButtonBackground.IsChecked = AppSettings.Settings.Default.CHECKBOX_BACKGROUND;
-        RadioButtonSelectiveStartup.IsChecked = AppSettings.Settings.Default.CHECKBOX_LASTGAME;
-        RadioButtonDisableTitle.IsChecked = AppSettings.Settings.Default.CHECKBOX_TITLE;
+        RadioButtonTray.IsChecked = App.Config.CHECKBOX_EXIT_TRAY;
+        RadioButtonBackground.IsChecked = App.Config.CHECKBOX_BACKGROUND;
+        RadioButtonSelectiveStartup.IsChecked = App.Config.CHECKBOX_LAST_GAME;
+        RadioButtonDisableTitle.IsChecked = App.Config.CHECKBOX_TITLE;
     }
 
     protected override void OnClosed(EventArgs e)
@@ -77,9 +77,9 @@ public partial class HoyoSettings : Window
 
         switch(((Button)e.Source).Name)
         {
-            case "GI_LOCATE": AppSettings.Settings.Default.GENSHIN_IMPACT_DIR = GI_DIR_TXT.Text = path; break;
-            case "HSR_LOCATE": AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR = HSR_DIR_TXT.Text = path; break;
-            case "HI3_LOCATE": AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR = HI3_DIR_TXT.Text = path; break;
+            case "GI_LOCATE": App.Config.GI_DIR = GI_DIR_TXT.Text = path; break;
+            case "HSR_LOCATE": App.Config.HSR_DIR = HSR_DIR_TXT.Text = path; break;
+            case "HI3_LOCATE": App.Config.HI3_DIR = HI3_DIR_TXT.Text = path; break;
         }
     }
 
@@ -105,7 +105,7 @@ public partial class HoyoSettings : Window
             }
         }
 
-        AppSettings.Settings.Default.Save();
+        App.Config.SaveConfig();
         HoyoGames.RefreshDirectory();
 
         RefreshCurrentSelectedGame();
@@ -144,6 +144,6 @@ public partial class HoyoSettings : Window
     static void RefreshCurrentSelectedGame()
     {
         if(HoyoMain.CurrentGameSelected != HoyoGames.DEFAULT)
-            GameChange.SetGame(--AppSettings.Settings.Default.LAST_GAME);
+            GameChange.SetGame(--App.Config.LAST_GAME);
     }
 }

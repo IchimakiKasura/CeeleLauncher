@@ -23,114 +23,6 @@ namespace AppSettings {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string HONKAI_IMPACT_THIRD_DIR {
-            get {
-                return ((string)(this["HONKAI_IMPACT_THIRD_DIR"]));
-            }
-            set {
-                this["HONKAI_IMPACT_THIRD_DIR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string GENSHIN_IMPACT_DIR {
-            get {
-                return ((string)(this["GENSHIN_IMPACT_DIR"]));
-            }
-            set {
-                this["GENSHIN_IMPACT_DIR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string HONKAI_STAR_RAIL_DIR {
-            get {
-                return ((string)(this["HONKAI_STAR_RAIL_DIR"]));
-            }
-            set {
-                this["HONKAI_STAR_RAIL_DIR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ZENLESS_ZONE_ZERO_DIR {
-            get {
-                return ((string)(this["ZENLESS_ZONE_ZERO_DIR"]));
-            }
-            set {
-                this["ZENLESS_ZONE_ZERO_DIR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public short LAST_GAME {
-            get {
-                return ((short)(this["LAST_GAME"]));
-            }
-            set {
-                this["LAST_GAME"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CHECKBOX_EXIT_TRAY {
-            get {
-                return ((bool)(this["CHECKBOX_EXIT_TRAY"]));
-            }
-            set {
-                this["CHECKBOX_EXIT_TRAY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool FIRSTRUN {
-            get {
-                return ((bool)(this["FIRSTRUN"]));
-            }
-            set {
-                this["FIRSTRUN"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CHECKBOX_BACKGROUND {
-            get {
-                return ((bool)(this["CHECKBOX_BACKGROUND"]));
-            }
-            set {
-                this["CHECKBOX_BACKGROUND"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CHECKBOX_LASTGAME {
-            get {
-                return ((bool)(this["CHECKBOX_LASTGAME"]));
-            }
-            set {
-                this["CHECKBOX_LASTGAME"] = value;
-            }
-        }
-        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://sdk-os-static.mihoyo.com/bh3_global/mdk/launcher/api/resource?launcher_id" +
@@ -188,18 +80,6 @@ namespace AppSettings {
         public string HSR_CONTENT_API {
             get {
                 return ((string)(this["HSR_CONTENT_API"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CHECKBOX_TITLE {
-            get {
-                return ((bool)(this["CHECKBOX_TITLE"]));
-            }
-            set {
-                this["CHECKBOX_TITLE"] = value;
             }
         }
     }

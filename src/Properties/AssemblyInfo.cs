@@ -7,4 +7,7 @@
                                               // app, or any theme specific resource dictionaries)
 )]
 
-[assembly: AssemblyKeyFile("mykey.snk")]
+[assembly: ComVisible(false)]
+[assembly: Guid("aefb82b4-58a3-44ca-91f6-59ad7dcbd525")]
+
+[assembly: AssemblyKeyFile("Properties/mykey.snk")]

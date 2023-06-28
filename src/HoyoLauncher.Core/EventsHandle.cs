@@ -4,7 +4,7 @@
 public sealed class EventsHandles
 {
     public static void WindowHomeLogo() =>
-        HoyoWindow.HoyoTitleIMG.Visibility = AppSettings.Settings.Default.CHECKBOX_TITLE ? Visibility.Visible : Visibility.Collapsed;
+        HoyoWindow.HoyoTitleIMG.Visibility = App.Config.CHECKBOX_TITLE ? Visibility.Visible : Visibility.Collapsed;
     public static void WindowSideButtonToolTips()
     {
         HoyoWindow.GENSHIN_IMPACT_REWARDS.ButtonToolTip = ToolTips.GENSHIN_IMPACT_TIP;
@@ -49,7 +49,7 @@ public sealed class EventsHandles
                         }
                         .ApplyChanges();
 
-                        AppSettings.Settings.Default.LAST_GAME = 0;
+                        App.Config.LAST_GAME = 0;
                     break;
             }
         }
@@ -135,7 +135,7 @@ public sealed class EventsHandles
 
     public static void GameSelectionPopup()
     {
-        void PlayAnimation()
+        static void PlayAnimation()
         {
             Storyboard storyboard = new();
             ThicknessAnimation MarginAnimation = new(

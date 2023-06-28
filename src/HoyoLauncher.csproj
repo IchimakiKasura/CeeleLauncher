@@ -10,17 +10,16 @@
     
     <PropertyGroup>
         <Authors>IchimakiKasura</Authors>
-        <Company>CeeleLauncher</Company> <!--For the config folder naming idk on Appdata/Local-->
+        <Company>Ceele Launcher</Company>
         <AssemblyName>Ceele Launcher</AssemblyName>
         <Product>Ceele Launcher</Product>
-        <AssemblyVersion>1.8.627.3</AssemblyVersion>
-        <FileVersion>1.8.627.3</FileVersion>
+        <AssemblyVersion>1.8.629.3</AssemblyVersion>
+        <FileVersion>1.8.629.3</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <Copyright>Copyright © Ceele Launcher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
         <SignAssembly>True</SignAssembly>
-        <AssemblyOriginatorKeyFile>mykey.snk</AssemblyOriginatorKeyFile>
         <RepositoryType>https://github.com/IchimakiKasura/CeeleLauncher</RepositoryType>
         <IncludeSymbols>False</IncludeSymbols>
     </PropertyGroup>
@@ -137,6 +136,8 @@
 		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
 		
 		<Using Include="AppResources" />
+
+		<Using Include="IniParser" />
     </ItemGroup>
     
     <ItemGroup>

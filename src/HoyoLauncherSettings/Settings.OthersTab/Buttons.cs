@@ -10,16 +10,16 @@ sealed class HoyoSettingsButtons
 
     static void ResetSettingsButtonClick(object s, RoutedEventArgs e)
     {
-        AppSettings.Settings.Default.Reset();
+        App.Config.Reset();
 
-        HoyoSettingStatic.GI_DIR_TXT.Text = AppSettings.Settings.Default.GENSHIN_IMPACT_DIR;
-        HoyoSettingStatic.HSR_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_STAR_RAIL_DIR;
-        HoyoSettingStatic.HI3_DIR_TXT.Text = AppSettings.Settings.Default.HONKAI_IMPACT_THIRD_DIR;
+        HoyoSettingStatic.GI_DIR_TXT.Text = App.Config.GI_DIR;
+        HoyoSettingStatic.HSR_DIR_TXT.Text = App.Config.HSR_DIR;
+        HoyoSettingStatic.HI3_DIR_TXT.Text = App.Config.HI3_DIR;
 
-        HoyoSettingStatic.RadioButtonTray.IsChecked = AppSettings.Settings.Default.CHECKBOX_EXIT_TRAY;
-        HoyoSettingStatic.RadioButtonBackground.IsChecked = AppSettings.Settings.Default.CHECKBOX_BACKGROUND;
-        HoyoSettingStatic.RadioButtonSelectiveStartup.IsChecked = AppSettings.Settings.Default.CHECKBOX_LASTGAME;
-        HoyoSettingStatic.RadioButtonDisableTitle.IsChecked = AppSettings.Settings.Default.CHECKBOX_TITLE;
+        HoyoSettingStatic.RadioButtonTray.IsChecked = App.Config.CHECKBOX_EXIT_TRAY;
+        HoyoSettingStatic.RadioButtonBackground.IsChecked = App.Config.CHECKBOX_BACKGROUND;
+        HoyoSettingStatic.RadioButtonSelectiveStartup.IsChecked = App.Config.CHECKBOX_LAST_GAME;
+        HoyoSettingStatic.RadioButtonDisableTitle.IsChecked = App.Config.CHECKBOX_TITLE;
 
         MessageBox.Show("Settings has been Reset!", HoyoWindow.Title);
     }

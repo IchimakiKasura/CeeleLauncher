@@ -11,15 +11,15 @@ public sealed class GameChange : HoyoMain
     };
 
     public static void SetGame(string uid) =>
-        SetGame(short.Parse(uid));
-    public static async void SetGame(short uid)
+        SetGame(int.Parse(uid));
+    public static async void SetGame(int uid)
     {
         HoyoWindow.LaunchButton.Content = "Loading";
         HoyoWindow.LaunchButton.IsEnabled = false;
         
         HoyoValues values = new(TempValues);
 
-        ConfigRead GameConfig = CurrentGameSelected.GAME_CONFIG_CACHE;
+        GameConfigRead GameConfig = CurrentGameSelected.GAME_CONFIG_CACHE;
         ImageBrush GameBG = GameConfig.GameBackground is null ? CurrentGameSelected.GAME_DEFAULT_BG : GameConfig.GameBackground;
         CurrentGameSelected.GAME_INSTALL_PATH ??= GameConfig.GameInstallPath;
 
@@ -59,8 +59,8 @@ public sealed class GameChange : HoyoMain
 
         values.ApplyChanges();
 
-        AppSettings.Settings.Default.LAST_GAME = uid += 1;
-        AppSettings.Settings.Default.Save();
+        App.Config.LAST_GAME = uid += 1;
+        App.Config.SaveConfig();
     }
 
     static void ConnectionFailure(ref HoyoValues values, ImageBrush GameBG)
@@ -70,7 +70,7 @@ public sealed class GameChange : HoyoMain
         values.LaunchButtonContent = LaunchText.GAME_NO_INTERNET_TEXT;
     }
 
-    static async Task<HoyoValues> FetchAPI(ConfigRead GameConfig, HoyoValues values, ImageBrush GameBG)
+    static async Task<HoyoValues> FetchAPI(GameConfigRead GameConfig, HoyoValues values, ImageBrush GameBG)
     {
         HoyoWindow.VERSION_TEXT.Foreground = Brushes.Black;
         HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.SemiBold;
