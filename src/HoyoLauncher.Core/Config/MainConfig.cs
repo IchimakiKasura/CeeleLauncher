@@ -3,6 +3,8 @@ namespace HoyoLauncher.Core.Config;
 [Serializable]
 public sealed class MainConfig
 {
+    static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
+
     /// <summary> Genshin Impact Directory </summary>
     public string GI_DIR = "";
     /// <summary> Honkai Star Rail Directory </summary>
@@ -69,22 +71,18 @@ public sealed class MainConfig
 
     public void SaveConfig()
     {
-        string ConfigMainPath = Path.Combine(Environment.CurrentDirectory, "config.ini");
-
-        using StreamWriter streamWriter = new(ConfigMainPath, false);
+        using StreamWriter streamWriter = new(FilePath, false);
 
         streamWriter.Write(GetConfigAsString());
         streamWriter.Close();
     }
 
     public static bool CheckConfig() =>
-        File.Exists(Path.Combine(Environment.CurrentDirectory, "config.ini"));
+        File.Exists(FilePath);
 
     public static async Task<MainConfig> ReadConfig()
     {
         IniData ParsedData;
-        string FilePath = Path.Combine(Environment.CurrentDirectory, "config.ini");
-
         using StreamReader StreamReader = new(File.OpenRead(FilePath));
 
         string ConfigData = await StreamReader.ReadToEndAsync();
@@ -124,7 +122,6 @@ public sealed class MainConfig
 
     public static void CreateConfig()
     {
-        string ConfigMainPath = Path.Combine(Environment.CurrentDirectory, "config.ini");
         MainConfig mainConfig = new()
         {
             LAST_GAME = 0,
@@ -135,10 +132,7 @@ public sealed class MainConfig
             FIRST_RUN = false
         };
 
-        using StreamWriter streamWriter = new(File.Create(ConfigMainPath))
-        {
-            AutoFlush = true
-        };
+        using StreamWriter streamWriter = new(File.Create(FilePath));
 
         streamWriter.Write(mainConfig.GetConfigAsString());
         streamWriter.Close();
