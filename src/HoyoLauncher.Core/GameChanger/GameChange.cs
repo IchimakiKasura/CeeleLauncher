@@ -47,6 +47,7 @@ public sealed class GameChange : HoyoMain
         } 
         else if (!GameConfig.ConfigExist || GameConfig.GameName != CurrentGameSelected.GAME_EXECUTABLE)
         {
+            values.Background = CurrentGameSelected.GAME_DEFAULT_BG;
             values.LaunchButton = false;
             values.LaunchButtonContent = LaunchText.GAME_NOTFOUND;
         }
@@ -72,6 +73,10 @@ public sealed class GameChange : HoyoMain
 
     static async Task<HoyoValues> FetchAPI(GameConfigRead GameConfig, HoyoValues values, ImageBrush GameBG)
     {
+        var WarningMessage = CurrentGameSelected.API_CACHE is null;
+
+        Console.WriteLine(WarningMessage);
+
         HoyoWindow.VERSION_TEXT.Foreground = Brushes.Black;
         HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.SemiBold;
 
@@ -89,7 +94,12 @@ public sealed class GameChange : HoyoMain
         }
 
         if (GameConfig.GameBackgroundMD5 != GameAPI.BackgroundHASH)
+        {
             values.Background = GameAPI.BackgroundLINK ??= GameBG;
+
+            if (WarningMessage)
+                HoyoMessageBox.Show(HoyoWindow.Title, "Its Recommended that you open the Original Launcher To fetch its Background permanently.", HoyoWindow);
+        }
 
         if (GameAPI.LatestVersion == "CONNECTION FAILURE, PLEASE RETRY AGAIN")
         {

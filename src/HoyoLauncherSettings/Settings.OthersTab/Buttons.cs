@@ -21,7 +21,7 @@ sealed class HoyoSettingsButtons
         HoyoSettingStatic.RadioButtonSelectiveStartup.IsChecked = App.Config.CHECKBOX_LAST_GAME;
         HoyoSettingStatic.RadioButtonDisableTitle.IsChecked = App.Config.CHECKBOX_TITLE;
 
-        MessageBox.Show("Settings has been Reset!", HoyoWindow.Title);
+        HoyoMessageBox.Show(HoyoWindow.Title, "Settings has been Reset!", HoyoSettingStatic);
     }
 
     static void ResetLocationButtonClick(object s, RoutedEventArgs e)
@@ -30,6 +30,6 @@ sealed class HoyoSettingsButtons
         HoyoSettingStatic.HSR_DIR_TXT.Text = "";
         HoyoSettingStatic.HI3_DIR_TXT.Text = "";
 
-        MessageBox.Show("Locations are now cleared!", HoyoWindow.Title);
+        HoyoMessageBox.Show(HoyoWindow.Title, "Locations are now cleared!", HoyoSettingStatic);
     }
 }

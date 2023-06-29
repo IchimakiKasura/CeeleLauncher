@@ -20,7 +20,7 @@ public class HoyoMain
 
     public static async void Initialize()
     {
-        if (!MainConfig.CheckConfig())
+        if (!MainConfig.IsConfigExist)
             MainConfig.CreateConfig();
 
         App.Config = await MainConfig.ReadConfig();

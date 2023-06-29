@@ -8,8 +8,17 @@ public partial class HoyoSettings : Window
     [StaticWindow]
     public static HoyoSettings HoyoSettingStatic { get; set; }
 
+
     readonly Brush SelectedPageColor = App.ConvertColorFromString("#f6f5f3");
     readonly Brush UnSelectedPageColor = App.ConvertColorFromString("#e3e1de");
+
+    // Indexer for RadioButtons, because I cant use REF on a fucken iteration
+    readonly BindingFlags _flags = BindingFlags.NonPublic | BindingFlags.Instance;
+    public RadioButton this[string name]
+    {
+        get => (RadioButton)HoyoSettingStatic.GetType().GetField(name, _flags).GetValue(this);
+        set => HoyoSettingStatic.GetType().GetField(name, _flags).SetValue(this, value);
+    }
 
     public HoyoSettings()
     {

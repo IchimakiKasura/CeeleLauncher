@@ -14,13 +14,8 @@ public sealed class GameConfigRead
 
 
     private static GameConfigRead instance = null;
-    public static GameConfigRead Instance
-    {
-        get => instance ??= new GameConfigRead();
-    }
-
-    private GameConfigRead()
-    { }
+    public static GameConfigRead Instance => instance ??= new GameConfigRead();
+    private GameConfigRead() { }
 
     public static GameConfigRead GetConfig(string FilePath)
     {

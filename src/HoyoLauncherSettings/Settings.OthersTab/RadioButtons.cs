@@ -1,29 +1,26 @@
 ﻿namespace HoyoLauncher.HoyoLauncherSettings.Settings.OthersTab;
 sealed class HoyoRadioButtons
 {
+    const string EXIT_TRAY = "CHECKBOX_EXIT_TRAY",
+    BACKGROUND = "CHECKBOX_BACKGROUND",
+    LAST_GAME = "CHECKBOX_LAST_GAME",
+    TITLE = "CHECKBOX_TITLE",
+    Btn_Tray = "RadioButtonTray",
+    Btn_Background = "RadioButtonBackground",
+    Btn_Startup = "RadioButtonSelectiveStartup",
+    Btn_Title = "RadioButtonDisableTitle";
     public static void SetRadioButtons()
     {
-        List<(UIElement el, string name)> MouseDownAction = new()
+        List<(UIElement Element, string Name, string Buttons)> MouseDownAction = new()
         {
-            (HoyoSettingStatic.RadioButtonTray_Click, "CHECKBOX_EXIT_TRAY"),
-            (HoyoSettingStatic.RadioButtonBackground_Click, "CHECKBOX_BACKGROUND"),
-            (HoyoSettingStatic.RadioButtonSelectiveStartup_Click, "CHECKBOX_LAST_GAME"),
-            (HoyoSettingStatic.RadioButtonDisableTitle_Click, "CHECKBOX_TITLE")
+            (HoyoSettingStatic.RadioButtonTray_Click, EXIT_TRAY, Btn_Tray),
+            (HoyoSettingStatic.RadioButtonBackground_Click, BACKGROUND, Btn_Background),
+            (HoyoSettingStatic.RadioButtonSelectiveStartup_Click, LAST_GAME, Btn_Startup),
+            (HoyoSettingStatic.RadioButtonDisableTitle_Click, TITLE, Btn_Title)
         };
-
-        // CANT DO THE "REF" KEYWORD 
-        foreach(var (Element, Name) in MouseDownAction)
+        foreach(var (Element, Name, Buttons) in MouseDownAction)
             Element.MouseDown += (s,e) =>
-            {
-                if(e.ChangedButton is not MouseButton.Left) return;
-
-                switch(Name)
-                {
-                    case "CHECKBOX_EXIT_TRAY": App.Config.CHECKBOX_EXIT_TRAY = (bool)(HoyoSettingStatic.RadioButtonTray.IsChecked = !HoyoSettingStatic.RadioButtonTray.IsChecked); break;
-                    case "CHECKBOX_BACKGROUND": App.Config.CHECKBOX_BACKGROUND = (bool)(HoyoSettingStatic.RadioButtonBackground.IsChecked = !HoyoSettingStatic.RadioButtonBackground.IsChecked); break;
-                    case "CHECKBOX_LAST_GAME": App.Config.CHECKBOX_LAST_GAME = (bool)(HoyoSettingStatic.RadioButtonSelectiveStartup.IsChecked = !HoyoSettingStatic.RadioButtonSelectiveStartup.IsChecked); break;
-                    case "CHECKBOX_TITLE": App.Config.CHECKBOX_TITLE = (bool)(HoyoSettingStatic.RadioButtonDisableTitle.IsChecked = !HoyoSettingStatic.RadioButtonDisableTitle.IsChecked); break;
-                }
-            };
+                App.Config[Name] =
+                    e.ChangedButton is MouseButton.Left ? HoyoSettingStatic[Buttons].IsChecked = !HoyoSettingStatic[Buttons].IsChecked : null;
     }
 }

@@ -1,37 +1,39 @@
 namespace HoyoLauncher.Core.Config;
 
-[Serializable]
 public sealed class MainConfig
 {
     static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
 
     /// <summary> Genshin Impact Directory </summary>
-    public string GI_DIR = "";
+    public string GI_DIR { get; set; }
     /// <summary> Honkai Star Rail Directory </summary>
-    public string HSR_DIR = "";
+    public string HSR_DIR { get; set; }
     /// <summary> Honkai Impact 3rd Directory </summary>
-    public string HI3_DIR = "";
+    public string HI3_DIR { get; set; }
     /// <summary> Zenless Zone Zero Directory </summary>
-    public string ZZZ_DIR = "";
+    public string ZZZ_DIR { get; set; }
 
     /// <summary> Last game after close </summary>
-    public int LAST_GAME = 0;
+    public int LAST_GAME { get; set; }
 
-    public bool CHECKBOX_EXIT_TRAY = true;
-    public bool CHECKBOX_BACKGROUND = true;
-    public bool CHECKBOX_LAST_GAME = true;
-    public bool CHECKBOX_TITLE = true;
+    public bool CHECKBOX_EXIT_TRAY { get; set; }
+    public bool CHECKBOX_BACKGROUND { get; set; }
+    public bool CHECKBOX_LAST_GAME { get; set; }
+    public bool CHECKBOX_TITLE { get; set; }
 
-    public bool FIRST_RUN  = false;
+    public bool FIRST_RUN { get; set; }
 
-    private static MainConfig instance = null;
-    public static MainConfig Instance
+    public object this[string MethodName]
     {
-        get => instance ??= new MainConfig();
+        get => GetType().GetProperty(MethodName).GetValue(this, null);
+        set => GetType().GetProperty(MethodName).SetValue(this, value);
     }
 
-    private MainConfig()
-    { }
+    public static bool IsConfigExist => File.Exists(FilePath);
+
+    private static MainConfig instance = null;
+    public static MainConfig Instance => instance ??= new();
+    private MainConfig() { }
 
     public void Reset()
     {
@@ -49,8 +51,8 @@ public sealed class MainConfig
 
         FIRST_RUN = false;
     }
-    
-    public string GetConfigAsString() =>
+
+    public override string ToString()=>
     $"""
     [DIRECTORIES]
     GenshinImpact_DIR={GI_DIR}
@@ -73,12 +75,9 @@ public sealed class MainConfig
     {
         using StreamWriter streamWriter = new(FilePath, false);
 
-        streamWriter.Write(GetConfigAsString());
+        streamWriter.Write(ToString());
         streamWriter.Close();
     }
-
-    public static bool CheckConfig() =>
-        File.Exists(FilePath);
 
     public static async Task<MainConfig> ReadConfig()
     {
@@ -88,7 +87,10 @@ public sealed class MainConfig
         string ConfigData = await StreamReader.ReadToEndAsync();
         StreamReader.Close();
 
-        try { ParsedData = ParsedData = new IniDataParser().Parse(ConfigData); }
+        try
+        {
+            ParsedData = ParsedData = new IniDataParser().Parse(ConfigData);
+        }
         catch(IniParser.Exceptions.ParsingException x)
         {
             ERROR("CONFIG ERROR", x.Message,  MessageBoxButton.OK, MessageBoxImage.Error);
@@ -134,9 +136,10 @@ public sealed class MainConfig
 
         using StreamWriter streamWriter = new(File.Create(FilePath));
 
-        streamWriter.Write(mainConfig.GetConfigAsString());
+        streamWriter.Write(mainConfig.ToString());
         streamWriter.Close();
     }
+
 
     static void ERROR(string Title, string Message, MessageBoxButton button, MessageBoxImage Icon)
     {

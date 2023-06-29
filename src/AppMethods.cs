@@ -74,6 +74,9 @@ public partial class App
         AppNotification();
     }
 
+    // Best I can do.
+    // A dynamic DragMove for every window
+    // (that has attributes placed on static instance of the Window ☠️)
     public static void DragMove<T>(object s, MouseButtonEventArgs e)
     {
         if (e.ChangedButton is not MouseButton.Left) return;

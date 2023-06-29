@@ -13,8 +13,8 @@
         <Company>Ceele Launcher</Company>
         <AssemblyName>Ceele Launcher</AssemblyName>
         <Product>Ceele Launcher</Product>
-        <AssemblyVersion>1.8.629.3</AssemblyVersion>
-        <FileVersion>1.8.629.3</FileVersion>
+        <AssemblyVersion>1.8.630.3</AssemblyVersion>
+        <FileVersion>1.8.630.3</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <Copyright>Copyright © Ceele Launcher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
@@ -129,11 +129,13 @@
         <Using Include="HoyoLauncher.Core.Record" />
         <Using Include="HoyoLauncher.Core.Attributes" />
         <Using Include="HoyoLauncher.Core.GameChanger" />
-        <Using Include="HoyoLauncher.Controls.SideButtons" />
-
+		
         <Using Include="HoyoLauncher.Resources" />
         <Using Include="HoyoLauncher.Resources.Icons" />
 		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
+		
+        <Using Include="HoyoLauncher.Controls.SideButtons" />
+		<Using Include="HoyoLauncher.HoyoLauncherMessageBox"/>
 		
 		<Using Include="AppResources" />
 

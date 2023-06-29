@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ButtonControl="clr-namespace:HoyoLauncher.Controls.SideButtons"
         mc:Ignorable="d"
-        Title="Hoyo Launcher (Unofficial)" Height="720" Width="1280"
+        Title="Ceele Launcher" Height="720" Width="1280"
         WindowStyle="None"
         AllowsTransparency="true"
         ResizeMode="CanMinimize"
@@ -74,8 +74,6 @@
                 </Grid>
             </Border>
 
-            <Border Name="BLACK_THING" Background="Black" Opacity="0.5" Visibility="Collapsed" CornerRadius="10"/>
-
             <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.5" Style="{StaticResource TopButtonTrigger}">
                 <Grid>
                     <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Ceele Launcher</TextBlock>
@@ -86,6 +84,8 @@
                     <Button Name="HomeButton" Style="{StaticResource HomeButton}" Margin="1080,0,120,0" RenderTransformOrigin="0.5,0.5"/>
                 </Grid>
             </Border>
+            
+            <Border Name="BLACK_THING" Background="Black" Opacity="0.5" Visibility="Collapsed" CornerRadius="10"/>
 
         </Grid>
     </Border>

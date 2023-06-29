@@ -49,6 +49,7 @@ public sealed class EventsHandles
                         }
                         .ApplyChanges();
 
+                        HoyoMain.CurrentGameSelected = HoyoGames.DEFAULT;
                         App.Config.LAST_GAME = 0;
                     break;
             }
@@ -78,7 +79,7 @@ public sealed class EventsHandles
                 case "HONKAI_IMPACT_THIRD_REWARDS": Launcher = HoyoGames.HonkaiImpactThird.GAME_CHECK_IN_PAGE; break;
                 case "TOT_SITE": Launcher = HoyoGames.TearsOfThemis.GAME_CHECK_IN_PAGE; break;
                 case "ZZZ_REWARDS":
-                    MessageBox.Show("Game is not released yet!", "Zenless Zone Zero", MessageBoxButton.OK);
+                    HoyoMessageBox.Show("Zenless Zone Zero", "Game is not released yet!", HoyoWindow);
                     break;
             }
 
@@ -103,7 +104,7 @@ public sealed class EventsHandles
             if(Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_UPDATE_TEXT))
             {
                 HoyoMain.ProcessStart(HoyoMain.ExecutableName);
-                MessageBox.Show("Opening Original Launcher to Update the game!", "A Very Cool Message Box", MessageBoxButton.OK);
+                HoyoMessageBox.Show("A Very Cool Message Box", "Opening Original Launcher to Update the game!", HoyoWindow);
                 return;
             }
 
