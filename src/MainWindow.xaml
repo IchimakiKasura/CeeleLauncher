@@ -55,15 +55,16 @@
 
             <Border Name="SideButtons" Background="#40000000" Margin="1190,70,13,70" CornerRadius="10">
                 <Canvas x:Name="SideButton_Click">
-                    <ButtonControl:HoyoButton x:Name="GENSHIN_IMPACT_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="25" Image="/Resources/Buttons/GI.jpg"/>
-                    <ButtonControl:HoyoButton x:Name="HONKAI_STAR_RAIL_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="100" Image="/Resources/Buttons/HSR.jpg"/>
-                    <ButtonControl:HoyoButton x:Name="HONKAI_IMPACT_THIRD_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="175" Image="/Resources/Buttons/HI3.jpg"/>
-                    <ButtonControl:HoyoButton x:Name="ZZZ_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="250" Image="/Resources/Buttons/ZZZ.jpg"/>
-                    <ButtonControl:HoyoButton x:Name="TOT_SITE" Height="57" Width="57" Canvas.Left="10" Canvas.Top="325" Image="/Resources/Buttons/TOT.jpg"/>
+                    <ButtonControl:HoyoButton x:Name="GENSHIN_IMPACT_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="15" Image="/Resources/Buttons/GI.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="HONKAI_STAR_RAIL_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="90" Image="/Resources/Buttons/HSR.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="HONKAI_IMPACT_THIRD_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="165" Image="/Resources/Buttons/HI3.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="ZZZ_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="240" Image="/Resources/Buttons/ZZZ.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="TOT_SITE" Height="57" Width="57" Canvas.Left="10" Canvas.Top="315" Image="/Resources/Buttons/TOT.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-                    <ButtonControl:HoyoButton x:Name="GameScreenshotFolder" Height="36" Width="35" Canvas.Left="21" Canvas.Top="432" Image="/Resources/Buttons/screenshot.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ButtonControl:HoyoButton x:Name="GameMapPage" Height="36" Width="35" Canvas.Left="21" Canvas.Top="478" Image="/Resources/Buttons/globe.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <ButtonControl:HoyoButton x:Name="GameHomePage" Height="35" Width="35" Canvas.Left="21" Canvas.Top="524" Image="/Resources/Buttons/home.png" BG="Transparent" CanvasMargin="0,-10,0,10"/>
+                    <ButtonControl:HoyoButton x:Name="GameScreenshotFolder" Height="36" Width="35" Canvas.Left="21" Canvas.Top="442" Image="/Resources/Buttons/screenshot.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="GameMapPage" Height="36" Width="35" Canvas.Left="21" Canvas.Top="488" Image="/Resources/Buttons/globe.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="GameHomePage" Height="35" Width="35" Canvas.Left="21" Canvas.Top="534" Image="/Resources/Buttons/home.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ButtonControl:HoyoButton x:Name="GameOriginalLauncher" Height="36" Width="35" Canvas.Left="21" Canvas.Top="396" Image="/Resources/Buttons/launcher.png" BG="Transparent" CanvasMargin="0,-10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 </Canvas>
             </Border>
 
@@ -84,7 +85,7 @@
                     <Button Name="HomeButton" Style="{StaticResource HomeButton}" Margin="1080,0,120,0" RenderTransformOrigin="0.5,0.5"/>
                 </Grid>
             </Border>
-            
+
             <Border Name="BLACK_THING" Background="Black" Opacity="0.5" Visibility="Collapsed" CornerRadius="10"/>
 
         </Grid>

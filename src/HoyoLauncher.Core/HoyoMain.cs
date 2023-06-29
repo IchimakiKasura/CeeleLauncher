@@ -29,17 +29,24 @@ public class HoyoMain
 
         EventsAttribute.SetEvents();
 
-        ValidateSettings(App.Config.GI_DIR, HoyoGames.GenshinImpact, out bool _);
-        ValidateSettings(App.Config.HSR_DIR, HoyoGames.HonkaiStarRail, out bool _);
-        ValidateSettings(App.Config.HI3_DIR, HoyoGames.HonkaiImpactThird, out bool _);
+        ValidateSettings(App.Config.GI_DIR, HoyoGames.GenshinImpact);
+        ValidateSettings(App.Config.HSR_DIR, HoyoGames.HonkaiStarRail);
+        ValidateSettings(App.Config.HI3_DIR, HoyoGames.HonkaiImpactThird);
 
         if (!App.Config.CHECKBOX_BACKGROUND)
             HoyoWindow.MediaElementBG.Source = null;
 
         if (App.Config.CHECKBOX_LAST_GAME)
             LastGame();
+
+        if(CurrentGameSelected != HoyoGames.DEFAULT) return;
+        HoyoWindow.GameOriginalLauncher.IsEnabled =
+        HoyoWindow.GameMapPage.IsEnabled =
+        HoyoWindow.GameScreenshotFolder.IsEnabled = false;
     }
 
+    public static void ValidateSettings(string GameConfigName, HoyoGames Game) =>
+        ValidateSettings(GameConfigName, Game, out bool _);
     public static void ValidateSettings(string GameConfigName, HoyoGames Game, out bool ErrorOccured)
     {
         GameConfigRead GameConfigData = Game.GAME_CONFIG_CACHE = GameConfigRead.GetConfig(GameConfigName);

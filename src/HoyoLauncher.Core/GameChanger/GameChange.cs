@@ -75,8 +75,6 @@ public sealed class GameChange : HoyoMain
     {
         var WarningMessage = CurrentGameSelected.API_CACHE is null;
 
-        Console.WriteLine(WarningMessage);
-
         HoyoWindow.VERSION_TEXT.Foreground = Brushes.Black;
         HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.SemiBold;
 

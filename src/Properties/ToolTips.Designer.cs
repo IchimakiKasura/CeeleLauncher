@@ -61,15 +61,6 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check-In Rewards.
-        /// </summary>
-        public static string CHECKIN_TIP {
-            get {
-                return ResourceManager.GetString("CHECKIN_TIP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Genshin Impact Check-In Rewards.
         /// </summary>
         public static string GENSHIN_IMPACT_TIP {
@@ -102,6 +93,15 @@ namespace AppResources {
         public static string HONKAI_STAR_RAIL_TIP {
             get {
                 return ResourceManager.GetString("HONKAI_STAR_RAIL_TIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Original Launcher.
+        /// </summary>
+        public static string LAUNCHER_TIP {
+            get {
+                return ResourceManager.GetString("LAUNCHER_TIP", resourceCulture);
             }
         }
         

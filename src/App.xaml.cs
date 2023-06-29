@@ -5,7 +5,7 @@ public partial class App : Application
     public static MainConfig Config { get; set; } = MainConfig.Instance;
 
     static bool AppAlreadyOpened;
-    private static readonly Mutex _Mutex = new(true, AppName + Version + "test", out AppAlreadyOpened);
+    private static readonly Mutex _Mutex = new(true, AppName + Version, out AppAlreadyOpened);
     public static bool IsFromTray { get; private set; }= false;
 
     protected override void OnStartup(StartupEventArgs e)

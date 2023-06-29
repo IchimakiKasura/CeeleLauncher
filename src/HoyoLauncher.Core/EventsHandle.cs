@@ -15,6 +15,7 @@ public sealed class EventsHandles
         HoyoWindow.GameHomePage.ButtonToolTip = ToolTips.HOMEPAGE_TIP;
         HoyoWindow.GameMapPage.ButtonToolTip = ToolTips.MAPPAGE_TIP;
         HoyoWindow.GameScreenshotFolder.ButtonToolTip = ToolTips.SCREENSHOT_TIP;
+        HoyoWindow.GameOriginalLauncher.ButtonToolTip = ToolTips.LAUNCHER_TIP;
     }
     public static void WindowTopButtons()
     {
@@ -49,6 +50,10 @@ public sealed class EventsHandles
                         }
                         .ApplyChanges();
 
+                        HoyoWindow.GameOriginalLauncher.IsEnabled =
+                        HoyoWindow.GameMapPage.IsEnabled =
+                        HoyoWindow.GameScreenshotFolder.IsEnabled = false;
+
                         HoyoMain.CurrentGameSelected = HoyoGames.DEFAULT;
                         App.Config.LAST_GAME = 0;
                     break;
@@ -71,6 +76,7 @@ public sealed class EventsHandles
 
             switch(CurrentButton.Name)
             {
+                case "GameOriginalLauncher": Launcher = Path.Combine(HoyoMain.CurrentGameSelected.GAME_DIRECTORY, "launcher.exe"); break;
                 case "GameScreenshotFolder": Launcher = Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, HoyoMain.CurrentGameSelected.GAME_SCREENSHOT_DIR); break;
                 case "GameHomePage": Launcher = HoyoMain.CurrentGameSelected.GAME_HOMEPAGE; break;
                 case "GameMapPage": Launcher = HoyoMain.CurrentGameSelected.GAME_MAP_PAGE; break;
@@ -178,6 +184,7 @@ public sealed class EventsHandles
             }
 
             HoyoWindow.GameMapPage.IsEnabled = SelectedHoyoGame.GAME_MAP_PAGE is not "";
+            HoyoWindow.GameOriginalLauncher.IsEnabled = 
             HoyoWindow.GameScreenshotFolder.IsEnabled = SelectedHoyoGame.GAME_SCREENSHOT_DIR is not "" && SelectedHoyoGame.GAME_DIR_VALID;
 
             HoyoMain.CurrentGameSelected = SelectedHoyoGame;
