@@ -57,14 +57,27 @@ public partial class HoyoSettings : Window
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
+        Settings_ScrollBar.Height = 270;
+
         GI_DIR_TXT.Text = App.Config.GI_DIR;
         HSR_DIR_TXT.Text = App.Config.HSR_DIR;
         HI3_DIR_TXT.Text = App.Config.HI3_DIR;
         
-        RadioButtonTray.IsChecked = App.Config.CHECKBOX_EXIT_TRAY;
         RadioButtonBackground.IsChecked = App.Config.CHECKBOX_BACKGROUND;
         RadioButtonSelectiveStartup.IsChecked = App.Config.CHECKBOX_LAST_GAME;
         RadioButtonDisableTitle.IsChecked = App.Config.CHECKBOX_TITLE;
+
+        switch(App.Config.EXIT_MODE)
+        {
+            default:
+                HoyoMessageBox.Show("ERROR", "ExitMode value is invalid,\ronly accepts \"1\" and \"2\"\rDefaulting to 1", HoyoSettingStatic);
+                RadioButtonToTray.IsChecked = true;
+                App.Config.EXIT_MODE = 1;
+                App.Config.SaveConfig();
+                break;
+            case 1: RadioButtonToTray.IsChecked = true; break;
+            case 2: RadioButtonToExit.IsChecked = true; break;
+        }
     }
 
     protected override void OnClosed(EventArgs e)
@@ -109,7 +122,7 @@ public partial class HoyoSettings : Window
 
             if(IsInvalidGame)
             {
-                MessageBox.Show($"ERROR:\n\nThe \"{name.GAME_NAME}\" config cannot be found!\n or its an incorrect game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                HoyoMessageBox.Show("❌ ERROR ❌", $"The \"{name.GAME_NAME}\" config cannot be found!\n or its an incorrect game.",HoyoSettingStatic);
                 ErrorOccured = true;
             }
         }

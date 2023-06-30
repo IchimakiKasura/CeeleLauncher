@@ -5,7 +5,8 @@ sealed class HoyoTooltips
     {
         List<UIElement> Elements = new()
         {
-            HoyoSettingStatic.RadioButtonTray_Click,
+            HoyoSettingStatic.RadioButtonToTray,
+            HoyoSettingStatic.RadioButtonToExit,
             HoyoSettingStatic.RadioButtonBackground_Click,
             HoyoSettingStatic.RadioButtonSelectiveStartup_Click,
             HoyoSettingStatic.RadioButtonDisableTitle_Click,

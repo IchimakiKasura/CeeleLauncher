@@ -16,7 +16,7 @@ public sealed class MainConfig
     /// <summary> Last game after close </summary>
     public int LAST_GAME { get; set; }
 
-    public bool CHECKBOX_EXIT_TRAY { get; set; }
+    public int EXIT_MODE { get; set; }
     public bool CHECKBOX_BACKGROUND { get; set; }
     public bool CHECKBOX_LAST_GAME { get; set; }
     public bool CHECKBOX_TITLE { get; set; }
@@ -29,12 +29,18 @@ public sealed class MainConfig
         set => GetType().GetProperty(MethodName).SetValue(this, value);
     }
 
+    /// <summary>
+    /// Check If the Config Exist on the current directory.
+    /// </summary>
     public static bool IsConfigExist => File.Exists(FilePath);
 
     private static MainConfig instance = null;
     public static MainConfig Instance => instance ??= new();
     private MainConfig() { }
 
+    /// <summary>
+    /// Resets the Config values.
+    /// </summary>
     public void Reset()
     {
         GI_DIR = string.Empty;
@@ -44,7 +50,7 @@ public sealed class MainConfig
 
         LAST_GAME = 0;
 
-        CHECKBOX_EXIT_TRAY = true;
+        EXIT_MODE = 1;
         CHECKBOX_BACKGROUND = true;
         CHECKBOX_LAST_GAME = true;
         CHECKBOX_TITLE = true;
@@ -62,7 +68,7 @@ public sealed class MainConfig
 
     [SETTINGS]
     LastGame={LAST_GAME}
-    ExitToTray={CHECKBOX_EXIT_TRAY}
+    ExitMode={EXIT_MODE}
     ShowBackground={CHECKBOX_BACKGROUND}
     LastGameStart={CHECKBOX_LAST_GAME}
     ShowTitle={CHECKBOX_TITLE}
@@ -71,6 +77,9 @@ public sealed class MainConfig
     FirstRun={FIRST_RUN}
     """;
 
+    /// <summary>
+    /// Save the Data values on the Config File.
+    /// </summary>
     public void SaveConfig()
     {
         using StreamWriter streamWriter = new(FilePath, false);
@@ -79,6 +88,9 @@ public sealed class MainConfig
         streamWriter.Close();
     }
 
+    /// <summary>
+    /// Reads the Config File.
+    /// </summary>
     public static async Task<MainConfig> ReadConfig()
     {
         IniData ParsedData;
@@ -107,7 +119,7 @@ public sealed class MainConfig
                 ZZZ_DIR = ParsedData["DIRECTORIES"][3],
 
                 LAST_GAME = ParsedData["SETTINGS"][0],
-                CHECKBOX_EXIT_TRAY = ParsedData["SETTINGS"][1],
+                EXIT_MODE = ParsedData["SETTINGS"][1],
                 CHECKBOX_BACKGROUND = ParsedData["SETTINGS"][2],
                 CHECKBOX_LAST_GAME = ParsedData["SETTINGS"][3],
                 CHECKBOX_TITLE = ParsedData["SETTINGS"][4],
@@ -122,12 +134,15 @@ public sealed class MainConfig
         }
     }
 
+    /// <summary>
+    /// Creates a Config File
+    /// </summary>
     public static void CreateConfig()
     {
         MainConfig mainConfig = new()
         {
             LAST_GAME = 0,
-            CHECKBOX_EXIT_TRAY = true,
+            EXIT_MODE = 1,
             CHECKBOX_BACKGROUND = true,
             CHECKBOX_LAST_GAME = true,
             CHECKBOX_TITLE = true,

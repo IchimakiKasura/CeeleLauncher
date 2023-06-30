@@ -25,8 +25,8 @@ public partial class MainWindow : Window
         e.Cancel = HoyoMain.IsGameRunning;
 
         if(HoyoMain.IsGameRunning)
-            HoyoMessageBox.Show("Warning", "Game is running! Cannot be closed.", HoyoWindow);
-        else if (App.Config.CHECKBOX_EXIT_TRAY && !App.IsFromTray)
+            HoyoMessageBox.Show("⚠️ Warning ⚠️", "Game is running! Cannot be closed.", HoyoWindow);
+        else if (App.Config.EXIT_MODE is 1 && !App.IsFromTray)
         {
             App.AppMinimizeToTray();
             e.Cancel = true;

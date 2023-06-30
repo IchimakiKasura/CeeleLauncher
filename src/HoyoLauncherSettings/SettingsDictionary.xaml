@@ -119,4 +119,69 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <ControlTemplate x:Key="ScrollBarThumbTemplate" TargetType="{x:Type Thumb}">
+        <Border CornerRadius="5"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="0"
+                Width="10"
+                Cursor="Hand">
+            <Border.Triggers>
+
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <RemoveStoryboard BeginStoryboardName="MouseLeaveStoryboard"/>
+                    <BeginStoryboard x:Name="MouseEnterStoryboard">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" To="12" Duration="0:0:.1"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="Gray" Duration="00:00:00.1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <RemoveStoryboard BeginStoryboardName="MouseEnterStoryboard"/>
+                    <BeginStoryboard x:Name="MouseLeaveStoryboard">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" To="10" Duration="0:0:.1"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="LightGray" Duration="00:00:00.1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+            </Border.Triggers>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Width" Value="18"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Track Name="PART_Track" Grid.Row="1" IsDirectionReversed="true">
+                                <Track.Thumb>
+                                    <Thumb Margin="1,0,1,0" Background="LightGray" BorderBrush="Transparent">
+                                        <Thumb.Style>
+                                            <Style TargetType="{x:Type Thumb}">
+                                                <Setter Property="IsTabStop" Value="false"/>
+                                                <Setter Property="Focusable" Value="false"/>
+                                                <Setter Property="Template" Value="{StaticResource ScrollBarThumbTemplate}"/>
+                                            </Style>
+                                        </Thumb.Style>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

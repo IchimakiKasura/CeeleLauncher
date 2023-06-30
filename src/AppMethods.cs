@@ -66,7 +66,7 @@ public partial class App
     {
         HoyoWindow.WindowState = WindowState.Minimized;
 
-        if (Config.CHECKBOX_EXIT_TRAY is false) return;
+        if (Config.EXIT_MODE is 2) return;
 
         HoyoWindow.ShowInTaskbar = false;
         HoyoWindow.Hide();

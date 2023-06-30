@@ -50,11 +50,8 @@ public sealed class EventsHandles
                         }
                         .ApplyChanges();
 
-                        HoyoWindow.GameOriginalLauncher.IsEnabled =
-                        HoyoWindow.GameMapPage.IsEnabled =
-                        HoyoWindow.GameScreenshotFolder.IsEnabled = false;
-
                         HoyoMain.CurrentGameSelected = HoyoGames.DEFAULT;
+                        HoyoMain.RefreshSideButtons();
                         App.Config.LAST_GAME = 0;
                     break;
             }
@@ -130,12 +127,15 @@ public sealed class EventsHandles
             await GameProcess.WaitForExitAsync();
             HoyoMain.IsGameRunning = false;
 
-            if(HoyoWindow.WindowState is not WindowState.Minimized) return;
+            if(HoyoWindow.WindowState is WindowState.Minimized)
+            {
+                HoyoWindow.WindowState = WindowState.Normal;
+                HoyoWindow.Show();
+                HoyoWindow.ShowInTaskbar = true;
+                App.AppTray.Visible = false;
+            }
 
-            HoyoWindow.Show();
-            HoyoWindow.WindowState = WindowState.Normal;
-            HoyoWindow.ShowInTaskbar = true;
-            App.AppTray.Visible = false;
+            HoyoWindow.Activate();
         };
 
     }
@@ -183,11 +183,8 @@ public sealed class EventsHandles
                 case "GAME_SELECTION_TOT": SelectedHoyoGame = HoyoGames.TearsOfThemis;        break;
             }
 
-            HoyoWindow.GameMapPage.IsEnabled = SelectedHoyoGame.GAME_MAP_PAGE is not "";
-            HoyoWindow.GameOriginalLauncher.IsEnabled = 
-            HoyoWindow.GameScreenshotFolder.IsEnabled = SelectedHoyoGame.GAME_SCREENSHOT_DIR is not "" && SelectedHoyoGame.GAME_DIR_VALID;
-
             HoyoMain.CurrentGameSelected = SelectedHoyoGame;
+            HoyoMain.RefreshSideButtons();
             GameChange.SetGame(SelectedButton.Uid);
         }
 

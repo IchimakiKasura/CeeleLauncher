@@ -39,10 +39,8 @@ public class HoyoMain
         if (App.Config.CHECKBOX_LAST_GAME)
             LastGame();
 
-        if(CurrentGameSelected != HoyoGames.DEFAULT) return;
-        HoyoWindow.GameOriginalLauncher.IsEnabled =
-        HoyoWindow.GameMapPage.IsEnabled =
-        HoyoWindow.GameScreenshotFolder.IsEnabled = false;
+        if(CurrentGameSelected == HoyoGames.DEFAULT)
+            RefreshSideButtons();
     }
 
     public static void ValidateSettings(string GameConfigName, HoyoGames Game) =>
@@ -74,17 +72,17 @@ public class HoyoMain
 
         if (SelectedHoyoGame is null) return;
 
-        CurrentGameSelected = SelectedHoyoGame;
-        HoyoWindow.GameScreenshotFolder.IsEnabled = SelectedHoyoGame.GAME_SCREENSHOT_DIR is not "" && SelectedHoyoGame.GAME_DIR_VALID;
-
         new HoyoValues()
         {
             RemoveMainBG = true,
-            Background = CurrentGameSelected.GAME_DEFAULT_BG,
+            Background = SelectedHoyoGame.GAME_DEFAULT_BG,
             LaunchButtonContent = "Loading",
             VersionBubble = Visibility.Collapsed,
         }.ApplyChanges();
 
+        CurrentGameSelected = SelectedHoyoGame;
+
+        RefreshSideButtons();
         GameChange.SetGame(--uid);
     }
 
@@ -127,6 +125,19 @@ public class HoyoMain
 #endif
 
         return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+    }
+
+    public static void RefreshSideButtons()
+    {
+        HoyoWindow.GameOriginalLauncher.IsEnabled =
+        HoyoWindow.GameMapPage.IsEnabled =
+        HoyoWindow.GameScreenshotFolder.IsEnabled = false;
+
+        if(CurrentGameSelected == HoyoGames.DEFAULT) return;
+
+        HoyoWindow.GameMapPage.IsEnabled = CurrentGameSelected.GAME_MAP_PAGE is not "";
+        HoyoWindow.GameOriginalLauncher.IsEnabled = CurrentGameSelected.GAME_DIRECTORY is not "" && CurrentGameSelected.GAME_DIR_VALID;
+        HoyoWindow.GameScreenshotFolder.IsEnabled = CurrentGameSelected.GAME_SCREENSHOT_DIR is not "" && CurrentGameSelected.GAME_DIR_VALID;
     }
 
     private static void UpdateIsGameRunning()
