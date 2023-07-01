@@ -65,11 +65,9 @@ public partial class App
     public static void AppMinimizeToTray()
     {
         HoyoWindow.WindowState = WindowState.Minimized;
-
-        if (Config.EXIT_MODE is 2) return;
-
         HoyoWindow.ShowInTaskbar = false;
         HoyoWindow.Hide();
+
         AppTray.Visible = true;
         AppNotification();
     }

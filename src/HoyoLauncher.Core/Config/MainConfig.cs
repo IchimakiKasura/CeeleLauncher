@@ -5,22 +5,32 @@ public sealed class MainConfig
     static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
 
     /// <summary> Genshin Impact Directory </summary>
+    [DefaultValue("")]
     public string GI_DIR { get; set; }
     /// <summary> Honkai Star Rail Directory </summary>
+    [DefaultValue("")]
     public string HSR_DIR { get; set; }
     /// <summary> Honkai Impact 3rd Directory </summary>
+    [DefaultValue("")]
     public string HI3_DIR { get; set; }
     /// <summary> Zenless Zone Zero Directory </summary>
+    [DefaultValue("")]
     public string ZZZ_DIR { get; set; }
 
     /// <summary> Last game after close </summary>
+    [DefaultValue(0)]
     public int LAST_GAME { get; set; }
 
+    [DefaultValue(1)]
     public int EXIT_MODE { get; set; }
+    [DefaultValue(true)]
     public bool CHECKBOX_BACKGROUND { get; set; }
+    [DefaultValue(true)]
     public bool CHECKBOX_LAST_GAME { get; set; }
+    [DefaultValue(true)]
     public bool CHECKBOX_TITLE { get; set; }
 
+    [DefaultValue(false)]
     public bool FIRST_RUN { get; set; }
 
     public object this[string MethodName]
@@ -43,22 +53,14 @@ public sealed class MainConfig
     /// </summary>
     public void Reset()
     {
-        GI_DIR = string.Empty;
-        HSR_DIR = string.Empty;
-        HI3_DIR = string.Empty;
-        ZZZ_DIR = string.Empty;
+        var MainConfigProperties = GetType().GetProperties();
 
-        LAST_GAME = 0;
-
-        EXIT_MODE = 1;
-        CHECKBOX_BACKGROUND = true;
-        CHECKBOX_LAST_GAME = true;
-        CHECKBOX_TITLE = true;
-
-        FIRST_RUN = false;
+        foreach(var property in MainConfigProperties)
+            if (property.GetCustomAttributes(typeof(DefaultValueAttribute), true).Length > 0)
+                property.SetValue(this, property.GetCustomAttribute<DefaultValueAttribute>().Value);
     }
 
-    public override string ToString()=>
+    public override string ToString() =>
     $"""
     [DIRECTORIES]
     GenshinImpact_DIR={GI_DIR}
@@ -101,11 +103,11 @@ public sealed class MainConfig
 
         try
         {
-            ParsedData = ParsedData = new IniDataParser().Parse(ConfigData);
+            ParsedData = new IniDataParser().Parse(ConfigData);
         }
         catch(IniParser.Exceptions.ParsingException x)
         {
-            ERROR("CONFIG ERROR", x.Message,  MessageBoxButton.OK, MessageBoxImage.Error);
+            ERROR("CONFIG ERROR", x.Message);
             return new();
         }
     
@@ -129,9 +131,10 @@ public sealed class MainConfig
         }
         catch(Exception x)
         {
-            ERROR("CONFIG ERROR", x.Message, MessageBoxButton.OK, MessageBoxImage.Error);
+            ERROR("CONFIG ERROR", x.Message);
             return new();
         }
+
     }
 
     /// <summary>
@@ -155,13 +158,11 @@ public sealed class MainConfig
         streamWriter.Close();
     }
 
-
-    static void ERROR(string Title, string Message, MessageBoxButton button, MessageBoxImage Icon)
+    static void ERROR(string Title, string Message)
     {
         HoyoWindow.Hide();
         HoyoWindow.ShowInTaskbar = false;
-        MessageBox.Show(Message, Title, button, Icon);
+        HoyoMessageBox.Show(Title, Message);
         Environment.Exit(13);
     }
-
 }

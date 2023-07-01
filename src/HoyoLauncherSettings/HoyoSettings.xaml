@@ -64,10 +64,10 @@
                             <TextBlock Name="Tooltip_Text" Text="[ TOOL TIP TEXT MESSAGES ]" FontSize="20" TextWrapping="Wrap"/>
                         </Border>
 
-                        <ScrollViewer Name="Settings_ScrollBar"  Height="471" Width="350" HorizontalScrollBarVisibility="Disabled" Focusable="False">
+                        <ScrollViewer Name="Settings_ScrollBar" Height="471" Width="350" HorizontalScrollBarVisibility="Disabled" Focusable="False">
                             <Canvas Height="471">
 
-                                <TextBlock Text="Exit Button Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="20" VerticalAlignment="Top" Focusable="False"/>
+                                <TextBlock Text="Closing Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="20" VerticalAlignment="Top" Focusable="False"/>
 
                                 <RadioButton Name="RadioButtonToTray" Content="Minimize to Tray" Canvas.Left="12" Canvas.Top="65" Uid="Minimize to Tray when Closed" Cursor="Hand" Focusable="False">
                                     <RadioButton.RenderTransform>
@@ -81,7 +81,7 @@
                                     </RadioButton.RenderTransform>
                                 </RadioButton>
 
-                                <TextBlock Text="Application Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="143" VerticalAlignment="Top"/>
+                                <TextBlock Text="Launcher Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="143" VerticalAlignment="Top"/>
 
                                 <Border Name="RadioButtonBackground_Click" Cursor="Hand" Background="Transparent" Height="26" Width="233" HorizontalAlignment="Left" Canvas.Top="188" VerticalAlignment="Center" Canvas.Left="11" Uid="Enable or Disable the video on the Hoyo Menu / Home Screen.(Changes to static picture)&#xa;&#xa;&#xa;&#xa;[ The animated background requires Internet. ]&#xa;[Requires App Restart]">
                                     <RadioButton Focusable="False" Name="RadioButtonBackground" IsHitTestVisible="False" Content="Enable Background Video" Margin="0,0,55,9">
