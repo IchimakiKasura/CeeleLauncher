@@ -4,6 +4,7 @@ public sealed class RetrieveAPI
 {
     public string LatestVersion { get; private set; } = "CONNECTION FAILURE, PLEASE RETRY AGAIN";
     public string BackgroundHASH { get; private set; } = "";
+    public Uri DownloadFile { get; private set; }
     public ImageBrush BackgroundLINK { get; set; } = null;
 
     readonly JsonElement Resources;
@@ -28,9 +29,12 @@ public sealed class RetrieveAPI
     void SetAPIValues() 
     {
         if(Resources.TryGetProperty("data", out JsonElement VersionProperty))
+        {
             LatestVersion = VersionProperty.GetProperty("game").GetProperty("latest").GetProperty("version").ToString();
-        
-        if(Content.TryGetProperty("data", out JsonElement ContentProperty))
+            DownloadFile = new(VersionProperty.GetProperty("game").GetProperty("latest").GetProperty("path").ToString());
+        }
+
+        if (Content.TryGetProperty("data", out JsonElement ContentProperty))
         {
             var adv = ContentProperty.GetProperty("adv");
 
@@ -52,7 +56,9 @@ public sealed class RetrieveAPI
 
         using HttpClient req = new(handler: new HttpClientHandler() { Proxy = null });// { Timeout = TimeSpan.FromMilliseconds(1000) };
 
-        resp = await req.GetAsync(APILink);
+        resp = await req.GetAsync(APILink, HttpCompletionOption.ResponseHeadersRead);
+
+        resp.EnsureSuccessStatusCode();
 
         if(resp.IsSuccessStatusCode)
             return await resp.Content.ReadAsStreamAsync();

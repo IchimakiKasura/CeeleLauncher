@@ -102,10 +102,22 @@ public sealed class EventsHandles
                 return;
             }
 
-            if(Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_UPDATE_TEXT))
+            if(Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_UPDATE_TEXT) || Equals(HoyoWindow.LaunchButton.Content, "Extract"))
             {
-                HoyoMain.ProcessStart(HoyoMain.ExecutableName);
-                HoyoMessageBox.Show("A Very Cool Message Box", "Opening Original Launcher to Update the game!", HoyoWindow);
+                if(File.Exists(Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile.LocalPath))))
+                {
+                    HoyoMain.ProcessStart(HoyoMain.ExecutableName);
+                    HoyoMessageBox.Show("A Very Cool Message Box", "Opening Original Launcher to Update the game!\r\rIf the File is downloaded, You can just press the Update again on the Original Launcher\rAnd it will extract it smoothly.\r\r If the File was stopped mid-way of downloading, It will resume its progress on the Original Launcher.\r", HoyoWindow);
+                }
+                else
+                {
+                    HoyoWindow.HomeButton.IsEnabled =
+                    HoyoWindow.LaunchSelection.IsEnabled =
+                    HoyoWindow.LaunchButton.IsEnabled = false;
+                    HoyoWindow.LaunchButton.Content = "Downloading";
+                    RetrieveFile.DownloadFile();
+                }
+
                 return;
             }
 
@@ -195,5 +207,20 @@ public sealed class EventsHandles
         HoyoWindow.GAME_SELECTION_HI3.Background = SelectionResources.HonkaiImpactImage;
         HoyoWindow.GAME_SELECTION_ZZZ.Background = SelectionResources.ZZZImage;
         HoyoWindow.GAME_SELECTION_TOT.Background = SelectionResources.TOTImage;
+    }
+
+    public static void DownloadPauseButton()
+    {
+        Geometry Paused = Geometry.Parse("M8 6 L8 22 L13 22 L13 6 Z M17 6 L17 22 L22 22 L22 6 Z");
+        Geometry Play = Geometry.Parse("M10 6 L10 22 L22 14 Z");
+
+        HoyoWindow.ProgressBarButton.MouseDown += (s, e) =>
+        {
+            if (e.ChangedButton is not MouseButton.Left) return;
+
+            RetrieveFile.IsPaused = !RetrieveFile.IsPaused;
+
+            HoyoWindow.PathPause.Data = RetrieveFile.IsPaused ? Play : Paused;
+        };
     }
 }

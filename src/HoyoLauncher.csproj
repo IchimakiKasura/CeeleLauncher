@@ -126,6 +126,7 @@
 
         <Using Include="HoyoLauncher.Core" />
 		<Using Include="HoyoLauncher.Core.API" />
+		<Using Include="HoyoLauncher.Core.Download" />
         <Using Include="HoyoLauncher.Core.Config" />
         <Using Include="HoyoLauncher.Core.Record" />
         <Using Include="HoyoLauncher.Core.Attributes" />
@@ -136,7 +137,7 @@
 		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
 		
         <Using Include="HoyoLauncher.Controls.SideButtons" />
-		<Using Include="HoyoLauncher.HoyoLauncherMessageBox"/>
+		<Using Include="HoyoLauncher.HoyoLauncherMessageBox" />
 		
 		<Using Include="AppResources" />
 

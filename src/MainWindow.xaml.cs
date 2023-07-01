@@ -20,17 +20,22 @@ public partial class MainWindow : Window
 #endif
     }
 
+    public static void SetProgressBarValue(double value) =>
+        HoyoWindow.ProgressBarInner.Width = value / 100 * HoyoWindow.ProgressBarInner.MaxWidth;
+
     protected override void OnClosing(CancelEventArgs e)
     {
-        e.Cancel = HoyoMain.IsGameRunning;
+        e.Cancel = HoyoMain.IsGameRunning || RetrieveFile.IsDownloading;
 
-        if(HoyoMain.IsGameRunning)
+        if (HoyoMain.IsGameRunning)
             HoyoMessageBox.Show("⚠️ Warning ⚠️", "Game is running! Cannot be closed.", HoyoWindow);
         else if (App.Config.EXIT_MODE is 1 && !App.IsFromTray)
         {
             App.AppMinimizeToTray();
             e.Cancel = true;
         }
+        else if (RetrieveFile.IsDownloading)
+            HoyoMessageBox.Show("⚠️ Warning ⚠️", "Downloading Files! Cannot be closed.", HoyoWindow);
         else App.Config.SaveConfig();
 
         base.OnClosing(e);
