@@ -27,7 +27,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Resources/defaultBG.jpg"/>
                     </Border.Background>
-                    <Border>
+                    <Border Name="MainBGVideo">
                         <Border.Background>
                             <VisualBrush>
                                 <VisualBrush.Visual>

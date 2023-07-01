@@ -23,7 +23,7 @@ public partial class HoyoMessageBox : Window
 
         HoyoMessageBoxStatic = this;
 
-        Loaded += (s, e) =>
+        Loaded += delegate
         {
             UpdateLayout();
 
@@ -37,7 +37,6 @@ public partial class HoyoMessageBox : Window
         WindowDrag.MouseDown += App.DragMove<HoyoMessageBox>;
 
         OkBtn.MouseDown += OK_BUTTON;
-
     }
 
     public void OK_BUTTON(object sender, MouseButtonEventArgs events)

@@ -19,21 +19,21 @@ public sealed record HoyoValues
 
     public void ApplyChanges()
     {
-        HoyoWindow.WINDOW_BORDER.Background = Background;
+        HoyoWindow.MainBG.Background = Background;
         HoyoWindow.LaunchButton.IsEnabled = LaunchButton;
         HoyoWindow.LaunchButton.Content = LaunchButtonContent;
         HoyoWindow.VERSION_BUBBLE.Visibility = VersionBubble;
 
         if(RemoveMainBG)
         {
-            if(!HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) return;
-            HoyoWindow.HomeBG.Children.Remove(HoyoWindow.MainBG);
+            if(!HoyoWindow.HomeBG.Children.Contains(HoyoWindow.HoyoTitleIMG)) return;
+            HoyoWindow.MainBG.Child = null;
             HoyoWindow.HomeBG.Children.Remove(HoyoWindow.HoyoTitleIMG);
         }
         else
         {
-            if(HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) return;
-            HoyoWindow.HomeBG.Children.Add(HoyoWindow.MainBG);
+            if(HoyoWindow.HomeBG.Children.Contains(HoyoWindow.HoyoTitleIMG)) return;
+            HoyoWindow.MainBG.Child = HoyoWindow.MainBGVideo;
             HoyoWindow.HomeBG.Children.Add(HoyoWindow.HoyoTitleIMG);
         }
     }

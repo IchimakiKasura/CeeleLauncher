@@ -38,11 +38,9 @@ public sealed class EventsHandles
                 case "MinButton": HoyoWindow.WindowState = WindowState.Minimized; break;
                 case "SettingsButton": new HoyoLauncherSettings.HoyoSettings { Owner = HoyoWindow }.ShowDialog(); break;
                 case "HomeButton":
-                        if (HoyoWindow.HomeBG.Children.Contains(HoyoWindow.MainBG)) break;
-
                         new HoyoValues()
                         {
-                            Background = null,
+                            Background = HoyoGames.DEFAULT.GAME_DEFAULT_BG,
                             RemoveMainBG = false,
                             LaunchButton = false,
                             LaunchButtonContent = "Welcome",
@@ -153,6 +151,7 @@ public sealed class EventsHandles
             Storyboard.SetTargetProperty(MarginAnimation, new("Margin"));
             Storyboard.SetTarget(MarginAnimation, HoyoWindow.GameSelection);
             Storyboard storyboard = new() { Children = new() { MarginAnimation } };
+            storyboard.Completed += (s,e) => storyboard.Remove();
             storyboard.Begin();
         }
 

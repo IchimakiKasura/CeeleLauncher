@@ -19,9 +19,7 @@
                                 <Rectangle.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="-1"/>
-                                        <SkewTransform/>
                                         <RotateTransform Angle="135"/>
-                                        <TranslateTransform/>
                                     </TransformGroup>
                                 </Rectangle.RenderTransform>
                             </Rectangle>
@@ -51,8 +49,16 @@
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#cca222" Duration="0:0:.1"/>
-                                    <DoubleAnimation Storyboard.TargetName="ButtonTooltip" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:.1"/>
+                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#cca222" Duration="0:0:.1">
+                                        <ColorAnimation.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut"/>
+                                        </ColorAnimation.EasingFunction>
+                                    </ColorAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonTooltip" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:.1">
+                                        <DoubleAnimation.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -60,8 +66,16 @@
                         <EventTrigger RoutedEvent="MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#00000000" Duration="0:0:.1"/>
-                                    <DoubleAnimation Storyboard.TargetName="ButtonTooltip" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:.1"/>
+                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="#00000000" Duration="0:0:.1">
+                                        <ColorAnimation.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut"/>
+                                        </ColorAnimation.EasingFunction>
+                                    </ColorAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonTooltip" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:.1">
+                                        <DoubleAnimation.EasingFunction>
+                                                <SineEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>

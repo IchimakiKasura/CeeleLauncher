@@ -48,7 +48,7 @@ public sealed class HoyoGames
     /// Default Values
     ///</summary>
     public readonly static HoyoGames DEFAULT =
-        new("","", "", "https://www.hoyoverse.com/en-us/","",null,"","","","");
+        new("","", "", "https://www.hoyoverse.com/en-us/","",DefaultBG.DEFAULT,"","","","");
 
     ///<summary>
     /// Genshin Impact's Values
