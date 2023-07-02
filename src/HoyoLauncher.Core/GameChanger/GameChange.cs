@@ -1,3 +1,5 @@
+using System.Net.NetworkInformation;
+
 namespace HoyoLauncher.Core.GameChanger;
 
 public sealed class GameChange : HoyoMain
@@ -109,10 +111,10 @@ public sealed class GameChange : HoyoMain
             CurrentGameSelected.API_CACHE = null;
         }
 
-        if (File.Exists(Path.Combine(CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(GameAPI.DownloadFile.LocalPath))))
+        if (GameAPI.DownloadFile is not null && File.Exists(Path.Combine(CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(GameAPI.DownloadFile.LocalPath))))
         {
             values.VersionBubble = Visibility.Collapsed;
-            values.LaunchButtonContent = "Extract";
+            values.LaunchButtonContent = LaunchText.GAME_EXTRACT_TEXT;
         }
 
         return values;

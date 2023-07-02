@@ -102,7 +102,7 @@ public sealed class EventsHandles
                 return;
             }
 
-            if(Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_UPDATE_TEXT) || Equals(HoyoWindow.LaunchButton.Content, "Extract"))
+            if(Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_UPDATE_TEXT) || Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_EXTRACT_TEXT))
             {
                 if(File.Exists(Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile.LocalPath))))
                 {
@@ -222,5 +222,11 @@ public sealed class EventsHandles
 
             HoyoWindow.PathPause.Data = RetrieveFile.IsPaused ? Play : Paused;
         };
+
+        HoyoWindow.ProgressBarButton.MouseEnter += (s, e) =>
+            (e.Source as Border).Background = App.ConvertColorFromString("#9FFFFFFF");
+
+        HoyoWindow.ProgressBarButton.MouseLeave += (s, e) =>
+            (e.Source as Border).Background = App.ConvertColorFromString("#3FFFFFFF");
     }
 }

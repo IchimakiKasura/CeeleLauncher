@@ -93,6 +93,9 @@
         <Resource Include="Resources\ShortTour\3.png" />
         <Resource Include="Resources\ShortTour\4.png" />
         <Resource Include="Resources\ShortTour\5.png" />
+        <Resource Include="Resources\ShortTour\6.png" />
+        <Resource Include="Resources\ShortTour\7.png" />
+        <Resource Include="Resources\ShortTour\8.png" />
     </ItemGroup>
     
     <ItemGroup>

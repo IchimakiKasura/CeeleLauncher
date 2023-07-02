@@ -70,6 +70,15 @@ namespace AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extract.
+        /// </summary>
+        public static string GAME_EXTRACT_TEXT {
+            get {
+                return ResourceManager.GetString("GAME_EXTRACT_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game is Running.
         /// </summary>
         public static string GAME_LAUNCHED_TEXT {

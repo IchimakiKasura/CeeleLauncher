@@ -75,11 +75,12 @@
                 </Grid>
             </Border>
 
-            <Border Name="ProgressBarElement" Background="#3FFFFFFF" BorderBrush="White" BorderThickness="2" Margin="48,622,446,66" CornerRadius="5" Visibility="Collapsed">
+            <Border Name="ProgressBarElement" Background="#3FFFFFFF" BorderBrush="White" BorderThickness="2" Margin="48,605,446,83" CornerRadius="5" Visibility="Collapsed">
                 <Grid>
                     <Border Name="ProgressBarInner" Background="White" CornerRadius="0" MaxWidth="784" HorizontalAlignment="Left"/>
-                    <TextBlock Name="ProgressBarDownloaded" Text="NaN" Margin="0,33,0,-33" Foreground="White" FontWeight="SemiBold" FontSize="15"/>
-                    <Border Name="ProgressBarButton" Background="#3FFFFFFF" BorderBrush="White" BorderThickness="2" Margin="795,-2,-47,-2" CornerRadius="5">
+                    <TextBlock Name="ProgressBarStatus" Text="Downloaded: " Margin="0,33,0,-33" Foreground="White" FontWeight="SemiBold" FontSize="20"/>
+                    <TextBlock Name="ProgressBarSpeed" Text="Bandwidth: " Margin="0,61,0,-61" Foreground="White" FontWeight="SemiBold" FontSize="20"/>
+                    <Border Name="ProgressBarButton" Background="#3FFFFFFF" BorderBrush="White" BorderThickness="2" Margin="795,-2,-47,-2" CornerRadius="5" Cursor="Hand">
                         <Path Name="PathPause" Fill="White" Data=" M 8 6 L 8 22 L 13 22 L 13 6 Z M 17 6 L 17 22 L 22 22 L 22 6 Z"/>
                     </Border>
                 </Grid>

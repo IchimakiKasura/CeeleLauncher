@@ -41,6 +41,8 @@ public class HoyoMain
 
         if(CurrentGameSelected == HoyoGames.DEFAULT)
             RefreshSideButtons();
+
+        HoyoWindow.Activate();
     }
 
     public static void ValidateSettings(string GameConfigName, HoyoGames Game) =>

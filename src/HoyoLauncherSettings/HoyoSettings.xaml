@@ -64,26 +64,26 @@
                             <TextBlock Name="Tooltip_Text" Text="[ TOOL TIP TEXT MESSAGES ]" FontSize="20" TextWrapping="Wrap"/>
                         </Border>
 
-                        <ScrollViewer Name="Settings_ScrollBar" Height="471" Width="350" HorizontalScrollBarVisibility="Disabled" Focusable="False">
-                            <Canvas Height="471">
+                        <ScrollViewer Name="Settings_ScrollBar" Height="448" Width="350" HorizontalScrollBarVisibility="Disabled" Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Canvas Height="448">
 
-                                <TextBlock Text="Closing Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="20" VerticalAlignment="Top" Focusable="False"/>
+                                <TextBlock Text="Closing Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" Focusable="False"/>
 
-                                <RadioButton Name="RadioButtonToTray" Content="Minimize to Tray" Canvas.Left="12" Canvas.Top="65" Uid="Minimize to Tray when Closed" Cursor="Hand" Focusable="False">
+                                <RadioButton Name="RadioButtonToTray" Content="Minimize to Tray" Canvas.Left="20" Canvas.Top="40" Uid="Minimize to Tray when Closed" Cursor="Hand" Focusable="False">
                                     <RadioButton.RenderTransform>
                                         <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                                     </RadioButton.RenderTransform>
                                 </RadioButton>
 
-                                <RadioButton Name="RadioButtonToExit" Content="Close the Application" Canvas.Left="11" Canvas.Top="106" Uid="Closes the Application" Cursor="Hand" Focusable="False">
+                                <RadioButton Name="RadioButtonToExit" Content="Close the Application" Canvas.Left="20" Canvas.Top="80" Uid="Closes the Application" Cursor="Hand" Focusable="False">
                                     <RadioButton.RenderTransform>
                                         <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                                     </RadioButton.RenderTransform>
                                 </RadioButton>
 
-                                <TextBlock Text="Launcher Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="143" VerticalAlignment="Top"/>
+                                <TextBlock Text="Launcher Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="120" VerticalAlignment="Top"/>
 
-                                <Border Name="RadioButtonBackground_Click" Cursor="Hand" Background="Transparent" Height="26" Width="233" HorizontalAlignment="Left" Canvas.Top="188" VerticalAlignment="Center" Canvas.Left="11" Uid="Enable or Disable the video on the Home Screen.&#xa;If Disabled, it frees upto 20mb* of memory.&#xa;(Changes to static picture)&#xa;&#xa;[ The animated background requires Internet. ]&#xa;[Requires App Restart]">
+                                <Border Name="RadioButtonBackground_Click" Cursor="Hand" Background="Transparent" Height="26" Width="233" HorizontalAlignment="Center" Canvas.Top="160" VerticalAlignment="Top" Canvas.Left="20" Uid="Enable or Disable the video on the Home Screen.&#xa;If Disabled, it frees upto 20mb* of memory.&#xa;(Changes to static picture)&#xa;&#xa;[ The animated background requires Internet. ]&#xa;[Requires App Restart]">
                                     <RadioButton Focusable="False" Name="RadioButtonBackground" IsHitTestVisible="False" Content="Enable Background Video" Margin="0,0,55,9">
                                         <RadioButton.RenderTransform>
                                             <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
@@ -91,7 +91,7 @@
                                     </RadioButton>
                                 </Border>
 
-                                <Border Name="RadioButtonSelectiveStartup_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="229" VerticalAlignment="Top" Canvas.Left="11">
+                                <Border Name="RadioButtonSelectiveStartup_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="200" VerticalAlignment="Top" Canvas.Left="20">
                                     <Border.Uid>
                                         Enable or Disable the Automatic Select on the last game choosed.
                                     </Border.Uid>
@@ -102,7 +102,7 @@
                                     </RadioButton>
                                 </Border>
 
-                                <Border Name="RadioButtonDisableTitle_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="270" VerticalAlignment="Top" Canvas.Left="12" Uid="Display the Ceele Title Logo on Home screen?&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[Requires App Restart]">
+                                <Border Name="RadioButtonDisableTitle_Click" Cursor="Hand" Background="Transparent" Height="26" Width="301" HorizontalAlignment="Center" Canvas.Top="240" VerticalAlignment="Top" Canvas.Left="20" Uid="Display the Ceele Title Logo on Home screen?&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[Requires App Restart]">
                                     <RadioButton Focusable="False" Name="RadioButtonDisableTitle" IsHitTestVisible="False" Content="Show Ceele Title on Home" Margin="0,0,100,9">
                                         <RadioButton.RenderTransform>
                                             <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
@@ -110,10 +110,10 @@
                                     </RadioButton>
                                 </Border>
 
-                                <TextBlock Text="Launcher Language" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="311" VerticalAlignment="Center"/>
+                                <TextBlock Text="Launcher Language" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="280" VerticalAlignment="Center"/>
 
-                                <TextBlock Text="Language: " FontSize="18" Canvas.Top="356" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="13"/>
-                                <ComboBox Focusable="False" Name="Funni" Canvas.Left="105" Canvas.Top="352" HorizontalAlignment="Left" VerticalAlignment="Center" Height="32" Width="208" HorizontalContentAlignment="Center" SelectedIndex="45" FontSize="16.4" FontWeight="SemiBold" Uid="Change Launcher Lanugauge.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[ NOT WORKING | JUST FOR FUN ]">
+                                <TextBlock Text="Language: " FontSize="18" Canvas.Top="320" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="20"/>
+                                <ComboBox Focusable="False" Name="Funni" Canvas.Left="112" Canvas.Top="316" HorizontalAlignment="Left" VerticalAlignment="Center" Height="32" Width="208" HorizontalContentAlignment="Center" SelectedIndex="45" FontSize="16.4" FontWeight="SemiBold" Uid="Change Launcher Lanugauge.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[ NOT WORKING | JUST FOR FUN ]">
                                     <ComboBoxItem Content="Afar"/>
                                     <ComboBoxItem Content="Abkhazian"/>
                                     <ComboBoxItem Content="Afrikaans"/>
@@ -333,10 +333,10 @@
                                     <ComboBoxItem Content="Zulu"/>
                                 </ComboBox>
 
-                                <TextBlock Text="System Settings" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="399" VerticalAlignment="Top"/>
+                                <TextBlock Text="System Settings" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="360" VerticalAlignment="Top"/>
 
-                                <Button Focusable="False" Name="Button_ClearLocationTexts" Content="Clear Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="435" HorizontalAlignment="Center" VerticalAlignment="Top" Width="132" Canvas.Left="12" Uid="Clear the Location on the &quot;Location tab&quot;"/>
-                                <Button Focusable="False" Name="Button_ResetSettings" Content="Reset To Default" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="29" Canvas.Top="435" HorizontalAlignment="Center" VerticalAlignment="Top" Width="132" Canvas.Left="181" Uid="Reset all the settings to its default state.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[App Restart Optional]"/>
+                                <Button Focusable="False" Name="Button_ClearLocationTexts" Content="Clear Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="30" Canvas.Top="410" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="20" Uid="Clear the Location on the &quot;Location tab&quot;"/>
+                                <Button Focusable="False" Name="Button_ResetSettings" Content="Reset To Default" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="30" Canvas.Top="410" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="181" Uid="Reset all the settings to its default state.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[App Restart Optional]"/>
 
                             </Canvas>
                         </ScrollViewer>

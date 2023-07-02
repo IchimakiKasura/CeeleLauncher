@@ -30,8 +30,11 @@ public sealed class RetrieveAPI
     {
         if(Resources.TryGetProperty("data", out JsonElement VersionProperty))
         {
-            LatestVersion = VersionProperty.GetProperty("game").GetProperty("latest").GetProperty("version").ToString();
-            DownloadFile = new(VersionProperty.GetProperty("game").GetProperty("latest").GetProperty("path").ToString());
+            var Latest = VersionProperty.GetProperty("game").GetProperty("latest");
+            LatestVersion = Latest.GetProperty("version").ToString();
+
+            if (Latest.TryGetProperty("path", out JsonElement FilePath))
+                DownloadFile = FilePath.ToString() is not "" ? new(FilePath.ToString()) : null;
         }
 
         if (Content.TryGetProperty("data", out JsonElement ContentProperty))

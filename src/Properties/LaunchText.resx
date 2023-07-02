@@ -121,6 +121,9 @@
     <value> Play</value>
     <comment>Button Default</comment>
   </data>
+  <data name="GAME_EXTRACT_TEXT" xml:space="preserve">
+    <value>Extract</value>
+  </data>
   <data name="GAME_LAUNCHED_TEXT" xml:space="preserve">
     <value>Game is Running</value>
     <comment>Button Launched</comment>

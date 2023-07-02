@@ -18,6 +18,7 @@ public partial class MainWindow : Window
         AppVersion.Text += $": test ver({App.Version})";
         Console.WriteLine("BUILD HASH: "+App.UniqueHashBUILD);
 #endif
+
     }
 
     public static void SetProgressBarValue(double value) =>
