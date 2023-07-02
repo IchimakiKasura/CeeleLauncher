@@ -19,16 +19,18 @@ public sealed class MainConfig
 
     /// <summary> Last game after close </summary>
     [DefaultValue(0)]
-    public int LAST_GAME { get; set; }
+    public short LAST_GAME { get; set; }
 
     [DefaultValue(1)]
-    public int EXIT_MODE { get; set; }
+    public short EXIT_MODE { get; set; }
     [DefaultValue(true)]
     public bool CHECKBOX_BACKGROUND { get; set; }
     [DefaultValue(true)]
     public bool CHECKBOX_LAST_GAME { get; set; }
     [DefaultValue(true)]
     public bool CHECKBOX_TITLE { get; set; }
+    [DefaultValue(1.0D)]
+    public double SCALING { get; set; }
 
     [DefaultValue(false)]
     public bool FIRST_RUN { get; set; }
@@ -74,6 +76,7 @@ public sealed class MainConfig
     ShowBackground={CHECKBOX_BACKGROUND}
     LastGameStart={CHECKBOX_LAST_GAME}
     ShowTitle={CHECKBOX_TITLE}
+    WindowScale={SCALING}
 
     [APP]
     FirstRun={FIRST_RUN}
@@ -95,20 +98,15 @@ public sealed class MainConfig
     /// </summary>
     public static async Task<MainConfig> ReadConfig()
     {
-        IniData ParsedData;
         using StreamReader StreamReader = new(File.OpenRead(FilePath));
 
         string ConfigData = await StreamReader.ReadToEndAsync();
         StreamReader.Close();
 
-        try
+        if(!IniDataParser.TryParse(ConfigData, out IniData ParsedData))
         {
-            ParsedData = new IniDataParser().Parse(ConfigData);
-        }
-        catch(IniParser.Exceptions.ParsingException x)
-        {
-            ERROR("CONFIG ERROR", x.Message);
-            return new();
+            ERROR("CONFIG ERROR", "Error while parsing config!\rMake sure the values are correct!\rDelete the config to reset if problem re-occurs.");
+            return null;
         }
     
         try
@@ -125,6 +123,7 @@ public sealed class MainConfig
                 CHECKBOX_BACKGROUND = ParsedData["SETTINGS"][2],
                 CHECKBOX_LAST_GAME = ParsedData["SETTINGS"][3],
                 CHECKBOX_TITLE = ParsedData["SETTINGS"][4],
+                SCALING = ParsedData["SETTINGS"][5],
 
                 FIRST_RUN = ParsedData["APP"][0]
             };
@@ -132,7 +131,7 @@ public sealed class MainConfig
         catch(Exception x)
         {
             ERROR("CONFIG ERROR", x.Message);
-            return new();
+            return null;
         }
 
     }
@@ -149,6 +148,7 @@ public sealed class MainConfig
             CHECKBOX_BACKGROUND = true,
             CHECKBOX_LAST_GAME = true,
             CHECKBOX_TITLE = true,
+            SCALING = 1.0D,
             FIRST_RUN = false
         };
 

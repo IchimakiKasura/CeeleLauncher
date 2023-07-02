@@ -13,8 +13,8 @@
         <Company>IchimakiKasura</Company>
         <AssemblyName>Ceele Launcher</AssemblyName>
         <Product>Ceele Launcher</Product>
-        <AssemblyVersion>1.8.702.4</AssemblyVersion>
-        <FileVersion>1.8.702.4</FileVersion>
+        <AssemblyVersion>1.8.703.4</AssemblyVersion>
+        <FileVersion>1.8.703.4</FileVersion>
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <Copyright>Copyright © Ceele Launcher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
@@ -119,6 +119,7 @@
         <Using Include="System.Windows.Controls" />
         <Using Include="System.Collections.Generic" />
         <Using Include="System.Windows.Media.Imaging" />
+        <Using Include="System.Net.NetworkInformation" />
         <Using Include="System.Text.RegularExpressions" />
         <Using Include="System.Runtime.InteropServices" />
         <Using Include="System.Windows.Media.Animation" />

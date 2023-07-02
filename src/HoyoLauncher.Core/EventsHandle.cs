@@ -154,15 +154,12 @@ public sealed class EventsHandles
     {
         static void PlayAnimation()
         {
-            ThicknessAnimation MarginAnimation = new(
-                new(925, 580, 128, 120),
-                new(925, 380, 128, 120),
-                TimeSpan.FromMilliseconds(250)
-            ) { EasingFunction = new SineEase() { EasingMode = EasingMode.EaseInOut } };
+            DoubleAnimation HeightAnimation = new(0,218, TimeSpan.FromMilliseconds(250))
+            { EasingFunction = new SineEase() { EasingMode = EasingMode.EaseInOut } };
 
-            Storyboard.SetTargetProperty(MarginAnimation, new("Margin"));
-            Storyboard.SetTarget(MarginAnimation, HoyoWindow.GameSelection);
-            Storyboard storyboard = new() { Children = new() { MarginAnimation } };
+            Storyboard.SetTargetProperty(HeightAnimation, new("Height"));
+            Storyboard.SetTarget(HeightAnimation, HoyoWindow.GameSelection);
+            Storyboard storyboard = new() { Children = new() { HeightAnimation } };
             storyboard.Completed += (s,e) => storyboard.Remove();
             storyboard.Begin();
         }
@@ -195,7 +192,7 @@ public sealed class EventsHandles
 
             HoyoMain.CurrentGameSelected = SelectedHoyoGame;
             HoyoMain.RefreshSideButtons();
-            GameChange.SetGame(SelectedButton.Uid);
+            GameChange.SetGame(short.Parse(SelectedButton.Uid));
         }
 
         HoyoWindow.GameSelection_Click.AddHandler(System.Windows.Controls.Primitives.ButtonBase.ClickEvent, new RoutedEventHandler(AutoClose));

@@ -42,7 +42,11 @@ public class HoyoMain
         if(CurrentGameSelected == HoyoGames.DEFAULT)
             RefreshSideButtons();
 
+        HoyoWindow.Height *= App.Config.SCALING;
+        HoyoWindow.Width *= App.Config.SCALING;
+
         HoyoWindow.Activate();
+        HoyoWindow.Show();
     }
 
     public static void ValidateSettings(string GameConfigName, HoyoGames Game) =>
@@ -63,7 +67,7 @@ public class HoyoMain
     static void LastGame()
     {
         HoyoGames SelectedHoyoGame = null;
-        int uid = App.Config.LAST_GAME;
+        short uid = App.Config.LAST_GAME;
 
         switch (uid)
         {

@@ -1,5 +1,3 @@
-using System.Net.NetworkInformation;
-
 namespace HoyoLauncher.Core.GameChanger;
 
 public sealed class GameChange : HoyoMain
@@ -12,9 +10,7 @@ public sealed class GameChange : HoyoMain
         VersionBubble = Visibility.Hidden
     };
 
-    public static void SetGame(string uid) =>
-        SetGame(int.Parse(uid));
-    public static async void SetGame(int uid)
+    public static async void SetGame(short uid)
     {
         HoyoWindow.LaunchButton.Content = "Loading";
         HoyoWindow.LaunchButton.IsEnabled = false;
@@ -31,7 +27,7 @@ public sealed class GameChange : HoyoMain
         bool[] ConditionMet = 
         {
             CurrentGameSelected.GAME_RESOURCE_API_LINK != "",
-            System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable(),
+            NetworkInterface.GetIsNetworkAvailable(),
             CurrentGameSelected.GAME_DIR_VALID
         };
 
@@ -111,7 +107,7 @@ public sealed class GameChange : HoyoMain
             CurrentGameSelected.API_CACHE = null;
         }
 
-        if (GameAPI.DownloadFile is not null && File.Exists(Path.Combine(CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(GameAPI.DownloadFile.LocalPath))))
+        if (GameAPI is { DownloadFile: not null } && File.Exists(Path.Combine(CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(GameAPI.DownloadFile.LocalPath))))
         {
             values.VersionBubble = Visibility.Collapsed;
             values.LaunchButtonContent = LaunchText.GAME_EXTRACT_TEXT;
