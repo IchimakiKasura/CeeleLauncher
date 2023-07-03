@@ -86,6 +86,11 @@
                 </Grid>
             </Border>
 
+            <Grid Name="PreDownload" Margin="0,0,370,50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="65" RenderTransformOrigin="0.5,0.5" Width="200" Visibility="Collapsed">
+                <Image Name="PreDownloadButton" Source="/Resources/Buttons/PreDownload.png" Width="65" Margin="0,0,135,0" Cursor="Hand"/>
+                <TextBlock Text="Game Pre-Installation is available" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Foreground="White" Margin="77,0,0,0"/>
+            </Grid>
+
             <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.5" Style="{StaticResource TopButtonTrigger}" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <Grid>
                     <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Ceele Launcher</TextBlock>

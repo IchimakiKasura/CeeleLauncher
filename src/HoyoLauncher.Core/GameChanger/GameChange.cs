@@ -1,13 +1,14 @@
 namespace HoyoLauncher.Core.GameChanger;
 
-public sealed class GameChange : HoyoMain
+public sealed partial class GameChange : HoyoMain
 {
     readonly static HoyoValues TempValues = new()
     {
         RemoveMainBG = true,
         LaunchButton = true,
         LaunchButtonContent = LaunchText.GAME_DEFAULT_TEXT,
-        VersionBubble = Visibility.Hidden
+        VersionBubble = Visibility.Collapsed,
+        PreInstall = Visibility.Collapsed
     };
 
     public static async void SetGame(short uid)
@@ -67,52 +68,5 @@ public sealed class GameChange : HoyoMain
         values.Background = GameBG;
         values.VersionBubble = Visibility.Hidden;
         values.LaunchButtonContent = LaunchText.GAME_NO_INTERNET_TEXT;
-    }
-
-    static async Task<HoyoValues> FetchAPI(GameConfigRead GameConfig, HoyoValues values, ImageBrush GameBG)
-    {
-        var WarningMessage = CurrentGameSelected.API_CACHE is null;
-
-        HoyoWindow.VERSION_TEXT.Foreground = Brushes.Black;
-        HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.SemiBold;
-
-        // Fetch once and never fetch again (until app was restarted)
-        var GameAPI = CurrentGameSelected.API_CACHE ??= await RetrieveAPI.Fetch(CurrentGameSelected.GAME_CONTENT_API_LINK, CurrentGameSelected.GAME_RESOURCE_API_LINK);
-
-        if (GameConfig.GameVersion != GameAPI.LatestVersion)
-        {
-            HoyoWindow.VERSION_TEXT.Text = GameAPI.LatestVersion;
-
-            ExecutableName = Path.Combine(CurrentGameSelected.GAME_DIRECTORY, "launcher.exe");
-
-            values.VersionBubble = Visibility.Visible;
-            values.LaunchButtonContent = LaunchText.GAME_UPDATE_TEXT;
-        }
-
-        if (GameConfig.GameBackgroundMD5 != GameAPI.BackgroundHASH)
-        {
-            values.Background = GameAPI.BackgroundLINK ??= GameBG;
-
-            if (WarningMessage)
-                HoyoMessageBox.Show(HoyoWindow.Title, "Its Recommended that you open the Original Launcher To fetch its Background permanently.", HoyoWindow);
-        }
-
-        if (GameAPI.LatestVersion == "CONNECTION FAILURE, PLEASE RETRY AGAIN")
-        {
-            ConnectionFailure(ref values, GameBG);
-            values.VersionBubble = Visibility.Visible;
-            values.LaunchButton = false;
-            HoyoWindow.VERSION_TEXT.Foreground = Brushes.Red;
-            HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.Bold;
-            CurrentGameSelected.API_CACHE = null;
-        }
-
-        if (GameAPI is { DownloadFile: not null } && File.Exists(Path.Combine(CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(GameAPI.DownloadFile.LocalPath))))
-        {
-            values.VersionBubble = Visibility.Collapsed;
-            values.LaunchButtonContent = LaunchText.GAME_EXTRACT_TEXT;
-        }
-
-        return values;
     }
 }

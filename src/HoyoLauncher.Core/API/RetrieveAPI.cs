@@ -4,7 +4,8 @@ public sealed class RetrieveAPI
 {
     public string LatestVersion { get; private set; } = "CONNECTION FAILURE, PLEASE RETRY AGAIN";
     public string BackgroundHASH { get; private set; } = "";
-    public Uri DownloadFile { get; private set; }
+    public Uri DownloadFile { get; private set; } = null;
+    public Uri PreDownloadFile { get; private set; } = null;
     public ImageBrush BackgroundLINK { get; set; } = null;
 
     readonly JsonElement Resources;
@@ -35,6 +36,10 @@ public sealed class RetrieveAPI
 
             if (Latest.TryGetProperty("path", out JsonElement FilePath))
                 DownloadFile = FilePath.ToString() is not "" ? new(FilePath.ToString()) : null;
+
+            if(VersionProperty.TryGetProperty("pre_download_game", out JsonElement pre_download))
+                PreDownloadFile = !string.IsNullOrEmpty(pre_download.ToString()) ? new(pre_download.GetProperty("diffs")[0].GetProperty("path").ToString()) : null;
+            
         }
 
         if (Content.TryGetProperty("data", out JsonElement ContentProperty))

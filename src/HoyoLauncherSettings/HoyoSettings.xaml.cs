@@ -8,7 +8,6 @@ public partial class HoyoSettings : Window
     [StaticWindow]
     public static HoyoSettings HoyoSettingStatic { get; set; }
 
-
     readonly Brush SelectedPageColor = App.ConvertColorFromString("#f6f5f3");
     readonly Brush UnSelectedPageColor = App.ConvertColorFromString("#e3e1de");
 
@@ -42,6 +41,7 @@ public partial class HoyoSettings : Window
         HoyoTooltips.SetToolTips();
         HoyoRadioButtons.SetRadioButtons();
         HoyoSettingsButtons.SetButtons();
+        new Funi.Fun(this);
 
         foreach (var btn in new List<Border>{ Button_Locations, Button_Others, Button_About })
         {

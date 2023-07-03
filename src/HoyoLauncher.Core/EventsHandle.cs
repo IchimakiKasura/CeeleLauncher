@@ -115,7 +115,7 @@ public sealed class EventsHandles
                     HoyoWindow.LaunchSelection.IsEnabled =
                     HoyoWindow.LaunchButton.IsEnabled = false;
                     HoyoWindow.LaunchButton.Content = "Downloading";
-                    RetrieveFile.DownloadFile();
+                    RetrieveFile.DownloadFile(HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile);
                 }
 
                 return;
@@ -225,5 +225,25 @@ public sealed class EventsHandles
 
         HoyoWindow.ProgressBarButton.MouseLeave += (s, e) =>
             (e.Source as Border).Background = App.ConvertColorFromString("#3FFFFFFF");
+    }
+    public static void PreDownloadBtn()
+    {
+        HoyoWindow.PreDownloadButton.MouseDown += (s,e) =>
+        {
+            if(e.ChangedButton is not MouseButton.Left) return;
+
+            if(File.Exists(Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(HoyoMain.CurrentGameSelected.API_CACHE.PreDownloadFile.LocalPath))))
+            {
+                HoyoMessageBox.Show(HoyoWindow.Title, "The file is already downloaded!\r\rIf the download was stopped last time, It need to be re-downloaded again by deleting the file.\r", HoyoWindow);
+                return;
+            }
+
+            HoyoWindow.HomeButton.IsEnabled =
+            HoyoWindow.LaunchSelection.IsEnabled =
+            HoyoWindow.LaunchButton.IsEnabled = false;
+            HoyoWindow.LaunchButton.Content = "Downloading";
+            HoyoWindow.PreDownload.Visibility = Visibility.Collapsed;
+            RetrieveFile.DownloadFile(HoyoMain.CurrentGameSelected.API_CACHE.PreDownloadFile);
+        };
     }
 }

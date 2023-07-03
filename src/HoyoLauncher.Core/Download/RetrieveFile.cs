@@ -7,14 +7,13 @@ public sealed class RetrieveFile
     public static bool IsPaused { get; set; } = false;
 
     static string FileLocation;
-    public static async void DownloadFile()
+    public static async void DownloadFile(Uri link)
     {
         IsDownloading = true;
 
         HoyoWindow.VERSION_BUBBLE.Visibility = Visibility.Collapsed;
         HoyoWindow.ProgressBarElement.Visibility = Visibility.Visible;
 
-        var link = HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile;
         FileLocation = Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(link.LocalPath));
         
         using HttpClient request = new(handler: new HttpClientHandler() { Proxy = null }) { Timeout = TimeSpan.FromDays(1) };
@@ -87,7 +86,7 @@ public sealed class RetrieveFile
         HoyoWindow.LaunchSelection.IsEnabled =
         HoyoWindow.HomeButton.IsEnabled = true;
         HoyoWindow.ProgressBarElement.Visibility = Visibility.Collapsed;
-        HoyoWindow.LaunchButton.Content = LaunchText.GAME_EXTRACT_TEXT;
+        HoyoWindow.LaunchButton.Content = HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile is not null ? LaunchText.GAME_EXTRACT_TEXT : LaunchText.GAME_DEFAULT_TEXT;
     }
 
     static void UpdateProgress(long totalBytesRead, long TotalBytes, double percent) =>
