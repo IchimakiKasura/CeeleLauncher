@@ -42,7 +42,7 @@ The App requires [NET-7](https://download.visualstudio.microsoft.com/download/pr
 
 # Download Links
 [![](readme/Release.png)](https://github.com/IchimakiKasura/CeeleLauncher/releases/latest/download/HoyoLauncher.exe) <br>
-[![](readme/Preview.png)](https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.705.3-previewbuild/CeeleLauncher.exe)
+[![](readme/Preview.png)](https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.705.4-previewbuild/CeeleLauncher.exe)
 
 ## DISCLAIMER:
 This app is not affiliated with miHoYo / Hoyoverse by any means.
