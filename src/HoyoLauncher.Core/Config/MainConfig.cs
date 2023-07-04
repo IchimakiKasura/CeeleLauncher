@@ -46,6 +46,7 @@ public sealed class MainConfig
     /// </summary>
     public static bool IsConfigExist => File.Exists(FilePath);
 
+    // was singleton necessary? i'm still learning lmao.
     private static MainConfig instance = null;
     public static MainConfig Instance => instance ??= new();
     private MainConfig() { }

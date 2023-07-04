@@ -12,7 +12,7 @@ public sealed class GameConfigRead
     public string GameVersion { get; private set; }
     public string GameBackgroundMD5 { get; private set; }
 
-
+    // ☠️
     private static GameConfigRead instance = null;
     public static GameConfigRead Instance => instance ??= new GameConfigRead();
     private GameConfigRead() { }
