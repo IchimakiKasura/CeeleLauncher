@@ -68,7 +68,10 @@
                 </Canvas>
             </Border>
 
-            <Border Name="VERSION_BUBBLE" CornerRadius="10" Background="#9FFFFFFF" Margin="0,0,390,50" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="175" Height="65">
+            <Border Name="VERSION_BUBBLE" CornerRadius="10" Background="#5FFFFFFF" Margin="0,0,390,50" Visibility="Visible" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="175" Height="65">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" RenderingBias="Performance" BlurRadius="5"/>
+                </Border.Effect>
                 <Grid Margin="-103,0,-103,0" >
                     <TextBlock Text="New Version is out!" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" FontSize="15" FontWeight="SemiBold"/>
                     <TextBlock Name="VERSION_TEXT" Text="VERSION_TEXT" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,32,0,0" FontSize="15" FontWeight="SemiBold"/>
@@ -76,17 +79,23 @@
             </Border>
 
             <Border Name="ProgressBarElement" Background="#3FFFFFFF" BorderBrush="White" BorderThickness="2" Margin="48,605,446,83" CornerRadius="5" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" RenderingBias="Performance" BlurRadius="5"/>
+                </Border.Effect>
                 <Grid>
                     <Border Name="ProgressBarInner" Background="White" CornerRadius="0" MaxWidth="784" HorizontalAlignment="Left"/>
                     <TextBlock Name="ProgressBarStatus" Text="Downloaded: " Margin="0,33,0,-33" Foreground="White" FontWeight="SemiBold" FontSize="20"/>
                     <TextBlock Name="ProgressBarSpeed" Text="Bandwidth: " Margin="0,61,0,-61" Foreground="White" FontWeight="SemiBold" FontSize="20"/>
                     <Border Name="ProgressBarButton" Background="#3FFFFFFF" BorderBrush="White" BorderThickness="2" Margin="788,-2,-40,-2" Width="32" CornerRadius="5" Cursor="Hand">
-                        <Path Name="PathPause" Fill="White" Data=" M 8 6 L 8 22 L 13 22 L 13 6 Z M 17 6 L 17 22 L 22 22 L 22 6 Z"/>
+                        <Path Name="PathPause" Fill="White" Data=" M 8 6 L 8 22 L 13 22 L 13 6 Z M 17 6 L 17 22 L 22 22 L 22 6 Z" Margin="7,5,7,5" Stretch="Fill"/>
                     </Border>
                 </Grid>
             </Border>
 
             <Grid Name="PreDownload" Margin="0,0,370,50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="65" RenderTransformOrigin="0.5,0.5" Width="200" Visibility="Collapsed">
+                <Grid.Effect>
+                    <DropShadowEffect ShadowDepth="0" RenderingBias="Performance" BlurRadius="5"/>
+                </Grid.Effect>
                 <Image Name="PreDownloadButton" Source="/Resources/Buttons/PreDownload.png" Width="65" Margin="0,0,135,0" Cursor="Hand"/>
                 <TextBlock Text="Game Pre-Installation is available" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Foreground="White" Margin="77,0,0,0"/>
             </Grid>

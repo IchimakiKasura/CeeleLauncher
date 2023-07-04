@@ -29,14 +29,14 @@ public sealed class EventsHandles
 
         static void TopButtonClick(object sender, RoutedEventArgs events)
         {
-            HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
+            HoyoWindow.GameSelection.Visibility = Visibility.Collapsed;
             var CurrentButton = (Button)sender;
 
             switch(CurrentButton.Name)
             {
                 case "ExitButton": HoyoWindow.Close(); break;
                 case "MinButton": HoyoWindow.WindowState = WindowState.Minimized; break;
-                case "SettingsButton": new HoyoLauncherSettings.HoyoSettings { Owner = HoyoWindow }.ShowDialog(); break;
+                case "SettingsButton": ShowSettings(HoyoWindow); break;
                 case "HomeButton":
                         new HoyoValues()
                         {
@@ -44,7 +44,8 @@ public sealed class EventsHandles
                             RemoveMainBG = false,
                             LaunchButton = false,
                             LaunchButtonContent = "Welcome",
-                            VersionBubble = Visibility.Hidden
+                            VersionBubble = Visibility.Collapsed,
+                            PreInstall = Visibility.Collapsed,
                         }
                         .ApplyChanges();
 
@@ -245,5 +246,8 @@ public sealed class EventsHandles
             HoyoWindow.PreDownload.Visibility = Visibility.Collapsed;
             RetrieveFile.DownloadFile(HoyoMain.CurrentGameSelected.API_CACHE.PreDownloadFile);
         };
+
+        HoyoWindow.PreDownloadButton.MouseEnter += (s, e) => HoyoWindow.PreDownloadButton.Opacity = 0.5;
+        HoyoWindow.PreDownloadButton.MouseLeave += (s, e) => HoyoWindow.PreDownloadButton.Opacity = 1;
     }
 }

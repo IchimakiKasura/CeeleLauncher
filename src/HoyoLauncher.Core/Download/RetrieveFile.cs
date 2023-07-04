@@ -79,8 +79,16 @@ public sealed class RetrieveFile
                     UpdateProgress(totalBytesRead, TotalBytes.Value, percentage);
                 }
             }
-        }   
+        }
 
+        Finished();
+    }
+
+    static void UpdateProgress(long totalBytesRead, long TotalBytes, double percent) =>
+        HoyoWindow.ProgressBarStatus.Text = $"Downloaded: {Math.Round((double)totalBytesRead / 1024 / 1024 / 1024, 2)}GB    |   {Math.Round((double)TotalBytes / 1024 / 1024 / 1024, 2)}GB | {percent}%";
+
+    static void Finished()
+    {
         IsDownloading = false;
         HoyoWindow.LaunchButton.IsEnabled = 
         HoyoWindow.LaunchSelection.IsEnabled =
@@ -88,8 +96,5 @@ public sealed class RetrieveFile
         HoyoWindow.ProgressBarElement.Visibility = Visibility.Collapsed;
         HoyoWindow.LaunchButton.Content = HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile is not null ? LaunchText.GAME_EXTRACT_TEXT : LaunchText.GAME_DEFAULT_TEXT;
     }
-
-    static void UpdateProgress(long totalBytesRead, long TotalBytes, double percent) =>
-        HoyoWindow.ProgressBarStatus.Text = $"Downloaded: {Math.Round((double)totalBytesRead / 1024 / 1024 / 1024, 2)}GB    |   {Math.Round((double)TotalBytes / 1024 / 1024 / 1024, 2)}GB | {percent}%";
 
 }

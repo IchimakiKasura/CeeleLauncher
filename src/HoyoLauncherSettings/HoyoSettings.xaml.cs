@@ -182,4 +182,7 @@ public partial class HoyoSettings : Window
         if(HoyoMain.CurrentGameSelected != HoyoGames.DEFAULT)
             GameChange.SetGame(--App.Config.LAST_GAME);
     }
+
+    public static void ShowSettings(Window _w) =>
+        new HoyoSettings() { Owner = _w }.ShowDialog();
 }

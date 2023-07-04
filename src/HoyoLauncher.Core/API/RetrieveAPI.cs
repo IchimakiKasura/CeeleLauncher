@@ -3,7 +3,7 @@
 public sealed class RetrieveAPI
 {
     public string LatestVersion { get; private set; } = "CONNECTION FAILURE, PLEASE RETRY AGAIN";
-    public string BackgroundHASH { get; private set; } = "";
+    public string BackgroundHASH { get; private set; } = "timeout";
     public Uri DownloadFile { get; private set; } = null;
     public Uri PreDownloadFile { get; private set; } = null;
     public ImageBrush BackgroundLINK { get; set; } = null;
@@ -62,14 +62,19 @@ public sealed class RetrieveAPI
     {
         HttpResponseMessage resp;
 
-        using HttpClient req = new(handler: new HttpClientHandler() { Proxy = null });// { Timeout = TimeSpan.FromMilliseconds(1000) };
+        using HttpClient req = new(handler: new HttpClientHandler() { Proxy = null }) { Timeout = TimeSpan.FromSeconds(10) };
 
-        resp = await req.GetAsync(APILink, HttpCompletionOption.ResponseHeadersRead);
-
-        resp.EnsureSuccessStatusCode();
+        try
+        {
+            resp = await req.GetAsync(APILink, HttpCompletionOption.ResponseHeadersRead);
+        }
+        catch (TaskCanceledException) { return Stream.Null; }
 
         if(resp.IsSuccessStatusCode)
+        {
+            resp.EnsureSuccessStatusCode();
             return await resp.Content.ReadAsStreamAsync();
+        }
         return Stream.Null;
     }
 }
