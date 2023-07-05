@@ -18,8 +18,8 @@ public partial class MainWindow : Window
         AppVersion.Text = App.IsPreview ? App.Version+" PREVIEW BUILD | NOT OFFICIAL VERSION" : App.Version;
 #else
         AppVersion.Text += $": test ver({App.Version})";
-        Console.WriteLine("BUILD HASH: "+App.UniqueHashBUILD);
 #endif
+        Debug.WriteLine("BUILD HASH: "+App.UniqueHashBUILD);
     }
 
     public static void SetProgressBarValue(double value) =>

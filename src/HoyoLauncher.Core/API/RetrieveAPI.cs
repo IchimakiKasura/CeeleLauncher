@@ -35,7 +35,13 @@ public sealed class RetrieveAPI
             LatestVersion = Latest.GetProperty("version").ToString();
 
             if (Latest.TryGetProperty("path", out JsonElement FilePath))
-                DownloadFile = FilePath.ToString() is not "" ? new(FilePath.ToString()) : null;
+            {
+                string stringPath = FilePath.ToString();
+
+                DownloadFile = stringPath is not "" ? 
+                    new(stringPath) :
+                    new(VersionProperty.GetProperty("game").GetProperty("diffs")[0].GetProperty("path").ToString());
+            }
 
             if(VersionProperty.TryGetProperty("pre_download_game", out JsonElement pre_download))
                 PreDownloadFile = !string.IsNullOrEmpty(pre_download.ToString()) ? new(pre_download.GetProperty("diffs")[0].GetProperty("path").ToString()) : null;
@@ -49,6 +55,20 @@ public sealed class RetrieveAPI
             BackgroundHASH = adv.GetProperty("bg_checksum").ToString();
             BackgroundLINK = new ImageBrush(new BitmapImage(new(adv.GetProperty("background").ToString())));
         }
+
+        Debug.WriteLine($$"""
+
+            API FETCH INFO [Game: {{HoyoMain.CurrentGameSelected.GAME_NAME}}]
+            {
+                Latest Version      :     {{LatestVersion}}
+                
+                Download File Link  :     {{DownloadFile}}
+                Pre Installation    :     {{PreDownloadFile}}
+
+                Background Link     :     {{BackgroundLINK.ImageSource}}
+                Background Hash     :     {{BackgroundHASH}}
+            }
+            """);
     }
 
     static JsonDocument ReadJsonData(Stream stream)
@@ -62,7 +82,17 @@ public sealed class RetrieveAPI
     {
         HttpResponseMessage resp;
 
-        using HttpClient req = new(handler: new HttpClientHandler() { Proxy = null }) { Timeout = TimeSpan.FromSeconds(10) };
+        using HttpClient req = new(handler: new HttpClientHandler() { Proxy = null })
+        {
+            Timeout = TimeSpan.FromSeconds(10),
+            DefaultRequestHeaders =
+            {
+                CacheControl = new()
+                {
+                    NoCache = true,
+                }
+            }
+        };
 
         try
         {

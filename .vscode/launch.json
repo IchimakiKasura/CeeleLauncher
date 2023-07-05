@@ -1,0 +1,17 @@
+{
+    // If you have C# Dev Kit, then you don't need these for VSCODE
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "DEBUG",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/bin/Debug/net7.0-windows/Ceele Launcher.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+    ]
+}

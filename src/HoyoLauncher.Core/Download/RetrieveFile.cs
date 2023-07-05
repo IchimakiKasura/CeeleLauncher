@@ -15,8 +15,18 @@ public sealed class RetrieveFile
         HoyoWindow.ProgressBarElement.Visibility = Visibility.Visible;
 
         FileLocation = Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(link.LocalPath));
-        
-        using HttpClient request = new(handler: new HttpClientHandler() { Proxy = null }) { Timeout = TimeSpan.FromDays(1) };
+
+        using HttpClient request = new(handler: new HttpClientHandler() { Proxy = null })
+        {
+            Timeout = TimeSpan.FromDays(1),
+            DefaultRequestHeaders =
+            {
+                CacheControl = new()
+                {
+                    NoCache = true
+                }
+            }
+        };
 
         using var response = await request.GetAsync(link, HttpCompletionOption.ResponseHeadersRead);
 

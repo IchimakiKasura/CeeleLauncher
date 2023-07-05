@@ -37,6 +37,16 @@ public partial class HoyoMessageBox : Window
         WindowDrag.MouseDown += App.DragMove<HoyoMessageBox>;
 
         OkBtn.MouseDown += OK_BUTTON;
+
+        Debug.WriteLine($$"""
+            HoyoMessageBox Instance
+            {
+                Title           : {{Caption}}
+                Message         : {{Message}}
+                Window Owner    : {{Owner}}
+            }
+
+            """);
     }
 
     public void OK_BUTTON(object sender, MouseButtonEventArgs events)

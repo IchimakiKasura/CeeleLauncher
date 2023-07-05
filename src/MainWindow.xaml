@@ -44,6 +44,9 @@
             <Button Name="LaunchSelection" Style="{StaticResource LaunchSettings}" Margin="1117,605,128,50" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
             <Border Name="GameSelection" Style="{StaticResource GameSelectionBorder}" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,128,120" Width="227" Height="218">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" RenderingBias="Performance" BlurRadius="5"/>
+                </Border.Effect>
                 <Canvas Name="GameSelection_Click" ClipToBounds="True">
                     <Button Name="GAME_SELECTION_GI" Uid="0" Style="{StaticResource GameSelectionButton}" Content="Genshin Impact" Height="35" Width="217" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="7"/>
                     <Button Name="GAME_SELECTION_HSR" Uid="1" Style="{StaticResource GameSelectionButton}" Content="Honkai: Star Rail" Height="35" Width="217" HorizontalAlignment="Center" Canvas.Top="47" VerticalAlignment="Top"/>
@@ -55,6 +58,9 @@
 
             <Border Name="SideButtons" Background="#40000000" Margin="0,70,20,0" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Top" Height="584" Width="77">
                 <Canvas x:Name="SideButton_Click">
+                    <Canvas.Effect>
+                        <DropShadowEffect ShadowDepth="0" RenderingBias="Performance" BlurRadius="5"/>
+                    </Canvas.Effect>
                     <ButtonControl:HoyoButton x:Name="GENSHIN_IMPACT_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="15" Image="/Resources/Buttons/GI.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <ButtonControl:HoyoButton x:Name="HONKAI_STAR_RAIL_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="90" Image="/Resources/Buttons/HSR.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <ButtonControl:HoyoButton x:Name="HONKAI_IMPACT_THIRD_REWARDS" Height="57" Width="57" Canvas.Left="10" Canvas.Top="165" Image="/Resources/Buttons/HI3.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -68,7 +74,7 @@
                 </Canvas>
             </Border>
 
-            <Border Name="VERSION_BUBBLE" CornerRadius="10" Background="#5FFFFFFF" Margin="0,0,390,50" Visibility="Visible" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="175" Height="65">
+            <Border Name="VERSION_BUBBLE" CornerRadius="10" Background="#5FFFFFFF" Margin="0,0,390,50" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="175" Height="65">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="0" RenderingBias="Performance" BlurRadius="5"/>
                 </Border.Effect>

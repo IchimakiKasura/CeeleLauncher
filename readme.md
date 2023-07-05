@@ -31,7 +31,7 @@ The App requires [NET-7](https://download.visualstudio.microsoft.com/download/pr
 |![](readme/MainOverview/genshin.jpg)|![](readme/MainOverview/StarRail.jpg)|
 |![](readme/MainOverview/hi3.jpg)|![](readme/MainOverview/zzz.jpg)|
 |![](readme/MainOverview/tot.jpg)|![](readme/MainOverview/missingLocation.jpg)|
-|![](readme/MainOverview/update.jpg)|![](readme/MainOverview/downloading.jpg)|
+|![](readme/MainOverview/update.jpg)|![](readme/MainOverview/download.jpg)|
 
 # Settings Overview
  | | | |
@@ -41,8 +41,10 @@ The App requires [NET-7](https://download.visualstudio.microsoft.com/download/pr
 <div align="center">
 
 # Download Links
-[![](readme/Release.png)](https://github.com/IchimakiKasura/CeeleLauncher/releases/latest/download/HoyoLauncher.exe) <br>
-[![](readme/Preview.png)](https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.705.4-previewbuild/CeeleLauncher.exe)
+<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/latest/download/HoyoLauncher.exe"><img Title="Download Latest" src="readme/Release.png" height="90"/></a>  
+<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.705.4-previewbuild/CeeleLauncher.exe"><img Title="Download Preview build" src="readme/Preview.png" height="90"/></a>
+
+<br>
 
 ## DISCLAIMER:
 This app is not affiliated with miHoYo / Hoyoverse by any means.

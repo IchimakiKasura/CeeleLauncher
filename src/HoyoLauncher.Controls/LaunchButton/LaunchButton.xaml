@@ -29,6 +29,9 @@
                         </Canvas>
 
                         <Border Height="65" Width="202" CornerRadius="5,0,0,5" BorderThickness="0.5" BorderBrush="#b28d1d">
+                            <Border.Effect>
+                                <DropShadowEffect x:Name="Shadow" ShadowDepth="0" RenderingBias="Performance" BlurRadius="15" Color="#fccc05" Opacity="0"/>
+                            </Border.Effect>
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                                     <GradientStop Color="#fecf0d" Offset="0.3" />
@@ -59,6 +62,11 @@
                                             <SineEase EasingMode="EaseInOut"/>
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:.5">
+                                        <DoubleAnimation.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -73,9 +81,14 @@
                                     </ColorAnimation>
                                     <DoubleAnimation Storyboard.TargetName="ButtonTooltip" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:.1">
                                         <DoubleAnimation.EasingFunction>
-                                                <SineEase EasingMode="EaseInOut"/>
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
+                                            <SineEase EasingMode="EaseInOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:.5">
+                                        <DoubleAnimation.EasingFunction>
+                                            <SineEase EasingMode="EaseInOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
