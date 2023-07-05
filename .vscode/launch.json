@@ -10,8 +10,8 @@
             "program": "${workspaceFolder}/src/bin/Debug/net7.0-windows/Ceele Launcher.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
             "stopAtEntry": false,
-            "console": "internalConsole"
         }
     ]
 }

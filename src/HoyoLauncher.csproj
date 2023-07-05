@@ -7,7 +7,7 @@
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <Authors>IchimakiKasura</Authors>
         <Company>IchimakiKasura</Company>
@@ -22,7 +22,7 @@
         <SignAssembly>True</SignAssembly>
         <RepositoryType>https://github.com/IchimakiKasura/CeeleLauncher</RepositoryType>
         <IncludeSymbols>False</IncludeSymbols>
-        <DebugType>Portable</DebugType>
+        <DebugType>portable</DebugType>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(Configuration) == Release">
@@ -33,14 +33,6 @@
         <PublishSingleFile>True</PublishSingleFile>
         <PublishReadyToRun>True</PublishReadyToRun>
         <DebugType>None</DebugType>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <DebugType>full</DebugType>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <DebugType>none</DebugType>
     </PropertyGroup>
 	
     <ItemGroup>
