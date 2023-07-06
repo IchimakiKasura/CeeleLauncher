@@ -7,11 +7,16 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/bin/Debug/net7.0-windows/Ceele Launcher.dll",
-            "args": [],
+            "program": "${workspaceFolder}/src/bin/Debug/net7.0-windows/Ceele Launcher.exe",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
-            "stopAtEntry": false,
+            "enableStepFiltering": false,
+            "justMyCode": false,
+            "logging": {
+                "engineLogging": false,
+                "moduleLoad": false,
+                "threadExit": false
+            }
         }
     ]
 }

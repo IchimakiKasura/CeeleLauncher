@@ -7,6 +7,9 @@
     <Compile Update="HoyoLauncher.Controls\SideButtons\HoyoButton.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="HoyoLauncher.Controls\TopButtons\TopButtonIcons.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="HoyoLauncherMessageBox\HoyoMessageBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,13 +33,10 @@
     <Page Update="HoyoLauncher.Controls\LaunchButton\LaunchSettingsPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="HoyoLauncher.Controls\TopButtons\HomeButton.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="HoyoLauncher.Controls\TopButtons\SettingsButton.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="HoyoLauncher.Controls\TopButtons\TopButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="HoyoLauncher.Controls\TopButtons\TopButtonIcons.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="HoyoLauncherMessageBox\HoyoMessageBox.xaml">

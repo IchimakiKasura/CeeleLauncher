@@ -8,6 +8,6 @@
 )]
 
 [assembly: ComVisible(false)]
-[assembly: Guid("aefb82b4-58a3-44ca-91f6-59ad7dcbd525")]
+[assembly: Guid("FAE04EC0-301F-11D3-BF4B-00C04F79EFBC")]
 
 [assembly: AssemblyKeyFile("Properties/mykey.snk")]

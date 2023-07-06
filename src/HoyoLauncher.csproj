@@ -13,9 +13,8 @@
         <Company>IchimakiKasura</Company>
         <AssemblyName>Ceele Launcher</AssemblyName>
         <Product>Ceele Launcher</Product>
-        <AssemblyVersion>1.8.705.4</AssemblyVersion>
-        <FileVersion>1.8.705.4</FileVersion>
-        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+        <AssemblyVersion>1.8.706.4</AssemblyVersion>
+        <FileVersion>1.8.706.4</FileVersion>
         <Copyright>Copyright © Ceele Launcher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
@@ -26,6 +25,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="$(Configuration) == Release">
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
         <PublishProtocol>FileSystem</PublishProtocol>
@@ -60,6 +60,7 @@
         <Resource Include="Resources\Buttons\TOT.jpg" />
         <Resource Include="Resources\Buttons\ZZZ.jpg" />
         <Resource Include="Resources\Buttons\PreDownload.png" />
+        <Resource Include="Resources\Buttons\refresh.png" />
         
         <!-- Icon pictures -->
         <Resource Include="Resources\Icons\16.ico" />

@@ -16,6 +16,9 @@ public sealed class EventsHandles
         HoyoWindow.GameMapPage.ButtonToolTip = ToolTips.MAPPAGE_TIP;
         HoyoWindow.GameScreenshotFolder.ButtonToolTip = ToolTips.SCREENSHOT_TIP;
         HoyoWindow.GameOriginalLauncher.ButtonToolTip = ToolTips.LAUNCHER_TIP;
+        HoyoWindow.SettingsButton.ButtonToolTip = ToolTips.TOPBUTTON_SETTINGS_TIP;
+        HoyoWindow.HomeButton.ButtonToolTip = ToolTips.TOPBUTTON_HOME_TIP;
+        HoyoWindow.RefreshButton.ButtonToolTip = ToolTips.TOPBUTTON_REFRESH_TIP;
     }
     public static void WindowTopButtons()
     {
@@ -24,13 +27,14 @@ public sealed class EventsHandles
             HoyoWindow.ExitButton,
             HoyoWindow.MinButton,
             HoyoWindow.SettingsButton,
-            HoyoWindow.HomeButton
+            HoyoWindow.HomeButton,
+            HoyoWindow.RefreshButton
         };
 
-        static void TopButtonClick(object sender, RoutedEventArgs events)
+        static async void TopButtonClick(object sender, RoutedEventArgs events)
         {
             HoyoWindow.GameSelection.Visibility = Visibility.Collapsed;
-            var CurrentButton = (Button)sender;
+            var CurrentButton = sender as Button;
 
             switch(CurrentButton.Name)
             {
@@ -53,6 +57,18 @@ public sealed class EventsHandles
                         HoyoMain.RefreshSideButtons();
                         App.Config.LAST_GAME = 0;
                     break;
+                case "RefreshButton":
+                    if (HoyoMain.CurrentGameSelected == HoyoGames.DEFAULT) return;
+
+                    Debug.Write($"Removing Cache");
+                    HoyoMain.CurrentGameSelected.API_CACHE = null;
+                    GameChange.SetGame(--App.Config.LAST_GAME);
+                    Debug.WriteLine($".....DONE");
+
+                    Debug.Write($"Refreshing App Config");
+                    App.Config = await MainConfig.ReadConfig();
+                    Debug.WriteLine($".....DONE");
+                break;
             }
         }
 
@@ -66,7 +82,7 @@ public sealed class EventsHandles
         static void GameLauncher(object s, RoutedEventArgs e)
         {
             HoyoWindow.GameSelection.Visibility = Visibility.Hidden;
-            var CurrentButton = e.Source as HoyoButton;
+            var CurrentButton = (HoyoButton)e.Source;
 
             string Launcher = "";
 
@@ -153,25 +169,20 @@ public sealed class EventsHandles
 
     public static void GameSelectionPopup()
     {
-        static void PlayAnimation()
-        {
-            DoubleAnimation HeightAnimation = new(0,218, TimeSpan.FromMilliseconds(250))
-            { EasingFunction = new SineEase() { EasingMode = EasingMode.EaseInOut } };
-
-            Storyboard.SetTargetProperty(HeightAnimation, new("Height"));
-            Storyboard.SetTarget(HeightAnimation, HoyoWindow.GameSelection);
-            Storyboard storyboard = new() { Children = new() { HeightAnimation } };
-            storyboard.Completed += (s,e) => storyboard.Remove();
-            storyboard.Begin();
-        }
-
         HoyoWindow.LaunchSelection.Click += (s, e) =>
         {
             HoyoWindow.GameSelection.Visibility =
             HoyoWindow.GameSelection.IsVisible ? Visibility.Collapsed : Visibility.Visible;
 
-            if (HoyoWindow.GameSelection.Visibility is Visibility.Visible)
-                PlayAnimation();
+            if (HoyoWindow.GameSelection.Visibility is not Visibility.Visible) return;
+
+            DoubleAnimation HeightAnimation = new(0,218, TimeSpan.FromMilliseconds(250))
+            { EasingFunction = new SineEase() { EasingMode = EasingMode.EaseInOut } };
+
+            Storyboard.SetTarget(HeightAnimation, HoyoWindow.GameSelection);
+            Storyboard.SetTargetProperty(HeightAnimation, new("Height"));
+            Storyboard storyboard = new() { Children = new() { HeightAnimation } };
+            storyboard.Begin();
         };
     }
     public static void GameSelectionButtonClick()

@@ -141,6 +141,15 @@
   <data name="SCREENSHOT_TIP" xml:space="preserve">
     <value>Open Screenshot folder</value>
   </data>
+  <data name="TOPBUTTON_HOME_TIP" xml:space="preserve">
+    <value>HomeMenu</value>
+  </data>
+  <data name="TOPBUTTON_REFRESH_TIP" xml:space="preserve">
+    <value>Refresh Cached Data / Check Latest Version</value>
+  </data>
+  <data name="TOPBUTTON_SETTINGS_TIP" xml:space="preserve">
+    <value>Open Settings</value>
+  </data>
   <data name="TOT_TIP" xml:space="preserve">
     <value>Tears of Themis Check-In Rewards</value>
     <comment>Tears of Thermis Button ToolTip</comment>

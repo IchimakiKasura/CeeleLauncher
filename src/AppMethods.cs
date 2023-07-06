@@ -23,15 +23,17 @@ public partial class App
         AppTray.BalloonTipIcon = Forms.ToolTipIcon.None;
 
         AppTray.ContextMenuStrip = new();
-        AppTray.ContextMenuStrip.Items.Add("Open", null, AppMenuOpen);
-        AppTray.ContextMenuStrip.Items.Add("Close", null, AppMenuClose);
+        AppTray.ContextMenuStrip.Show();
+        AppTray.ContextMenuStrip.Items.Add(new Forms.ToolStripLabel($"{AppName} ({Version})") { ForeColor = Draw.Color.Gray } );
+        AppTray.ContextMenuStrip.Items.Add("-");
+        AppTray.ContextMenuStrip.Items.Add("Open mainwindow", null, AppMenuOpen);
+        AppTray.ContextMenuStrip.Items.Add("Exit", null, AppMenuClose);
     }
 
     private void AppTrayClick(object s, Forms.MouseEventArgs e)
     {
-        if (e.Button is not Forms.MouseButtons.Left) return;
-
-        if (MainWindow.WindowState is not WindowState.Minimized) return;
+        if (e.Button is not Forms.MouseButtons.Left || MainWindow.WindowState is not WindowState.Minimized)
+            return;
 
         MainWindow.Show();
         MainWindow.WindowState = WindowState.Normal;
@@ -52,7 +54,6 @@ public partial class App
         IsFromTray = true;
         HoyoWindow.Close();
     }
-
 
     private static void AppNotification()
     {

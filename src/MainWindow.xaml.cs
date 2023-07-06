@@ -1,5 +1,9 @@
 ﻿namespace HoyoLauncher;
 
+// It was supposed to be a simple launcher that opens the game,
+// why do i need to go as far as detecting a new version, downloading the new version and even pre-installing the upcoming version.
+// what the fuck am i doing?
+
 public partial class MainWindow : Window
 {
     [StaticWindow]
@@ -29,9 +33,7 @@ public partial class MainWindow : Window
     {
         e.Cancel = HoyoMain.IsGameRunning || RetrieveFile.IsDownloading;
 
-        if (HoyoMain.IsGameRunning)
-            HoyoMessageBox.Show("⚠️ Warning ⚠️", "Game is running! Cannot be closed.", HoyoWindow);
-        else if (App.Config.EXIT_MODE is 1 && !App.IsFromTray)
+        if (HoyoMain.IsGameRunning || App.Config.EXIT_MODE is 1 && !App.IsFromTray)
         {
             App.AppMinimizeToTray();
             e.Cancel = true;

@@ -8,10 +8,8 @@
                 <ResourceDictionary Source="/HoyoLauncher.Controls/LaunchButton/LaunchSettingsPopup.xaml"/>
                 <ResourceDictionary Source="/HoyoLauncher.Controls/LaunchButton/LaunchButton.xaml"/>
                 <ResourceDictionary Source="/HoyoLauncher.Controls/LaunchButton/LaunchSettings.xaml"/>
-                
+
                 <ResourceDictionary Source="/HoyoLauncher.Controls/TopButtons/TopButton.xaml"/>
-                <ResourceDictionary Source="/HoyoLauncher.Controls/TopButtons/SettingsButton.xaml"/>
-                <ResourceDictionary Source="/HoyoLauncher.Controls/TopButtons/HomeButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -19,10 +19,10 @@ public partial class App : Application
                                 MessageBoxImage.Warning) is MessageBoxResult.OK)
                 Environment.Exit(0);
 
+        AppInitializeTray();
+
         var menuDropAlignmentField = typeof(SystemParameters).GetField("_menuDropAlignment", BindingFlags.NonPublic | BindingFlags.Static);
         menuDropAlignmentField.SetValue(null, !SystemParameters.MenuDropAlignment || menuDropAlignmentField is null);
-
-        AppInitializeTray();
 
         base.OnStartup(e);
     }

@@ -1,7 +1,8 @@
 namespace HoyoLauncher.Core.Config;
-
 public sealed class MainConfig
 {
+
+
     static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
 
     /// <summary> Genshin Impact Directory </summary>
@@ -92,6 +93,7 @@ public sealed class MainConfig
 
         streamWriter.Write(ToString());
         streamWriter.Close();
+        Debug.WriteLine("Config saved!");
     }
 
     /// <summary>

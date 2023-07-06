@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ButtonControl="clr-namespace:HoyoLauncher.Controls.SideButtons"
+        xmlns:TopButtonControl="clr-namespace:HoyoLauncher.Controls.TopButtons"
         mc:Ignorable="d"
         Title="Ceele Launcher" Height="720" Width="1280"
         WindowStyle="None"
@@ -11,7 +12,7 @@
         ResizeMode="CanMinimize"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        Icon="/Resources/Icons/16.ico">
+        Icon="/Resources/Icons/64.ico">
 
     <Window.Resources>
         <Style TargetType="Border">
@@ -106,14 +107,16 @@
                 <TextBlock Text="Game Pre-Installation is available" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Foreground="White" Margin="77,0,0,0"/>
             </Grid>
 
-            <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.5" Style="{StaticResource TopButtonTrigger}" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="1" Style="{StaticResource TopButtonTrigger}" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <Grid>
                     <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Ceele Launcher</TextBlock>
                     <TextBlock Name="AppVersion" Text="Unreleased Version: DEVELOPMENT BUILD"  Foreground="White" Opacity="0.2" Padding="0,10,0,0" FontSize="15" Margin="124,0,0,0"/>
                     <Button Name="ExitButton" Style="{StaticResource ExitButton}" Margin="1200,0,0,0"/>
                     <Button Name="MinButton" Style="{StaticResource MinimizeButton}" Margin="1160,0,40,0"/>
-                    <Button Name="SettingsButton" Style="{StaticResource SettingsButton}" Margin="1120,0,80,0" RenderTransformOrigin="0.5,0.5"/>
-                    <Button Name="HomeButton" Style="{StaticResource HomeButton}" Margin="1080,0,120,0" RenderTransformOrigin="0.5,0.5"/>
+
+                    <TopButtonControl:HoyoTopButton x:Name="SettingsButton" Image="/Resources/Buttons/gear.png" ImageMargin="-5" Margin="1120,0,80,0"/>
+                    <TopButtonControl:HoyoTopButton x:Name="HomeButton" Image="/Resources/ceele_Icon.png" ImageMargin="-2" Margin="1080,0,120,0"/>
+                    <TopButtonControl:HoyoTopButton x:Name="RefreshButton" Image="/Resources/Buttons/refresh.png" ImageMargin="1" Margin="1040,0,160,0"/>
                 </Grid>
             </Border>
 

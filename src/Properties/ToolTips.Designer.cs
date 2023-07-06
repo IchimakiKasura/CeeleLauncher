@@ -124,6 +124,33 @@ namespace AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HomeMenu.
+        /// </summary>
+        public static string TOPBUTTON_HOME_TIP {
+            get {
+                return ResourceManager.GetString("TOPBUTTON_HOME_TIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh Cached Data / Check Latest Version.
+        /// </summary>
+        public static string TOPBUTTON_REFRESH_TIP {
+            get {
+                return ResourceManager.GetString("TOPBUTTON_REFRESH_TIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Settings.
+        /// </summary>
+        public static string TOPBUTTON_SETTINGS_TIP {
+            get {
+                return ResourceManager.GetString("TOPBUTTON_SETTINGS_TIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tears of Themis Check-In Rewards.
         /// </summary>
         public static string TOT_TIP {
