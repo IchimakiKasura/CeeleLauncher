@@ -107,7 +107,7 @@
                 <TextBlock Text="Game Pre-Installation is available" TextWrapping="Wrap" FontSize="15" FontWeight="Bold" Foreground="White" Margin="77,0,0,0"/>
             </Grid>
 
-            <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="1" Style="{StaticResource TopButtonTrigger}" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Border Name="TopBorder" Background="#141414" Height="40" Margin="20,10,20,670" CornerRadius="10" Opacity="0.35" Style="{StaticResource TopButtonTrigger}" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <Grid>
                     <TextBlock Foreground="White" Padding="12,10,0,0" FontSize="15">Ceele Launcher</TextBlock>
                     <TextBlock Name="AppVersion" Text="Unreleased Version: DEVELOPMENT BUILD"  Foreground="White" Opacity="0.2" Padding="0,10,0,0" FontSize="15" Margin="124,0,0,0"/>

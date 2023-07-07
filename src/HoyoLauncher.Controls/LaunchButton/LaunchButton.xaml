@@ -15,6 +15,9 @@
                     <Grid>
 
                         <Canvas Name="ButtonTooltip" IsHitTestVisible="False" Opacity="0" Margin="0,-66,0,66" Grid.ColumnSpan="2">
+                            <Canvas.Effect>
+                                <DropShadowEffect ShadowDepth="0" RenderingBias="Performance" BlurRadius="5"/>
+                            </Canvas.Effect>
                             <Rectangle Fill="#141414" Height="13" Width="12" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="95" Canvas.Top="40">
                                 <Rectangle.RenderTransform>
                                     <TransformGroup>

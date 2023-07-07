@@ -80,11 +80,8 @@ public sealed class GameConfigRead
 
     static IniData ReadFile(string filePath)
     {
-        using StreamReader streamReader  = new(File.OpenRead(filePath));
-
-        var Data = streamReader.ReadToEnd();
-        streamReader.Close();
-
-        return new IniDataParser().Parse(Data); 
+        using FileStream fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using StreamReader streamReader = new(fileStream, Encoding.ASCII);
+        return new IniDataParser().Parse(streamReader.ReadToEnd()); 
     }
 }

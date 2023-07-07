@@ -15,6 +15,7 @@ public sealed class HoyoGames
     public string GAME_SCREENSHOT_DIR { get; }
 
     public RetrieveAPI API_CACHE { get; set; }
+    public bool AlreadyFetch { get; set;}
     public string GAME_INSTALL_PATH { get; set; }
     public GameConfigRead GAME_CONFIG_CACHE { get; set; } = GameConfigRead.Instance;
 

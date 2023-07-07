@@ -35,13 +35,7 @@ public partial class HoyoTopButton : UserControl
         {
             Border ToolTipSideButton_Border = (Border)MainButton.Template.FindName("ToolTipSideButton_Border", MainButton);
 
-            var HalfWidth = (ToolTipSideButton_Border.ActualWidth / 2) - 7;
-            double NewWidth = 0;
-            
-            while (NewWidth < HalfWidth)
-                NewWidth += 0.0001; // for precision i think? 
-
-            Canvas.SetLeft(ToolTipSideButton_Border, -NewWidth);
+            Canvas.SetLeft(ToolTipSideButton_Border, -((ToolTipSideButton_Border.ActualWidth / 2) - 7));
         };
     }
 

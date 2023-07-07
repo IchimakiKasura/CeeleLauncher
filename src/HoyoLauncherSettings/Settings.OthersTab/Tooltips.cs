@@ -19,7 +19,7 @@ sealed class HoyoTooltips
             HoyoSettingStatic.Funni
         };
 
-        foreach(var element in Elements)
+        foreach(var element in CollectionsMarshal.AsSpan(Elements))
         {
             element.MouseEnter += (s,e) => HoyoSettingStatic.Tooltip_Text.Text = ((UIElement)s).Uid;
             element.MouseLeave += (s,e) => HoyoSettingStatic.Tooltip_Text.Text = "";

@@ -7,8 +7,7 @@ public sealed partial class GameChange : HoyoMain
         HoyoWindow.VERSION_TEXT.Foreground = Brushes.Black;
         HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.SemiBold;
 
-        // Fetch once and never fetch again (until app was restarted)
-        var GameAPI = CurrentGameSelected.API_CACHE ??= await RetrieveAPI.Fetch(CurrentGameSelected.GAME_CONTENT_API_LINK, CurrentGameSelected.GAME_RESOURCE_API_LINK);
+        RetrieveAPI GameAPI = CurrentGameSelected.API_CACHE ??= await RetrieveAPI.Fetch(CurrentGameSelected.GAME_CONTENT_API_LINK, CurrentGameSelected.GAME_RESOURCE_API_LINK);
 
         if (GameAPI.LatestVersion is "CONNECTION FAILURE, PLEASE RETRY AGAIN")
             APIFailure(ref values, GameAPI is { BackgroundHASH: "timeout"}, GameBG);
@@ -47,8 +46,8 @@ public sealed partial class GameChange : HoyoMain
     static void BacgroundHashCheck(ref HoyoValues values, ref RetrieveAPI GameAPI, ImageBrush GameBG)
     {
         values.Background = GameAPI.BackgroundLINK ??= GameBG;
-
-        if (CurrentGameSelected is { API_CACHE: not null })
+    
+        if (CurrentGameSelected is { API_CACHE: not null } && GameAPI is { BackgroundHASH: not "timeout" })
             HoyoMessageBox.Show(HoyoWindow.Title, "Its Recommended that you open the Original Launcher To fetch its Background permanently.", HoyoWindow);
     }
 
@@ -59,10 +58,13 @@ public sealed partial class GameChange : HoyoMain
         values.LaunchButton = false;
         HoyoWindow.VERSION_TEXT.Foreground = Brushes.Red;
         HoyoWindow.VERSION_TEXT.FontWeight = FontWeights.Bold;
-        CurrentGameSelected.API_CACHE = null;
 
-        if(ConnectionTimeout)
-            HoyoMessageBox.Show(HoyoWindow.Title, "Connection Timeout!\rPlease Check your connection!", HoyoWindow);
+        if(ConnectionTimeout && !CurrentGameSelected.AlreadyFetch)
+        {
+            CurrentGameSelected.AlreadyFetch = true;
+            HoyoMessageBox.Show(HoyoWindow.Title, "Connection Timeout!\rPlease Check your connection!\r\rAfter it click the Refresh button\r", HoyoWindow);
+        }
+        
     }
 
     static void PreDownloadCheck(ref HoyoValues values)

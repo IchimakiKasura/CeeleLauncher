@@ -7,7 +7,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/bin/Debug/net7.0-windows/Ceele Launcher.exe",
+            "program": "${workspaceFolder}/src/bin/Debug/net7.0-windows/CeeleLauncher.exe",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "enableStepFiltering": false,

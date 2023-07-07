@@ -1,8 +1,6 @@
 namespace HoyoLauncher.Core.Config;
 public sealed class MainConfig
 {
-
-
     static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
 
     /// <summary> Genshin Impact Directory </summary>
@@ -101,12 +99,10 @@ public sealed class MainConfig
     /// </summary>
     public static async Task<MainConfig> ReadConfig()
     {
-        using StreamReader StreamReader = new(File.OpenRead(FilePath));
+        using FileStream fileStream = File.Open(FilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using StreamReader StreamReader = new(fileStream, Encoding.ASCII);
 
-        string ConfigData = await StreamReader.ReadToEndAsync();
-        StreamReader.Close();
-
-        if(!IniDataParser.TryParse(ConfigData, out IniData ParsedData))
+        if(!IniDataParser.TryParse(await StreamReader.ReadToEndAsync(), out IniData ParsedData))
         {
             ERROR("CONFIG ERROR", "Error while parsing config!\rMake sure the values are correct!\rDelete the config to reset if problem re-occurs.");
             return null;
@@ -136,7 +132,6 @@ public sealed class MainConfig
             ERROR("CONFIG ERROR", x.Message);
             return null;
         }
-
     }
 
     /// <summary>
@@ -155,10 +150,9 @@ public sealed class MainConfig
             FIRST_RUN = false
         };
 
-        using StreamWriter streamWriter = new(File.Create(FilePath));
-
+        using FileStream fileStream = File.Open(FilePath, FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite);
+        using StreamWriter streamWriter = new(fileStream, Encoding.ASCII);
         streamWriter.Write(mainConfig.ToString());
-        streamWriter.Close();
     }
 
     static void ERROR(string Title, string Message)

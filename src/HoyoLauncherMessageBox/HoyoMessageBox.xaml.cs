@@ -37,11 +37,17 @@ public partial class HoyoMessageBox : Window
         WindowDrag.MouseDown += App.DragMove<HoyoMessageBox>;
 
         OkBtn.MouseDown += OK_BUTTON;
+
+        KeyDown += (s,e) =>
+        {
+            if(e.Key is Key.Enter)
+                OK_BUTTON(this, null);
+        };
     }
 
     public void OK_BUTTON(object sender, MouseButtonEventArgs events)
     {
-        if (events.ChangedButton is MouseButton.Right) return;
+        if (events?.ChangedButton is MouseButton.Right) return;
 
         scaleY = new(1, 0.8, TimeSpan.FromMilliseconds(100));
         scaleX = new(1, 0.8, TimeSpan.FromMilliseconds(100));

@@ -77,14 +77,14 @@
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:.1"/>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:.2"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
             <EventTrigger RoutedEvent="MouseLeave">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:.1"/>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.35" Duration="0:0:.5"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>

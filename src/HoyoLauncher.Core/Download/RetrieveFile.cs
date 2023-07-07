@@ -47,7 +47,7 @@ public sealed class RetrieveFile
         var TotalBytes = response.Content.Headers.ContentLength;
 
         using Stream stream = await response.Content.ReadAsStreamAsync();
-        using FileStream fileStream = new(FileLocation, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true);
+        using FileStream fileStream = new(FileLocation, FileMode.Create, FileAccess.Write, FileShare.ReadWrite, 8192, true);
 
         while(!IsComplete)
         {

@@ -62,6 +62,7 @@ public sealed class EventsHandles
 
                     Debug.Write($"Removing Cache");
                     HoyoMain.CurrentGameSelected.API_CACHE = null;
+                    HoyoMain.CurrentGameSelected.AlreadyFetch = false;
                     GameChange.SetGame(--App.Config.LAST_GAME);
                     Debug.WriteLine($".....DONE");
 
@@ -72,7 +73,7 @@ public sealed class EventsHandles
             }
         }
 
-        foreach(Button button in HoyoWindowButtons)
+        foreach(Button button in CollectionsMarshal.AsSpan(HoyoWindowButtons))
             button.Click += TopButtonClick;
 
         HoyoWindow.TopBorder.MouseDown += App.DragMove<MainWindow>;

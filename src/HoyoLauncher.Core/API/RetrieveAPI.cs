@@ -4,12 +4,11 @@ public sealed class RetrieveAPI
 {
     public string LatestVersion { get; private set; } = "CONNECTION FAILURE, PLEASE RETRY AGAIN";
     public string BackgroundHASH { get; private set; } = "timeout";
-    public Uri DownloadFile { get; private set; } = null;
-    public Uri PreDownloadFile { get; private set; } = null;
-    public ImageBrush BackgroundLINK { get; set; } = null;
+    public Uri DownloadFile { get; private set; }
+    public Uri PreDownloadFile { get; private set; }
+    public ImageBrush BackgroundLINK { get; set; }
 
-    readonly JsonElement Resources;
-    readonly JsonElement Content;
+    readonly ObjectList Resources, Content;
 
     public static async Task<RetrieveAPI> Fetch(string CONTENT, string RESOURCES)
     {
@@ -17,11 +16,11 @@ public sealed class RetrieveAPI
         ContentStreamData = await CheckVersion(CONTENT),
         ResourcesStreamData = await CheckVersion(RESOURCES);
 
-        return new(ReadJsonData(ContentStreamData).RootElement, ReadJsonData(ResourcesStreamData).RootElement);
+        return new(ReadJsonData(ContentStreamData), ReadJsonData(ResourcesStreamData));
     }
 
-    private RetrieveAPI(JsonElement _Content, JsonElement _Resources)
-    {
+    private RetrieveAPI(ObjectList _Content, ObjectList _Resources)
+    {   
         Content = _Content;
         Resources = _Resources;
         SetAPIValues();
@@ -29,31 +28,22 @@ public sealed class RetrieveAPI
     
     void SetAPIValues() 
     {
-        if(Resources.TryGetProperty("data", out JsonElement VersionProperty))
+        if(Resources is { data: not null })
         {
-            var Latest = VersionProperty.GetProperty("game").GetProperty("latest");
-            LatestVersion = Latest.GetProperty("version").ToString();
+            LatestVersion = Resources.GetLatestVersion;
+            var game = Resources.data.game;
 
-            if (Latest.TryGetProperty("path", out JsonElement FilePath))
-            {
-                string stringPath = FilePath.ToString();
-
-                DownloadFile = stringPath is not "" ? 
-                    new(stringPath) :
-                    new(VersionProperty.GetProperty("game").GetProperty("diffs")[0].GetProperty("path").ToString());
-            }
-
-            if(VersionProperty.TryGetProperty("pre_download_game", out JsonElement pre_download))
-                PreDownloadFile = !string.IsNullOrEmpty(pre_download.ToString()) ? new(pre_download.GetProperty("diffs")[0].GetProperty("path").ToString()) : null;
+            DownloadFile = Resources.IsLatestPathEmpty ?
+                new(game.diffs[0].path) : new(game.latest.path);
             
+            if(Resources.IsPreInstallAvailable)
+                PreDownloadFile = new(Resources.GetPreInstallation);
         }
 
-        if (Content.TryGetProperty("data", out JsonElement ContentProperty))
+        if(Content is { data: not null })
         {
-            var adv = ContentProperty.GetProperty("adv");
-
-            BackgroundHASH = adv.GetProperty("bg_checksum").ToString();
-            BackgroundLINK = new ImageBrush(new BitmapImage(new(adv.GetProperty("background").ToString())));
+            BackgroundHASH = Content.GetBackgroundHash;
+            BackgroundLINK = new(new BitmapImage(new(Content.GetBackgroundLink)));
         }
 
         Debug.WriteLine($$"""
@@ -62,20 +52,23 @@ public sealed class RetrieveAPI
             {
                 Latest Version      :     {{LatestVersion}}
                 
-                Download File Link  :     {{DownloadFile}}
-                Pre Installation    :     {{PreDownloadFile}}
+                Download File Link  :     {{DownloadFile?.ToString() ?? "EMPTY"}}
+                Pre Installation    :     {{PreDownloadFile?.ToString() ?? "EMPTY"}}
 
-                Background Link     :     {{BackgroundLINK.ImageSource}}
-                Background Hash     :     {{BackgroundHASH}}
+                Background Link     :     {{BackgroundLINK?.ImageSource?.ToString() ?? "EMPTY"}}
+                Background Hash     :     {{BackgroundHASH.ToString() ?? "EMPTY"}}
             }
             """);
+        
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
     }
 
-    static JsonDocument ReadJsonData(Stream stream)
+    static ObjectList ReadJsonData(in Stream stream)
     {
         using StreamReader DataStream = new(stream, Encoding.UTF8);
         string DataJSON = stream != Stream.Null ? DataStream.ReadToEnd() : "{}";
-        return JsonDocument.Parse(DataJSON);
+        return JsonSerializer.Deserialize<ObjectList>(DataJSON);
     }
     
     static async Task<Stream> CheckVersion(string APILink)
@@ -97,14 +90,21 @@ public sealed class RetrieveAPI
         try
         {
             resp = await req.GetAsync(APILink, HttpCompletionOption.ResponseHeadersRead);
-        }
-        catch (TaskCanceledException) { return Stream.Null; }
 
-        if(resp.IsSuccessStatusCode)
-        {
             resp.EnsureSuccessStatusCode();
-            return await resp.Content.ReadAsStreamAsync();
+
+            if(resp.IsSuccessStatusCode)
+                return await resp.Content.ReadAsStreamAsync();
         }
+        catch (TaskCanceledException)
+        {
+            Debug.WriteLine("Connection timeout! Slow Connection detected");
+        }
+        catch (HttpRequestException)
+        {
+            Debug.WriteLine("Connection timeout! No Internet Connection");
+        }
+
         return Stream.Null;
     }
 }
