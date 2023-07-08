@@ -52,6 +52,8 @@ public partial class HoyoMessageBox : Window
     {
         if (events?.ChangedButton is MouseButton.Right) return;
 
+        DialogResult = true;
+
         scaleY = new(1, 0.8, animationTime);
         scaleX = new(1, 0.8, animationTime);
         opacity = new(1, 0, animationTime50);
@@ -90,6 +92,6 @@ public partial class HoyoMessageBox : Window
         storyboard.Begin();
     }
 
-    public static void Show(string Caption, string Message, [Optional]Window Owner) =>
+    public static bool? Show(string Caption, string Message, [Optional]Window Owner) =>
         new HoyoMessageBox(Caption, Message){ Owner = Owner }.ShowDialog();
 }
