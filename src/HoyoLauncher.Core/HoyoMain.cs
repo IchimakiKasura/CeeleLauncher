@@ -84,6 +84,7 @@ public class HoyoMain
             Background = SelectedHoyoGame.GAME_DEFAULT_BG,
             LaunchButtonContent = "Loading",
             VersionBubble = Visibility.Collapsed,
+            PreInstall = Visibility.Collapsed,
         }.ApplyChanges();
 
         CurrentGameSelected = SelectedHoyoGame;

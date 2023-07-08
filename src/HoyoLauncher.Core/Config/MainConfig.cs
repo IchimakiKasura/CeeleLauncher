@@ -88,9 +88,7 @@ public sealed class MainConfig
     public void SaveConfig()
     {
         using StreamWriter streamWriter = new(FilePath, false);
-
         streamWriter.Write(ToString());
-        streamWriter.Close();
         Debug.WriteLine("Config saved!");
     }
 

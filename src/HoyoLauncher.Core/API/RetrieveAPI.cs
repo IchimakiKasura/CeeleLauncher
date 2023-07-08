@@ -8,7 +8,7 @@ public sealed class RetrieveAPI
     public Uri PreDownloadFile { get; private set; }
     public ImageBrush BackgroundLINK { get; set; }
 
-    readonly ObjectList Resources, Content;
+    private RetrieveAPI() { }
 
     public static async Task<RetrieveAPI> Fetch(string CONTENT, string RESOURCES)
     {
@@ -16,18 +16,17 @@ public sealed class RetrieveAPI
         ContentStreamData = await CheckVersion(CONTENT),
         ResourcesStreamData = await CheckVersion(RESOURCES);
 
-        return new(ReadJsonData(ContentStreamData), ReadJsonData(ResourcesStreamData));
+        RetrieveAPI data = new();
+        data.SetAPIValues(ContentStreamData, ResourcesStreamData);
+
+        return data;
     }
 
-    private RetrieveAPI(ObjectList _Content, ObjectList _Resources)
-    {   
-        Content = _Content;
-        Resources = _Resources;
-        SetAPIValues();
-    }
-    
-    void SetAPIValues() 
+    void SetAPIValues(Stream _Content, Stream _Resources) 
     {
+        var Content = ReadJsonData(_Content);
+        var Resources = ReadJsonData(_Resources);
+
         if(Resources is { data: not null })
         {
             LatestVersion = Resources.GetLatestVersion;
@@ -59,9 +58,6 @@ public sealed class RetrieveAPI
                 Background Hash     :     {{BackgroundHASH.ToString() ?? "EMPTY"}}
             }
             """);
-        
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
     }
 
     static ObjectList ReadJsonData(in Stream stream)

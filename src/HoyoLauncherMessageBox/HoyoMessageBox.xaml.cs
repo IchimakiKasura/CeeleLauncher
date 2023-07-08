@@ -9,6 +9,9 @@ public partial class HoyoMessageBox : Window
     DoubleAnimation opacity,scaleX,scaleY;
     readonly SineEase Ease = new() { EasingMode = EasingMode.EaseInOut };
 
+    TimeSpan animationTime = TimeSpan.FromMilliseconds(100),
+             animationTime50 = TimeSpan.FromMilliseconds(150);
+
     public HoyoMessageBox(string Caption, string Message)
     {
         InitializeComponent();
@@ -49,17 +52,17 @@ public partial class HoyoMessageBox : Window
     {
         if (events?.ChangedButton is MouseButton.Right) return;
 
-        scaleY = new(1, 0.8, TimeSpan.FromMilliseconds(100));
-        scaleX = new(1, 0.8, TimeSpan.FromMilliseconds(100));
-        opacity = new(1, 0, TimeSpan.FromMilliseconds(150));
+        scaleY = new(1, 0.8, animationTime);
+        scaleX = new(1, 0.8, animationTime);
+        opacity = new(1, 0, animationTime50);
         Play(Close);
     }
 
     public void PlayOpenAnimation()
     {
-        scaleY = new(0.8, 1, TimeSpan.FromMilliseconds(100));
-        scaleX = new(0.8, 1, TimeSpan.FromMilliseconds(100));
-        opacity = new(0, 1, TimeSpan.FromMilliseconds(150));
+        scaleY = new(0.8, 1, animationTime);
+        scaleX = new(0.8, 1, animationTime);
+        opacity = new(0, 1, animationTime50);
         Play();
         System.Media.SystemSounds.Exclamation.Play();
     }

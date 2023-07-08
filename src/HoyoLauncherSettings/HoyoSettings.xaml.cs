@@ -12,7 +12,7 @@ public partial class HoyoSettings : Window
     readonly Brush UnSelectedPageColor = App.ConvertColorFromString("#e3e1de");
 
     // Indexer for RadioButtons, because I cant use REF on a fucken iteration
-    readonly BindingFlags _flags = BindingFlags.NonPublic | BindingFlags.Instance;
+    public readonly BindingFlags _flags = BindingFlags.NonPublic | BindingFlags.Instance;
     public RadioButton this[string name]
     {
         get => (RadioButton)HoyoSettingStatic.GetType().GetField(name, _flags).GetValue(this);
@@ -41,7 +41,7 @@ public partial class HoyoSettings : Window
         HoyoTooltips.SetToolTips();
         HoyoRadioButtons.SetRadioButtons();
         HoyoSettingsButtons.SetButtons();
-        new Funi.Fun(this);
+        _ = new Funi.Fun(this);
 
         foreach (var btn in new List<Border>{ Button_Locations, Button_Others, Button_About })
         {

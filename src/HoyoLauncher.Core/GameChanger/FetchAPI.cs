@@ -64,7 +64,6 @@ public sealed partial class GameChange : HoyoMain
             CurrentGameSelected.AlreadyFetch = true;
             HoyoMessageBox.Show(HoyoWindow.Title, "Connection Timeout!\rPlease Check your connection!\r\rAfter it click the Refresh button\r", HoyoWindow);
         }
-        
     }
 
     static void PreDownloadCheck(ref HoyoValues values)
