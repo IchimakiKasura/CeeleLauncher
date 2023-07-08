@@ -1,14 +1,37 @@
 {
+    // Recommended Extension: Task Runner (https://marketplace.visualstudio.com/items?itemName=SanaAjani.taskrunnercode)
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "🏗️ Build",
             "command": "dotnet",
             "type": "shell",
             "args": [
                 "build",
                 "${workspaceFolder}\\src\\HoyoLauncher.csproj"
             ],
+            "problemMatcher": []
+        },
+        {
+            "label": "🏁 Publish [Full Release]",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "publish",
+                "-c:Release",
+                "${workspaceFolder}\\src\\HoyoLauncher.csproj"
+            ]
+        },
+        {
+            "label": "⚠️ Publish [Preivew Release]",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "publish",
+                "-c:Preview",
+                "-p:DefineConstants=IsPreviewBuild",
+                "${workspaceFolder}\\src\\HoyoLauncher.csproj"
+            ]
         }
     ]
 }

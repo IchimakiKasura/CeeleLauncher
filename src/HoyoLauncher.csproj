@@ -13,8 +13,8 @@
         <Company>IchimakiKasura</Company>
         <AssemblyName>CeeleLauncher</AssemblyName>
         <Product>CeeleLauncher</Product>
-        <AssemblyVersion>1.8.708.5</AssemblyVersion>
-        <FileVersion>1.8.708.5</FileVersion>
+        <AssemblyVersion>1.8.709.5</AssemblyVersion>
+        <FileVersion>1.8.709.5</FileVersion>
         <Copyright>Copyright © CeeleLauncher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
@@ -23,7 +23,7 @@
         <DebugType>portable</DebugType>
     </PropertyGroup>
 
-    <PropertyGroup Condition="$(Configuration) == Release">
+    <PropertyGroup Condition="$(Configuration) != Debug">
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
@@ -33,7 +33,7 @@
         <PublishReadyToRun>True</PublishReadyToRun>
         <DebugType>None</DebugType>
     </PropertyGroup>
-	
+    
     <ItemGroup>
         <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj" />
     </ItemGroup>

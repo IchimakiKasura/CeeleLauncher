@@ -3,7 +3,11 @@ namespace HoyoLauncher;
 public partial class App
 {
 
+#if IsPreviewBuild
+    public static readonly bool IsPreview = true;
+#else
     public static readonly bool IsPreview = false;
+#endif
 
     static readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name;
     public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();

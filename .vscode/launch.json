@@ -3,10 +3,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "DEBUG",
+            "name": "Run Debug",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "🏗️ Build",
             "program": "${workspaceFolder}/src/bin/Debug/net7.0-windows/CeeleLauncher.exe",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",

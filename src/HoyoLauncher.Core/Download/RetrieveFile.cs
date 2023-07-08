@@ -37,7 +37,7 @@ public sealed class RetrieveFile
     {
         var totalBytesRead = 0L;
         var readCount = 0L;
-        var buffer = new byte[8192];
+        var buffer = new byte[4096];
         var IsComplete = false;
         var LastByte = 0L;
         var speed = 0;
@@ -47,7 +47,7 @@ public sealed class RetrieveFile
         var TotalBytes = response.Content.Headers.ContentLength;
 
         using Stream stream = await response.Content.ReadAsStreamAsync();
-        using FileStream fileStream = new(FileLocation, FileMode.Create, FileAccess.Write, FileShare.ReadWrite, 8192, true);
+        using FileStream fileStream = new(FileLocation, FileMode.Create, FileAccess.Write, FileShare.ReadWrite, 4096, true);
 
         while(!IsComplete)
         {
