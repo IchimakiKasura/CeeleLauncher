@@ -27,15 +27,14 @@ public sealed record HoyoValues
         HoyoWindow.VERSION_BUBBLE.Visibility = VersionBubble;
         HoyoWindow.PreDownload.Visibility = PreInstall;
 
-        if(RemoveMainBG)
+        if(RemoveMainBG && HoyoWindow.HomeBG.Children.Contains(HoyoWindow.HoyoTitleIMG))
         {
-            if(!HoyoWindow.HomeBG.Children.Contains(HoyoWindow.HoyoTitleIMG)) return;
             HoyoWindow.MainBG.Child = null;
             HoyoWindow.HomeBG.Children.Remove(HoyoWindow.HoyoTitleIMG);
         }
-        else
+        
+        if (!RemoveMainBG && !HoyoWindow.HomeBG.Children.Contains(HoyoWindow.HoyoTitleIMG))
         {
-            if(HoyoWindow.HomeBG.Children.Contains(HoyoWindow.HoyoTitleIMG)) return;
             HoyoWindow.MainBG.Child = HoyoWindow.MainBGVideo;
             HoyoWindow.HomeBG.Children.Add(HoyoWindow.HoyoTitleIMG);
         }

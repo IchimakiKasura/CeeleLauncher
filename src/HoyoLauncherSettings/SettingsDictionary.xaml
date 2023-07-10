@@ -18,14 +18,14 @@
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#f4cb99" Duration="0"/>
+                        <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="#f4cb99" Duration="0:0:.1"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
             <EventTrigger RoutedEvent="MouseLeave">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="Black" Duration="0"/>
+                        <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="Black" Duration="0:0:.1"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -130,23 +130,21 @@
             <Border.Triggers>
 
                 <EventTrigger RoutedEvent="MouseEnter">
-                    <RemoveStoryboard BeginStoryboardName="MouseLeaveStoryboard"/>
-                    <BeginStoryboard x:Name="MouseEnterStoryboard">
+                    <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="Width" To="12" Duration="0:0:.1"/>
                             <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="Gray" Duration="00:00:00.1"/>
+                                            To="Gray" Duration="0:0:.1"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
 
                 <EventTrigger RoutedEvent="MouseLeave">
-                    <RemoveStoryboard BeginStoryboardName="MouseEnterStoryboard"/>
-                    <BeginStoryboard x:Name="MouseLeaveStoryboard">
+                    <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="Width" To="10" Duration="0:0:.1"/>
                             <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="LightGray" Duration="00:00:00.1"/>
+                                            To="LightGray" Duration="0:0:.1"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

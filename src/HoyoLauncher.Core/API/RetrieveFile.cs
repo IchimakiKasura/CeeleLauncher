@@ -1,4 +1,4 @@
-﻿namespace HoyoLauncher.Core.Download;
+﻿namespace HoyoLauncher.Core.API;
 
 // EXPERIMENTAL
 public sealed class RetrieveFile
@@ -94,7 +94,7 @@ public sealed class RetrieveFile
         Finished();
     }
 
-    static void UpdateProgress(long totalBytesRead, long TotalBytes, double percent) =>
+    static void UpdateProgress(in long totalBytesRead,in long TotalBytes,in double percent) =>
         HoyoWindow.ProgressBarStatus.Text = $"Downloaded: {Math.Round((double)totalBytesRead / 1024 / 1024 / 1024, 2)}GB    |   {Math.Round((double)TotalBytes / 1024 / 1024 / 1024, 2)}GB | {percent}%";
 
     static void Finished()

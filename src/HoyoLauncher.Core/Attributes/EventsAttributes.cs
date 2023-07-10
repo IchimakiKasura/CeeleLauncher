@@ -1,7 +1,8 @@
 namespace HoyoLauncher.Core.Attributes;
 
 /// <summary>
-/// Sets all the Events Automatically
+/// Sets all the Events Automatically<br/>
+/// Only Publicly Static voids are invoked not private voids
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class EventsAttribute : Attribute

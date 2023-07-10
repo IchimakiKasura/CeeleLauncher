@@ -3,6 +3,7 @@ using HoyoLauncher.HoyoLauncherSettings.Settings.OthersTab;
 
 namespace HoyoLauncher.HoyoLauncherSettings;
 
+// FIXME: refactor this
 public partial class HoyoSettings : Window
 {
     [StaticWindow]

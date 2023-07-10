@@ -9,8 +9,8 @@ public partial class HoyoMessageBox : Window
     DoubleAnimation opacity,scaleX,scaleY;
     readonly SineEase Ease = new() { EasingMode = EasingMode.EaseInOut };
 
-    TimeSpan animationTime = TimeSpan.FromMilliseconds(100),
-             animationTime50 = TimeSpan.FromMilliseconds(150);
+    readonly TimeSpan animationTime = TimeSpan.FromMilliseconds(100),
+                      animationTime50 = TimeSpan.FromMilliseconds(150);
 
     public HoyoMessageBox(string Caption, string Message)
     {
