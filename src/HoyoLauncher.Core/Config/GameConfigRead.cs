@@ -4,6 +4,7 @@ public sealed class GameConfigRead
 {
     public bool FilePathNone { get; private set; } = false;
     public bool ConfigExist { get; private set; } = false;
+    public bool GameConfigExist { get; private set; } = false;
     public string GameInstallPath { get; private set; }
     public string GameBackgroundName { get; private set; }
     public string GameStartName { get; private set; }
@@ -22,18 +23,18 @@ public sealed class GameConfigRead
         ImageBrush GameBG_TEMP = null;
 
         const string GroupName = "launcher";
-        string gamepath, gamebg, gamename, gamebgmd5, gamever;
 
         var ConfigFile = Path.Combine(FilePath, "config.ini");
         bool configexist = File.Exists(ConfigFile);
+        string gamepath, gamebg, gamename, gamebgmd5, gamever = "0";
 
-        if(string.IsNullOrEmpty(FilePath))
+        if (string.IsNullOrEmpty(FilePath))
             return new()
             {
                 FilePathNone = true
             };
 
-        if(!configexist)
+        if (!configexist)
             return new()
             {
                 ConfigExist = configexist
@@ -61,13 +62,19 @@ public sealed class GameConfigRead
         if(File.Exists(CheckBGExist))
             GameBG_TEMP = new(new BitmapImage(new(Path.Combine(FilePath, "bg", gamebg), UriKind.RelativeOrAbsolute)));
 
-        var ParsedGameObject = ReadFile(Path.Combine(gamepath, "config.ini"));
-
-        gamever = ParsedGameObject["General"]["game_version"];
+        bool GameConfigExist;
+        if (Directory.Exists(gamepath))
+        {
+            GameConfigExist = true;
+            var ParsedGameObject = ReadFile(Path.Combine(gamepath, "config.ini"));
+            gamever = ParsedGameObject["General"]["game_version"];
+        }
+        else GameConfigExist = false;
 
         return new()
         {
             ConfigExist = configexist,
+            GameConfigExist = GameConfigExist,
             GameInstallPath = gamepath,
             GameBackgroundName = Path.Combine(FilePath, "bg", gamebg),
             GameStartName = Path.Combine(gamepath, gamename),

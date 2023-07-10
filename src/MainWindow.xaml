@@ -32,6 +32,7 @@
                         <Border.Background>
                             <VisualBrush>
                                 <VisualBrush.Visual>
+                                    <!-- For some reason this won't work on other pc's as I tested it on my older brother's pc. Was it the Firewall?-->
                                     <MediaElement Name="MediaElementBG" Source="https://github.com/IchimakiKasura/HoyoLauncher/blob/master/src/Resources/Videos/bg.mp4?raw=true" UnloadedBehavior="Manual" MediaEnded="MediaElement_OnMediaEnded"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>

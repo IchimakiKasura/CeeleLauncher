@@ -9,8 +9,7 @@
             "args": [
                 "build",
                 "${workspaceFolder}\\src\\HoyoLauncher.csproj"
-            ],
-            "problemMatcher": []
+            ]
         },
         {
             "label": "🏁 Publish [Full Release]",
@@ -32,6 +31,14 @@
                 "-p:DefineConstants=IsPreviewBuild",
                 "${workspaceFolder}\\src\\HoyoLauncher.csproj"
             ]
+        },
+        {
+            "label": "🧹 Clean",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "clean"
+            ],
         }
     ]
 }

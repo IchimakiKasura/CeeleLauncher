@@ -46,8 +46,12 @@ public sealed class PredownloadGame__
 
 public sealed class Latest__
 {
+    public string name { get; set; }
     public string version { get; set; }
     public string path { get; set; }
+    public string size { get; set; }
+    public string md5 { get; set; }
+    public string entry { get; set; }
 }
 
 public sealed class Diffs__
@@ -57,7 +61,10 @@ public sealed class Diffs__
 
 public sealed class Adv__
 {
-    public string bg_checksum { get; set; }
     public string background { get; set; }
+    public string icon { get; set; }
+    public string url { get; set; }
+    public string version { get; set; }
+    public string bg_checksum { get; set; }
 }
 #pragma warning disable IDE1006

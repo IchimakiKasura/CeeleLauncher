@@ -22,7 +22,9 @@ public partial class HoyoMessageBox : Window
         this.Message.Text = Message;
 
         WindowStartupLocation = Owner is null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
-        ShowInTaskbar = !HoyoWindow.ShowInTaskbar;
+
+        if(Owner is not null)
+            ShowInTaskbar = !HoyoWindow.ShowInTaskbar;
 
         HoyoMessageBoxStatic = this;
 
@@ -35,6 +37,8 @@ public partial class HoyoMessageBox : Window
             var NewHeight = Message_Border.ActualHeight - 70;
             Height += NewHeight;
             Canvas.SetTop(OkBtn, Canvas.GetTop(OkBtn) + NewHeight);
+
+            Top -= NewHeight / 2;
         };
 
         WindowDrag.MouseDown += App.DragMove<HoyoMessageBox>;

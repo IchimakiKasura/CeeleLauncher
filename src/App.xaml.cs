@@ -20,7 +20,7 @@ public partial class App : Application
         // I did it using hWnd and only opens if the window is minimized and taskbar visible
         // doesnt work if its on System Tray. 
         if (!AppAlreadyOpened)
-            if (MessageBox.Show("Only one instance at a time!",
+            if (MessageBox.Show("Only one instance at a time!\rPlease Check your system tray",
                                 "Warning",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Warning) is MessageBoxResult.OK)

@@ -37,19 +37,11 @@ public sealed partial class GameChange : HoyoMain
         else ConnectionFailure(ref values, GameBG);
 
         if (CurrentGameSelected == HoyoGames.ZenlessZoneZero || CurrentGameSelected == HoyoGames.TearsOfThemis)
-        {
-            bool IsZZZ = CurrentGameSelected == HoyoGames.ZenlessZoneZero;
-
-            values.Background = CurrentGameSelected.GAME_DEFAULT_BG;
-            values.LaunchButton = !IsZZZ;
-            values.LaunchButtonContent = IsZZZ ? LaunchText.GAME_SOON_TEXT : LaunchText.GAME_MOBILE;
-        } 
+            GameUnavailable(ref values);
         else if (!GameConfig.ConfigExist || GameConfig.GameName != CurrentGameSelected.GAME_EXECUTABLE)
-        {
-            values.Background = CurrentGameSelected.GAME_DEFAULT_BG;
-            values.LaunchButton = false;
-            values.LaunchButtonContent = LaunchText.GAME_NOTFOUND;
-        }
+            GameNotFound(ref values);
+        else if (!CurrentGameSelected.GAME_CONFIG_CACHE.GameConfigExist)
+            GameExecutableNotFound(ref values);
 
         if (IsGameRunning)
         {
@@ -68,5 +60,31 @@ public sealed partial class GameChange : HoyoMain
         values.Background = GameBG;
         values.VersionBubble = Visibility.Hidden;
         values.LaunchButtonContent = LaunchText.GAME_NO_INTERNET_TEXT;
+    }
+
+    static void GameUnavailable(ref HoyoValues values)
+    {
+        bool IsZZZ = CurrentGameSelected == HoyoGames.ZenlessZoneZero;
+
+        values.Background = CurrentGameSelected.GAME_DEFAULT_BG;
+        values.LaunchButton = !IsZZZ;
+        values.LaunchButtonContent = IsZZZ ? LaunchText.GAME_SOON_TEXT : LaunchText.GAME_MOBILE;
+    }
+
+    static void GameNotFound(ref HoyoValues values)
+    {
+        values.Background = CurrentGameSelected.GAME_DEFAULT_BG;
+        values.LaunchButton = false;
+        values.LaunchButtonContent = LaunchText.GAME_NOTFOUND;
+    }
+
+    static void GameExecutableNotFound(ref HoyoValues values)
+    {
+        values.LaunchButton = false;
+        values.LaunchButtonContent = "Not Installed";
+
+        HoyoMessageBox.Show(HoyoWindow.Title,
+        $"The Game Installation Config location is missing.\r\rMake sure on your original launcher the Game is Set or The Game isn't installed yet.\r\rPath missing:\r\"{CurrentGameSelected.GAME_CONFIG_CACHE.GameStartName.Replace("\\","/")}\"\r",
+        HoyoWindow);
     }
 }
