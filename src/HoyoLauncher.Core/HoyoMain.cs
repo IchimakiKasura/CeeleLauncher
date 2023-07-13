@@ -125,6 +125,7 @@ public class HoyoMain
     public static string GenerateMD5HASH()
     {
         using var md5 = System.Security.Cryptography.MD5.Create();
+
 #if DEBUG
         using var stream = File.OpenRead(Assembly.GetExecutingAssembly().Location);
 #else

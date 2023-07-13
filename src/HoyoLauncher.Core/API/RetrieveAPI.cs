@@ -57,6 +57,7 @@ public sealed class RetrieveAPI
                 Background Link     :     {{BackgroundLINK?.ImageSource?.ToString() ?? "EMPTY"}}
                 Background Hash     :     {{BackgroundHASH.ToString() ?? "EMPTY"}}
             }
+            
             """);
     }
 
