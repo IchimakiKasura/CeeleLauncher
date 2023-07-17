@@ -50,10 +50,8 @@ public sealed class RetrieveAPI
             API FETCH INFO [Game: {{HoyoMain.CurrentGameSelected.GAME_NAME}}]
             {
                 Latest Version      :     {{LatestVersion}}
-                
                 Download File Link  :     {{DownloadFile?.ToString() ?? "EMPTY"}}
                 Pre Installation    :     {{PreDownloadFile?.ToString() ?? "EMPTY"}}
-
                 Background Link     :     {{BackgroundLINK?.ImageSource?.ToString() ?? "EMPTY"}}
                 Background Hash     :     {{BackgroundHASH.ToString() ?? "EMPTY"}}
             }

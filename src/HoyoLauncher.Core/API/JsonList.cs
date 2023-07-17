@@ -17,8 +17,17 @@ public sealed class ObjectList
     public string GetBackgroundLink =>
         data.adv.background;
 
-    public string GetPreInstallation =>
-        data.pre_download_game.diff[0].path;
+    public string GetPreInstallation
+    {
+        get
+        {
+            try {
+                return data.pre_download_game.diffs[0].path;
+            } catch {
+                return data.pre_download_game.latest.path;
+            }
+        }
+    }
 
     public bool IsLatestPathEmpty =>
         data.game.latest is { path: "" };
@@ -29,7 +38,7 @@ public sealed class ObjectList
 public sealed class Data__
 {
     public Game__ game { get; set; }
-    public PredownloadGame__ pre_download_game { get; set; }
+    public Game__ pre_download_game { get; set; }
     public Adv__ adv { get; set; }
 }
 
@@ -37,11 +46,6 @@ public sealed class Game__
 {
     public Latest__ latest { get; set; }
     public IList<Diffs__> diffs { get; set; }
-}
-
-public sealed class PredownloadGame__
-{
-    public IList<Diffs__> diff { get; set; }
 }
 
 public sealed class Latest__

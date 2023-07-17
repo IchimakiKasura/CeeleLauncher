@@ -1,7 +1,7 @@
 namespace HoyoLauncher.Core.EventHandlers.WindowEvents;
 
 [Events]
-public sealed class WindowLaunchButton : IEvents
+public sealed class WindowLaunchButton
 {
     public static void Method() =>
         HoyoWindow.LaunchButton.Click += EventClick;

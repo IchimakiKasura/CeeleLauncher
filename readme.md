@@ -42,7 +42,7 @@ The App requires [NET-7](https://download.visualstudio.microsoft.com/download/pr
 
 # Download Links
 <a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/latest/download/HoyoLauncher.exe"><img Title="Download Latest" src="readme/Release.png" height="90"/></a>  
-<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.710.5-previewbuild/CeeleLauncher.exe"><img Title="Download Preview build" src="readme/Preview.png" height="90"/></a>
+<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.717.5-previewbuild/CeeleLauncher.exe"><img Title="Download Preview build" src="readme/Preview.png" height="90"/></a>
 
 <br>
 

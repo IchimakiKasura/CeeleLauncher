@@ -15,7 +15,16 @@ public sealed class EventsAttribute : Attribute
     {
         foreach(Type types in Assembly.GetExecutingAssembly().GetTypes())
             if(types.GetCustomAttributes(typeof(EventsAttribute), true).Length > 0)
+            {
+                EventDebugger(types.Name);
+
                 foreach(MethodInfo methods in types.GetMethods(Flags))
                     methods.Invoke(types, null);
+            }
     }
+
+    
+    [Conditional("DEBUG")]
+    static void EventDebugger(string name) =>
+        Debug.WriteLine($"Class [ {name} ] has invoked its methods.");
 }

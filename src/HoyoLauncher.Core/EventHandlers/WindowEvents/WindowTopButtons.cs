@@ -1,7 +1,7 @@
 namespace HoyoLauncher.Core.EventHandlers.WindowEvents;
 
 [Events]
-public sealed class WindowTopButtons : IEvents
+public sealed class WindowTopButtons
 {
     public static void Method()
     {

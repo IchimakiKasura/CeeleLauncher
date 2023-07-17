@@ -1,7 +1,7 @@
 namespace HoyoLauncher.Core.EventHandlers.SelectionEvents;
 
 [Events]
-public sealed class Selection__ : IEvents
+public sealed class Selection__
 {
     public static void Method() =>
         HoyoWindow.GameSelection_Click.AddHandler(

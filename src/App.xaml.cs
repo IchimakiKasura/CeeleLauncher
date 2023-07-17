@@ -1,6 +1,4 @@
-﻿using System.Windows.Interop;
-
-namespace HoyoLauncher;
+﻿namespace HoyoLauncher;
 
 public partial class App : Application
 {

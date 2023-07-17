@@ -1,7 +1,7 @@
 namespace HoyoLauncher.Core.EventHandlers.WindowEvents;
 
 [Events]
-public sealed class WindowToolTips : IEvents
+public sealed class WindowToolTips
 {
     public static void Method()
     {

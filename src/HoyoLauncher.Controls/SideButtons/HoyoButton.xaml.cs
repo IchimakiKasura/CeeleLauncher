@@ -2,7 +2,6 @@
 
 public partial class HoyoButton : UserControl
 {
-    [Category("Behaviour")]
     public RoutedEventHandler Click;
     readonly static DependencyProperty ImageProperty =
         DependencyProperty.Register("Image", typeof(ImageSource), typeof(HoyoButton));

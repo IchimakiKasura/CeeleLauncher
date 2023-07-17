@@ -1,7 +1,7 @@
 namespace HoyoLauncher.Core.EventHandlers.WindowEvents;
 
 [Events]
-public sealed class WindowSideButtons : IEvents
+public sealed class WindowSideButtons
 {
     public static void Method() =>
         HoyoWindow.SideButton_Click.AddHandler(

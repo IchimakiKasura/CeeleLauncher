@@ -1,7 +1,7 @@
 ﻿namespace HoyoLauncher.Core.EventHandlers;
 
 [Events]
-public sealed class Events__ : IEvents
+public sealed class Events__
 {
     public static void Method() { }
 

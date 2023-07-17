@@ -1,7 +1,7 @@
 namespace HoyoLauncher.Core.EventHandlers.SelectionEvents;
 
 [Events]
-public sealed class SelectionPopup : IEvents
+public sealed class SelectionPopup
 {
     static readonly SineEase EaseMode = new() { EasingMode = EasingMode.EaseInOut };
     static readonly DoubleAnimation HeightAnimation = new()

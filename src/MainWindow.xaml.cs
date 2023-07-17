@@ -23,6 +23,7 @@ public partial class MainWindow : Window
 #else
         AppVersion.Text += $": test ver({App.Version})";
 #endif
+
         Debug.WriteLine("BUILD HASH: "+App.UniqueHashBUILD);
     }
 

@@ -1,6 +1,5 @@
 ﻿namespace HoyoLauncher.Core.API;
 
-// EXPERIMENTAL
 public sealed class RetrieveFile
 {
     public static bool IsDownloading { get; set; } = false;
