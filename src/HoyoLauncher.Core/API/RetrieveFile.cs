@@ -98,12 +98,22 @@ public sealed class RetrieveFile
 
     static void Finished()
     {
+        HoyoGames current = HoyoMain.CurrentGameSelected;
+
         IsDownloading = false;
         HoyoWindow.LaunchButton.IsEnabled = 
         HoyoWindow.LaunchSelection.IsEnabled =
         HoyoWindow.HomeButton.IsEnabled = true;
         HoyoWindow.ProgressBarElement.Visibility = Visibility.Collapsed;
-        HoyoWindow.LaunchButton.Content = HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile is not null ? LaunchText.GAME_EXTRACT_TEXT : LaunchText.GAME_DEFAULT_TEXT;
-    }
 
+        string buttonContent;
+
+        if (current.API_CACHE is { PreDownloadFile: not null })
+                buttonContent = LaunchText.GAME_DEFAULT_TEXT;
+        else
+            buttonContent = current.GAME_CONFIG_CACHE.GameVersion == current.API_CACHE.LatestVersion ?
+                LaunchText.GAME_EXTRACT_TEXT : LaunchText.GAME_UPDATE_TEXT;
+
+        HoyoWindow.LaunchButton.Content = buttonContent;
+    }
 }

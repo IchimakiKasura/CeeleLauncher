@@ -6,7 +6,7 @@ public partial class HoyoMessageBox : Window
     public static HoyoMessageBox HoyoMessageBoxStatic { get; set; }
 
     Storyboard storyboard;
-    DoubleAnimation opacity,scaleX,scaleY;
+    DoubleAnimation opacity, scaleX, scaleY;
     readonly SineEase Ease = new() { EasingMode = EasingMode.EaseInOut };
 
     readonly TimeSpan animationTime = TimeSpan.FromMilliseconds(100),
@@ -23,7 +23,7 @@ public partial class HoyoMessageBox : Window
 
         WindowStartupLocation = Owner is null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
 
-        if(Owner is not null)
+        if (Owner is not null)
             ShowInTaskbar = !HoyoWindow.ShowInTaskbar;
 
         HoyoMessageBoxStatic = this;
@@ -45,9 +45,9 @@ public partial class HoyoMessageBox : Window
 
         OkBtn.MouseDown += OK_BUTTON;
 
-        KeyDown += (s,e) =>
+        KeyDown += (s, e) =>
         {
-            if(e.Key is Key.Enter)
+            if (e.Key is Key.Enter)
                 OK_BUTTON(this, null);
         };
     }
@@ -56,12 +56,10 @@ public partial class HoyoMessageBox : Window
     {
         if (events?.ChangedButton is MouseButton.Right) return;
 
-        DialogResult = true;
-
         scaleY = new(1, 0.8, animationTime);
         scaleX = new(1, 0.8, animationTime);
         opacity = new(1, 0, animationTime50);
-        Play(Close);
+        Play(CloseResult);
     }
 
     public void PlayOpenAnimation()
@@ -73,7 +71,7 @@ public partial class HoyoMessageBox : Window
         System.Media.SystemSounds.Exclamation.Play();
     }
 
-    public void Play([Optional]Action method)
+    public void Play([Optional] Action method)
     {
         scaleX.EasingFunction = Ease;
         scaleY.EasingFunction = Ease;
@@ -96,6 +94,11 @@ public partial class HoyoMessageBox : Window
         storyboard.Begin();
     }
 
-    public static bool? Show(string Caption, string Message, [Optional]Window Owner) =>
-        new HoyoMessageBox(Caption, Message){ Owner = Owner }.ShowDialog();
+    void CloseResult()
+    {
+        DialogResult = true;
+    }
+
+    public static bool? Show(string Caption, string Message, [Optional] Window Owner) =>
+        new HoyoMessageBox(Caption, Message) { Owner = Owner }.ShowDialog();
 }

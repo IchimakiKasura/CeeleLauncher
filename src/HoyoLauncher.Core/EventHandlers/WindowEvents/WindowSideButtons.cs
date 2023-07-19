@@ -27,7 +27,7 @@ public sealed class WindowSideButtons
             case "HONKAI_IMPACT_THIRD_REWARDS": Launcher = HoyoGames.HonkaiImpactThird.GAME_CHECK_IN_PAGE; break;
             case "TOT_SITE": Launcher = HoyoGames.TearsOfThemis.GAME_CHECK_IN_PAGE; break;
             case "ZZZ_REWARDS":
-                HoyoMessageBox.Show("Zenless Zone Zero", "Game is not released yet!", HoyoWindow);
+                    HoyoMessageBox.Show("Zenless Zone Zero", "Game is not released yet!", HoyoWindow);
                 break;
         }
 

@@ -46,7 +46,6 @@ public class HoyoMain
         HoyoWindow.Width *= App.Config.SCALING;
 
         HoyoWindow.Activate();
-        HoyoWindow.Show();
     }
 
     public static void ValidateSettings(string GameConfigName, HoyoGames Game) =>

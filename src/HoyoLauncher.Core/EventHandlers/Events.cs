@@ -41,7 +41,7 @@ public sealed class Events__
         {
             if(e.ChangedButton is not MouseButton.Left) return;
 
-            if(File.Exists(Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(HoyoMain.CurrentGameSelected.API_CACHE.PreDownloadFile.LocalPath))))
+            if(Directory.GetFiles(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, "*.zip").Length >= 1)
             {
                 HoyoMessageBox.Show(HoyoWindow.Title, "The file is already downloaded!\r\rIf the download was stopped last time, It need to be re-downloaded again by deleting the file.\r", HoyoWindow);
                 return;

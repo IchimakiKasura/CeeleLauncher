@@ -49,7 +49,7 @@ public sealed class RetrieveAPI
 
             API FETCH INFO [Game: {{HoyoMain.CurrentGameSelected.GAME_NAME}}]
             {
-                Latest Version      :     {{LatestVersion}}
+                Latest Version      :     {{LatestVersion}} (Current: {{HoyoMain.CurrentGameSelected.GAME_CONFIG_CACHE.GameVersion}})
                 Download File Link  :     {{DownloadFile?.ToString() ?? "EMPTY"}}
                 Pre Installation    :     {{PreDownloadFile?.ToString() ?? "EMPTY"}}
                 Background Link     :     {{BackgroundLINK?.ImageSource?.ToString() ?? "EMPTY"}}

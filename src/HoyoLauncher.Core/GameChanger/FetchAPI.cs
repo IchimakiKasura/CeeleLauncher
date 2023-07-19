@@ -21,10 +21,15 @@ public sealed partial class GameChange : HoyoMain
         if(GameAPI is { PreDownloadFile: not null })
             PreDownloadCheck(ref values);
 
-        if (GameAPI is { DownloadFile: not null } && File.Exists(Path.Combine(CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(GameAPI.DownloadFile.LocalPath))))
+        if (GameAPI is { DownloadFile: not null } && Directory.GetFiles(CurrentGameSelected.GAME_INSTALL_PATH, "*.zip").Length >= 1)
         {
             values.VersionBubble = Visibility.Collapsed;
-            values.LaunchButtonContent = LaunchText.GAME_EXTRACT_TEXT;
+
+            if(GameAPI is { PreDownloadFile: null} && GameConfig.GameVersion == GameAPI.LatestVersion)
+            {
+                values.LaunchButtonContent = LaunchText.GAME_EXTRACT_TEXT;
+                ExecutableName = Path.Combine(CurrentGameSelected.GAME_DIRECTORY, "launcher.exe");
+            }
         }
 
         return values;

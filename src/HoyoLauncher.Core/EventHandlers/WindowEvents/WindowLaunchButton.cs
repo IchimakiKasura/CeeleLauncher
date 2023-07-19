@@ -16,9 +16,9 @@ public sealed class WindowLaunchButton
             return;
         }
 
-        if(Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_UPDATE_TEXT) || Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_EXTRACT_TEXT))
+        if(!Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_DEFAULT_TEXT))
         {
-            if(File.Exists(Path.Combine(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, Path.GetFileName(HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile.LocalPath))))
+            if(Directory.GetFiles(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, "*.zip").Length > 0)
             {
                 HoyoMain.ProcessStart(HoyoMain.ExecutableName);
                 HoyoMessageBox.Show("A Very Cool Message Box", "Opening Original Launcher to Update the game!\r\rIf the File is downloaded, You can just press the Update again on the Original Launcher\rAnd it will extract it smoothly.\r\r If the File was stopped mid-way of downloading, It will resume its progress on the Original Launcher.\r", HoyoWindow);
