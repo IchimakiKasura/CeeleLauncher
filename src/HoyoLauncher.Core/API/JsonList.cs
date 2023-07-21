@@ -17,17 +17,8 @@ public sealed class ObjectList
     public string GetBackgroundLink =>
         data.adv.background;
 
-    public string GetPreInstallation
-    {
-        get
-        {
-            try {
-                return data.pre_download_game.diffs[0].path;
-            } catch {
-                return data.pre_download_game.latest.path;
-            }
-        }
-    }
+    public string GetPreInstallation =>
+        data.pre_download_game.diffs?.FirstOrDefault().path ?? data.pre_download_game.latest?.path;
 
     public bool IsLatestPathEmpty =>
         data.game.latest is { path: "" };
@@ -71,4 +62,4 @@ public sealed class Adv__
     public string version { get; set; }
     public string bg_checksum { get; set; }
 }
-#pragma warning disable IDE1006
+#pragma warning restore IDE1006

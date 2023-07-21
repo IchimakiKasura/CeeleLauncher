@@ -34,7 +34,6 @@ public partial class HoyoTopButton : UserControl
         Loaded += delegate
         {
             Border ToolTipSideButton_Border = (Border)MainButton.Template.FindName("ToolTipSideButton_Border", MainButton);
-
             Canvas.SetLeft(ToolTipSideButton_Border, -((ToolTipSideButton_Border.ActualWidth / 2) - 7));
         };
     }

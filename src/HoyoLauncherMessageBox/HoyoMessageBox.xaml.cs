@@ -94,11 +94,9 @@ public partial class HoyoMessageBox : Window
         storyboard.Begin();
     }
 
-    void CloseResult()
-    {
+    void CloseResult() =>
         DialogResult = true;
-    }
-
+    
     public static bool? Show(string Caption, string Message, [Optional] Window Owner) =>
         new HoyoMessageBox(Caption, Message) { Owner = Owner }.ShowDialog();
 }

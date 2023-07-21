@@ -19,6 +19,8 @@ public sealed class RetrieveAPI
         RetrieveAPI data = new();
         data.SetAPIValues(ContentStreamData, ResourcesStreamData);
 
+        // JsonDebug.TestJson(); // uncomment this to run.
+
         return data;
     }
 
