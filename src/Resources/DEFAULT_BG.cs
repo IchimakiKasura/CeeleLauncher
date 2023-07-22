@@ -3,8 +3,13 @@
 // yeah yeah yeah, i should've put it in Resources.resx but having that "default" annoys me
 public sealed class DefaultBG
 {
-    public static ImageBrush DEFAULT =>
-        new(new BitmapImage(new("pack://application:,,,/Resources/defaultBG.jpg", UriKind.RelativeOrAbsolute)));
+    private static ImageBrush _default = new(new BitmapImage(new("pack://application:,,,/Resources/defaultBG.jpg", UriKind.RelativeOrAbsolute)));
+    public static ImageBrush DEFAULT
+    {
+        get => _default;
+        set => _default = value;
+    }
+        
     public static ImageBrush GENSHIN_BG =>
         new(new BitmapImage(new("pack://application:,,,/Resources/DEFAULT_GENSHIN_BG.jpg", UriKind.RelativeOrAbsolute)));
     public static ImageBrush HSR_BG =>

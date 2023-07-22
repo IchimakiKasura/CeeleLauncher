@@ -24,6 +24,8 @@ public partial class MainWindow : Window
 #endif
 
         Debug.WriteLine("BUILD HASH: "+App.UniqueHashBUILD);
+
+        Loaded += (s,e) => Activate();
     }
 
     public static void SetProgressBarValue(double value) =>

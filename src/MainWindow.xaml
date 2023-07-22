@@ -58,7 +58,7 @@
                 </Canvas>
             </Border>
 
-            <Border Name="SideButtons" Background="#40000000" Margin="0,70,20,0" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Top" Height="584" Width="77">
+            <Border Name="SideButtons" Style="{StaticResource SideButtonTrigger}" Background="#59141414" Margin="0,70,20,0" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Top" Height="584" Width="77">
                 <Canvas x:Name="SideButton_Click">
                     <Canvas.Effect>
                         <DropShadowEffect ShadowDepth="0" RenderingBias="Performance" BlurRadius="5"/>

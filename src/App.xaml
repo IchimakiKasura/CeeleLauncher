@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/HoyoLauncher.Controls/LaunchButton/LaunchSettings.xaml"/>
 
                 <ResourceDictionary Source="/HoyoLauncher.Controls/TopButtons/TopButton.xaml"/>
+                <ResourceDictionary Source="/HoyoLauncher.Controls/SideButtons/SideButtonTrigger.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

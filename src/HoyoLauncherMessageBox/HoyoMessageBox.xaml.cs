@@ -12,21 +12,20 @@ public partial class HoyoMessageBox : Window
     readonly TimeSpan animationTime = TimeSpan.FromMilliseconds(100),
                       animationTime50 = TimeSpan.FromMilliseconds(150);
 
-    public HoyoMessageBox(string Caption, string Message)
+    public HoyoMessageBox(string Caption, string Message, Window Owner)
     {
         InitializeComponent();
+        HoyoMessageBoxStatic = this;
+
         PlayOpenAnimation();
 
         Title = Caption;
         this.Caption.Text = Caption;
         this.Message.Text = Message;
+        this.Owner        = Owner;
 
         WindowStartupLocation = Owner is null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
-
-        if (Owner is not null)
-            ShowInTaskbar = !HoyoWindow.ShowInTaskbar;
-
-        HoyoMessageBoxStatic = this;
+        ShowInTaskbar = Owner is null;
 
         Loaded += delegate
         {
@@ -98,5 +97,5 @@ public partial class HoyoMessageBox : Window
         DialogResult = true;
     
     public static bool? Show(string Caption, string Message, [Optional] Window Owner) =>
-        new HoyoMessageBox(Caption, Message) { Owner = Owner }.ShowDialog();
+        new HoyoMessageBox(Caption, Message, Owner ?? null).ShowDialog();
 }

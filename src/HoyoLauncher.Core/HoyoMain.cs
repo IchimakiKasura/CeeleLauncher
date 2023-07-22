@@ -25,6 +25,12 @@ public class HoyoMain
 
         App.Config = await MainConfig.ReadConfig();
 
+        if(App.Config.CUSTOM_BACKGROUND is not "" or null)
+            HoyoWindow.MainBG.Background = DefaultBG.DEFAULT = new(new BitmapImage(new(App.Config.CUSTOM_BACKGROUND)))
+            {
+                Stretch=Stretch.UniformToFill
+            };
+
         AppFirstRun();
 
         EventsAttribute.SetEvents();
@@ -44,8 +50,6 @@ public class HoyoMain
 
         HoyoWindow.Height *= App.Config.SCALING;
         HoyoWindow.Width *= App.Config.SCALING;
-
-        HoyoWindow.Activate();
     }
 
     public static void ValidateSettings(string GameConfigName, HoyoGames Game) =>

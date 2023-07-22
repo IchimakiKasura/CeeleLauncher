@@ -43,6 +43,7 @@ public partial class App
         MainWindow.WindowState = WindowState.Normal;
         MainWindow.ShowInTaskbar = true;
         AppTray.Visible = false;
+        MainWindow.Activate();
     }
 
     private void AppMenuOpen(object s, EventArgs e)
@@ -51,6 +52,7 @@ public partial class App
         MainWindow.WindowState = WindowState.Normal;
         MainWindow.ShowInTaskbar = true;
         AppTray.Visible = false;
+        MainWindow.Activate();
     }
 
     private void AppMenuClose(object s, EventArgs e)

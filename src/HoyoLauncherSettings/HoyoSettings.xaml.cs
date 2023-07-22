@@ -32,8 +32,6 @@ public partial class HoyoSettings : Window
         
         Tooltip_Text.Text = "";
 
-        HoyoWindow.BLACK_THING.Visibility = Visibility.Visible;
-
         WindowDrag.MouseDown += App.DragMove<HoyoSettings>;
 
         ExitButton.Click   += (s, e) => Close();
@@ -54,6 +52,9 @@ public partial class HoyoSettings : Window
                 else ((TextBlock)btn.Child).Foreground = Brushes.Black;
             };
         }
+
+        // So it syncs when setting window is open, the main window gets grayed out at the same time.
+        Loaded += (s,e) => HoyoWindow.BLACK_THING.Visibility = Visibility.Visible;
     }
     
     protected override void OnClosed(EventArgs e)

@@ -33,6 +33,9 @@ public sealed class MainConfig
 
     [DefaultValue(false)]
     public bool FIRST_RUN { get; set; }
+    [DefaultValue("")]
+    public string CUSTOM_BACKGROUND { get; set; }
+
 
     public object this[string MethodName]
     {
@@ -80,6 +83,7 @@ public sealed class MainConfig
 
     [APP]
     FirstRun={FIRST_RUN}
+    CustomBackground={CUSTOM_BACKGROUND}
     """;
 
     /// <summary>
@@ -122,7 +126,8 @@ public sealed class MainConfig
                 CHECKBOX_TITLE = ParsedData["SETTINGS"][4],
                 SCALING = ParsedData["SETTINGS"][5],
 
-                FIRST_RUN = ParsedData["APP"][0]
+                FIRST_RUN = ParsedData["APP"][0],
+                CUSTOM_BACKGROUND = ParsedData["APP"][1] ?? ""
             };
         }
         catch(Exception x)
