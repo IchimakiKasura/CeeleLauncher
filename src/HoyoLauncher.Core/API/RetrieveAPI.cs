@@ -12,23 +12,19 @@ public sealed class RetrieveAPI
 
     public static async Task<RetrieveAPI> Fetch(string CONTENT, string RESOURCES)
     {
-        using Stream
-        ContentStreamData = await CheckVersion(CONTENT),
-        ResourcesStreamData = await CheckVersion(RESOURCES);
+        var ContentData = await FetchJSON(CONTENT);
+        var ResourceData = await FetchJSON(RESOURCES);
 
         RetrieveAPI data = new();
-        data.SetAPIValues(ContentStreamData, ResourcesStreamData);
+        data.SetAPIValues(ContentData, ResourceData);
 
         // JsonDebug.TestJson(); // uncomment this to run.
 
         return data;
     }
 
-    void SetAPIValues(Stream _Content, Stream _Resources) 
+    private void SetAPIValues(ObjectList Content, ObjectList Resources) 
     {
-        var Content = ReadJsonData(_Content);
-        var Resources = ReadJsonData(_Resources);
-
         if(Resources is { data: not null })
         {
             LatestVersion = Resources.GetLatestVersion;
@@ -60,28 +56,21 @@ public sealed class RetrieveAPI
             
             """);
     }
-
-    static ObjectList ReadJsonData(in Stream stream)
-    {
-        using StreamReader DataStream = new(stream, Encoding.UTF8);
-        string DataJSON = stream != Stream.Null ? DataStream.ReadToEnd() : "{}";
-        return JsonSerializer.Deserialize<ObjectList>(DataJSON);
-    }
     
-    static async Task<Stream> CheckVersion(string APILink)
+    static async Task<ObjectList> FetchJSON(string APILink)
     {
         HttpResponseMessage resp;
-
-        using HttpClient req = new(handler: new HttpClientHandler() { Proxy = null })
+        HttpClientHandler Handler = new()
         {
-            Timeout = TimeSpan.FromSeconds(10),
-            DefaultRequestHeaders =
-            {
-                CacheControl = new()
-                {
-                    NoCache = true,
-                }
-            }
+            Proxy = null,
+            UseProxy = false,
+            AutomaticDecompression = DecompressionMethods.GZip
+        };
+
+        using HttpClient req = new(Handler)
+        {
+            Timeout = TimeSpan.FromSeconds(2),
+            DefaultRequestHeaders = { CacheControl = new() { NoCache = true, } }
         };
 
         try
@@ -91,17 +80,17 @@ public sealed class RetrieveAPI
             resp.EnsureSuccessStatusCode();
 
             if(resp.IsSuccessStatusCode)
-                return await resp.Content.ReadAsStreamAsync();
+                return JsonSerializer.Deserialize<ObjectList>(await resp.Content.ReadAsStreamAsync());
         }
-        catch (TaskCanceledException)
+        catch (Exception e)
         {
-            Debug.WriteLine("Connection timeout! Slow Connection detected");
-        }
-        catch (HttpRequestException)
-        {
-            Debug.WriteLine("Connection timeout! No Internet Connection");
+            switch(e)
+            {
+                case TaskCanceledException: Debug.WriteLine("Connection timeout! Slow Connection detected"); break;
+                case HttpRequestException:  Debug.WriteLine("Connection timeout! No Internet Connection  "); break;
+            }
         }
 
-        return Stream.Null;
+        return new ObjectList();
     }
 }

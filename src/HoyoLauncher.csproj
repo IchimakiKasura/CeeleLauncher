@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-		<OutputType>WinExe</OutputType>
+        <OutputType>WinExe</OutputType>
         <TargetFramework>net7.0-windows</TargetFramework>
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
@@ -13,8 +13,8 @@
         <Company>IchimakiKasura</Company>
         <AssemblyName>CeeleLauncher</AssemblyName>
         <Product>CeeleLauncher</Product>
-        <AssemblyVersion>1.8.722.5</AssemblyVersion>
-        <FileVersion>1.8.722.5</FileVersion>
+        <AssemblyVersion>1.8.724.5</AssemblyVersion>
+        <FileVersion>1.8.724.5</FileVersion>
         <Copyright>Copyright © CeeleLauncher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>

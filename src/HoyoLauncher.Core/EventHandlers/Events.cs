@@ -3,8 +3,6 @@
 [Events]
 public sealed class Events__
 {
-    public static void Method() { }
-
     public static void GameSelectionBackgroundSet()
     {
         HoyoWindow.GAME_SELECTION_GI.Background = SelectionResources.GenshinImage;

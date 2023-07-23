@@ -18,7 +18,7 @@ public sealed class GameConfigRead
     public static GameConfigRead Instance => instance ??= new GameConfigRead();
     private GameConfigRead() { }
 
-    public static GameConfigRead GetConfig(string FilePath)
+    public static async Task<GameConfigRead> GetConfig(string FilePath)
     {
         ImageBrush GameBG_TEMP = null;
 
@@ -40,7 +40,7 @@ public sealed class GameConfigRead
                 ConfigExist = configexist
             };
 
-        var ParsedLauncherObject = ReadFile(Path.Combine(FilePath, "config.ini"));
+        var ParsedLauncherObject = await ReadFile(Path.Combine(FilePath, "config.ini"));
         
         try
         {
@@ -66,7 +66,7 @@ public sealed class GameConfigRead
         if (Directory.Exists(gamepath))
         {
             GameConfigExist = true;
-            var ParsedGameObject = ReadFile(Path.Combine(gamepath, "config.ini"));
+            var ParsedGameObject = await ReadFile(Path.Combine(gamepath, "config.ini"));
             gamever = ParsedGameObject["General"]["game_version"];
         }
         else GameConfigExist = false;
@@ -85,10 +85,11 @@ public sealed class GameConfigRead
         };
     }    
 
-    static IniData ReadFile(string filePath)
+    static async Task<IniData> ReadFile(string filePath)
     {
         using FileStream fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         using StreamReader streamReader = new(fileStream, Encoding.ASCII);
-        return new IniDataParser().Parse(streamReader.ReadToEnd()); 
+        var dataMessage = await streamReader.ReadToEndAsync();
+        return new IniDataParser().Parse(dataMessage); 
     }
 }

@@ -2,7 +2,7 @@ namespace HoyoLauncher.HoyoLauncherSettings;
 
 public partial class HoyoSettings
 {
-    void ConfirmClick(object s, RoutedEventArgs e)
+    async void ConfirmClick(object s, RoutedEventArgs e)
     {
         bool ErrorOccured = false;
 
@@ -13,9 +13,9 @@ public partial class HoyoSettings
             (HI3_DIR_TXT, HoyoGames.HonkaiImpactThird)
         };
 
-        foreach(var (config, name) in CollectionsMarshal.AsSpan(GameConfigs))
+        foreach(var (config, name) in GameConfigs)
         {
-            HoyoMain.ValidateSettings(config.Text, name, out bool IsInvalidGame);
+            HoyoMain.ValidateSettings(await GameConfigRead.GetConfig(config.Text), name, out bool IsInvalidGame);
 
             if(IsInvalidGame)
             {

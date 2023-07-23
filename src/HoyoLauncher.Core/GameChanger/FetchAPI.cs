@@ -19,7 +19,10 @@ public sealed partial class GameChange : HoyoMain
             BacgroundHashCheck(ref values, ref GameAPI, GameBG);
 
         if(GameAPI is { PreDownloadFile: not null })
-            PreDownloadCheck(ref values);
+            PreDownloadCheck(ref values);     
+
+        if(!CurrentGameSelected.GAME_CONFIG_CACHE.GameConfigExist)
+            return values;
 
         if (GameAPI is { DownloadFile: not null } && Directory.GetFiles(CurrentGameSelected.GAME_INSTALL_PATH, "*.zip").Length >= 1)
         {

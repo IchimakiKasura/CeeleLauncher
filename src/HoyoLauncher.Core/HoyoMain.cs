@@ -24,39 +24,37 @@ public class HoyoMain
             MainConfig.CreateConfig();
 
         App.Config = await MainConfig.ReadConfig();
-
-        if(App.Config.CUSTOM_BACKGROUND is not "" or null)
-            HoyoWindow.MainBG.Background = DefaultBG.DEFAULT = new(new BitmapImage(new(App.Config.CUSTOM_BACKGROUND)))
-            {
-                Stretch=Stretch.UniformToFill
-            };
-
-        AppFirstRun();
-
-        EventsAttribute.SetEvents();
-
-        ValidateSettings(App.Config.GI_DIR, HoyoGames.GenshinImpact);
-        ValidateSettings(App.Config.HSR_DIR, HoyoGames.HonkaiStarRail);
-        ValidateSettings(App.Config.HI3_DIR, HoyoGames.HonkaiImpactThird);
+        HoyoWindow.Height *= App.Config.SCALING;
+        HoyoWindow.Width *= App.Config.SCALING;
 
         if (!App.Config.CHECKBOX_BACKGROUND)
             HoyoWindow.MediaElementBG.Source = null;
 
-        if (App.Config.CHECKBOX_LAST_GAME)
-            LastGame();
+        if(App.Config.CUSTOM_BACKGROUND is not "" or null)
+            HoyoWindow.MainBG.Background = DefaultBG.DEFAULT = new(new BitmapImage(new(App.Config.CUSTOM_BACKGROUND)))
+            {
+                Stretch = Stretch.UniformToFill
+            };
+            
+        AppFirstRun();
+
+        EventsAttribute.SetEvents();
+
+        ValidateSettings(await GameConfigRead.GetConfig(App.Config.GI_DIR), HoyoGames.GenshinImpact);
+        ValidateSettings(await GameConfigRead.GetConfig(App.Config.HSR_DIR), HoyoGames.HonkaiStarRail);
+        ValidateSettings(await GameConfigRead.GetConfig(App.Config.HI3_DIR), HoyoGames.HonkaiImpactThird);
+        
+        LastGame();
 
         if(CurrentGameSelected == HoyoGames.DEFAULT)
             RefreshSideButtons();
-
-        HoyoWindow.Height *= App.Config.SCALING;
-        HoyoWindow.Width *= App.Config.SCALING;
     }
 
-    public static void ValidateSettings(string GameConfigName, HoyoGames Game) =>
+    public static void ValidateSettings(GameConfigRead GameConfigName, HoyoGames Game) =>
         ValidateSettings(GameConfigName, Game, out bool _);
-    public static void ValidateSettings(string GameConfigName, HoyoGames Game, out bool ErrorOccured)
+    public static void ValidateSettings(GameConfigRead GameConfigName, HoyoGames Game, out bool ErrorOccured)
     {
-        GameConfigRead GameConfigData = Game.GAME_CONFIG_CACHE = GameConfigRead.GetConfig(GameConfigName);
+        GameConfigRead GameConfigData = Game.GAME_CONFIG_CACHE = GameConfigName;
         ErrorOccured = false;
 
         if (GameConfigData.FilePathNone)
@@ -80,11 +78,15 @@ public class HoyoMain
         }
 
         if (SelectedHoyoGame is null) return;
+        if (!App.Config.CHECKBOX_LAST_GAME) return;
 
         new HoyoValues()
         {
             RemoveMainBG = true,
-            Background = SelectedHoyoGame.GAME_DEFAULT_BG,
+            // Prioritise the fetched BG from config if exist
+            // without this the background picture will change 3 times
+            // MainMenu > Game Default BG > Fetched Game BG
+            Background = SelectedHoyoGame.GAME_CONFIG_CACHE.GameBackground ?? SelectedHoyoGame.GAME_DEFAULT_BG,
             LaunchButtonContent = "Loading",
             VersionBubble = Visibility.Collapsed,
             PreInstall = Visibility.Collapsed,

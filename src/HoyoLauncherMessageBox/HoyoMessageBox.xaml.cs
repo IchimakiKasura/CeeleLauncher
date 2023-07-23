@@ -17,8 +17,6 @@ public partial class HoyoMessageBox : Window
         InitializeComponent();
         HoyoMessageBoxStatic = this;
 
-        PlayOpenAnimation();
-
         Title = Caption;
         this.Caption.Text = Caption;
         this.Message.Text = Message;
@@ -27,6 +25,8 @@ public partial class HoyoMessageBox : Window
         WindowStartupLocation = Owner is null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
         ShowInTaskbar = Owner is null;
 
+        PlayOpenAnimation();
+        
         Loaded += delegate
         {
             UpdateLayout();
