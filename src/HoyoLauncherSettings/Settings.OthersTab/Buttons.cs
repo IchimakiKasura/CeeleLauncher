@@ -15,6 +15,7 @@ sealed class HoyoSettingsButtons
         HoyoSettingStatic.GI_DIR_TXT.Text = App.Config.GI_DIR;
         HoyoSettingStatic.HSR_DIR_TXT.Text = App.Config.HSR_DIR;
         HoyoSettingStatic.HI3_DIR_TXT.Text = App.Config.HI3_DIR;
+        HoyoSettingStatic.BG_DIR_TXT.Text = App.Config.CUSTOM_BACKGROUND;
 
         HoyoSettingStatic.RadioButtonToTray.IsChecked = true;
         HoyoSettingStatic.RadioButtonBackground.IsChecked = App.Config.CHECKBOX_BACKGROUND;

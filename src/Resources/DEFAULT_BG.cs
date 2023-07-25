@@ -10,6 +10,8 @@ public sealed class DefaultBG
         set => _default = value;
     }
         
+    public static ImageBrush DEFAULT_ORIGINAL => 
+        new(new BitmapImage(new("pack://application:,,,/Resources/defaultBG.jpg", UriKind.RelativeOrAbsolute)));
     public static ImageBrush GENSHIN_BG =>
         new(new BitmapImage(new("pack://application:,,,/Resources/DEFAULT_GENSHIN_BG.jpg", UriKind.RelativeOrAbsolute)));
     public static ImageBrush HSR_BG =>

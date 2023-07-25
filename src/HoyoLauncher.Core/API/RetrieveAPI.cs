@@ -45,16 +45,16 @@ public sealed class RetrieveAPI
 
         Debug.WriteLine($$"""
 
-            API FETCH INFO [Game: {{HoyoMain.CurrentGameSelected.GAME_NAME}}]
-            {
-                Latest Version      :     {{LatestVersion}} (Current: {{HoyoMain.CurrentGameSelected.GAME_CONFIG_CACHE.GameVersion}})
-                Download File Link  :     {{DownloadFile?.ToString() ?? "EMPTY"}}
-                Pre Installation    :     {{PreDownloadFile?.ToString() ?? "EMPTY"}}
-                Background Link     :     {{BackgroundLINK?.ImageSource?.ToString() ?? "EMPTY"}}
-                Background Hash     :     {{BackgroundHASH.ToString() ?? "EMPTY"}}
-            }
+        API FETCH INFO [Game: {{HoyoMain.CurrentGameSelected.GAME_NAME}}]
+        {
+            Latest Version      :     {{LatestVersion}} (Current: {{HoyoMain.CurrentGameSelected.GAME_CONFIG_CACHE.GameVersion}})
+            Download File Link  :     {{DownloadFile?.ToString() ?? "EMPTY"}}
+            Pre Installation    :     {{PreDownloadFile?.ToString() ?? "EMPTY"}}
+            Background Link     :     {{BackgroundLINK?.ImageSource?.ToString() ?? "EMPTY"}}
+            Background Hash     :     {{BackgroundHASH.ToString() ?? "EMPTY"}}
+        }
             
-            """);
+        """);
     }
     
     static async Task<ObjectList> FetchJSON(string APILink)
@@ -69,7 +69,7 @@ public sealed class RetrieveAPI
 
         using HttpClient req = new(Handler)
         {
-            Timeout = TimeSpan.FromSeconds(2),
+            Timeout = TimeSpan.FromSeconds(10),
             DefaultRequestHeaders = { CacheControl = new() { NoCache = true, } }
         };
 

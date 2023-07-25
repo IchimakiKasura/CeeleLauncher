@@ -19,7 +19,8 @@ public sealed class EventsAttribute : Attribute
                 EventDebugger(types.Name);
 
                 foreach(MethodInfo methods in types.GetMethods(Flags))
-                    methods.Invoke(types, null);
+                    if(methods.GetCustomAttributes(typeof(DontInvokeAttribute), true).Length is 0)
+                        methods.Invoke(types, null);
             }
     }
 

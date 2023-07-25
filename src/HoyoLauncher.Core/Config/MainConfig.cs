@@ -17,10 +17,10 @@ public sealed class MainConfig
     public string ZZZ_DIR { get; set; }
 
     /// <summary> Last game after close </summary>
-    [DefaultValue(0)]
+    [DefaultValue((short)0)]
     public short LAST_GAME { get; set; }
 
-    [DefaultValue(1)]
+    [DefaultValue((short)1)]
     public short EXIT_MODE { get; set; }
     [DefaultValue(true)]
     public bool CHECKBOX_BACKGROUND { get; set; }

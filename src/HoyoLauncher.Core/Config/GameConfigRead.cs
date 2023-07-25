@@ -21,24 +21,16 @@ public sealed class GameConfigRead
     public static async Task<GameConfigRead> GetConfig(string FilePath)
     {
         ImageBrush GameBG_TEMP = null;
-
         const string GroupName = "launcher";
-
-        var ConfigFile = Path.Combine(FilePath, "config.ini");
-        bool configexist = File.Exists(ConfigFile);
         string gamepath, gamebg, gamename, gamebgmd5, gamever = "0";
 
         if (string.IsNullOrEmpty(FilePath))
-            return new()
-            {
-                FilePathNone = true
-            };
+            return new() { FilePathNone = true };
+        
+        bool configexist = File.Exists(Path.Combine(FilePath, "config.ini"));
 
         if (!configexist)
-            return new()
-            {
-                ConfigExist = configexist
-            };
+            return new() { ConfigExist = configexist };
 
         var ParsedLauncherObject = await ReadFile(Path.Combine(FilePath, "config.ini"));
         

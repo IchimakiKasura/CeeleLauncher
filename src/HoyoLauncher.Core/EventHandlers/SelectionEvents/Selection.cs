@@ -12,7 +12,7 @@ public sealed class Selection__
     private static void EventClick(object s, RoutedEventArgs e)
     {
         var SelectedButton = (Button)e.Source;
-        HoyoWindow.GameSelection.Visibility = Visibility.Collapsed;
+        SelectionPopup.CloseAnimationClicked();
         HoyoGames SelectedHoyoGame = null;
 
         switch(SelectedButton.Name)

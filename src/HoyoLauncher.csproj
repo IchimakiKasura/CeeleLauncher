@@ -6,6 +6,7 @@
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies> 
     </PropertyGroup>
 
     <PropertyGroup>
@@ -13,29 +14,33 @@
         <Company>IchimakiKasura</Company>
         <AssemblyName>CeeleLauncher</AssemblyName>
         <Product>CeeleLauncher</Product>
-        <AssemblyVersion>1.8.724.5</AssemblyVersion>
-        <FileVersion>1.8.724.5</FileVersion>
+        <Version>1.8.726.5</Version>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
         <Copyright>Copyright © CeeleLauncher 2023</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
         <SignAssembly>True</SignAssembly>
         <RepositoryType>https://github.com/IchimakiKasura/CeeleLauncher</RepositoryType>
+        <DebugType>None</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(Configuration) == Debug">
         <DebugType>portable</DebugType>
     </PropertyGroup>
 
-    <PropertyGroup Condition="$(Configuration) != Debug">
-        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-        <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
-        <PublishProtocol>FileSystem</PublishProtocol>
-        <SelfContained>False</SelfContained>
+    <PropertyGroup Condition="$(Configuration) == Release Or $(Configuration) == Preview">
         <PublishSingleFile>True</PublishSingleFile>
-        <PublishReadyToRun>True</PublishReadyToRun>
-        <DebugType>None</DebugType>
+        <SelfContained>False</SelfContained>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+        <PublishProtocol>FileSystem</PublishProtocol>
     </PropertyGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj" />
+        <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj">
+            <ExcludeAssets>all</ExcludeAssets>
+        </ProjectReference>
     </ItemGroup>
 
     <!-- Resources -->

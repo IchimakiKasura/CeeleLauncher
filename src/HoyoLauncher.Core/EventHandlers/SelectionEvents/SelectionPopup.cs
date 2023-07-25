@@ -16,15 +16,19 @@ public sealed class SelectionPopup
 
     private static void EventClick(object s, RoutedEventArgs e)
     {
+        HoyoWindow.LaunchSelection.IsEnabled = false;
+
         Action AnimationMethod =
             HoyoWindow.GameSelection.Visibility is not Visibility.Visible ? OpenAnimation : CloseAnimation;
 
         AnimationMethod();
     }
     
-    private static void ChangeVisibility() =>
+    private static void ChangeVisibility()
+    {
         HoyoWindow.GameSelection.Visibility =
             HoyoWindow.GameSelection.IsVisible ? Visibility.Collapsed : Visibility.Visible;
+    }
 
     private static void OpenAnimation()
     {
@@ -61,6 +65,23 @@ public sealed class SelectionPopup
         if(MethodPostStart is not null)
             MethodPostStart();
 
+        storyboard.Completed += (s,e) => HoyoWindow.LaunchSelection.IsEnabled = true;
+
         storyboard.Begin();
+    }
+
+    [DontInvoke]
+    public static void CloseAnimationClicked()
+    {
+        HoyoWindow.LaunchSelection.IsEnabled = 
+        HoyoWindow.GameSelection_Click.IsEnabled = false;
+
+        HeightAnimation.From = 218;
+        HeightAnimation.To = 0;
+
+        Begin(()=>{
+            HoyoWindow.GameSelection.Visibility = Visibility.Collapsed;
+            HoyoWindow.GameSelection_Click.IsEnabled = true;
+        });
     }
 }

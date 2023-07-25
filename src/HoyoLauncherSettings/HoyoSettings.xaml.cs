@@ -62,11 +62,17 @@ public partial class HoyoSettings : Window
         HoyoWindow.BLACK_THING.Visibility = Visibility.Collapsed;
         base.OnClosed(e);
     }
-
+    
     static void RefreshCurrentSelectedGame()
     {
-        if(HoyoMain.CurrentGameSelected != HoyoGames.DEFAULT)
+        if (App.Config.CUSTOM_BACKGROUND is not "" or null)
+            DefaultBG.DEFAULT = new(new BitmapImage(new(App.Config.CUSTOM_BACKGROUND)));
+        else DefaultBG.DEFAULT = DefaultBG.DEFAULT_ORIGINAL;
+
+        if (HoyoMain.CurrentGameSelected != HoyoGames.DEFAULT)
             GameChange.SetGame(--App.Config.LAST_GAME);
+        else
+            HoyoWindow.MainBG.Background = DefaultBG.DEFAULT;
     }
 
     public static void ShowSettings(Window Owner) =>

@@ -9,6 +9,7 @@ public partial class HoyoSettings
         GI_DIR_TXT.Text = App.Config.GI_DIR;
         HSR_DIR_TXT.Text = App.Config.HSR_DIR;
         HI3_DIR_TXT.Text = App.Config.HI3_DIR;
+        BG_DIR_TXT.Text = App.Config.CUSTOM_BACKGROUND;
         
         RadioButtonBackground.IsChecked = App.Config.CHECKBOX_BACKGROUND;
         RadioButtonSelectiveStartup.IsChecked = App.Config.CHECKBOX_LAST_GAME;
@@ -39,6 +40,7 @@ public partial class HoyoSettings
             case 1.2D: RadioButtonScale_3x.IsChecked = true; break;
             case 1.3D: RadioButtonScale_4x.IsChecked = true; break;
         }
-    }
 
+        BG_DIR_TXT.TextChanged += (s, e) => BG_DIR_TXT.Text = App.Config.CUSTOM_BACKGROUND;
+    }
 }
