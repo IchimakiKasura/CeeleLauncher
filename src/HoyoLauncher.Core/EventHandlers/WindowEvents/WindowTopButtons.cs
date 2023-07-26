@@ -39,7 +39,7 @@ public sealed class WindowTopButtons
     {
         new HoyoValues()
         {
-            Background = HoyoGames.DEFAULT.GAME_DEFAULT_BG,
+            Background = DefaultBG.DEFAULT,
             RemoveMainBG = false,
             LaunchButton = false,
             LaunchButtonContent = "Welcome",

@@ -30,17 +30,16 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="$(Configuration) == Release Or $(Configuration) == Preview">
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <PublishProtocol>FileSystem</PublishProtocol>
         <PublishSingleFile>True</PublishSingleFile>
         <SelfContained>False</SelfContained>
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-        <PublishProtocol>FileSystem</PublishProtocol>
+        <PublishReadyToRun>True</PublishReadyToRun>
     </PropertyGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj">
-            <ExcludeAssets>all</ExcludeAssets>
-        </ProjectReference>
+        <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj"/>
     </ItemGroup>
 
     <!-- Resources -->

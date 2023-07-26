@@ -66,7 +66,10 @@ public partial class HoyoSettings : Window
     static void RefreshCurrentSelectedGame()
     {
         if (App.Config.CUSTOM_BACKGROUND is not "" or null)
-            DefaultBG.DEFAULT = new(new BitmapImage(new(App.Config.CUSTOM_BACKGROUND)));
+            DefaultBG.DEFAULT = new(new BitmapImage(new(App.Config.CUSTOM_BACKGROUND)))
+            {
+                Stretch = Stretch.UniformToFill
+            };
         else DefaultBG.DEFAULT = DefaultBG.DEFAULT_ORIGINAL;
 
         if (HoyoMain.CurrentGameSelected != HoyoGames.DEFAULT)
