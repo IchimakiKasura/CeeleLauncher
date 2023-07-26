@@ -15,15 +15,17 @@ the app is built based on my own preference.
 - Knows when the game is outdated.
 
 ## Notes:
-Games cannot be updated using this launcher. *yet*<br>
-Instead it knows when the game has a new version available.
-
 The App requires [NET-7](https://download.visualstudio.microsoft.com/download/pr/4b99bbc8-917a-417c-907b-d408341726a5/78b225344fbb9b80d3da3681e1d20d68/dotnet-runtime-7.0.5-win-x64.exe)
 
 # Main Overview
 | |
 |-|
 |![](readme/MainOverview/main.jpg)|
+<div align="center">
+
+_this picture was taken using previewbuild version 1.8.0.3_
+
+</div>
 
 # Games Overview
 | | |
@@ -32,6 +34,11 @@ The App requires [NET-7](https://download.visualstudio.microsoft.com/download/pr
 |![](readme/MainOverview/hi3.jpg)|![](readme/MainOverview/zzz.jpg)|
 |![](readme/MainOverview/tot.jpg)|![](readme/MainOverview/missingLocation.jpg)|
 |![](readme/MainOverview/update.jpg)|![](readme/MainOverview/download.jpg)|
+<div align="center">
+
+_these picture was taken using previewbuild version from 1.8.0.3 to 1.8.705.4_
+
+</div>
 
 # Settings Overview
  | | | |
@@ -41,8 +48,8 @@ The App requires [NET-7](https://download.visualstudio.microsoft.com/download/pr
 <div align="center">
 
 # Download Links
-<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/latest/download/HoyoLauncher.exe"><img Title="Download Latest" src="readme/Release.png" height="90"/></a>  
-<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.717.5-previewbuild/CeeleLauncher.exe"><img Title="Download Preview build" src="readme/Preview.png" height="90"/></a>
+<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/latest/download/HoyoLauncher.exe"><img Title="Download Latest (1.6.5)" src="readme/Release.png" height="90"/></a>  
+<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.726.5-previewbuild/CeeleLauncher.exe"><img Title="Download Preview build (1.8.726.5)" src="readme/Preview.png" height="90"/></a>
 
 <br>
 
