@@ -4,8 +4,8 @@ public partial class HoyoSettings
 {
     void LocationButtonClick(object s, RoutedEventArgs e)
     {
-        using var Folder = new Forms.FolderBrowserDialog();
         e.Handled = true;
+        var Folder = new Forms.FolderBrowserDialog();
 
         if (Folder.ShowDialog() is Forms.DialogResult.Cancel) return;
 
@@ -21,14 +21,15 @@ public partial class HoyoSettings
 
     void LocationImageButtonClick(object s, RoutedEventArgs e)
     {
+        e.Handled = true;
+
         var ImageFile = new Microsoft.Win32.OpenFileDialog
         {
             Filter = "PNG|*.png|JPG|*.jpg;*.jpeg|GIF|*.gif|BMP|*.bmp|All Files|*.*"
         };
-        e.Handled = true;
 
         if (ImageFile.ShowDialog() is false) return;
         
         BG_DIR_TXT.Text = App.Config.CUSTOM_BACKGROUND = ImageFile.FileName;
     }
-}   
+}

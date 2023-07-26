@@ -30,8 +30,8 @@ public class HoyoMain
         if (!App.Config.CHECKBOX_BACKGROUND)
             HoyoWindow.MediaElementBG.Source = null;
 
-        if(App.Config.CUSTOM_BACKGROUND is not "" or null)
-            HoyoWindow.MainBG.Background = DefaultBG.DEFAULT = new(new BitmapImage(new(App.Config.CUSTOM_BACKGROUND)))
+        if(File.Exists(App.Config.CUSTOM_BACKGROUND))
+            HoyoWindow.MainBG.Background = DefaultBG.DEFAULT = new(new BitmapImage(new(App.Config.CUSTOM_BACKGROUND, UriKind.RelativeOrAbsolute)))
             {
                 Stretch = Stretch.UniformToFill
             };

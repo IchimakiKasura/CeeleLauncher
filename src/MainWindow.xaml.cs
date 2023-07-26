@@ -3,7 +3,10 @@
 // It was supposed to be a simple launcher that opens the game,
 // why do i need to go as far as detecting a new version, downloading the new version and even pre-installing the upcoming version.
 // what the fuck am i doing?
-
+//
+// NOTE TO MYSELF:
+//      Refactor the code if possible since publishing the file on first try causes GenerateBundle Task error
+//      when multiple error on publish build was ran, a "Wacatac" will be detected for no reason causing AV to be alerted.
 public partial class MainWindow : Window
 {
     [StaticWindow]
