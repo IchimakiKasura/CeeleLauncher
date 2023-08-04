@@ -105,7 +105,7 @@ public class HoyoMain
         HoyoWindow.Loaded += async (s, e) =>
         {
             await Task.Delay(1000);
-            new ShortTour { Owner = HoyoWindow }.ShowDialog();
+            new ShortTourWindow { Owner = HoyoWindow }.ShowDialog();
         };
 
         App.Config.FIRST_RUN = true;

@@ -6,8 +6,3 @@
                                               //(used if a resource is not found in the page,
                                               // app, or any theme specific resource dictionaries)
 )]
-
-[assembly: ComVisible(false)]
-[assembly: Guid("FAE04EC0-301F-11D3-BF4B-00C04F79EFBC")]
-
-[assembly: AssemblyKeyFile("Properties/mykey.snk")]

@@ -23,7 +23,7 @@ The App requires [NET-7](https://download.visualstudio.microsoft.com/download/pr
 |![](readme/MainOverview/main.jpg)|
 <div align="center">
 
-_this picture was taken using previewbuild version 1.8.0.3_
+_this picture was taken using previewbuild version 1.8.804.5_
 
 </div>
 
@@ -36,7 +36,7 @@ _this picture was taken using previewbuild version 1.8.0.3_
 |![](readme/MainOverview/update.jpg)|![](readme/MainOverview/download.jpg)|
 <div align="center">
 
-_these picture was taken using previewbuild version from 1.8.0.3 to 1.8.705.4_
+_these picture was taken using previewbuild version from 1.8.0.3 to 1.8.804.5_
 
 </div>
 

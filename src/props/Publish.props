@@ -1,0 +1,17 @@
+<Project>
+    <PropertyGroup Condition="$(Configuration) != Debug">
+		<DebugSymbols>false</DebugSymbols>
+        <Optimize>True</Optimize>
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <PublishProtocol>FileSystem</PublishProtocol>
+        <PublishSingleFile>True</PublishSingleFile>
+        <SelfContained>False</SelfContained>
+        <PublishReadyToRun>True</PublishReadyToRun>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(Configuration) == Preview">
+		<DefineConstants>IsPreviewBuild</DefineConstants>
+	</PropertyGroup>
+</Project>

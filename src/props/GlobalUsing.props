@@ -1,0 +1,28 @@
+<Project>
+    <ItemGroup>
+        <Using Include="System" />
+        <Using Include="System.IO" />
+        <Using Include="System.Net" />
+        <Using Include="System.Text" />
+        <Using Include="System.Linq" />
+        <Using Include="System.Drawing" Alias="Draw" />
+        <Using Include="System.Windows" />
+        <Using Include="System.Net.Http" />
+        <Using Include="System.Text.Json" />
+        <Using Include="System.Threading" />
+        <Using Include="System.Reflection" />
+        <Using Include="System.Diagnostics" />
+        <Using Include="System.Windows.Forms" Alias="Forms" />
+        <Using Include="System.Windows.Input" />
+        <Using Include="System.Windows.Media" />
+        <Using Include="System.ComponentModel" />
+        <Using Include="System.Threading.Tasks" />
+        <Using Include="System.Windows.Controls" />
+        <Using Include="System.Collections.Generic" />
+        <Using Include="System.Windows.Media.Imaging" />
+        <Using Include="System.Collections.Immutable" />
+        <Using Include="System.Net.NetworkInformation" />
+        <Using Include="System.Runtime.InteropServices" />
+        <Using Include="System.Windows.Media.Animation" />
+    </ItemGroup>
+</Project>

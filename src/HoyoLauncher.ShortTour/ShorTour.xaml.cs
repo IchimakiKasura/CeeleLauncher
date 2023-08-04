@@ -1,21 +1,21 @@
-﻿namespace HoyoLauncher;
+﻿namespace HoyoLauncher.ShortTour;
 
-public partial class ShortTour : Window
+public partial class ShortTourWindow : Window
 {
     [StaticWindow]
-    public static ShortTour ShortTourWindow { get; set; }
+    public static ShortTourWindow ShortTourWindowStatic { get; set; }
 
     static int CurrentImage;
-    public ShortTour()
+    public ShortTourWindow()
     {
         InitializeComponent();
 
-        ShortTourWindow = this;
+        ShortTourWindowStatic = this;
 
         CurrentImage = 1;
         
         HoyoWindow.BLACK_THING.Visibility = Visibility.Visible;
-        WindowDrag.MouseDown += App.DragMove<ShortTour>;
+        WindowDrag.MouseDown += App.DragMove<ShortTourWindow>;
 
         MainImageSource.Background = new ImageBrush(ImageLocation());
 

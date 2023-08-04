@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace HoyoLauncher.Core.GameChanger;
 
 public sealed partial class GameChange : HoyoMain
@@ -24,7 +26,7 @@ public sealed partial class GameChange : HoyoMain
         if(!CurrentGameSelected.GAME_CONFIG_CACHE.GameConfigExist)
             return values;
 
-        if (GameAPI is { DownloadFile: not null } && Directory.GetFiles(CurrentGameSelected.GAME_INSTALL_PATH, "*.zip").Length >= 1)
+        if (GameAPI is { DownloadFile: not null } && Directory.GetFiles(CurrentGameSelected.GAME_INSTALL_PATH, "*.*").Where(s=>s.EndsWith(".zip") || s.EndsWith(".7z")).Any())
         {
             values.VersionBubble = Visibility.Collapsed;
 

@@ -39,7 +39,7 @@ public sealed class Events__
         {
             if(e.ChangedButton is not MouseButton.Left) return;
 
-            if(Directory.GetFiles(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, "*.zip").Length >= 1)
+            if(Directory.GetFiles(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, "*.*").Where(s=>s.EndsWith(".zip") || s.EndsWith(".7z")).Any())
             {
                 HoyoMessageBox.Show(HoyoWindow.Title, "The file is already downloaded!\r\rIf the download was stopped last time, It need to be re-downloaded again by deleting the file.\r", HoyoWindow);
                 return;

@@ -28,7 +28,6 @@
             "args": [
                 "publish",
                 "-c:Preview",
-                "-p:DefineConstants=IsPreviewBuild",
                 "${workspaceFolder}\\src\\HoyoLauncher.csproj"
             ]
         },

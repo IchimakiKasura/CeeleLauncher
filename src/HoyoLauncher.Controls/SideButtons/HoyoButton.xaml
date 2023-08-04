@@ -1,9 +1,6 @@
 ﻿<UserControl x:Class="HoyoLauncher.Controls.SideButtons.HoyoButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
              Name="root">
 
     <Button Name="mainButton" Click="Clicked">

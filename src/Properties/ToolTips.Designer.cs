@@ -124,7 +124,7 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HomeMenu.
+        ///   Looks up a localized string similar to Home Menu.
         /// </summary>
         public static string TOPBUTTON_HOME_TIP {
             get {

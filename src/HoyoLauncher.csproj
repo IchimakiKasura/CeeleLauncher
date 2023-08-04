@@ -6,197 +6,39 @@
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
-        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies> 
     </PropertyGroup>
 
-    <PropertyGroup>
-        <Authors>IchimakiKasura</Authors>
-        <Company>IchimakiKasura</Company>
-        <AssemblyName>CeeleLauncher</AssemblyName>
-        <Product>CeeleLauncher</Product>
-        <Version>1.8.726.5</Version>
-        <AssemblyVersion>$(Version)</AssemblyVersion>
-        <FileVersion>$(Version)</FileVersion>
-        <Copyright>Copyright © CeeleLauncher 2023</Copyright>
-        <NeutralLanguage>en</NeutralLanguage>
-        <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
-        <SignAssembly>True</SignAssembly>
-        <RepositoryType>https://github.com/IchimakiKasura/CeeleLauncher</RepositoryType>
-        <DebugType>None</DebugType>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$(Configuration) == Debug">
-        <DebugType>portable</DebugType>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$(Configuration) == Release Or $(Configuration) == Preview">
-        <Optimize>True</Optimize>
-        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-        <PublishProtocol>FileSystem</PublishProtocol>
-        <PublishSingleFile>True</PublishSingleFile>
-        <SelfContained>False</SelfContained>
-        <PublishReadyToRun>True</PublishReadyToRun>
-    </PropertyGroup>
-    
     <ItemGroup>
-      <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj" />
+        <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj" />
     </ItemGroup>
 
-    <!-- Resources -->
-    <ItemGroup>
-        <!-- Selection Button pictures -->
-        <Resource Include="Resources\Buttons\Selection\GenshinSelectionButton.png" />
-        <Resource Include="Resources\Buttons\Selection\HI3SelectionButton.png" />
-        <Resource Include="Resources\Buttons\Selection\HSRSelectionButton.png" />
-		<Resource Include="Resources\Buttons\Selection\ZZZSelectionButton.png" />
-		<Resource Include="Resources\Buttons\Selection\TOTSelectionButton.png" />
-        
-        <!-- Button pictures -->
-        <Resource Include="Resources\Buttons\gear.png" />
-        <Resource Include="Resources\Buttons\GI.jpg" />
-        <Resource Include="Resources\Buttons\HI3.jpg" />
-        <Resource Include="Resources\Buttons\home.png" />
-        <Resource Include="Resources\Buttons\globe.png" />
-		<Resource Include="Resources\Buttons\screenshot.png" />
-		<Resource Include="Resources\Buttons\launcher.png" />
-        <Resource Include="Resources\Buttons\HSR.jpg" />
-        <Resource Include="Resources\Buttons\TOT.jpg" />
-        <Resource Include="Resources\Buttons\ZZZ.jpg" />
-        <Resource Include="Resources\Buttons\PreDownload.png" />
-        <Resource Include="Resources\Buttons\refresh.png" />
-        
-        <!-- Icon pictures -->
-        <Resource Include="Resources\Icons\16.ico" />
-        <Resource Include="Resources\Icons\64.ico" />
-        <Resource Include="Resources\Icons\128.ico" />
-        <Resource Include="Resources\Icons\256.ico" />
-        
-        <!-- Others uhh pictures -->
-		<Resource Include="Resources\ceele_Icon.png" />
-        <Resource Include="Resources\CeeleLauncher.png" />
-        <Resource Include="Resources\defaultBG.jpg" />
-		<Resource Include="Resources\github.png" />
-
-        <!-- Background pictures -->
-		<Resource Include="Resources\DEFAULT_GENSHIN_BG.jpg" />
-        <Resource Include="Resources\DEFAULT_HSR_BG.jpg" />
-        <Resource Include="Resources\DEFAULT_HI3_BG.jpg" />
-        <Resource Include="Resources\DEFAULT_ZZZ_BG.jpg" />
-		<Resource Include="Resources\DEFAULT_TOT_BG.jpg" />
-        
-        <!-- Tour pictures -->
-        <Resource Include="Resources\ShortTour\1.png" />
-        <Resource Include="Resources\ShortTour\2.png" />
-        <Resource Include="Resources\ShortTour\3.png" />
-        <Resource Include="Resources\ShortTour\4.png" />
-        <Resource Include="Resources\ShortTour\5.png" />
-        <Resource Include="Resources\ShortTour\6.png" />
-        <Resource Include="Resources\ShortTour\7.png" />
-        <Resource Include="Resources\ShortTour\8.png" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <Using Include="System" />
-        <Using Include="System.IO" />
-        <Using Include="System.Net" />
-        <Using Include="System.Text" />
-        <Using Include="System.Linq" />
-        <Using Include="System.Drawing" Alias="Draw" />
-        <Using Include="System.Windows" />
-        <Using Include="System.Net.Http" />
-        <Using Include="System.Text.Json" />
-        <Using Include="System.Threading" />
-        <Using Include="System.Reflection" />
-        <Using Include="System.Collections.Immutable" />
-        <Using Include="System.Diagnostics" />
-        <Using Include="System.Windows.Forms" Alias="Forms" />
-        <Using Include="System.Windows.Input" />
-        <Using Include="System.Windows.Media" />
-        <Using Include="System.ComponentModel" />
-        <Using Include="System.Threading.Tasks" />
-        <Using Include="System.Windows.Controls" />
-        <Using Include="System.Collections.Generic" />
-        <Using Include="System.Windows.Media.Imaging" />
-        <Using Include="System.Net.NetworkInformation" />
-        <Using Include="System.Runtime.InteropServices" />
-        <Using Include="System.Windows.Media.Animation" />
-    </ItemGroup>
+    <Import Project="props/GlobalUsing.props" />
+    <Import Project="props/AppInfo.props" />
+    <Import Project="props/Publish.props" />
+    <Import Project="props/ItemGroupResources.props" />
+    <Import Project="props/Resx.props" />
 
     <ItemGroup>
         <Using Include="HoyoLauncher.MainWindow" Static="true" />
 
         <Using Include="HoyoLauncher.Core" />
-		<Using Include="HoyoLauncher.Core.API" />
+        <Using Include="HoyoLauncher.Core.API" />
         <Using Include="HoyoLauncher.Core.Config" />
         <Using Include="HoyoLauncher.Core.Record" />
         <Using Include="HoyoLauncher.Core.Attributes" />
         <Using Include="HoyoLauncher.Core.GameChanger" />
-		
+        
         <Using Include="HoyoLauncher.Resources" />
         <Using Include="HoyoLauncher.Resources.Icons" />
-		<Using Include="HoyoLauncher.Resources.Buttons.Selection" />
-		
+        <Using Include="HoyoLauncher.Resources.Buttons.Selection" />
+        
+        <Using Include="HoyoLauncher.ShortTour" />
         <Using Include="HoyoLauncher.Controls.SideButtons" />
-		<Using Include="HoyoLauncher.HoyoLauncherMessageBox" />
-		
-		<Using Include="AppResources" />
+        <Using Include="HoyoLauncher.HoyoLauncherMessageBox" />
+        
+        <Using Include="AppResources" />
 
-		<Using Include="IniParser" />
+        <Using Include="IniParser" />
     </ItemGroup>
     
-    <ItemGroup>
-        <Compile Update="Properties\ToolTips.Designer.cs">
-          <DependentUpon>ToolTips.resx</DependentUpon>
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-        </Compile>
-        <Compile Update="Properties\LaunchText.Designer.cs">
-          <DependentUpon>LaunchText.resx</DependentUpon>
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-        </Compile>
-        <Compile Update="Properties\Games.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Games.resx</DependentUpon>
-        </Compile>
-        <Compile Update="HoyoLauncher Core\Settings.Designer.cs">
-            <DesignTimeSharedInput>True</DesignTimeSharedInput>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Settings.settings</DependentUpon>
-        </Compile>
-        <Compile Update="Properties\Settings.Designer.cs">
-          <DesignTimeSharedInput>True</DesignTimeSharedInput>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>Settings.settings</DependentUpon>
-        </Compile>
-    </ItemGroup>
-    
-    <ItemGroup>
-        <EmbeddedResource Update="Properties\ToolTips.resx">
-          <CustomToolNamespace>AppResources</CustomToolNamespace>
-          <LastGenOutput>ToolTips.Designer.cs</LastGenOutput>
-          <Generator>PublicResXFileCodeGenerator</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Update="Properties\LaunchText.resx">
-          <CustomToolNamespace>AppResources</CustomToolNamespace>
-          <LastGenOutput>LaunchText.Designer.cs</LastGenOutput>
-          <Generator>PublicResXFileCodeGenerator</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Update="Properties\Games.resx">
-            <Generator>PublicResXFileCodeGenerator</Generator>
-            <LastGenOutput>Games.Designer.cs</LastGenOutput>
-            <CustomToolNamespace>AppResources</CustomToolNamespace>
-        </EmbeddedResource>
-    </ItemGroup>
-    
-    <ItemGroup>
-        <None Update="Properties\Settings.settings">
-            <Generator>SettingsSingleFileGenerator</Generator>
-            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-            <CustomToolNamespace>AppSettings</CustomToolNamespace>
-        </None>
-    </ItemGroup>
-
 </Project>

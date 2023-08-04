@@ -1,0 +1,18 @@
+<Project>
+    <PropertyGroup>
+        <Guid>FAE04EC0-301F-11D3-BF4B-00C04F79EFBC</Guid>
+
+        <Authors>IchimakiKasura</Authors>
+        <Company>$(Authors)</Company>
+        <PublisherName>$(Authors)</PublisherName>
+        <AssemblyName>CeeleLauncher</AssemblyName>
+        <Product>CeeleLauncher</Product>
+        <Version>1.8.804.5</Version>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <Copyright>Copyright © CeeleLauncher 2023</Copyright>
+        <ApplicationIcon>Resources\Icons\256.ico</ApplicationIcon>
+        <StartupObject>HoyoLauncher.App</StartupObject>
+		<DebugType>portable</DebugType>
+    </PropertyGroup>
+</Project>

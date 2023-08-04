@@ -1,0 +1,56 @@
+<Project>
+    <ItemGroup>
+        <Compile Update="Properties\ToolTips.Designer.cs">
+          <DependentUpon>ToolTips.resx</DependentUpon>
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+        </Compile>
+        <Compile Update="Properties\LaunchText.Designer.cs">
+          <DependentUpon>LaunchText.resx</DependentUpon>
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+        </Compile>
+        <Compile Update="Properties\Games.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Games.resx</DependentUpon>
+        </Compile>
+        <Compile Update="HoyoLauncher Core\Settings.Designer.cs">
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
+        <Compile Update="Properties\Settings.Designer.cs">
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\ToolTips.resx">
+          <CustomToolNamespace>AppResources</CustomToolNamespace>
+          <LastGenOutput>ToolTips.Designer.cs</LastGenOutput>
+          <Generator>PublicResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\LaunchText.resx">
+          <CustomToolNamespace>AppResources</CustomToolNamespace>
+          <LastGenOutput>LaunchText.Designer.cs</LastGenOutput>
+          <Generator>PublicResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\Games.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Games.Designer.cs</LastGenOutput>
+            <CustomToolNamespace>AppResources</CustomToolNamespace>
+        </EmbeddedResource>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Update="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+            <CustomToolNamespace>AppSettings</CustomToolNamespace>
+        </None>
+    </ItemGroup>
+
+</Project>
