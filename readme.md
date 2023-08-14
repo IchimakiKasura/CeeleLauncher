@@ -36,7 +36,7 @@ _this picture was taken using previewbuild version 1.8.804.5_
 |![](readme/MainOverview/update.jpg)|![](readme/MainOverview/download.jpg)|
 <div align="center">
 
-_these picture was taken using previewbuild version from 1.8.0.3 to 1.8.804.5_
+_these picture was taken using version 1.8.804.5_
 
 </div>
 
@@ -48,7 +48,7 @@ _these picture was taken using previewbuild version from 1.8.0.3 to 1.8.804.5_
 <div align="center">
 
 # Download Links
-<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/latest/download/CeeleLauncher.exe"><img Title="Download Latest (1.6.5)" src="readme/Release.png" height="90"/></a>  
+<a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/latest/download/CeeleLauncher.exe"><img Title="Download Latest (1.8.804.5)" src="readme/Release.png" height="90"/></a>  
 <a href="https://github.com/IchimakiKasura/CeeleLauncher/releases/download/v1.8.726.5-previewbuild/CeeleLauncher.exe"><img Title="Download Preview build (1.8.726.5)" src="readme/Preview.png" height="90"/></a>
 
 <br>
