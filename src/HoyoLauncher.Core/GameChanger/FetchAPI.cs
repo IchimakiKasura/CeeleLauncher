@@ -37,6 +37,13 @@ public sealed partial class GameChange : HoyoMain
             }
         }
 
+        if(RetrieveFile.IsDownloading)
+        {
+            values.LaunchButton = false;
+            values.LaunchButtonContent = LaunchText.GAME_DOWNLOAD;
+            values.PreInstall = Visibility.Collapsed;
+        }
+
         return values;
     }
 

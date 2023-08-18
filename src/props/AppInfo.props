@@ -7,7 +7,7 @@
         <PublisherName>$(Authors)</PublisherName>
         <AssemblyName>CeeleLauncher</AssemblyName>
         <Product>CeeleLauncher</Product>
-        <Version>1.8.804.5</Version>
+        <Version>1.8.818.6</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
         <Copyright>Copyright © CeeleLauncher 2023</Copyright>

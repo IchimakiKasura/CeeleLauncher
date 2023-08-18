@@ -48,7 +48,7 @@ public sealed class Events__
             HoyoWindow.HomeButton.IsEnabled =
             HoyoWindow.LaunchSelection.IsEnabled =
             HoyoWindow.LaunchButton.IsEnabled = false;
-            HoyoWindow.LaunchButton.Content = "Downloading";
+            HoyoWindow.LaunchButton.Content = LaunchText.GAME_DOWNLOAD;
             HoyoWindow.PreDownload.Visibility = Visibility.Collapsed;
             RetrieveFile.DownloadFile(HoyoMain.CurrentGameSelected.API_CACHE.PreDownloadFile);
         };

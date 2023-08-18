@@ -70,6 +70,15 @@ namespace AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading.
+        /// </summary>
+        public static string GAME_DOWNLOAD {
+            get {
+                return ResourceManager.GetString("GAME_DOWNLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extract.
         /// </summary>
         public static string GAME_EXTRACT_TEXT {

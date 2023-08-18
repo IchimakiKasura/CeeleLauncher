@@ -18,20 +18,7 @@ public sealed class WindowLaunchButton
 
         if(!Equals(HoyoWindow.LaunchButton.Content, LaunchText.GAME_DEFAULT_TEXT))
         {
-            if(Directory.GetFiles(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, "*.*").Where(s=>s.EndsWith(".zip") || s.EndsWith(".7z")).Any())
-            {
-                HoyoMain.ProcessStart(HoyoMain.ExecutableName);
-                HoyoMessageBox.Show("A Very Cool Message Box", "Opening Original Launcher to Update the game!\r\rIf the File is downloaded, You can just press the Update again on the Original Launcher\rAnd it will extract it smoothly.\r\r If the File was stopped mid-way of downloading, It will resume its progress on the Original Launcher.\r", HoyoWindow);
-            }
-            else
-            {
-                HoyoWindow.HomeButton.IsEnabled =
-                HoyoWindow.LaunchSelection.IsEnabled =
-                HoyoWindow.LaunchButton.IsEnabled = false;
-                HoyoWindow.LaunchButton.Content = "Downloading";
-                RetrieveFile.DownloadFile(HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile);
-            }
-
+            ChangeEvent();
             return;
         }
 
@@ -60,5 +47,22 @@ public sealed class WindowLaunchButton
         }
 
         HoyoWindow.Activate();
+    }
+
+    private static void ChangeEvent()
+    {
+        if(Directory.GetFiles(HoyoMain.CurrentGameSelected.GAME_INSTALL_PATH, "*.*").Where(s=>s.EndsWith(".zip") || s.EndsWith(".7z")).Any())
+        {
+            HoyoMain.ProcessStart(HoyoMain.ExecutableName);
+            HoyoMessageBox.Show("A Very Cool Message Box", "Opening Original Launcher to Update the game!\r\rIf the File is downloaded, You can just press the Update again on the Original Launcher\rAnd it will extract it smoothly.\r\r If the File was stopped mid-way of downloading, It will resume its progress on the Original Launcher.\r", HoyoWindow);
+        }
+        else
+        {
+            HoyoWindow.HomeButton.IsEnabled =
+            HoyoWindow.LaunchSelection.IsEnabled =
+            HoyoWindow.LaunchButton.IsEnabled = false;
+            HoyoWindow.LaunchButton.Content = LaunchText.GAME_DOWNLOAD;
+            RetrieveFile.DownloadFile(HoyoMain.CurrentGameSelected.API_CACHE.DownloadFile);
+        }
     }
 }
