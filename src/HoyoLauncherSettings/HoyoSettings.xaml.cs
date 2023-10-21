@@ -53,7 +53,7 @@ public partial class HoyoSettings : Window
             };
         }
 
-        // So it syncs when setting window is open, the main window gets grayed out at the same time.
+        // So it syncs when 'setting window' is open, the 'main window' gets grayed out at the same time.
         Loaded += (s,e) => HoyoWindow.BLACK_THING.Visibility = Visibility.Visible;
     }
     

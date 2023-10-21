@@ -64,8 +64,8 @@
                             <TextBlock Name="Tooltip_Text" Text="[ TOOL TIP TEXT MESSAGES ]" FontSize="20" TextWrapping="Wrap"/>
                         </Border>
 
-                        <ScrollViewer Name="Settings_ScrollBar" Height="689" Width="350" HorizontalScrollBarVisibility="Disabled" FocusVisualStyle="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Top">
-                            <Canvas Height="689">
+                        <ScrollViewer Name="Settings_ScrollBar" Height="710" Width="350" HorizontalScrollBarVisibility="Disabled" FocusVisualStyle="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Canvas Height="710">
 
                                 <TextBlock Text="Closing Behaviour" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" FocusVisualStyle="{x:Null}"/>
 
@@ -145,10 +145,11 @@
 
                                 <Button FocusVisualStyle="{x:Null}" Name="Button_ClearLocationTexts" Content="Clear Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="30" Canvas.Top="500" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="20" Uid="Clear the Location on the &quot;Location tab&quot;"/>
                                 <Button FocusVisualStyle="{x:Null}" Name="Button_ResetSettings" Content="Reset To Default" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="30" Canvas.Top="500" HorizontalAlignment="Left" VerticalAlignment="Center" Width="132" Canvas.Left="181" Uid="Reset all the settings to its default state.&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;[App Restart Optional]"/>
+                                <Button FocusVisualStyle="{x:Null}" Name="Button_ClearNoLocation" Content="Clear No Locations" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="30" Canvas.Top="540" HorizontalAlignment="Center" VerticalAlignment="Center" Width="293" Canvas.Left="20" Uid="Clear the Location that has Non-existing directory on &quot;Location tab&quot;"/>
 
-                                <TextBlock Text="Custom Background" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="560" VerticalAlignment="Top"/>
-                                <TextBox Name="BG_DIR_TXT" Style="{StaticResource TextBoxStyle}" Canvas.Left="20" Canvas.Top="599" Width="293" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <Button FocusVisualStyle="{x:Null}" Name="BG_LOCATE" Click="LocationImageButtonClick" Content="Select Background" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="30" Canvas.Top="640" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Canvas.Left="104" Uid="Change HomeMenu background to a custom one.&#xa;&#xa;It is recommended to disable the Background Video for this to show."/>
+                                <TextBlock Text="Custom Background" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Canvas.Top="580" VerticalAlignment="Top"/>
+                                <TextBox Name="BG_DIR_TXT" Style="{StaticResource TextBoxStyle}" Canvas.Left="20" Canvas.Top="620" Width="293" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Button FocusVisualStyle="{x:Null}" Name="BG_LOCATE" Click="LocationImageButtonClick" Content="Select Background" Style="{StaticResource MainButton}" BorderBrush="Gray" Foreground="#997f5f" FontSize="14" BorderThickness="2" Height="30" Canvas.Top="660" HorizontalAlignment="Left" VerticalAlignment="Center" Width="293" Canvas.Left="20" Uid="Change HomeMenu background to a custom one.&#xa;&#xa;It is recommended to disable the Background Video for this to show."/>
 
                             </Canvas>
                         </ScrollViewer>
