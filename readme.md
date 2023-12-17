@@ -6,7 +6,7 @@ the app is built based on my own preference.
 <br>
 
 ## Features
-- very Lightweight program (only uses less than 5mb | but needs an NET 7 runtime env)
+- Very Lightweight program (only uses less than 5mb | but needs an NET 7 runtime env)
 - Ready to run no installation needed (unless you haven't installed the NET 7 runtime env)
 - Open source
 - Removed bloat links (such as socials)

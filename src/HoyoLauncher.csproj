@@ -8,16 +8,16 @@
         <UseWindowsForms>true</UseWindowsForms>
     </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj" />
-    </ItemGroup>
-
     <Import Project="props/GlobalUsing.props" />
     <Import Project="props/AppInfo.props" />
     <Import Project="props/Publish.props" />
     <Import Project="props/ItemGroupResources.props" />
     <Import Project="props/Resx.props" />
 
+    <ItemGroup>
+        <ProjectReference Include="..\ini-reader\src\IniParser\IniParser.csproj" />
+    </ItemGroup>
+    
     <ItemGroup>
         <Using Include="HoyoLauncher.MainWindow" Static="true" />
 

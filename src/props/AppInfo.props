@@ -1,12 +1,13 @@
 <Project>
     <PropertyGroup>
-        <Guid>FAE04EC0-301F-11D3-BF4B-00C04F79EFBC</Guid>
+        <Guid>34E7AD04-93F8-4AFC-A029-D6A953C6B1C3</Guid>
 
         <Authors>IchimakiKasura</Authors>
         <Company>$(Authors)</Company>
         <PublisherName>$(Authors)</PublisherName>
         <AssemblyName>CeeleLauncher</AssemblyName>
         <Product>CeeleLauncher</Product>
+        <PackageId>CeeleLauncher</PackageId>
         <Version>1.8.1021.6</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>

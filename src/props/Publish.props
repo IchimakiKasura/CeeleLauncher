@@ -5,8 +5,8 @@
         <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <PublishProtocol>FileSystem</PublishProtocol>
-        <PublishSingleFile>True</PublishSingleFile>
         <SelfContained>False</SelfContained>
+        <PublishSingleFile>True</PublishSingleFile>
         <PublishReadyToRun>True</PublishReadyToRun>
 		<DebugType>none</DebugType>
 	</PropertyGroup>
