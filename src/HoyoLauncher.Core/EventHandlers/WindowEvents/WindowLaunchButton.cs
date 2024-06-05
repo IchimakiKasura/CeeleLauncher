@@ -46,6 +46,10 @@ public sealed class WindowLaunchButton
             App.AppTray.Visible = false;
         }
 
+        HoyoWindow.LaunchButton.Content =
+            HoyoMain.CurrentGameSelected.GAME_CONFIG_CACHE.GameVersion == HoyoMain.CurrentGameSelected.API_CACHE.LatestVersion ?
+            LaunchText.GAME_EXTRACT_TEXT : LaunchText.GAME_UPDATE_TEXT;
+
         HoyoWindow.Activate();
     }
 

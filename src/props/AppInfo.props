@@ -8,7 +8,7 @@
         <AssemblyName>CeeleLauncher</AssemblyName>
         <Product>CeeleLauncher</Product>
         <PackageId>CeeleLauncher</PackageId>
-        <Version>1.8.1021.6</Version>
+        <Version>1.8.1219.6</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
         <Copyright>Copyright © CeeleLauncher 2023</Copyright>

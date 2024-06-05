@@ -5,6 +5,16 @@ the app is built based on my own preference.
 </div>
 <br>
 
+## [NOTICE TO USERS]
+[HoyoPlay](https://hoyoplay.hoyoverse.com/) is now available as it is the official Hoyo's All-In-One game launcher for their games. <br>
+Though the new HoyoPlay has some problems. <br>
+1. The launcher size of it is almost 300+ MB
+2. The side buttons doesn't include a link to direct to check-in rewards (though It might be added in the future.)
+3. *unable to change launcher size? (I may only have 1 monitor so I cannot confirm if the launcher window resizes if the user have 4k monitor)
+<br>
+
+This could be the last time I'm updating and maintaining this project. Still, feel free to maintain or fork it.
+
 ## Features
 - Very Lightweight program (only uses less than 5mb | but needs an NET 7 runtime env)
 - Ready to run no installation needed (unless you haven't installed the NET 7 runtime env)
